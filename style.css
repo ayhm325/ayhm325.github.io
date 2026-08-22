@@ -219,26 +219,30 @@ h1 {
     align-items: center;
 
     position: relative;
+
+    margin-bottom: 25px;
 }
 
 .profile-image {
-    width: 330px;
+    width: 240px;
 
-    height: 330px;
+    height: 300px;
 
     object-fit: cover;
 
-    border-radius: 50%;
+    object-position: center top;
 
-    border: 3px solid #66e3c4;
+    border-radius: 22px;
 
-    padding: 6px;
+    border: 2px solid #66e3c4;
+
+    padding: 5px;
 
     background: #0d121e;
 
     box-shadow:
-        0 0 0 8px #66e3c414,
-        0 25px 70px #0008;
+        0 0 0 7px #66e3c414,
+        0 25px 60px #0008;
 
     transition:
         transform 0.3s ease,
@@ -249,8 +253,8 @@ h1 {
     transform: translateY(-6px);
 
     box-shadow:
-        0 0 0 10px #66e3c420,
-        0 30px 80px #0009;
+        0 0 0 9px #66e3c420,
+        0 30px 70px #0009;
 }
 
 
@@ -535,8 +539,8 @@ footer .container {
     background: #ffffff;
 
     box-shadow:
-        0 0 0 8px #66e3c414,
-        0 25px 70px #0002;
+        0 0 0 7px #66e3c414,
+        0 25px 60px #0002;
 }
 
 
@@ -598,13 +602,13 @@ footer .container {
     .profile-wrapper {
         order: -1;
 
-        margin-bottom: 10px;
+        margin-bottom: 5px;
     }
 
     .profile-image {
-        width: 260px;
+        width: 220px;
 
-        height: 260px;
+        height: 275px;
     }
 }
 
@@ -634,9 +638,11 @@ footer .container {
     }
 
     .profile-image {
-        width: 220px;
+        width: 190px;
 
-        height: 220px;
+        height: 240px;
+
+        border-radius: 18px;
     }
 
     footer .container {
