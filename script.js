@@ -1,90 +1,190 @@
-const body = document.body,
-      theme = document.getElementById("theme"),
-      menu = document.getElementById("menuBtn"),
-      links = document.getElementById("navLinks"),
-      progress = document.getElementById("scrollProgress"),
-      header = document.getElementById("header"),
-      reveals = document.querySelectorAll(".reveal"),
-      navA = document.querySelectorAll(".links a[href^='#']");
-
-/* ===== Theme ===== */
-if (localStorage.theme === "light") body.classList.add("light");
-else if (!localStorage.theme && matchMedia("(prefers-color-scheme:light)").matches) body.classList.add("light");
-
-theme.onclick = () => {
-  body.classList.toggle("light");
-  localStorage.theme = body.classList.contains("light") ? "light" : "dark";
-};
-
-/* ===== Mobile Menu ===== */
-menu.onclick = () => {
-  menu.classList.toggle("open");
-  links.classList.toggle("open");
-  body.style.overflow = links.classList.contains("open") ? "hidden" : "";
-};
-
-navA.forEach(a => a.onclick = () => {
-  menu.classList.remove("open");
-  links.classList.remove("open");
-  body.style.overflow = "";
-});
-
-/* ===== Year ===== */
-document.getElementById("year").textContent = new Date().getFullYear();
-
-/* ===== Scroll: Progress + Header + Active Link ===== */
+const body = document.body;
+const theme = document.getElementById("theme");
+const menu = document.getElementById("menuBtn");
+const links = document.getElementById("navLinks");
+const progress = document.getElementById("scrollProgress");
+const header = document.getElementById("header");
+const reveals = document.querySelectorAll(".reveal");
+const navLinks = document.querySelectorAll(".links a[href^='#']");
 const sections = document.querySelectorAll("section[id]");
 
-onscroll = () => {
-  const y = scrollY,
-        h = document.documentElement.scrollHeight - innerHeight;
+/* ===== Theme ===== */
 
-  /* progress bar */
-  progress.style.width = (h > 0 ? y / h * 100 : 0) + "%";
+if (localStorage.theme === "light") {
+    body.classList.add("light");
+} else if (
+    !localStorage.theme &&
+    window.matchMedia("(prefers-color-scheme: light)").matches
+) {
+    body.classList.add("light");
+}
 
-  /* header state */
-  header.classList.toggle("scrolled", y > 50);
+theme.addEventListener("click", () => {
+    body.classList.toggle("light");
 
-  /* active link */
-  let cur = "";
-  sections.forEach(s => { if (y >= s.offsetTop - 120) cur = s.id; });
-  navA.forEach(a => {
-    a.classList.toggle("active", a.getAttribute("href") === "#" + cur);
-  });
+    localStorage.theme = body.classList.contains("light")
+        ? "light"
+        : "dark";
+});
+
+
+/* ===== Mobile Menu ===== */
+
+const closeMenu = () => {
+    menu.classList.remove("open");
+    links.classList.remove("open");
+
+    body.style.overflow = "";
+
+    menu.setAttribute("aria-expanded", "false");
+    menu.setAttribute("aria-label", "Open navigation menu");
 };
 
+const toggleMenu = () => {
+    const isOpen = links.classList.toggle("open");
+
+    menu.classList.toggle("open", isOpen);
+
+    body.style.overflow = isOpen
+        ? "hidden"
+        : "";
+
+    menu.setAttribute(
+        "aria-expanded",
+        String(isOpen)
+    );
+
+    menu.setAttribute(
+        "aria-label",
+        isOpen
+            ? "Close navigation menu"
+            : "Open navigation menu"
+    );
+};
+
+menu.addEventListener("click", toggleMenu);
+
+navLinks.forEach(link => {
+    link.addEventListener("click", closeMenu);
+});
+
+
+/* ===== Year ===== */
+
+const year = document.getElementById("year");
+
+if (year) {
+    year.textContent = new Date().getFullYear();
+}
+
+
+/* ===== Scroll: Progress + Header + Active Link ===== */
+
+const updateScrollState = () => {
+    const y = window.scrollY;
+
+    const height =
+        document.documentElement.scrollHeight -
+        window.innerHeight;
+
+    /* Progress bar */
+
+    progress.style.width =
+        (height > 0 ? (y / height) * 100 : 0) + "%";
+
+
+    /* Header state */
+
+    header.classList.toggle(
+        "scrolled",
+        y > 50
+    );
+
+
+    /* Active navigation link */
+
+    let currentSection = "";
+
+    sections.forEach(section => {
+        if (y >= section.offsetTop - 120) {
+            currentSection = section.id;
+        }
+    });
+
+    navLinks.forEach(link => {
+        link.classList.toggle(
+            "active",
+            link.getAttribute("href") ===
+                "#" + currentSection
+        );
+    });
+};
+
+window.addEventListener(
+    "scroll",
+    updateScrollState,
+    { passive: true }
+);
+
+
 /* ===== Scroll Reveal ===== */
-new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add("visible");
-      e.disconnect();
-    }
-  });
-}, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" })
-.observe.bind(new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add("visible");
-    }
-  });
-}, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" }));
 
-const revObs = new IntersectionObserver(entries => {
-  entries.forEach(e => {
-    if (e.isIntersecting) {
-      e.target.classList.add("visible");
-      revObs.unobserve(e.target);
-    }
-  });
-}, { threshold: 0.1, rootMargin: "0px 0px -40px 0px" });
+const revealObserver = new IntersectionObserver(
+    entries => {
+        entries.forEach(entry => {
+            if (!entry.isIntersecting) {
+                return;
+            }
 
-reveals.forEach(el => revObs.observe(el));
+            entry.target.classList.add("visible");
+
+            revealObserver.unobserve(
+                entry.target
+            );
+        });
+    },
+    {
+        threshold: 0.1,
+        rootMargin: "0px 0px -40px 0px"
+    }
+);
+
+reveals.forEach(element => {
+    revealObserver.observe(element);
+});
+
 
 /* ===== Smooth Scroll ===== */
-document.querySelectorAll("a[href^='#']").forEach(a => {
-  a.onclick = e => {
-    const t = document.querySelector(a.getAttribute("href"));
-    if (t) { e.preventDefault(); t.scrollIntoView({ behavior: "smooth" }); }
-  };
-});
+
+document
+    .querySelectorAll("a[href^='#']")
+    .forEach(link => {
+
+        link.addEventListener(
+            "click",
+            event => {
+
+                const selector =
+                    link.getAttribute("href");
+
+                const target =
+                    document.querySelector(selector);
+
+                if (!target) {
+                    return;
+                }
+
+                event.preventDefault();
+
+                target.scrollIntoView({
+                    behavior: "smooth",
+                    block: "start"
+                });
+            }
+        );
+    });
+
+
+/* ===== Initial Scroll State ===== */
+
+updateScrollState();
