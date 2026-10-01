@@ -63,3 +63,14 @@ The portfolio intentionally keeps the existing cinematic identity:
 The PneumoDetect project and the old System Timeline are intentionally removed.
 
 No framework is required; the portfolio remains pure HTML, CSS and JavaScript.
+
+
+## V4 visual upgrade
+- Added a more dimensional holographic hero composition.
+- Added animated glass data rail and floating HUD labels.
+- Added living orbital rings and scan beam around the profile/reactor.
+- Added richer glassmorphism and pointer-reactive highlights.
+- Added a more dynamic skills network with animated data-flow lines and orbital rings.
+- Added richer DVLD architecture presentation with animated connectors and ambient glow.
+- Kept the real existing `assets/ayhmImage.jpg` portrait and `assets/Ayhm_Obeidat_CV.pdf`.
+- Kept PneumoDetect and the old System Timeline removed.

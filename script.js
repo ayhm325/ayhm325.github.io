@@ -458,4 +458,60 @@
     if (year) {
         year.textContent = new Date().getFullYear();
     }
+
+    // =========================================================
+    // V4 // AMBIENT INTERACTION LAYER
+    // =========================================================
+
+    const heroVisual = $(".hero-visual");
+    if (heroVisual && !isTouchDevice && !prefersReducedMotion) {
+        let targetPX = 0;
+        let targetPY = 0;
+        let currentPX = 0;
+        let currentPY = 0;
+
+        heroVisual.addEventListener("mousemove", (event) => {
+            const rect = heroVisual.getBoundingClientRect();
+            targetPX = ((event.clientX - rect.left) / rect.width - 0.5) * 10;
+            targetPY = ((event.clientY - rect.top) / rect.height - 0.5) * 10;
+            heroVisual.style.setProperty("--mx", `${(targetPX / 10 + 0.5) * 100}%`);
+            heroVisual.style.setProperty("--my", `${(targetPY / 10 + 0.5) * 100}%`);
+        }, { passive: true });
+
+        heroVisual.addEventListener("mouseleave", () => {
+            targetPX = 0;
+            targetPY = 0;
+        });
+
+        const animateHeroVisual = () => {
+            currentPX += (targetPX - currentPX) * 0.08;
+            currentPY += (targetPY - currentPY) * 0.08;
+            heroVisual.style.setProperty("--parallax-x", `${currentPX}px`);
+            heroVisual.style.setProperty("--parallax-y", `${currentPY}px`);
+            requestAnimationFrame(animateHeroVisual);
+        };
+
+        animateHeroVisual();
+    }
+
+    // Cursor glow follows the pointer and feeds the holographic surfaces.
+    if (!isTouchDevice && !prefersReducedMotion) {
+        document.addEventListener("mousemove", (event) => {
+            document.documentElement.style.setProperty("--pointer-x", `${event.clientX}px`);
+            document.documentElement.style.setProperty("--pointer-y", `${event.clientY}px`);
+        }, { passive: true });
+    }
+
+    // Add a subtle spotlight to interactive glass cards.
+    $$(".glass-tilt, .snapshot-card, .stat-readout, .contact-cell").forEach((card) => {
+        card.addEventListener("pointermove", (event) => {
+            if (isTouchDevice) return;
+            const rect = card.getBoundingClientRect();
+            const x = ((event.clientX - rect.left) / rect.width) * 100;
+            const y = ((event.clientY - rect.top) / rect.height) * 100;
+            card.style.setProperty("--spot-x", `${x}%`);
+            card.style.setProperty("--spot-y", `${y}%`);
+        }, { passive: true });
+    });
+
 })();
