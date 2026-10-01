@@ -86,7 +86,7 @@ document.querySelectorAll("a[href^='#']").forEach(link => {
 updateScrollState();
 
 /* =========================================================
-   CYBERPUNK EFFECTS: SPOTLIGHT, CURSOR, 3D TILT, MAGNETIC
+   DYNAMIC EFFECTS: SPOTLIGHT, CURSOR, 3D TILT, MAGNETIC
    ========================================================= */
 
 /* ===== Mouse Spotlight ===== */
