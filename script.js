@@ -285,7 +285,7 @@
         { name: "EF CORE", top: "75%", left: "70%", desc: "ORM, queries and database integration.", type: "DATA ACCESS" },
         { name: "REST", top: "40%", left: "85%", desc: "HTTP-based API design and JSON communication.", type: "ARCHITECTURE" },
         { name: "JWT", top: "10%", left: "50%", desc: "Authentication and authorization with tokens.", type: "SECURITY" },
-        { name: "GIT", top: "88%", left: "82%", desc: "Version control and collaborative workflows.", type: "TOOLS" },
+        { name: "GIT", top: "64%", left: "49.5%", desc: "Version control and collaborative workflows.", type: "TOOLS" },
         { name: "LINQ", top: "50%", left: "10%", desc: "Queries, projections and lambda expressions.", type: "LANGUAGE" }
     ];
 

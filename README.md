@@ -86,3 +86,8 @@ No framework is required; the portfolio remains pure HTML, CSS and JavaScript.
 - Moved the GIT neural node away from the bottom hover-information panel to prevent overlap.
 - Replaced the generic floating particle dots with subtle animated programming symbols such as `< >`, `{ }`, `C#`, `.NET`, `API`, `SQL`, `EF`, `JWT` and `LINQ`.
 - Kept the dark olive/lime visual identity and dark-only mode.
+
+
+## GIT node position update
+- Moved the GIT skill node from the lower-right corner to the position marked in the provided screenshot.
+- The node now sits directly below and slightly right of the .NET core, above the hover-information panel.
