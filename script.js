@@ -30,51 +30,72 @@
         ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     }
 
+    const codeSymbols = [
+        "<>", "{}", "[]", "#", "</>", "C#", ".NET", "API",
+        "SQL", "EF", "JWT", "LINQ", "=>", "::", "()", "01"
+    ];
+
     class Particle {
         constructor() {
-            this.reset();
+            this.reset(true);
         }
 
-        reset() {
+        reset(randomPosition = false) {
             this.x = Math.random() * window.innerWidth;
-            this.y = Math.random() * window.innerHeight;
-            this.size = Math.random() * 1.5 + 0.4;
-            this.speedX = Math.random() * 0.3 - 0.15;
-            this.speedY = Math.random() * 0.3 - 0.15;
-            this.opacity = Math.random() * 0.35 + 0.08;
+            this.y = randomPosition
+                ? Math.random() * window.innerHeight
+                : window.innerHeight + 30;
+
+            this.size = Math.random() * 7 + 8;
+            this.speedX = Math.random() * 0.24 - 0.12;
+            this.speedY = -(Math.random() * 0.22 + 0.05);
+            this.opacity = Math.random() * 0.20 + 0.07;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.rotationSpeed = Math.random() * 0.004 - 0.002;
+            this.symbol = codeSymbols[Math.floor(Math.random() * codeSymbols.length)];
+            this.font = Math.random() > 0.35 ? "JetBrains Mono" : "Orbitron";
         }
 
         update() {
             this.x += this.speedX;
             this.y += this.speedY;
+            this.rotation += this.rotationSpeed;
 
-            if (this.x < -5 || this.x > window.innerWidth + 5) this.speedX *= -1;
-            if (this.y < -5 || this.y > window.innerHeight + 5) this.speedY *= -1;
+            if (this.y < -35 || this.x < -80 || this.x > window.innerWidth + 80) {
+                this.reset();
+            }
 
             if (mouse.x !== null && mouse.y !== null) {
                 const dx = mouse.x - this.x;
                 const dy = mouse.y - this.y;
                 const distance = Math.hypot(dx, dy);
 
-                if (distance < 110 && distance > 0) {
-                    this.x -= dx / 24;
-                    this.y -= dy / 24;
+                if (distance < 130 && distance > 0) {
+                    this.x -= dx / 34;
+                    this.y -= dy / 34;
                 }
             }
         }
 
         draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation);
+            ctx.font = `500 ${this.size}px "${this.font}", monospace`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
             ctx.fillStyle = `rgba(217, 243, 106, ${this.opacity})`;
-            ctx.beginPath();
-            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-            ctx.fill();
+            ctx.shadowBlur = 8;
+            ctx.shadowColor = "rgba(217, 243, 106, 0.16)";
+            ctx.fillText(this.symbol, 0, 0);
+            ctx.restore();
         }
     }
 
     function initParticles() {
         if (!canvas || !ctx) return;
 
-        const count = window.innerWidth < 700 ? 22 : window.innerWidth < 1200 ? 42 : 62;
+        const count = window.innerWidth < 700 ? 14 : window.innerWidth < 1200 ? 24 : 34;
         particles = Array.from({ length: count }, () => new Particle());
     }
 
@@ -264,7 +285,7 @@
         { name: "EF CORE", top: "75%", left: "70%", desc: "ORM, queries and database integration.", type: "DATA ACCESS" },
         { name: "REST", top: "40%", left: "85%", desc: "HTTP-based API design and JSON communication.", type: "ARCHITECTURE" },
         { name: "JWT", top: "10%", left: "50%", desc: "Authentication and authorization with tokens.", type: "SECURITY" },
-        { name: "GIT", top: "85%", left: "45%", desc: "Version control and collaborative workflows.", type: "TOOLS" },
+        { name: "GIT", top: "88%", left: "82%", desc: "Version control and collaborative workflows.", type: "TOOLS" },
         { name: "LINQ", top: "50%", left: "10%", desc: "Queries, projections and lambda expressions.", type: "LANGUAGE" }
     ];
 

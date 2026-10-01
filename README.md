@@ -78,3 +78,11 @@ No framework is required; the portfolio remains pure HTML, CSS and JavaScript.
 ## Final UI notes
 - Portfolio uses the dark olive/lime visual theme only; the light-theme switcher was removed.
 - The hero reactor/code object is positioned farther right and down so the code is not hidden behind the portrait.
+
+
+## Final element separation + programming background
+- Reduced the hero title width so the portrait card and typography no longer occupy the same visual lane.
+- Kept the real portrait asset and its card position unchanged.
+- Moved the GIT neural node away from the bottom hover-information panel to prevent overlap.
+- Replaced the generic floating particle dots with subtle animated programming symbols such as `< >`, `{ }`, `C#`, `.NET`, `API`, `SQL`, `EF`, `JWT` and `LINQ`.
+- Kept the dark olive/lime visual identity and dark-only mode.

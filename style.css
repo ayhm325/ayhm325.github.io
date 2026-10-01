@@ -2181,3 +2181,35 @@ body{
     opacity:.42!important;
   }
 }
+
+
+/* =========================================================
+   FINAL ELEMENT SEPARATION PASS
+   Keep the portrait position intact; prevent hero typography
+   from entering the portrait/reactor visual zone.
+   ========================================================= */
+.hero-content{
+  max-width:700px!important;
+  min-width:0;
+}
+.hero-title{
+  max-width:700px!important;
+  font-size:clamp(3.25rem,6.25vw,6rem)!important;
+}
+.hero-title .title-line{
+  max-width:100%!important;
+  width:max-content;
+}
+.hero-visual{
+  min-width:0;
+  overflow:visible!important;
+}
+.profile-card{
+  flex-shrink:0;
+}
+
+/* Skills: reserve a clean bottom lane for the hover information panel. */
+.neural-info-panel{
+  bottom:20px!important;
+  z-index:8!important;
+}
