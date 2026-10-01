@@ -14,9 +14,9 @@ Place these files in the repository root:
 
 The new Hero design includes a dedicated professional portrait card.
 
-Add your real photo here:
+Your existing project photo is already expected here:
 
-`assets/ayhm-profile.jpg`
+`assets/ayhmImage.jpg`
 
 Recommended:
 - JPG or WebP
@@ -29,7 +29,7 @@ The site has a fallback "AO" panel if the image is missing.
 
 ## CV
 
-Place the CV at:
+Your existing project CV is expected at:
 
 `assets/Ayhm_Obeidat_CV.pdf`
 
