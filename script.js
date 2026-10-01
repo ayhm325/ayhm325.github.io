@@ -458,60 +458,43 @@
     if (year) {
         year.textContent = new Date().getFullYear();
     }
+})();
 
-    // =========================================================
-    // V4 // AMBIENT INTERACTION LAYER
-    // =========================================================
 
-    const heroVisual = $(".hero-visual");
-    if (heroVisual && !isTouchDevice && !prefersReducedMotion) {
-        let targetPX = 0;
-        let targetPY = 0;
-        let currentPX = 0;
-        let currentPY = 0;
-
-        heroVisual.addEventListener("mousemove", (event) => {
-            const rect = heroVisual.getBoundingClientRect();
-            targetPX = ((event.clientX - rect.left) / rect.width - 0.5) * 10;
-            targetPY = ((event.clientY - rect.top) / rect.height - 0.5) * 10;
-            heroVisual.style.setProperty("--mx", `${(targetPX / 10 + 0.5) * 100}%`);
-            heroVisual.style.setProperty("--my", `${(targetPY / 10 + 0.5) * 100}%`);
-        }, { passive: true });
-
-        heroVisual.addEventListener("mouseleave", () => {
-            targetPX = 0;
-            targetPY = 0;
-        });
-
-        const animateHeroVisual = () => {
-            currentPX += (targetPX - currentPX) * 0.08;
-            currentPY += (targetPY - currentPY) * 0.08;
-            heroVisual.style.setProperty("--parallax-x", `${currentPX}px`);
-            heroVisual.style.setProperty("--parallax-y", `${currentPY}px`);
-            requestAnimationFrame(animateHeroVisual);
-        };
-
-        animateHeroVisual();
-    }
-
-    // Cursor glow follows the pointer and feeds the holographic surfaces.
-    if (!isTouchDevice && !prefersReducedMotion) {
-        document.addEventListener("mousemove", (event) => {
-            document.documentElement.style.setProperty("--pointer-x", `${event.clientX}px`);
-            document.documentElement.style.setProperty("--pointer-y", `${event.clientY}px`);
-        }, { passive: true });
-    }
-
-    // Add a subtle spotlight to interactive glass cards.
-    $$(".glass-tilt, .snapshot-card, .stat-readout, .contact-cell").forEach((card) => {
-        card.addEventListener("pointermove", (event) => {
-            if (isTouchDevice) return;
-            const rect = card.getBoundingClientRect();
-            const x = ((event.clientX - rect.left) / rect.width) * 100;
-            const y = ((event.clientY - rect.top) / rect.height) * 100;
-            card.style.setProperty("--spot-x", `${x}%`);
-            card.style.setProperty("--spot-y", `${y}%`);
-        }, { passive: true });
+// =========================================================
+// V4 CINEMATIC ART-DIRECTION MOTION
+// =========================================================
+(() => {
+  if (prefersReducedMotion || isTouchDevice) return;
+  const hero = document.querySelector('.hero-section');
+  const visual = document.querySelector('.hero-visual');
+  if (!hero || !visual) return;
+  let raf = 0;
+  let px = 0, py = 0;
+  hero.addEventListener('pointermove', (event) => {
+    const rect = hero.getBoundingClientRect();
+    px = (event.clientX - rect.left) / rect.width - .5;
+    py = (event.clientY - rect.top) / rect.height - .5;
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = 0;
+      visual.style.setProperty('--mx', `${px * 18}px`);
+      visual.style.setProperty('--my', `${py * 14}px`);
+      visual.style.transform = `translate3d(${px * 10}px,${py * 8}px,0)`;
     });
+  }, {passive:true});
+  hero.addEventListener('pointerleave', () => {
+    visual.style.transform = '';
+    visual.style.removeProperty('--mx');
+    visual.style.removeProperty('--my');
+  });
 
+  // Cursor spotlight on large interactive surfaces.
+  document.querySelectorAll('.glass-tilt,.build-card,.snapshot-card,.contact-cell').forEach((el) => {
+    el.addEventListener('pointermove', (event) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--spot-x', `${event.clientX-r.left}px`);
+      el.style.setProperty('--spot-y', `${event.clientY-r.top}px`);
+    }, {passive:true});
+  });
 })();
