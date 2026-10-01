@@ -3,263 +3,277 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ayhm Obeidat — Junior .NET Backend Developer.">
+    <meta name="description" content="Ayhm Obeidat — Junior .NET Backend Engineer. Architecting scalable digital infrastructure.">
     <meta name="author" content="Ayhm Obeidat">
-    <meta name="theme-color" content="#020617">
-    <title>Ayhm Obeidat | .NET Backend Engineer</title>
-
+    <title>Ayhm Obeidat | System Architect</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Custom Cursor -->
-    <div class="cursor-dot" data-cursor-dot></div>
-    <div class="cursor-outline" data-cursor-outline></div>
+    <!-- Custom Holographic Cursor -->
+    <div class="cursor-core"></div>
+    <div class="cursor-ring"></div>
+    
+    <!-- Scroll Progress Beam -->
+    <div class="scroll-beam" id="scrollProgress"></div>
 
-    <!-- Scroll Progress -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-
-    <!-- Dynamic Background -->
-    <div class="bg-wrapper" aria-hidden="true">
-        <div class="aurora aurora-1"></div>
-        <div class="aurora aurora-2"></div>
-        <div class="dot-matrix"></div>
-        <div class="spotlight" id="spotlight"></div>
+    <!-- Dynamic Cinematic Background -->
+    <div class="bg-canvas-wrapper">
+        <canvas id="particle-canvas"></canvas>
+        <div class="grid-distortion"></div>
+        <div class="holo-scanlines"></div>
+        <div class="noise-overlay"></div>
+        <div class="orb-shadow"></div>
     </div>
 
-    <!-- Header -->
-    <header class="header" id="header">
-        <nav class="nav container" aria-label="Main navigation">
-            <a class="logo" href="#home" aria-label="Ayhm Obeidat home">
-                <span class="logo-bracket">[</span> AO <span class="logo-bracket">]</span>
-            </a>
-
-            <button class="menu" id="menuBtn" type="button" aria-label="Open navigation menu" aria-controls="navLinks" aria-expanded="false">
-                <span></span><span></span><span></span>
-            </button>
-
-            <div class="links" id="navLinks">
-                <a href="#about">About</a>
-                <a href="#skills">Systems</a>
-                <a href="#projects">Projects</a>
-                <a href="#education">Education</a>
-                <a href="#contact">Contact</a>
-                <button id="theme" class="theme" type="button" aria-label="Toggle color theme">
-                    <svg class="icon-sun" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <circle cx="12" cy="12" r="5"></circle>
-                        <line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line>
-                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-                        <line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line>
-                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-                    </svg>
-                    <svg class="icon-moon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-                    </svg>
-                </button>
-            </div>
-        </nav>
-    </header>
+    <!-- Floating Navigation -->
+    <nav class="hud-nav glass">
+        <div class="nav-logo">
+            <span class="logo-bracket">[</span> A.O <span class="logo-bracket">]</span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="#hero" class="active">Home</a></li>
+            <li><a href="#about">About</a></li>
+            <li><a href="#skills">Neural</a></li>
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#journey">Journey</a></li>
+            <li><a href="#contact">Comms</a></li>
+        </ul>
+        <button id="theme" class="theme-toggle" aria-label="Toggle theme">
+            <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
+            <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
+        </button>
+    </nav>
 
     <main>
-        <!-- Hero -->
-        <section id="home" class="hero" aria-labelledby="hero-title">
-            <div class="container hero-grid">
-                <div class="hero-content reveal">
-                    <p class="eyebrow">
-                        <span class="status-dot" aria-hidden="true"></span>
-                        SYSTEM ONLINE · .NET BACKEND
-                    </p>
-                    <h1 id="hero-title">
-                        Architecting <span class="text-gradient">scalable</span> digital infrastructure.
-                    </h1>
-                    <p class="lead">
-                        Computer Science graduate specialized in building robust C# and .NET applications. 
-                        Focused on clean architecture, RESTful APIs, and high-performance backend systems.
-                    </p>
-                    <div class="actions">
-                        <a class="btn primary magnetic" href="#projects">
-                            <span>View Project</span>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline>
-                            </svg>
-                        </a>
-                        <a class="btn magnetic" href="assets/Ayhm_Obeidat_CV.pdf" download>
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
-                                <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path><polyline points="7 10 12 15 17 10"></polyline><line x1="12" y1="15" x2="12" y2="3"></line>
-                            </svg>
-                            <span>Download CV</span>
-                        </a>
-                    </div>
-                    <div class="social" aria-label="Social links">
-                        <a class="magnetic" href="https://github.com/ayhm325" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"></path></svg>
-                            GitHub
-                        </a>
-                        <a class="magnetic" href="mailto:ayhmobeidat.cs@gmail.com" aria-label="Email">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                            Email
-                        </a>
-                        <a class="magnetic" href="https://www.linkedin.com/in/ayhm-obeidat-75a10a352" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 1 0 0 4.124 2.062 2.062 0 0 0 0-4.124zM7.119 20.452H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"></path></svg>
-                            LinkedIn
-                        </a>
-                    </div>
+        <!-- HERO SECTION -->
+        <section id="hero" class="hero-section">
+            <div class="hero-overlay">
+                <div class="floating-meta meta-1">
+                    <span class="status-dot"></span> SYSTEM_ONLINE
                 </div>
-
-                <div class="hero-visual reveal" style="--delay: 0.15s" data-tilt>
-                    <div class="hud-frame">
-                        <div class="profile-photo">
-                            <div class="profile-glow" aria-hidden="true"></div>
-                            <img src="assets/ayhmImage.JPG" alt="Ayhm Obeidat - Junior .NET Backend Developer">
-                        </div>
-
-                        <div class="terminal" aria-label="Developer technology stack">
-                            <div class="terminal-header">
-                                <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
-                                <span class="terminal-title">system_core.cs</span>
-                            </div>
-                            <pre><code><span class="code-keyword">public class</span> <span class="code-type">Developer</span>
-{
-    <span class="code-keyword">public string</span> Focus
-        <span class="code-op">=&gt;</span> <span class="code-string">".NET Backend"</span>;
-
-    <span class="code-keyword">public string[]</span> Stack <span class="code-op">=&gt;</span>
-    [
-        <span class="code-string">"C#"</span>,
-        <span class="code-string">".NET"</span>,
-        <span class="code-string">"ASP.NET Core"</span>,
-        <span class="code-string">"EF Core"</span>,
-        <span class="code-string">"SQL Server"</span>
-    ];
-}<span class="cursor">_</span></code></pre>
-                        </div>
-                    </div>
+                <div class="floating-meta meta-2">
+                    LAT: 32.07°N | LON: 36.10°E
+                </div>
+                <div class="floating-meta meta-3">
+                    CORE_TEMP: 36.8°C
                 </div>
             </div>
 
-            <div class="scroll-hint" aria-hidden="true">
-                <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
-            </div>
-        </section>
-
-        <!-- About -->
-        <section id="about" class="section" aria-labelledby="about-title">
-            <div class="container">
-                <div class="section-header reveal">
-                    <p class="eyebrow">01 · ABOUT</p>
-                    <h2 id="about-title">Backend Logic & <span class="text-gradient">Architecture</span>.</h2>
+            <div class="hero-content">
+                <h1 class="hero-title">
+                    <span class="title-line">AYHM</span>
+                    <span class="title-line glitch" data-text="OBEIDAT">OBEIDAT</span>
+                </h1>
+                <div class="hero-subtitle">
+                    <span class="subtitle-bracket">&lt;</span>
+                    Junior .NET Backend Engineer
+                    <span class="subtitle-bracket">/&gt;</span>
                 </div>
-                <div class="text-content reveal" style="--delay: 0.1s">
-                    <p>Computer Science graduate from Jordan University of Science and Technology with hands-on experience building C# and .NET applications and ASP.NET Core Web APIs.</p>
-                    <p>Experienced with Entity Framework Core, SQL Server, REST APIs, JWT authentication, Dependency Injection, layered architecture, and automated testing.</p>
-                    <p>Built and maintained a multi-layered driving license management system with separate Domain, Application, Infrastructure, API, and Presentation layers.</p>
+                <p class="hero-desc">
+                    Architecting scalable digital infrastructure. Specialized in C#, ASP.NET Core, and distributed systems engineering.
+                </p>
+                <div class="hero-actions">
+                    <a href="#projects" class="btn-cyber magnetic">
+                        <span class="btn-text">View Systems</span>
+                        <div class="btn-glow"></div>
+                    </a>
+                    <a href="assets/Ayhm_Obeidat_CV.pdf" download class="btn-ghost magnetic">
+                        <span class="btn-text">Download Dossier</span>
+                    </a>
+                </div>
+            </div>
+            
+            <div class="hero-orbital">
+                <div class="orbital-ring r1"></div>
+                <div class="orbital-ring r2"></div>
+                <div class="orbital-core" data-tilt>
+                    <div class="core-inner">
+                        <pre><code><span class="c-key">public class</span> <span class="c-type">Architect</span> {
+ <span class="c-key">public string</span> Focus <span class="c-op">=&gt;</span> <span class="c-str">".NET Core"</span>;
+}</code></pre>
+                    </div>
                 </div>
             </div>
         </section>
 
-        <!-- Skills -->
-        <section id="skills" class="section alt" aria-labelledby="skills-title">
-            <div class="container">
-                <div class="section-header reveal">
-                    <p class="eyebrow">02 · TECH STACK</p>
-                    <h2 id="skills-title">Core <span class="text-gradient">Systems</span>.</h2>
+        <!-- ABOUT SECTION (Asymmetric Layout) -->
+        <section id="about" class="section-block">
+            <div class="section-header">
+                <span class="section-id">01 //</span>
+                <h2 class="section-title">Identity <span class="text-gradient">Protocol</span></h2>
+            </div>
+
+            <div class="about-layout">
+                <div class="about-text-panel glass-tilt" data-tilt>
+                    <p>Computer Science graduate from Jordan University of Science and Technology. I don't just write code; I engineer ecosystems.</p>
+                    <p>My architecture focuses on separation of concerns, dependency injection, and immutable domain models. I build systems that scale silently.</p>
                 </div>
-                <div class="cards">
-                    <article class="card reveal hud-card" style="--delay: 0s" data-tilt>
-                        <div class="card-icon">C#</div>
-                        <h3>C# &amp; .NET</h3>
-                        <p>C# and .NET application development.</p>
-                    </article>
-                    <article class="card reveal hud-card" style="--delay: 0.07s" data-tilt>
-                        <div class="card-icon">API</div>
-                        <h3>ASP.NET Core</h3>
-                        <p>ASP.NET Core Web APIs and REST APIs.</p>
-                    </article>
-                    <article class="card reveal hud-card" style="--delay: 0.14s" data-tilt>
-                        <div class="card-icon">EF</div>
-                        <h3>Entity Framework</h3>
-                        <p>EF Core for application data access.</p>
-                    </article>
-                    <article class="card reveal hud-card" style="--delay: 0.21s" data-tilt>
-                        <div class="card-icon">SQL</div>
-                        <h3>SQL Server</h3>
-                        <p>SQL Server database development.</p>
-                    </article>
-                    <article class="card reveal hud-card" style="--delay: 0.28s" data-tilt>
-                        <div class="card-icon">ARCH</div>
-                        <h3>Architecture</h3>
-                        <p>Dependency Injection and layered architecture.</p>
-                    </article>
-                    <article class="card reveal hud-card" style="--delay: 0.35s" data-tilt>
-                        <div class="card-icon">TEST</div>
-                        <h3>Testing</h3>
-                        <p>Automated unit and integration testing.</p>
-                    </article>
+                <div class="about-stats">
+                    <div class="stat-hud glass-tilt" data-tilt>
+                        <span class="stat-value">CS</span>
+                        <span class="stat-label">Degree</span>
+                    </div>
+                    <div class="stat-hud glass-tilt" data-tilt>
+                        <span class="stat-value">5</span>
+                        <span class="stat-label">Layer Arch</span>
+                    </div>
+                    <div class="stat-hud glass-tilt" data-tilt>
+                        <span class="stat-value">∞</span>
+                        <span class="stat-label">Scalability</span>
+                    </div>
+                </div>
+                <div class="about-tech-fragments">
+                    <div class="tech-frag">DOMAIN_DRIVEN_DESIGN</div>
+                    <div class="tech-frag">RESTFUL_API</div>
+                    <div class="tech-frag">ENTITY_FRAMEWORK</div>
                 </div>
             </div>
         </section>
 
-        <!-- Projects -->
-        <section id="projects" class="section" aria-labelledby="projects-title">
-            <div class="container">
-                <div class="section-header reveal">
-                    <p class="eyebrow">03 · EXECUTION</p>
-                    <h2 id="projects-title">Featured <span class="text-gradient">Project</span>.</h2>
+        <!-- SKILLS SECTION (Neural Network) -->
+        <section id="skills" class="section-block">
+            <div class="section-header">
+                <span class="section-id">02 //</span>
+                <h2 class="section-title">Neural <span class="text-gradient">Network</span></h2>
+            </div>
+
+            <div class="neural-container">
+                <svg class="neural-svg" id="neuralSvg"></svg>
+                <div class="neural-core" id="neuralCore">
+                    <span>.NET</span>
                 </div>
-                <article class="project reveal hud-card" style="--delay: 0s" data-tilt>
-                    <div class="project-layout">
-                        <div class="project-info">
-                            <small>.NET / MULTI-LAYERED APPLICATION</small>
-                            <h3>DVLD Management System</h3>
-                            <p>A multi-layered driving license management system built with C# and .NET. The project uses separate Domain, Application, Infrastructure, API, and Presentation layers and includes an ASP.NET Core Web API.</p>
-                            <div class="tags">
-                                <span>C#</span><span>.NET</span><span>ASP.NET Core</span><span>EF Core</span><span>SQL Server</span><span>REST APIs</span><span>JWT</span><span>Testing</span>
+                <!-- Nodes injected by JS -->
+            </div>
+        </section>
+
+        <!-- PROJECTS SECTION (Cinematic Showcases) -->
+        <section id="projects" class="section-block">
+            <div class="section-header">
+                <span class="section-id">03 //</span>
+                <h2 class="section-title">System <span class="text-gradient">Executions</span></h2>
+            </div>
+
+            <!-- DVLD Project -->
+            <article class="project-showcase layout-right">
+                <div class="project-visual glass-tilt" data-tilt>
+                    <div class="visual-overlay">
+                        <span>WPF // MVVM</span>
+                        <span>CLEAN_ARCH</span>
+                    </div>
+                    <div class="visual-mockup dvld-mock">
+                        <div class="mock-header"><i></i><i></i><i></i></div>
+                        <div class="mock-body">
+                            <div class="mock-line w-80"></div>
+                            <div class="mock-line w-50"></div>
+                            <div class="mock-grid">
+                                <div></div><div></div><div></div><div></div>
                             </div>
                         </div>
-                        <div class="project-action">
-                            <a href="https://github.com/ayhm325/DVLD-WPF" target="_blank" rel="noopener noreferrer" class="project-link magnetic" aria-label="View DVLD Management System repository">
-                                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
-                                <span>View Repo</span>
-                            </a>
-                        </div>
                     </div>
-                </article>
-            </div>
-        </section>
+                </div>
+                <div class="project-info">
+                    <small>PROJECT_01 // SYSTEM</small>
+                    <h3>DVLD Management System</h3>
+                    <p>A multi-layered driving license management system engineered with Clean Architecture. Separates Domain, Application, Infrastructure, API, and Presentation layers.</p>
+                    <div class="tech-tags">
+                        <span>C#</span><span>.NET</span><span>ASP.NET Core</span><span>EF Core</span><span>SQL Server</span><span>JWT</span><span>Repository</span><span>UoW</span>
+                    </div>
+                    <a href="https://github.com/ayhm325/DVLD-WPF" target="_blank" class="project-link magnetic">
+                        Access Repository <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                </div>
+            </article>
 
-        <!-- Education & Contact -->
-        <section id="education" class="section alt" aria-labelledby="education-title">
-            <div class="container split-grid">
-                <div class="reveal hud-card education-card" style="--delay: 0.1s" data-tilt>
-                    <p class="eyebrow">04 · EDUCATION</p>
-                    <h2 id="education-title">Computer <span class="text-gradient">Science</span>.</h2>
-                    <div class="education-content">
-                        <div class="education-icon" aria-hidden="true">
-                            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 10v6M2 10l10-5 10 5-10 5z"></path><path d="M6 12v5c0 2 4 3 6 3s6-1 6-3v-5"></path></svg>
-                        </div>
-                        <div>
-                            <strong>Jordan University of Science and Technology</strong>
-                            <p>Bachelor's Degree in Computer Science — 2026</p>
-                            <p>Irbid, Jordan</p>
+            <!-- PneumoDetect Project -->
+            <article class="project-showcase layout-left">
+                <div class="project-info">
+                    <small>PROJECT_02 // AI_ENGINE</small>
+                    <h3>PneumoDetect</h3>
+                    <p>AI-driven medical diagnostic tool utilizing Deep Learning to detect pneumonia from X-ray scans. Built with a Python backend and Next.js frontend.</p>
+                    <div class="tech-tags">
+                        <span>Python</span><span>FastAPI</span><span>Next.js</span><span>DenseNet</span><span>OpenCV</span><span>PostgreSQL</span><span>Computer Vision</span>
+                    </div>
+                    <a href="#" class="project-link magnetic">
+                        Access Repository <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    </a>
+                </div>
+                <div class="project-visual glass-tilt" data-tilt>
+                    <div class="visual-overlay">
+                        <span>AI // VISION</span>
+                        <span>DEEP_LEARNING</span>
+                    </div>
+                    <div class="visual-mockup pneumo-mock">
+                        <div class="mock-header"><i></i><i></i><i></i></div>
+                        <div class="mock-body">
+                            <div class="mock-scan"></div>
+                            <div class="mock-line w-60"></div>
                         </div>
                     </div>
                 </div>
+            </article>
+        </section>
 
-                <div id="contact" class="contact reveal hud-card" style="--delay: 0.2s" data-tilt>
-                    <p class="eyebrow">05 · CONTACT</p>
-                    <h2 class="glitch" data-text="Let's Connect.">Let's <span class="text-gradient">Connect</span>.</h2>
-                    <p>Seeking an entry-level .NET Backend Developer or Junior Software Engineer position.</p>
-                    <div class="actions">
-                        <a class="btn primary magnetic" href="mailto:ayhmobeidat.cs@gmail.com">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path><polyline points="22,6 12,13 2,6"></polyline></svg>
-                            <span>Email Me</span>
+        <!-- JOURNEY SECTION (Timeline) -->
+        <section id="journey" class="section-block">
+            <div class="section-header">
+                <span class="section-id">04 //</span>
+                <h2 class="section-title">System <span class="text-gradient">Timeline</span></h2>
+            </div>
+
+            <div class="timeline-path">
+                <div class="timeline-node node-left">
+                    <div class="node-dot"></div>
+                    <div class="node-content glass-tilt" data-tilt>
+                        <span class="node-year">2026</span>
+                        <h4>B.Sc. Computer Science</h4>
+                        <p>Jordan University of Science and Technology.</p>
+                    </div>
+                </div>
+                <div class="timeline-node node-right">
+                    <div class="node-dot"></div>
+                    <div class="node-content glass-tilt" data-tilt>
+                        <span class="node-year">2024</span>
+                        <h4>Backend Architecture</h4>
+                        <p>Mastered Clean Architecture, EF Core, and ASP.NET Core APIs.</p>
+                    </div>
+                </div>
+                <div class="timeline-node node-left">
+                    <div class="node-dot"></div>
+                    <div class="node-content glass-tilt" data-tilt>
+                        <span class="node-year">2023</span>
+                        <h4>AI & Computer Vision</h4>
+                        <p>Developed PneumoDetect using DenseNet and FastAPI.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CONTACT SECTION (Terminal) -->
+        <section id="contact" class="section-block">
+            <div class="contact-terminal glass-tilt" data-tilt>
+                <div class="terminal-header">
+                    <div class="dots"><i></i><i></i><i></i></div>
+                    <span>comms_init.exe</span>
+                </div>
+                <div class="terminal-body">
+                    <h3>INITIALIZE CONNECTION</h3>
+                    <p>Seeking entry-level .NET Backend Developer roles. Let's build the future.</p>
+                    <div class="contact-grid">
+                        <a href="mailto:ayhmobeidat.cs@gmail.com" class="contact-cell magnetic">
+                            <span class="cell-label">EMAIL</span>
+                            <span class="cell-value">ayhmobeidat.cs@gmail.com</span>
                         </a>
-                        <a class="btn magnetic" href="https://github.com/ayhm325" target="_blank" rel="noopener noreferrer">
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"></path></svg>
-                            <span>GitHub</span>
+                        <a href="https://github.com/ayhm325" target="_blank" class="contact-cell magnetic">
+                            <span class="cell-label">GITHUB</span>
+                            <span class="cell-value">@ayhm325</span>
+                        </a>
+                        <a href="https://www.linkedin.com/in/ayhm-obeidat-75a10a352" target="_blank" class="contact-cell magnetic">
+                            <span class="cell-label">LINKEDIN</span>
+                            <span class="cell-value">/in/ayhm-obeidat</span>
                         </a>
                     </div>
                 </div>
@@ -268,10 +282,7 @@
     </main>
 
     <footer>
-        <div class="container">
-            <span>&copy; <span id="year"></span> Ayhm Obeidat</span>
-            <span>Hosted on GitHub Pages</span>
-        </div>
+        <span>&copy; <span id="year"></span> AYHM_OBEIDAT // ALL_SYSTEMS_OPERATIONAL</span>
     </footer>
 
     <script src="script.js"></script>
