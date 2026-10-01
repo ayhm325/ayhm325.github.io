@@ -275,7 +275,7 @@ body {
 
 /* ===== PROJECTS ===== */
 .project-showcase {
-    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 160px;
+    display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; margin-bottom: 0;
 }
 .layout-left .project-info { order: 1; } .layout-left .project-visual { order: 2; }
 .project-visual {
@@ -297,20 +297,6 @@ body {
 .l2 { border-left-color: var(--neon-violet); } .l3 { border-left-color: var(--neon-magenta); } .l4 { border-left-color: var(--neon-blue); } .l5 { border-left-color: var(--neon-green); }
 .arch-connector { width: 2px; height: 12px; background: var(--glass-border); margin: 0 auto; }
 
-/* PneumoDetect Mockup */
-.pneumo-mock { display: flex; flex-direction: column; gap: 20px; padding-top: 40px; }
-.xray-frame { 
-    width: 100%; height: 250px; background: rgba(0,0,0,0.5); border: 1px solid var(--glass-border);
-    position: relative; overflow: hidden;
-}
-.xray-scan-line { position: absolute; top: 0; left: 0; width: 100%; height: 4px; background: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan); animation: scan 3s linear infinite; }
-@keyframes scan { 0% { top: 0; } 100% { top: 100%; } }
-.ai-bounding-box { position: absolute; top: 40%; left: 30%; width: 40%; height: 40%; border: 2px solid var(--neon-magenta); box-shadow: 0 0 15px var(--neon-magenta); }
-.ai-data-readout { font-family: 'JetBrains Mono', monospace; font-size: 0.8rem; }
-.data-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid var(--glass-border); }
-.data-row span:first-child { color: var(--text-muted); }
-.data-row span:last-child { color: var(--neon-cyan); }
-
 .project-meta-tags { position: absolute; bottom: 30px; left: 30px; right: 30px; display: flex; flex-wrap: wrap; gap: 8px; z-index: 3; }
 .project-meta-tags span { font-family: 'JetBrains Mono', monospace; font-size: 0.65rem; color: var(--text-muted); border: 1px solid var(--glass-border); padding: 3px 8px; border-radius: 4px; background: rgba(0,0,0,0.6); }
 
@@ -321,19 +307,6 @@ body {
 .arch-item { display: flex; align-items: center; gap: 12px; font-family: 'JetBrains Mono', monospace; font-size: 0.85rem; color: var(--text-main); margin-bottom: 8px; }
 .arch-dot { width: 6px; height: 6px; background: var(--neon-green); border-radius: 50%; box-shadow: 0 0 6px var(--neon-green); }
 .project-link { font-family: 'Orbitron', sans-serif; color: var(--neon-cyan); text-decoration: none; display: inline-flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--neon-cyan); padding-bottom: 5px; font-size: 0.9rem; text-transform: uppercase; }
-
-/* ===== TIMELINE ===== */
-.timeline-path { position: relative; padding: 40px 0; }
-.timeline-beam { position: absolute; left: 50%; top: 0; width: 2px; height: 100%; background: var(--glass-border); transform: translateX(-50%); }
-.timeline-beam::after { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 0%; background: linear-gradient(to bottom, var(--neon-cyan), var(--neon-violet)); box-shadow: 0 0 15px var(--neon-cyan); transition: height 0.5s ease; }
-.timeline-node { position: relative; width: 50%; padding: 20px 40px; margin-bottom: 40px; }
-.node-left { left: 0; text-align: right; } .node-right { left: 50%; }
-.node-dot { position: absolute; top: 20px; width: 16px; height: 16px; background: var(--neon-cyan); border-radius: 50%; box-shadow: 0 0 15px var(--neon-cyan); z-index: 2; }
-.node-left .node-dot { right: -8px; } .node-right .node-dot { left: -8px; }
-.node-content { padding: 24px; clip-path: var(--clip-hud); }
-.node-year { font-family: 'JetBrains Mono', monospace; color: var(--neon-magenta); font-size: 0.85rem; }
-.node-content h4 { font-family: 'Orbitron', sans-serif; margin: 8px 0; font-size: 1.1rem; }
-.node-content p { color: var(--text-muted); font-size: 0.9rem; }
 
 /* ===== CONTACT ===== */
 .contact-terminal { max-width: 800px; margin: 0 auto; clip-path: var(--clip-hud); }
@@ -370,9 +343,7 @@ footer { text-align: center; padding: 40px; font-family: 'JetBrains Mono', monos
     .hero-reactor { display: none; }
     .hero-title { font-size: 4rem; }
     .about-layout { grid-template-columns: 1fr; gap: 40px; }
-    .project-showcase { grid-template-columns: 1fr; gap: 40px; margin-bottom: 80px; }
+    .project-showcase { grid-template-columns: 1fr; gap: 40px; margin-bottom: 0; }
     .layout-left .project-info { order: 0; }
-    .timeline-beam { left: 20px; } .timeline-node { width: 100%; padding-left: 50px; text-align: left !important; }
-    .timeline-node .node-dot { left: 12px !important; right: auto !important; }
     .contact-grid { grid-template-columns: 1fr; }
 }

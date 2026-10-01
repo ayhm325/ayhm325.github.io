@@ -230,7 +230,6 @@ skills.forEach((skill, i) => {
 const scrollBeam = document.getElementById('scrollProgress');
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-links a');
-const timelineBeam = document.querySelector('.timeline-beam::after'); // Can't select pseudo directly, handle via JS class
 
 window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
@@ -253,22 +252,6 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
-
-    // Timeline Beam Illumination
-    const timeline = document.querySelector('.timeline-path');
-    const timelineRect = timeline.getBoundingClientRect();
-    const timelineVisible = (timelineRect.top < window.innerHeight && timelineRect.bottom > 0);
-    
-    if (timelineVisible) {
-        const timelineProgress = (window.innerHeight - timelineRect.top) / (timelineRect.height + window.innerHeight);
-        const beam = document.querySelector('.timeline-beam');
-        if (beam) {
-            beam.style.setProperty('--beam-height', `${Math.max(0, Math.min(100, timelineProgress * 100))}%`);
-            // Update the after pseudo element height via a style tag or directly if possible
-            // Actually, we can just set the height of the beam itself
-            beam.style.height = `${Math.max(0, Math.min(100, timelineProgress * 100))}%`;
-        }
-    }
 });
 
 // ===== SCROLL REVEAL (IntersectionObserver) =====
