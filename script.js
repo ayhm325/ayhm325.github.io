@@ -48,14 +48,9 @@ if (year) year.textContent = new Date().getFullYear();
 const updateScrollState = () => {
     const y = window.scrollY;
     const height = document.documentElement.scrollHeight - window.innerHeight;
-    
-    // Progress
     progress.style.width = (height > 0 ? (y / height) * 100 : 0) + "%";
-    
-    // Header
     header.classList.toggle("scrolled", y > 50);
     
-    // Active Link
     let currentSection = "";
     sections.forEach(section => {
         if (y >= section.offsetTop - 120) currentSection = section.id;
@@ -91,8 +86,17 @@ document.querySelectorAll("a[href^='#']").forEach(link => {
 updateScrollState();
 
 /* =========================================================
-   EPIC EFFECTS: CURSOR, 3D TILT, MAGNETIC BUTTONS
+   CYBERPUNK EFFECTS: SPOTLIGHT, CURSOR, 3D TILT, MAGNETIC
    ========================================================= */
+
+/* ===== Mouse Spotlight ===== */
+const spotlight = document.getElementById("spotlight");
+document.addEventListener("mousemove", (e) => {
+    if (spotlight) {
+        spotlight.style.setProperty('--mouse-x', e.clientX + 'px');
+        spotlight.style.setProperty('--mouse-y', e.clientY + 'px');
+    }
+});
 
 /* ===== Custom Cursor ===== */
 const cursorDot = document.querySelector("[data-cursor-dot]");
@@ -106,14 +110,12 @@ if (cursorDot && cursorOutline && window.innerWidth > 860) {
         cursorDot.style.left = `${posX}px`;
         cursorDot.style.top = `${posY}px`;
         
-        // Outline follows with slight delay for smooth effect
         cursorOutline.animate({
             left: `${posX}px`,
             top: `${posY}px`
         }, { duration: 500, fill: "forwards" });
     });
 
-    // Hover effect on interactive elements
     const interactiveElements = document.querySelectorAll("a, button, .glass-tilt");
     interactiveElements.forEach(el => {
         el.addEventListener("mouseenter", () => cursorOutline.classList.add("hovered"));
@@ -133,7 +135,7 @@ tiltElements.forEach(el => {
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         
-        const rotateX = ((y - centerY) / centerY) * -5; // Max 5deg
+        const rotateX = ((y - centerY) / centerY) * -5;
         const rotateY = ((x - centerX) / centerX) * 5;
         
         el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;

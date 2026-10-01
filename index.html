@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ayhm Obeidat — Junior .NET Backend Developer.">
     <meta name="author" content="Ayhm Obeidat">
-    <meta name="theme-color" content="#070a12">
-    <title>Ayhm Obeidat | .NET Backend Sorcerer</title>
+    <meta name="theme-color" content="#050505">
+    <title>Ayhm Obeidat | .NET Backend Architect</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;700&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=Space+Grotesk:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -23,17 +23,14 @@
     <div class="scroll-progress" id="scrollProgress"></div>
 
     <!-- Background Effects -->
-    <div class="bg-grid" aria-hidden="true"></div>
-    <div class="bg-orbs" aria-hidden="true">
-        <div class="orb orb-1"></div>
-        <div class="orb orb-2"></div>
-        <div class="orb orb-3"></div>
-    </div>
+    <div class="spotlight" id="spotlight"></div>
+    <div class="grid-bg" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
 
     <!-- Header -->
     <header class="header glass" id="header">
         <nav class="nav container" aria-label="Main navigation">
-            <a class="logo neon-text" href="#home" aria-label="Ayhm Obeidat home">
+            <a class="logo glitch" href="#home" data-text="AO." aria-label="Ayhm Obeidat home">
                 AO<span>.</span>
             </a>
 
@@ -72,8 +69,8 @@
                         <span class="status-dot" aria-hidden="true"></span>
                         JUNIOR .NET BACKEND DEVELOPER
                     </p>
-                    <h1 id="hero-title" class="neon-text" data-text="Building software with C# & .NET.">
-                        Building practical software with <span>C# &amp; .NET</span>.
+                    <h1 id="hero-title" class="glitch" data-text="Building software with C# & .NET.">
+                        Building software with <span>C# &amp; .NET</span>.
                     </h1>
                     <p class="lead">
                         Computer Science graduate with hands-on experience building C# and .NET applications and ASP.NET Core Web APIs.
@@ -148,7 +145,7 @@
             <div class="container two">
                 <div class="reveal">
                     <p class="eyebrow">ABOUT ME</p>
-                    <h2 id="about-title" class="neon-text">Junior .NET Backend Developer.</h2>
+                    <h2 id="about-title" class="glitch" data-text="Junior .NET Backend Developer.">Junior .NET Backend Developer.</h2>
                 </div>
                 <div class="text reveal" style="--delay: 0.1s">
                     <p>Computer Science graduate from Jordan University of Science and Technology with hands-on experience building C# and .NET applications and ASP.NET Core Web APIs.</p>
@@ -163,7 +160,7 @@
             <div class="container">
                 <div class="center reveal">
                     <p class="eyebrow">TECHNICAL SKILLS</p>
-                    <h2 id="skills-title" class="neon-text">C# and .NET backend development.</h2>
+                    <h2 id="skills-title" class="glitch" data-text="C# and .NET backend development.">C# and .NET backend development.</h2>
                 </div>
                 <div class="cards">
                     <article class="reveal glass-tilt" style="--delay: 0s" data-tilt><div class="card-icon" aria-hidden="true">C#</div><h3>C# &amp; .NET</h3><p>C# and .NET application development.</p></article>
@@ -181,7 +178,7 @@
             <div class="container">
                 <div class="center reveal">
                     <p class="eyebrow">PROJECT</p>
-                    <h2 id="projects-title" class="neon-text">DVLD Management System.</h2>
+                    <h2 id="projects-title" class="glitch" data-text="DVLD Management System.">DVLD Management System.</h2>
                 </div>
                 <div class="projects">
                     <article class="project reveal glass-tilt" style="--delay: 0s" data-tilt>
@@ -206,7 +203,7 @@
             <div class="container two">
                 <div class="reveal">
                     <p class="eyebrow">EDUCATION</p>
-                    <h2 id="education-title" class="neon-text">Computer Science.</h2>
+                    <h2 id="education-title" class="glitch" data-text="Computer Science.">Computer Science.</h2>
                 </div>
                 <div class="education reveal" style="--delay: 0.1s">
                     <div class="education-card">
@@ -227,7 +224,7 @@
         <section id="contact" class="section" aria-labelledby="contact-title">
             <div class="container contact reveal glass">
                 <p class="eyebrow">CONTACT</p>
-                <h2 id="contact-title" class="neon-text">Junior .NET Backend Developer.</h2>
+                <h2 id="contact-title" class="glitch" data-text="Junior .NET Backend Developer.">Junior .NET Backend Developer.</h2>
                 <p>Seeking an entry-level .NET Backend Developer or Junior Software Engineer position.</p>
                 <div class="actions">
                     <a class="btn primary magnetic" href="mailto:ayhmobeidat.cs@gmail.com">
