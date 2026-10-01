@@ -3,12 +3,12 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ayhm Obeidat — Junior .NET Backend Engineer. Architecting scalable digital infrastructure.">
+    <meta name="description" content="Ayhm Obeidat — Junior .NET Backend Developer. Specialized in C#, ASP.NET Core, and scalable digital infrastructure.">
     <meta name="author" content="Ayhm Obeidat">
-    <title>Ayhm Obeidat | System Architect</title>
+    <title>Ayhm Obeidat | .NET Backend Engineer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;500;700&family=JetBrains+Mono:wght@300;400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -20,27 +20,31 @@
     <!-- Scroll Progress Beam -->
     <div class="scroll-beam" id="scrollProgress"></div>
 
-    <!-- Dynamic Cinematic Background -->
+    <!-- Dynamic Cinematic Background Layers -->
     <div class="bg-canvas-wrapper">
+        <div class="bg-layer-atmosphere"></div>
+        <div class="bg-layer-orbs">
+            <div class="orb orb-1"></div>
+            <div class="orb orb-2"></div>
+        </div>
         <canvas id="particle-canvas"></canvas>
         <div class="grid-distortion"></div>
         <div class="holo-scanlines"></div>
         <div class="noise-overlay"></div>
-        <div class="orb-shadow"></div>
     </div>
 
     <!-- Floating Navigation -->
-    <nav class="hud-nav glass">
+    <nav class="hud-nav">
         <div class="nav-logo">
             <span class="logo-bracket">[</span> A.O <span class="logo-bracket">]</span>
         </div>
         <ul class="nav-links">
-            <li><a href="#hero" class="active">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#skills">Neural</a></li>
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#journey">Journey</a></li>
-            <li><a href="#contact">Comms</a></li>
+            <li><a href="#hero" class="active"><span class="nav-dot"></span>Home</a></li>
+            <li><a href="#about"><span class="nav-dot"></span>About</a></li>
+            <li><a href="#skills"><span class="nav-dot"></span>Neural</a></li>
+            <li><a href="#projects"><span class="nav-dot"></span>Projects</a></li>
+            <li><a href="#journey"><span class="nav-dot"></span>Journey</a></li>
+            <li><a href="#contact"><span class="nav-dot"></span>Comms</a></li>
         </ul>
         <button id="theme" class="theme-toggle" aria-label="Toggle theme">
             <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
@@ -51,32 +55,24 @@
     <main>
         <!-- HERO SECTION -->
         <section id="hero" class="hero-section">
-            <div class="hero-overlay">
-                <div class="floating-meta meta-1">
-                    <span class="status-dot"></span> SYSTEM_ONLINE
-                </div>
-                <div class="floating-meta meta-2">
-                    LAT: 32.07°N | LON: 36.10°E
-                </div>
-                <div class="floating-meta meta-3">
-                    CORE_TEMP: 36.8°C
-                </div>
+            <!-- Background Decor -->
+            <div class="hero-bg-decor">
+                <div class="meta-drift meta-1">SYS_ONLINE // 0x9F4A</div>
+                <div class="meta-drift meta-2">LAT: 32.07°N | LON: 36.10°E</div>
+                <div class="meta-drift meta-3">CORE_TEMP: 36.8°C</div>
+                <div class="meta-drift meta-4">PWR_LEVEL: OPTIMAL</div>
             </div>
 
             <div class="hero-content">
+                <p class="hero-eyebrow reveal">Junior .NET Backend Developer</p>
                 <h1 class="hero-title">
-                    <span class="title-line">AYHM</span>
-                    <span class="title-line glitch" data-text="OBEIDAT">OBEIDAT</span>
+                    <span class="title-line reveal">AYHM</span>
+                    <span class="title-line reveal glitch" data-text="OBEIDAT">OBEIDAT</span>
                 </h1>
-                <div class="hero-subtitle">
-                    <span class="subtitle-bracket">&lt;</span>
-                    Junior .NET Backend Engineer
-                    <span class="subtitle-bracket">/&gt;</span>
-                </div>
-                <p class="hero-desc">
-                    Architecting scalable digital infrastructure. Specialized in C#, ASP.NET Core, and distributed systems engineering.
+                <p class="hero-desc reveal">
+                    I architect scalable digital infrastructure. Specialized in C#, ASP.NET Core, and distributed systems engineering. I build backend ecosystems that scale silently.
                 </p>
-                <div class="hero-actions">
+                <div class="hero-actions reveal">
                     <a href="#projects" class="btn-cyber magnetic">
                         <span class="btn-text">View Systems</span>
                         <div class="btn-glow"></div>
@@ -87,100 +83,112 @@
                 </div>
             </div>
             
-            <div class="hero-orbital">
-                <div class="orbital-ring r1"></div>
-                <div class="orbital-ring r2"></div>
-                <div class="orbital-core" data-tilt>
+            <!-- Holographic Reactor Core -->
+            <div class="hero-reactor">
+                <div class="reactor-ring r1"></div>
+                <div class="reactor-ring r2"></div>
+                <div class="reactor-ring r3"></div>
+                <div class="reactor-core glass-tilt" data-tilt>
+                    <div class="core-glow"></div>
                     <div class="core-inner">
-                        <pre><code><span class="c-key">public class</span> <span class="c-type">Architect</span> {
+                        <pre><code><span class="c-key">public class</span> <span class="c-type">Engineer</span> {
  <span class="c-key">public string</span> Focus <span class="c-op">=&gt;</span> <span class="c-str">".NET Core"</span>;
+ <span class="c-key">public bool</span> Scalable <span class="c-op">=&gt;</span> <span class="c-str">true</span>;
 }</code></pre>
                     </div>
+                    <div class="reactor-node node-1"></div>
+                    <div class="reactor-node node-2"></div>
+                    <div class="reactor-node node-3"></div>
                 </div>
             </div>
         </section>
 
         <!-- ABOUT SECTION (Asymmetric Layout) -->
         <section id="about" class="section-block">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-id">01 //</span>
                 <h2 class="section-title">Identity <span class="text-gradient">Protocol</span></h2>
             </div>
 
             <div class="about-layout">
-                <div class="about-text-panel glass-tilt" data-tilt>
-                    <p>Computer Science graduate from Jordan University of Science and Technology. I don't just write code; I engineer ecosystems.</p>
-                    <p>My architecture focuses on separation of concerns, dependency injection, and immutable domain models. I build systems that scale silently.</p>
+                <div class="about-main reveal glass-tilt" data-tilt>
+                    <h3 class="about-statement">Backend systems should be understandable before they become scalable.</h3>
+                    <p>Computer Science graduate from Jordan University of Science and Technology. I don't just write code; I engineer ecosystems. My architecture focuses on separation of concerns, dependency injection, and immutable domain models.</p>
                 </div>
-                <div class="about-stats">
-                    <div class="stat-hud glass-tilt" data-tilt>
-                        <span class="stat-value">CS</span>
-                        <span class="stat-label">Degree</span>
+                <div class="about-side">
+                    <div class="stat-readout reveal">
+                        <span class="stat-value">2026</span>
+                        <span class="stat-label">B.Sc. Computer Science</span>
                     </div>
-                    <div class="stat-hud glass-tilt" data-tilt>
+                    <div class="stat-readout reveal">
                         <span class="stat-value">5</span>
-                        <span class="stat-label">Layer Arch</span>
+                        <span class="stat-label">Layer Architecture</span>
                     </div>
-                    <div class="stat-hud glass-tilt" data-tilt>
-                        <span class="stat-value">∞</span>
-                        <span class="stat-label">Scalability</span>
-                    </div>
-                </div>
-                <div class="about-tech-fragments">
-                    <div class="tech-frag">DOMAIN_DRIVEN_DESIGN</div>
-                    <div class="tech-frag">RESTFUL_API</div>
-                    <div class="tech-frag">ENTITY_FRAMEWORK</div>
+                    <div class="tech-frag reveal">DOMAIN_DRIVEN_DESIGN</div>
+                    <div class="tech-frag reveal">RESTFUL_API</div>
+                    <div class="tech-frag reveal">ENTITY_FRAMEWORK</div>
                 </div>
             </div>
         </section>
 
         <!-- SKILLS SECTION (Neural Network) -->
         <section id="skills" class="section-block">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-id">02 //</span>
                 <h2 class="section-title">Neural <span class="text-gradient">Network</span></h2>
             </div>
 
-            <div class="neural-container">
+            <div class="neural-container" id="neuralContainer">
                 <svg class="neural-svg" id="neuralSvg"></svg>
                 <div class="neural-core" id="neuralCore">
                     <span>.NET</span>
                 </div>
                 <!-- Nodes injected by JS -->
+                <div class="neural-info-panel" id="neuralInfo">
+                    <span class="info-title">HOVER NODE</span>
+                    <span class="info-desc">Select a technology to view specs</span>
+                </div>
             </div>
         </section>
 
         <!-- PROJECTS SECTION (Cinematic Showcases) -->
         <section id="projects" class="section-block">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-id">03 //</span>
                 <h2 class="section-title">System <span class="text-gradient">Executions</span></h2>
             </div>
 
             <!-- DVLD Project -->
-            <article class="project-showcase layout-right">
+            <article class="project-showcase layout-right reveal">
                 <div class="project-visual glass-tilt" data-tilt>
                     <div class="visual-overlay">
-                        <span>WPF // MVVM</span>
-                        <span>CLEAN_ARCH</span>
+                        <span>SYSTEM_ARCHITECTURE</span>
+                        <span>STATUS: ACTIVE</span>
                     </div>
                     <div class="visual-mockup dvld-mock">
-                        <div class="mock-header"><i></i><i></i><i></i></div>
-                        <div class="mock-body">
-                            <div class="mock-line w-80"></div>
-                            <div class="mock-line w-50"></div>
-                            <div class="mock-grid">
-                                <div></div><div></div><div></div><div></div>
-                            </div>
-                        </div>
+                        <!-- DVLD Layered Architecture Diagram -->
+                        <div class="arch-layer l1">Presentation (WPF/MVVM)</div>
+                        <div class="arch-connector"></div>
+                        <div class="arch-layer l2">API (ASP.NET Core)</div>
+                        <div class="arch-connector"></div>
+                        <div class="arch-layer l3">Services / Application</div>
+                        <div class="arch-connector"></div>
+                        <div class="arch-layer l4">Domain / Infrastructure</div>
+                        <div class="arch-connector"></div>
+                        <div class="arch-layer l5">SQL Server Database</div>
+                    </div>
+                    <div class="project-meta-tags">
+                        <span>WPF</span><span>MVVM</span><span>C#</span><span>EF CORE</span><span>SQL</span><span>UoW</span><span>DI</span>
                     </div>
                 </div>
                 <div class="project-info">
                     <small>PROJECT_01 // SYSTEM</small>
                     <h3>DVLD Management System</h3>
                     <p>A multi-layered driving license management system engineered with Clean Architecture. Separates Domain, Application, Infrastructure, API, and Presentation layers.</p>
-                    <div class="tech-tags">
-                        <span>C#</span><span>.NET</span><span>ASP.NET Core</span><span>EF Core</span><span>SQL Server</span><span>JWT</span><span>Repository</span><span>UoW</span>
+                    <div class="project-architecture">
+                        <div class="arch-item"><span class="arch-dot"></span>Repository & Unit of Work</div>
+                        <div class="arch-item"><span class="arch-dot"></span>Dependency Injection</div>
+                        <div class="arch-item"><span class="arch-dot"></span>JWT Authentication</div>
                     </div>
                     <a href="https://github.com/ayhm325/DVLD-WPF" target="_blank" class="project-link magnetic">
                         Access Repository <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
@@ -189,13 +197,15 @@
             </article>
 
             <!-- PneumoDetect Project -->
-            <article class="project-showcase layout-left">
+            <article class="project-showcase layout-left reveal">
                 <div class="project-info">
                     <small>PROJECT_02 // AI_ENGINE</small>
                     <h3>PneumoDetect</h3>
                     <p>AI-driven medical diagnostic tool utilizing Deep Learning to detect pneumonia from X-ray scans. Built with a Python backend and Next.js frontend.</p>
-                    <div class="tech-tags">
-                        <span>Python</span><span>FastAPI</span><span>Next.js</span><span>DenseNet</span><span>OpenCV</span><span>PostgreSQL</span><span>Computer Vision</span>
+                    <div class="project-architecture">
+                        <div class="arch-item"><span class="arch-dot"></span>DenseNet CNN Model</div>
+                        <div class="arch-item"><span class="arch-dot"></span>FastAPI Backend</div>
+                        <div class="arch-item"><span class="arch-dot"></span>Next.js Interface</div>
                     </div>
                     <a href="#" class="project-link magnetic">
                         Access Repository <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
@@ -203,29 +213,37 @@
                 </div>
                 <div class="project-visual glass-tilt" data-tilt>
                     <div class="visual-overlay">
-                        <span>AI // VISION</span>
-                        <span>DEEP_LEARNING</span>
+                        <span>AI_VISION_MODEL</span>
+                        <span>CONFIDENCE: 98.4%</span>
                     </div>
                     <div class="visual-mockup pneumo-mock">
-                        <div class="mock-header"><i></i><i></i><i></i></div>
-                        <div class="mock-body">
-                            <div class="mock-scan"></div>
-                            <div class="mock-line w-60"></div>
+                        <!-- PneumoDetect AI Scan Visual -->
+                        <div class="xray-frame">
+                            <div class="xray-scan-line"></div>
+                            <div class="ai-bounding-box"></div>
                         </div>
+                        <div class="ai-data-readout">
+                            <div class="data-row"><span>Model:</span> DenseNet-121</div>
+                            <div class="data-row"><span>Status:</span> Pneumonia Detected</div>
+                        </div>
+                    </div>
+                    <div class="project-meta-tags">
+                        <span>Python</span><span>FastAPI</span><span>Next.js</span><span>DenseNet</span><span>OpenCV</span><span>PostgreSQL</span>
                     </div>
                 </div>
             </article>
         </section>
 
-        <!-- JOURNEY SECTION (Timeline) -->
+        <!-- JOURNEY SECTION (Data Flow Timeline) -->
         <section id="journey" class="section-block">
-            <div class="section-header">
+            <div class="section-header reveal">
                 <span class="section-id">04 //</span>
                 <h2 class="section-title">System <span class="text-gradient">Timeline</span></h2>
             </div>
 
             <div class="timeline-path">
-                <div class="timeline-node node-left">
+                <div class="timeline-beam" id="timelineBeam"></div>
+                <div class="timeline-node node-left reveal">
                     <div class="node-dot"></div>
                     <div class="node-content glass-tilt" data-tilt>
                         <span class="node-year">2026</span>
@@ -233,7 +251,7 @@
                         <p>Jordan University of Science and Technology.</p>
                     </div>
                 </div>
-                <div class="timeline-node node-right">
+                <div class="timeline-node node-right reveal">
                     <div class="node-dot"></div>
                     <div class="node-content glass-tilt" data-tilt>
                         <span class="node-year">2024</span>
@@ -241,7 +259,7 @@
                         <p>Mastered Clean Architecture, EF Core, and ASP.NET Core APIs.</p>
                     </div>
                 </div>
-                <div class="timeline-node node-left">
+                <div class="timeline-node node-left reveal">
                     <div class="node-dot"></div>
                     <div class="node-content glass-tilt" data-tilt>
                         <span class="node-year">2023</span>
@@ -254,7 +272,7 @@
 
         <!-- CONTACT SECTION (Terminal) -->
         <section id="contact" class="section-block">
-            <div class="contact-terminal glass-tilt" data-tilt>
+            <div class="contact-terminal reveal glass-tilt" data-tilt>
                 <div class="terminal-header">
                     <div class="dots"><i></i><i></i><i></i></div>
                     <span>comms_init.exe</span>
@@ -264,14 +282,17 @@
                     <p>Seeking entry-level .NET Backend Developer roles. Let's build the future.</p>
                     <div class="contact-grid">
                         <a href="mailto:ayhmobeidat.cs@gmail.com" class="contact-cell magnetic">
+                            <span class="cell-pulse"></span>
                             <span class="cell-label">EMAIL</span>
                             <span class="cell-value">ayhmobeidat.cs@gmail.com</span>
                         </a>
                         <a href="https://github.com/ayhm325" target="_blank" class="contact-cell magnetic">
+                            <span class="cell-pulse"></span>
                             <span class="cell-label">GITHUB</span>
                             <span class="cell-value">@ayhm325</span>
                         </a>
                         <a href="https://www.linkedin.com/in/ayhm-obeidat-75a10a352" target="_blank" class="contact-cell magnetic">
+                            <span class="cell-pulse"></span>
                             <span class="cell-label">LINKEDIN</span>
                             <span class="cell-value">/in/ayhm-obeidat</span>
                         </a>

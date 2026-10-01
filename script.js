@@ -2,6 +2,7 @@
 const canvas = document.getElementById('particle-canvas');
 const ctx = canvas.getContext('2d');
 let particles = [];
+let mouse = { x: null, y: null };
 
 function resizeCanvas() {
     canvas.width = window.innerWidth;
@@ -10,20 +11,34 @@ function resizeCanvas() {
 resizeCanvas();
 window.addEventListener('resize', resizeCanvas);
 
+window.addEventListener('mousemove', (e) => {
+    mouse.x = e.clientX;
+    mouse.y = e.clientY;
+});
+
 class Particle {
     constructor() {
         this.x = Math.random() * canvas.width;
         this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 2 + 0.5;
-        this.speedX = (Math.random() * 0.5) - 0.25;
-        this.speedY = (Math.random() * 0.5) - 0.25;
-        this.opacity = Math.random() * 0.5 + 0.1;
+        this.size = Math.random() * 1.5 + 0.5;
+        this.speedX = (Math.random() * 0.3) - 0.15;
+        this.speedY = (Math.random() * 0.3) - 0.15;
+        this.opacity = Math.random() * 0.4 + 0.1;
     }
     update() {
         this.x += this.speedX;
         this.y += this.speedY;
         if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
         if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
+        
+        // Mouse interaction
+        let dx = mouse.x - this.x;
+        let dy = mouse.y - this.y;
+        let dist = Math.sqrt(dx*dx + dy*dy);
+        if (dist < 100) {
+            this.x -= dx/20;
+            this.y -= dy/20;
+        }
     }
     draw() {
         ctx.fillStyle = `rgba(0, 243, 255, ${this.opacity})`;
@@ -35,7 +50,7 @@ class Particle {
 
 function initParticles() {
     particles = [];
-    const count = (window.innerWidth < 768) ? 30 : 80;
+    const count = (window.innerWidth < 768) ? 20 : 60; // Reduced for performance
     for (let i = 0; i < count; i++) {
         particles.push(new Particle());
     }
@@ -52,7 +67,7 @@ function animateParticles() {
 }
 animateParticles();
 
-// ===== CUSTOM CURSOR =====
+// ===== CUSTOM CURSOR (Lerp Physics) =====
 const cursorCore = document.querySelector('.cursor-core');
 const cursorRing = document.querySelector('.cursor-ring');
 
@@ -82,83 +97,140 @@ if (window.innerWidth > 900) {
     });
 }
 
-// ===== MAGNETIC BUTTONS =====
+// ===== MAGNETIC BUTTONS (Lerp Physics) =====
 document.querySelectorAll('.magnetic').forEach(btn => {
+    let btnX = 0, btnY = 0;
+    let targetX = 0, targetY = 0;
+
     btn.addEventListener('mousemove', (e) => {
         const rect = btn.getBoundingClientRect();
-        const x = e.clientX - rect.left - rect.width / 2;
-        const y = e.clientY - rect.top - rect.height / 2;
-        btn.style.transform = `translate(${x * 0.2}px, ${y * 0.2}px)`;
+        targetX = (e.clientX - rect.left - rect.width / 2) * 0.3;
+        targetY = (e.clientY - rect.top - rect.height / 2) * 0.3;
     });
+
     btn.addEventListener('mouseleave', () => {
-        btn.style.transform = 'translate(0, 0)';
+        targetX = 0;
+        targetY = 0;
     });
+
+    function animateMagnet() {
+        btnX += (targetX - btnX) * 0.15;
+        btnY += (targetY - btnY) * 0.15;
+        btn.style.transform = `translate(${btnX}px, ${btnY}px)`;
+        requestAnimationFrame(animateMagnet);
+    }
+    animateMagnet();
 });
 
-// ===== 3D TILT EFFECT =====
+// ===== 3D TILT EFFECT (Lerp Physics) =====
 document.querySelectorAll('[data-tilt]').forEach(el => {
+    let rotX = 0, rotY = 0;
+    let targetRotX = 0, targetRotY = 0;
+
     el.addEventListener('mousemove', (e) => {
         const rect = el.getBoundingClientRect();
         const x = e.clientX - rect.left;
         const y = e.clientY - rect.top;
-        const rotateX = ((y - rect.height / 2) / (rect.height / 2)) * -5;
-        const rotateY = ((x - rect.width / 2) / (rect.width / 2)) * 5;
-        el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        targetRotX = ((y - rect.height / 2) / (rect.height / 2)) * -6; // Max 6deg
+        targetRotY = ((x - rect.width / 2) / (rect.width / 2)) * 6;
     });
+
     el.addEventListener('mouseleave', () => {
-        el.style.transform = 'perspective(1000px) rotateX(0) rotateY(0) scale(1)';
+        targetRotX = 0;
+        targetRotY = 0;
     });
+
+    function animateTilt() {
+        rotX += (targetRotX - rotX) * 0.1;
+        rotY += (targetRotY - rotY) * 0.1;
+        el.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.01)`;
+        requestAnimationFrame(animateTilt);
+    }
+    animateTilt();
 });
 
 // ===== NEURAL NETWORK SVG =====
-const neuralContainer = document.querySelector('.neural-container');
-const neuralCore = document.querySelector('.neural-core');
+const neuralContainer = document.getElementById('neuralContainer');
+const neuralCore = document.getElementById('neuralCore');
 const neuralSvg = document.getElementById('neuralSvg');
+const neuralInfo = document.getElementById('neuralInfo');
 
 const skills = [
-    { name: 'C#', top: '10%', left: '20%' },
-    { name: 'ASP.NET', top: '20%', left: '80%' },
-    { name: 'SQL', top: '70%', left: '15%' },
-    { name: 'EF Core', top: '80%', left: '70%' },
-    { name: 'REST', top: '40%', left: '90%' },
-    { name: 'JWT', top: '10%', left: '60%' },
-    { name: 'Git', top: '90%', left: '45%' },
-    { name: 'LINQ', top: '50%', left: '5%' }
+    { name: 'C#', top: '15%', left: '20%', desc: 'Object-Oriented, Strongly Typed', type: 'LANGUAGE' },
+    { name: 'ASP.NET', top: '25%', left: '75%', desc: 'RESTful APIs, MVC', type: 'FRAMEWORK' },
+    { name: 'SQL', top: '70%', left: '15%', desc: 'Relational Database Design', type: 'DATABASE' },
+    { name: 'EF CORE', top: '75%', left: '70%', desc: 'ORM, Code-First Migrations', type: 'DATA ACCESS' },
+    { name: 'REST', top: '40%', left: '85%', desc: 'HTTP, JSON, Swagger', type: 'ARCHITECTURE' },
+    { name: 'JWT', top: '10%', left: '50%', desc: 'Authentication, Authorization', type: 'SECURITY' },
+    { name: 'GIT', top: '85%', left: '45%', desc: 'Version Control, Azure DevOps', type: 'TOOLS' },
+    { name: 'LINQ', top: '50%', left: '10%', desc: 'Query Expressions, Lambdas', type: 'LANGUAGE' }
 ];
 
-// Create nodes and SVG lines
-skills.forEach(skill => {
+// Clear previous lines
+neuralSvg.innerHTML = '';
+let nodes = [];
+
+skills.forEach((skill, i) => {
+    // Create Node
     const node = document.createElement('div');
     node.className = 'neural-node';
     node.innerText = skill.name;
     node.style.top = skill.top;
     node.style.left = skill.left;
     neuralContainer.appendChild(node);
-    
-    // Draw line
+    nodes.push(node);
+
+    // Create SVG Line
     const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    const coreRect = neuralCore.getBoundingClientRect();
-    const containerRect = neuralContainer.getBoundingClientRect();
-    
-    // We calculate positions based on percentages relative to container
-    const coreX = containerRect.width / 2;
-    const coreY = containerRect.height / 2;
-    const nodeX = (parseFloat(skill.left) / 100) * containerRect.width;
-    const nodeY = (parseFloat(skill.top) / 100) * containerRect.height;
-    
-    line.setAttribute('x1', coreX);
-    line.setAttribute('y1', coreY);
-    line.setAttribute('x2', nodeX);
-    line.setAttribute('y2', nodeY);
-    line.setAttribute('stroke', 'rgba(0, 243, 255, 0.2)');
-    line.setAttribute('stroke-width', '1');
+    line.classList.add('neural-line');
+    line.setAttribute('data-node-index', i);
     neuralSvg.appendChild(line);
+
+    // Update line coordinates on resize/load
+    function updateLine() {
+        const containerRect = neuralContainer.getBoundingClientRect();
+        const coreRect = neuralCore.getBoundingClientRect();
+        const nodeRect = node.getBoundingClientRect();
+
+        const coreX = coreRect.left - containerRect.left + coreRect.width / 2;
+        const coreY = coreRect.top - containerRect.top + coreRect.height / 2;
+        const nodeX = nodeRect.left - containerRect.left + nodeRect.width / 2;
+        const nodeY = nodeRect.top - containerRect.top + nodeRect.height / 2;
+
+        line.setAttribute('x1', coreX);
+        line.setAttribute('y1', coreY);
+        line.setAttribute('x2', nodeX);
+        line.setAttribute('y2', nodeY);
+    }
+    
+    updateLine();
+    window.addEventListener('resize', updateLine);
+
+    // Hover Interactions
+    node.addEventListener('mouseenter', () => {
+        line.classList.add('active');
+        neuralInfo.querySelector('.info-title').innerText = skill.name;
+        neuralInfo.querySelector('.info-desc').innerText = skill.desc;
+        
+        nodes.forEach((n, idx) => {
+            if (idx !== i) n.classList.add('dimmed');
+        });
+    });
+
+    node.addEventListener('mouseleave', () => {
+        line.classList.remove('active');
+        neuralInfo.querySelector('.info-title').innerText = 'HOVER NODE';
+        neuralInfo.querySelector('.info-desc').innerText = 'Select a technology to view specs';
+        
+        nodes.forEach(n => n.classList.remove('dimmed'));
+    });
 });
 
 // ===== SCROLL BEAM & ACTIVE NAV =====
 const scrollBeam = document.getElementById('scrollProgress');
 const sections = document.querySelectorAll('section');
 const navLinks = document.querySelectorAll('.nav-links a');
+const timelineBeam = document.querySelector('.timeline-beam::after'); // Can't select pseudo directly, handle via JS class
 
 window.addEventListener('scroll', () => {
     const scrollTop = window.scrollY;
@@ -169,7 +241,7 @@ window.addEventListener('scroll', () => {
     // Active Nav
     let current = '';
     sections.forEach(section => {
-        const sectionTop = section.offsetTop - 100;
+        const sectionTop = section.offsetTop - 120;
         if (scrollTop >= sectionTop) {
             current = section.getAttribute('id');
         }
@@ -181,6 +253,38 @@ window.addEventListener('scroll', () => {
             link.classList.add('active');
         }
     });
+
+    // Timeline Beam Illumination
+    const timeline = document.querySelector('.timeline-path');
+    const timelineRect = timeline.getBoundingClientRect();
+    const timelineVisible = (timelineRect.top < window.innerHeight && timelineRect.bottom > 0);
+    
+    if (timelineVisible) {
+        const timelineProgress = (window.innerHeight - timelineRect.top) / (timelineRect.height + window.innerHeight);
+        const beam = document.querySelector('.timeline-beam');
+        if (beam) {
+            beam.style.setProperty('--beam-height', `${Math.max(0, Math.min(100, timelineProgress * 100))}%`);
+            // Update the after pseudo element height via a style tag or directly if possible
+            // Actually, we can just set the height of the beam itself
+            beam.style.height = `${Math.max(0, Math.min(100, timelineProgress * 100))}%`;
+        }
+    }
+});
+
+// ===== SCROLL REVEAL (IntersectionObserver) =====
+const revealElements = document.querySelectorAll('.reveal');
+
+const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+        if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+            observer.unobserve(entry.target);
+        }
+    });
+}, { threshold: 0.1 });
+
+revealElements.forEach(el => {
+    observer.observe(el);
 });
 
 // ===== THEME TOGGLE =====
