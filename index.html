@@ -3,9 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Ayhm Obeidat — Junior .NET Backend Developer. Specialized in C#, ASP.NET Core, and scalable digital infrastructure.">
+    <meta name="description" content="Ayhm Obeidat — Junior .NET Backend Developer. Specialized in C#, ASP.NET Core, SQL Server and Clean Architecture.">
     <meta name="author" content="Ayhm Obeidat">
-    <title>Ayhm Obeidat | .NET Backend Engineer</title>
+    <title>Ayhm Obeidat | .NET Backend Developer</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;600&display=swap" rel="stylesheet">
@@ -14,14 +14,14 @@
 <body>
 
     <!-- Custom Holographic Cursor -->
-    <div class="cursor-core"></div>
-    <div class="cursor-ring"></div>
+    <div class="cursor-core" aria-hidden="true"></div>
+    <div class="cursor-ring" aria-hidden="true"></div>
     
     <!-- Scroll Progress Beam -->
-    <div class="scroll-beam" id="scrollProgress"></div>
+    <div class="scroll-beam" id="scrollProgress" aria-hidden="true"></div>
 
     <!-- Dynamic Cinematic Background Layers -->
-    <div class="bg-canvas-wrapper">
+    <div class="bg-canvas-wrapper" aria-hidden="true">
         <div class="bg-layer-atmosphere"></div>
         <div class="bg-layer-orbs">
             <div class="orb orb-1"></div>
@@ -34,32 +34,37 @@
     </div>
 
     <!-- Floating Navigation -->
-    <nav class="hud-nav">
-        <div class="nav-logo">
+    <header>
+    <nav class="hud-nav" aria-label="Main navigation">
+        <a href="#hero" class="nav-logo" aria-label="Ayhm Obeidat home">
             <span class="logo-bracket">[</span> A.O <span class="logo-bracket">]</span>
-        </div>
-        <ul class="nav-links">
+        </a>
+        <ul class="nav-links" id="navLinks">
             <li><a href="#hero" class="active"><span class="nav-dot"></span>Home</a></li>
             <li><a href="#about"><span class="nav-dot"></span>About</a></li>
-            <li><a href="#skills"><span class="nav-dot"></span>Neural</a></li>
-            <li><a href="#projects"><span class="nav-dot"></span>Projects</a></li>
-            <li><a href="#contact"><span class="nav-dot"></span>Comms</a></li>
+            <li><a href="#skills"><span class="nav-dot"></span>Skills</a></li>
+            <li><a href="#projects"><span class="nav-dot"></span>Project</a></li>
+            <li><a href="#contact"><span class="nav-dot"></span>Contact</a></li>
         </ul>
-        <button id="theme" class="theme-toggle" aria-label="Toggle theme">
+        <button id="theme" class="theme-toggle" aria-label="Toggle light / dark mode">
             <svg class="icon-sun" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.22 4.22l1.42 1.42M18.36 18.36l1.42 1.42M1 12h2M21 12h2M4.22 19.78l1.42-1.42M18.36 5.64l1.42-1.42"/></svg>
             <svg class="icon-moon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"/></svg>
         </button>
+        <button class="nav-burger" id="navBurger" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+            <span></span><span></span><span></span>
+        </button>
     </nav>
+    </header>
 
     <main>
         <!-- HERO SECTION -->
         <section id="hero" class="hero-section">
             <!-- Background Decor -->
-            <div class="hero-bg-decor">
-                <div class="meta-drift meta-1">SYS_ONLINE // 0x9F4A</div>
-                <div class="meta-drift meta-2">LAT: 32.07°N | LON: 36.10°E</div>
-                <div class="meta-drift meta-3">CORE_TEMP: 36.8°C</div>
-                <div class="meta-drift meta-4">PWR_LEVEL: OPTIMAL</div>
+            <div class="hero-bg-decor" aria-hidden="true">
+                <div class="meta-drift meta-1">.NET // BACKEND</div>
+                <div class="meta-drift meta-2">C# / ASP.NET CORE</div>
+                <div class="meta-drift meta-3">SQL SERVER</div>
+                <div class="meta-drift meta-4">CLEAN ARCHITECTURE</div>
             </div>
 
             <div class="hero-content">
@@ -69,35 +74,38 @@
                     <span class="title-line reveal glitch" data-text="OBEIDAT">OBEIDAT</span>
                 </h1>
                 <p class="hero-desc reveal">
-                    I architect scalable digital infrastructure. Specialized in C#, ASP.NET Core, and distributed systems engineering. I build backend ecosystems that scale silently.
+                    Building reliable backend systems with C#, ASP.NET Core, SQL Server and clean architecture — focused on separation of concerns, maintainable layers, and code that is easy to understand before it scales.
                 </p>
                 <div class="hero-actions reveal">
                     <a href="#projects" class="btn-cyber magnetic">
-                        <span class="btn-text">View Systems</span>
+                        <span class="btn-text">View DVLD Project</span>
                         <div class="btn-glow"></div>
                     </a>
                     <a href="assets/Ayhm_Obeidat_CV.pdf" download class="btn-ghost magnetic">
-                        <span class="btn-text">Download Dossier</span>
+                        <span class="btn-text">Download CV</span>
                     </a>
                 </div>
             </div>
             
             <!-- Holographic Reactor Core -->
-            <div class="hero-reactor">
+            <div class="hero-reactor" aria-hidden="true">
                 <div class="reactor-ring r1"></div>
                 <div class="reactor-ring r2"></div>
                 <div class="reactor-ring r3"></div>
                 <div class="reactor-core glass-tilt" data-tilt>
                     <div class="core-glow"></div>
                     <div class="core-inner">
-                        <pre><code><span class="c-key">public class</span> <span class="c-type">Engineer</span> {
- <span class="c-key">public string</span> Focus <span class="c-op">=&gt;</span> <span class="c-str">".NET Core"</span>;
- <span class="c-key">public bool</span> Scalable <span class="c-op">=&gt;</span> <span class="c-str">true</span>;
+                        <pre><code><span class="c-key">public class</span> <span class="c-type">BackendSystem</span>
+{
+  <span class="c-key">public string</span> Stack <span class="c-op">=&gt;</span> <span class="c-str">".NET"</span>;
+  <span class="c-key">public bool</span> Reliable <span class="c-op">=&gt;</span> <span class="c-str">true</span>;
 }</code></pre>
                     </div>
-                    <div class="reactor-node node-1"></div>
-                    <div class="reactor-node node-2"></div>
-                    <div class="reactor-node node-3"></div>
+                    <div class="reactor-node node-1" data-label="C#"></div>
+                    <div class="reactor-node node-2" data-label="API"></div>
+                    <div class="reactor-node node-3" data-label="SQL"></div>
+                    <div class="reactor-node node-4" data-label="EF"></div>
+                    <div class="reactor-node node-5" data-label="JWT"></div>
                 </div>
             </div>
         </section>
@@ -106,26 +114,31 @@
         <section id="about" class="section-block">
             <div class="section-header reveal">
                 <span class="section-id">01 //</span>
-                <h2 class="section-title">Identity <span class="text-gradient">Protocol</span></h2>
+                <h2 class="section-title">Engineering <span class="text-gradient">Identity</span></h2>
             </div>
 
             <div class="about-layout">
                 <div class="about-main reveal glass-tilt" data-tilt>
                     <h3 class="about-statement">Backend systems should be understandable before they become scalable.</h3>
-                    <p>Computer Science graduate from Jordan University of Science and Technology. I don't just write code; I engineer ecosystems. My architecture focuses on separation of concerns, dependency injection, and immutable domain models.</p>
+                    <p>I'm a Computer Science graduate focused on .NET backend engineering. I work with C#, ASP.NET Core, SQL Server and Entity Framework Core, organizing applications into clean, separated layers — Domain, Application, Infrastructure, API and Presentation — so that business logic stays clear and the system remains easy to maintain and extend.</p>
                 </div>
                 <div class="about-side">
                     <div class="stat-readout reveal">
                         <span class="stat-value">2026</span>
-                        <span class="stat-label">B.Sc. Computer Science</span>
+                        <span class="stat-label">Computer Science Graduate</span>
                     </div>
                     <div class="stat-readout reveal">
-                        <span class="stat-value">5</span>
-                        <span class="stat-label">Layer Architecture</span>
+                        <span class="stat-value">.NET</span>
+                        <span class="stat-label">Backend Focus</span>
                     </div>
-                    <div class="tech-frag reveal">DOMAIN_DRIVEN_DESIGN</div>
-                    <div class="tech-frag reveal">RESTFUL_API</div>
-                    <div class="tech-frag reveal">ENTITY_FRAMEWORK</div>
+                    <div class="stat-readout reveal">
+                        <span class="stat-value">5-Layer</span>
+                        <span class="stat-label">Clean Architecture</span>
+                    </div>
+                    <div class="stat-readout reveal">
+                        <span class="stat-value">DVLD</span>
+                        <span class="stat-label">Main Project</span>
+                    </div>
                 </div>
             </div>
         </section>
@@ -134,7 +147,7 @@
         <section id="skills" class="section-block">
             <div class="section-header reveal">
                 <span class="section-id">02 //</span>
-                <h2 class="section-title">Neural <span class="text-gradient">Network</span></h2>
+                <h2 class="section-title">Technical <span class="text-gradient">Network</span></h2>
             </div>
 
             <div class="neural-container" id="neuralContainer">
@@ -145,6 +158,7 @@
                 <!-- Nodes injected by JS -->
                 <div class="neural-info-panel" id="neuralInfo">
                     <span class="info-title">HOVER NODE</span>
+                    <span class="info-type">SELECT</span>
                     <span class="info-desc">Select a technology to view specs</span>
                 </div>
             </div>
@@ -154,7 +168,7 @@
         <section id="projects" class="section-block">
             <div class="section-header reveal">
                 <span class="section-id">03 //</span>
-                <h2 class="section-title">System <span class="text-gradient">Executions</span></h2>
+                <h2 class="section-title">Featured <span class="text-gradient">Project</span></h2>
             </div>
 
             <!-- DVLD Project -->
@@ -165,35 +179,93 @@
                         <span>STATUS: ACTIVE</span>
                     </div>
                     <div class="visual-mockup dvld-mock">
-                        <!-- DVLD Layered Architecture Diagram -->
-                        <div class="arch-layer l1">Presentation (WPF/MVVM)</div>
-                        <div class="arch-connector"></div>
-                        <div class="arch-layer l2">API (ASP.NET Core)</div>
-                        <div class="arch-connector"></div>
-                        <div class="arch-layer l3">Services / Application</div>
-                        <div class="arch-connector"></div>
-                        <div class="arch-layer l4">Domain / Infrastructure</div>
-                        <div class="arch-connector"></div>
-                        <div class="arch-layer l5">SQL Server Database</div>
+                        <div class="arch-layer l1" data-desc="WPF client using the MVVM pattern.">
+                            <span class="arch-label">Presentation</span>
+                            <span class="arch-sub">WPF / MVVM</span>
+                        </div>
+                        <div class="arch-connector"><span></span></div>
+                        <div class="arch-layer l2" data-desc="REST endpoints, controllers and middleware.">
+                            <span class="arch-label">API</span>
+                            <span class="arch-sub">ASP.NET Core</span>
+                        </div>
+                        <div class="arch-connector"><span></span></div>
+                        <div class="arch-layer l3" data-desc="Business workflows, validation, service orchestration.">
+                            <span class="arch-label">Application</span>
+                            <span class="arch-sub">Services / Validation</span>
+                        </div>
+                        <div class="arch-connector"><span></span></div>
+                        <div class="arch-layer l4" data-desc="Entities, repository contracts, unit of work.">
+                            <span class="arch-label">Domain</span>
+                            <span class="arch-sub">Entities / Interfaces</span>
+                        </div>
+                        <div class="arch-connector"><span></span></div>
+                        <div class="arch-layer l5" data-desc="EF Core, DbContext, data access implementations.">
+                            <span class="arch-label">Infrastructure</span>
+                            <span class="arch-sub">EF Core / Data Access</span>
+                        </div>
+                        <div class="arch-connector"><span></span></div>
+                        <div class="arch-layer l6" data-desc="Relational schema, tables and constraints.">
+                            <span class="arch-label">Database</span>
+                            <span class="arch-sub">SQL Server</span>
+                        </div>
                     </div>
+                    <div class="arch-tooltip" id="archTooltip" aria-hidden="true"></div>
                     <div class="project-meta-tags">
-                        <span>WPF</span><span>MVVM</span><span>C#</span><span>EF CORE</span><span>SQL</span><span>UoW</span><span>DI</span>
+                        <span>WPF</span><span>MVVM</span><span>C#</span><span>ASP.NET Core</span><span>EF Core</span><span>SQL Server</span><span>JWT</span><span>UoW</span><span>DI</span>
                     </div>
                 </div>
                 <div class="project-info">
-                    <small>PROJECT_01 // SYSTEM</small>
+                    <small>PROJECT_01 // .NET SYSTEM</small>
                     <h3>DVLD Management System</h3>
-                    <p>A multi-layered driving license management system engineered with Clean Architecture. Separates Domain, Application, Infrastructure, API, and Presentation layers.</p>
+                    <p>A multi-layered driving license management system built around clean separation of responsibilities and maintainable backend architecture. Each layer has a clear purpose, and dependencies point inward toward the domain.</p>
                     <div class="project-architecture">
                         <div class="arch-item"><span class="arch-dot"></span>Repository & Unit of Work</div>
                         <div class="arch-item"><span class="arch-dot"></span>Dependency Injection</div>
                         <div class="arch-item"><span class="arch-dot"></span>JWT Authentication</div>
+                        <div class="arch-item"><span class="arch-dot"></span>Entity Framework Core</div>
+                        <div class="arch-item"><span class="arch-dot"></span>SQL Server</div>
                     </div>
-                    <a href="https://github.com/ayhm325/DVLD-WPF" target="_blank" class="project-link magnetic">
-                        Access Repository <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
+                    <a href="https://github.com/ayhm325/DVLD-WPF" target="_blank" rel="noopener" class="project-link magnetic">
+                        View on GitHub <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"></path><polyline points="15 3 21 3 21 9"></polyline><line x1="10" y1="14" x2="21" y2="3"></line></svg>
                     </a>
                 </div>
             </article>
+
+            <!-- ENGINEERING SNAPSHOT -->
+            <div class="snapshot-grid">
+                <div class="snapshot-card reveal">
+                    <span class="snapshot-id">ARCHITECTURE</span>
+                    <ul>
+                        <li>Clean Architecture</li>
+                        <li>Separation of Concerns</li>
+                        <li>Dependency Injection</li>
+                    </ul>
+                </div>
+                <div class="snapshot-card reveal">
+                    <span class="snapshot-id">DATA</span>
+                    <ul>
+                        <li>Entity Framework Core</li>
+                        <li>SQL Server</li>
+                        <li>LINQ</li>
+                    </ul>
+                </div>
+                <div class="snapshot-card reveal">
+                    <span class="snapshot-id">BACKEND</span>
+                    <ul>
+                        <li>ASP.NET Core</li>
+                        <li>REST API</li>
+                        <li>JWT Authentication</li>
+                    </ul>
+                </div>
+                <div class="snapshot-card reveal">
+                    <span class="snapshot-id">QUALITY</span>
+                    <ul>
+                        <li>Repository Pattern</li>
+                        <li>Unit of Work</li>
+                        <li>Layered Validation</li>
+                    </ul>
+                </div>
+            </div>
         </section>
 
         <!-- CONTACT SECTION -->
@@ -204,20 +276,20 @@
                     <span>comms_init.exe</span>
                 </div>
                 <div class="terminal-body">
-                    <h3>INITIALIZE CONNECTION</h3>
-                    <p>Seeking entry-level .NET Backend Developer roles. Let's build the future.</p>
+                    <h3>LET'S BUILD SOMETHING USEFUL.</h3>
+                    <p>Open to junior .NET backend developer roles and meaningful collaborations.</p>
                     <div class="contact-grid">
                         <a href="mailto:ayhmobeidat.cs@gmail.com" class="contact-cell magnetic">
                             <span class="cell-pulse"></span>
                             <span class="cell-label">EMAIL</span>
                             <span class="cell-value">ayhmobeidat.cs@gmail.com</span>
                         </a>
-                        <a href="https://github.com/ayhm325" target="_blank" class="contact-cell magnetic">
+                        <a href="https://github.com/ayhm325" target="_blank" rel="noopener" class="contact-cell magnetic">
                             <span class="cell-pulse"></span>
                             <span class="cell-label">GITHUB</span>
                             <span class="cell-value">@ayhm325</span>
                         </a>
-                        <a href="https://www.linkedin.com/in/ayhm-obeidat-75a10a352" target="_blank" class="contact-cell magnetic">
+                        <a href="https://www.linkedin.com/in/ayhm-obeidat-75a10a352" target="_blank" rel="noopener" class="contact-cell magnetic">
                             <span class="cell-pulse"></span>
                             <span class="cell-label">LINKEDIN</span>
                             <span class="cell-value">/in/ayhm-obeidat</span>
@@ -229,7 +301,8 @@
     </main>
 
     <footer>
-        <span>&copy; <span id="year"></span> AYHM_OBEIDAT // ALL_SYSTEMS_OPERATIONAL</span>
+        <span class="footer-main">&copy; <span id="year"></span> Ayhm Obeidat</span>
+        <span class="footer-sub">Junior .NET Backend Developer</span>
     </footer>
 
     <script src="script.js"></script>
