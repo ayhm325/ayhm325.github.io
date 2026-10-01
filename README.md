@@ -74,3 +74,7 @@ No framework is required; the portfolio remains pure HTML, CSS and JavaScript.
 - Added richer DVLD architecture presentation with animated connectors and ambient glow.
 - Kept the real existing `assets/ayhmImage.jpg` portrait and `assets/Ayhm_Obeidat_CV.pdf`.
 - Kept PneumoDetect and the old System Timeline removed.
+
+## Final UI notes
+- Portfolio uses the dark olive/lime visual theme only; the light-theme switcher was removed.
+- The hero reactor/code object is positioned farther right and down so the code is not hidden behind the portrait.

@@ -433,23 +433,6 @@
         revealElements.forEach((element) => element.classList.add("visible"));
     }
 
-    // =========================================================
-    // THEME
-    // =========================================================
-    const themeBtn = $("#theme");
-    const storedTheme = localStorage.getItem("ayhm-theme");
-
-    if (storedTheme === "light") {
-        document.body.classList.add("light-theme");
-    }
-
-    if (themeBtn) {
-        themeBtn.addEventListener("click", () => {
-            const isLight = document.body.classList.toggle("light-theme");
-            localStorage.setItem("ayhm-theme", isLight ? "light" : "dark");
-            themeBtn.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
-        });
-    }
 
     // =========================================================
     // YEAR
