@@ -1,280 +1,461 @@
-// ===== CANVAS PARTICLE BACKGROUND =====
-const canvas = document.getElementById('particle-canvas');
-const ctx = canvas.getContext('2d');
-let particles = [];
-let mouse = { x: null, y: null };
+(() => {
+    "use strict";
 
-function resizeCanvas() {
-    canvas.width = window.innerWidth;
-    canvas.height = window.innerHeight;
-}
-resizeCanvas();
-window.addEventListener('resize', resizeCanvas);
+    const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const isTouchDevice = window.matchMedia("(hover: none), (pointer: coarse)").matches;
 
-window.addEventListener('mousemove', (e) => {
-    mouse.x = e.clientX;
-    mouse.y = e.clientY;
-});
+    // =========================================================
+    // HELPERS
+    // =========================================================
+    const $ = (selector, scope = document) => scope.querySelector(selector);
+    const $$ = (selector, scope = document) => [...scope.querySelectorAll(selector)];
 
-class Particle {
-    constructor() {
-        this.x = Math.random() * canvas.width;
-        this.y = Math.random() * canvas.height;
-        this.size = Math.random() * 1.5 + 0.5;
-        this.speedX = (Math.random() * 0.3) - 0.15;
-        this.speedY = (Math.random() * 0.3) - 0.15;
-        this.opacity = Math.random() * 0.4 + 0.1;
+    // =========================================================
+    // PARTICLE BACKGROUND
+    // =========================================================
+    const canvas = $("#particle-canvas");
+    const ctx = canvas?.getContext("2d");
+    let particles = [];
+    let mouse = { x: null, y: null };
+    let particleFrame = 0;
+
+    function resizeCanvas() {
+        if (!canvas || !ctx) return;
+
+        const ratio = Math.min(window.devicePixelRatio || 1, 1.5);
+        canvas.width = Math.floor(window.innerWidth * ratio);
+        canvas.height = Math.floor(window.innerHeight * ratio);
+        canvas.style.width = `${window.innerWidth}px`;
+        canvas.style.height = `${window.innerHeight}px`;
+        ctx.setTransform(ratio, 0, 0, ratio, 0, 0);
     }
-    update() {
-        this.x += this.speedX;
-        this.y += this.speedY;
-        if (this.x < 0 || this.x > canvas.width) this.speedX *= -1;
-        if (this.y < 0 || this.y > canvas.height) this.speedY *= -1;
-        
-        // Mouse interaction
-        let dx = mouse.x - this.x;
-        let dy = mouse.y - this.y;
-        let dist = Math.sqrt(dx*dx + dy*dy);
-        if (dist < 100) {
-            this.x -= dx/20;
-            this.y -= dy/20;
+
+    class Particle {
+        constructor() {
+            this.reset();
+        }
+
+        reset() {
+            this.x = Math.random() * window.innerWidth;
+            this.y = Math.random() * window.innerHeight;
+            this.size = Math.random() * 1.5 + 0.4;
+            this.speedX = Math.random() * 0.3 - 0.15;
+            this.speedY = Math.random() * 0.3 - 0.15;
+            this.opacity = Math.random() * 0.35 + 0.08;
+        }
+
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+
+            if (this.x < -5 || this.x > window.innerWidth + 5) this.speedX *= -1;
+            if (this.y < -5 || this.y > window.innerHeight + 5) this.speedY *= -1;
+
+            if (mouse.x !== null && mouse.y !== null) {
+                const dx = mouse.x - this.x;
+                const dy = mouse.y - this.y;
+                const distance = Math.hypot(dx, dy);
+
+                if (distance < 110 && distance > 0) {
+                    this.x -= dx / 24;
+                    this.y -= dy / 24;
+                }
+            }
+        }
+
+        draw() {
+            ctx.fillStyle = `rgba(0, 243, 255, ${this.opacity})`;
+            ctx.beginPath();
+            ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+            ctx.fill();
         }
     }
-    draw() {
-        ctx.fillStyle = `rgba(0, 243, 255, ${this.opacity})`;
-        ctx.beginPath();
-        ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-        ctx.fill();
+
+    function initParticles() {
+        if (!canvas || !ctx) return;
+
+        const count = window.innerWidth < 700 ? 22 : window.innerWidth < 1200 ? 42 : 62;
+        particles = Array.from({ length: count }, () => new Particle());
     }
-}
 
-function initParticles() {
-    particles = [];
-    const count = (window.innerWidth < 768) ? 20 : 60; // Reduced for performance
-    for (let i = 0; i < count; i++) {
-        particles.push(new Particle());
+    function animateParticles() {
+        if (!canvas || !ctx || document.hidden) {
+            particleFrame = requestAnimationFrame(animateParticles);
+            return;
+        }
+
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+
+        for (const particle of particles) {
+            particle.update();
+            particle.draw();
+        }
+
+        particleFrame = requestAnimationFrame(animateParticles);
     }
-}
-initParticles();
 
-function animateParticles() {
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-    for (let i = 0; i < particles.length; i++) {
-        particles[i].update();
-        particles[i].draw();
+    if (canvas && ctx && !prefersReducedMotion) {
+        resizeCanvas();
+        initParticles();
+        animateParticles();
+
+        window.addEventListener("resize", () => {
+            resizeCanvas();
+            initParticles();
+            updateNeuralLines();
+        }, { passive: true });
+
+        window.addEventListener("mousemove", (event) => {
+            mouse.x = event.clientX;
+            mouse.y = event.clientY;
+        }, { passive: true });
     }
-    requestAnimationFrame(animateParticles);
-}
-animateParticles();
 
-// ===== CUSTOM CURSOR (Lerp Physics) =====
-const cursorCore = document.querySelector('.cursor-core');
-const cursorRing = document.querySelector('.cursor-ring');
+    // =========================================================
+    // CUSTOM CURSOR
+    // =========================================================
+    const cursorCore = $(".cursor-core");
+    const cursorRing = $(".cursor-ring");
 
-if (window.innerWidth > 900) {
-    let mouseX = 0, mouseY = 0;
-    let ringX = 0, ringY = 0;
+    if (!isTouchDevice && !prefersReducedMotion && cursorCore && cursorRing) {
+        let mouseX = window.innerWidth / 2;
+        let mouseY = window.innerHeight / 2;
+        let ringX = mouseX;
+        let ringY = mouseY;
 
-    document.addEventListener('mousemove', (e) => {
-        mouseX = e.clientX;
-        mouseY = e.clientY;
-        cursorCore.style.left = `${mouseX}px`;
-        cursorCore.style.top = `${mouseY}px`;
-    });
+        document.addEventListener("mousemove", (event) => {
+            mouseX = event.clientX;
+            mouseY = event.clientY;
+            cursorCore.style.left = `${mouseX}px`;
+            cursorCore.style.top = `${mouseY}px`;
+        }, { passive: true });
 
-    function animateRing() {
-        ringX += (mouseX - ringX) * 0.15;
-        ringY += (mouseY - ringY) * 0.15;
-        cursorRing.style.left = `${ringX}px`;
-        cursorRing.style.top = `${ringY}px`;
-        requestAnimationFrame(animateRing);
+        function animateCursor() {
+            ringX += (mouseX - ringX) * 0.15;
+            ringY += (mouseY - ringY) * 0.15;
+            cursorRing.style.left = `${ringX}px`;
+            cursorRing.style.top = `${ringY}px`;
+            requestAnimationFrame(animateCursor);
+        }
+
+        animateCursor();
+
+        $$(".magnetic, .glass-tilt, .neural-node, .arch-layer, button, a").forEach((element) => {
+            element.addEventListener("mouseenter", () => cursorRing.classList.add("hovered"));
+            element.addEventListener("mouseleave", () => cursorRing.classList.remove("hovered"));
+        });
     }
-    animateRing();
 
-    document.querySelectorAll('a, button, .glass-tilt, .neural-node').forEach(el => {
-        el.addEventListener('mouseenter', () => cursorRing.classList.add('hovered'));
-        el.addEventListener('mouseleave', () => cursorRing.classList.remove('hovered'));
-    });
-}
+    // =========================================================
+    // MAGNETIC ELEMENTS
+    // =========================================================
+    if (!isTouchDevice && !prefersReducedMotion) {
+        $$(".magnetic").forEach((element) => {
+            let currentX = 0;
+            let currentY = 0;
+            let targetX = 0;
+            let targetY = 0;
 
-// ===== MAGNETIC BUTTONS (Lerp Physics) =====
-document.querySelectorAll('.magnetic').forEach(btn => {
-    let btnX = 0, btnY = 0;
-    let targetX = 0, targetY = 0;
+            element.addEventListener("mousemove", (event) => {
+                const rect = element.getBoundingClientRect();
+                targetX = (event.clientX - rect.left - rect.width / 2) * 0.18;
+                targetY = (event.clientY - rect.top - rect.height / 2) * 0.18;
+            });
 
-    btn.addEventListener('mousemove', (e) => {
-        const rect = btn.getBoundingClientRect();
-        targetX = (e.clientX - rect.left - rect.width / 2) * 0.3;
-        targetY = (e.clientY - rect.top - rect.height / 2) * 0.3;
-    });
+            element.addEventListener("mouseleave", () => {
+                targetX = 0;
+                targetY = 0;
+            });
 
-    btn.addEventListener('mouseleave', () => {
-        targetX = 0;
-        targetY = 0;
-    });
+            const animate = () => {
+                currentX += (targetX - currentX) * 0.16;
+                currentY += (targetY - currentY) * 0.16;
+                element.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
+                requestAnimationFrame(animate);
+            };
 
-    function animateMagnet() {
-        btnX += (targetX - btnX) * 0.15;
-        btnY += (targetY - btnY) * 0.15;
-        btn.style.transform = `translate(${btnX}px, ${btnY}px)`;
-        requestAnimationFrame(animateMagnet);
+            animate();
+        });
     }
-    animateMagnet();
-});
 
-// ===== 3D TILT EFFECT (Lerp Physics) =====
-document.querySelectorAll('[data-tilt]').forEach(el => {
-    let rotX = 0, rotY = 0;
-    let targetRotX = 0, targetRotY = 0;
+    // =========================================================
+    // 3D TILT
+    // =========================================================
+    if (!isTouchDevice && !prefersReducedMotion) {
+        $$("[data-tilt]").forEach((element) => {
+            let rotateX = 0;
+            let rotateY = 0;
+            let targetX = 0;
+            let targetY = 0;
 
-    el.addEventListener('mousemove', (e) => {
-        const rect = el.getBoundingClientRect();
-        const x = e.clientX - rect.left;
-        const y = e.clientY - rect.top;
-        targetRotX = ((y - rect.height / 2) / (rect.height / 2)) * -6; // Max 6deg
-        targetRotY = ((x - rect.width / 2) / (rect.width / 2)) * 6;
-    });
+            element.addEventListener("mousemove", (event) => {
+                const rect = element.getBoundingClientRect();
+                const x = event.clientX - rect.left;
+                const y = event.clientY - rect.top;
 
-    el.addEventListener('mouseleave', () => {
-        targetRotX = 0;
-        targetRotY = 0;
-    });
+                targetX = ((y - rect.height / 2) / (rect.height / 2)) * -4;
+                targetY = ((x - rect.width / 2) / (rect.width / 2)) * 4;
+            });
 
-    function animateTilt() {
-        rotX += (targetRotX - rotX) * 0.1;
-        rotY += (targetRotY - rotY) * 0.1;
-        el.style.transform = `perspective(1000px) rotateX(${rotX}deg) rotateY(${rotY}deg) scale(1.01)`;
-        requestAnimationFrame(animateTilt);
+            element.addEventListener("mouseleave", () => {
+                targetX = 0;
+                targetY = 0;
+            });
+
+            const animate = () => {
+                rotateX += (targetX - rotateX) * 0.1;
+                rotateY += (targetY - rotateY) * 0.1;
+
+                element.style.transform =
+                    `perspective(1100px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateZ(0)`;
+
+                requestAnimationFrame(animate);
+            };
+
+            animate();
+        });
     }
-    animateTilt();
-});
 
-// ===== NEURAL NETWORK SVG =====
-const neuralContainer = document.getElementById('neuralContainer');
-const neuralCore = document.getElementById('neuralCore');
-const neuralSvg = document.getElementById('neuralSvg');
-const neuralInfo = document.getElementById('neuralInfo');
+    // =========================================================
+    // MOBILE NAVIGATION
+    // =========================================================
+    const navBurger = $("#navBurger");
+    const navLinksContainer = $("#navLinks");
 
-const skills = [
-    { name: 'C#', top: '15%', left: '20%', desc: 'Object-Oriented, Strongly Typed', type: 'LANGUAGE' },
-    { name: 'ASP.NET', top: '25%', left: '75%', desc: 'RESTful APIs, MVC', type: 'FRAMEWORK' },
-    { name: 'SQL', top: '70%', left: '15%', desc: 'Relational Database Design', type: 'DATABASE' },
-    { name: 'EF CORE', top: '75%', left: '70%', desc: 'ORM, Code-First Migrations', type: 'DATA ACCESS' },
-    { name: 'REST', top: '40%', left: '85%', desc: 'HTTP, JSON, Swagger', type: 'ARCHITECTURE' },
-    { name: 'JWT', top: '10%', left: '50%', desc: 'Authentication, Authorization', type: 'SECURITY' },
-    { name: 'GIT', top: '85%', left: '45%', desc: 'Version Control, Azure DevOps', type: 'TOOLS' },
-    { name: 'LINQ', top: '50%', left: '10%', desc: 'Query Expressions, Lambdas', type: 'LANGUAGE' }
-];
+    function closeMobileMenu() {
+        if (!navBurger || !navLinksContainer) return;
+        navBurger.classList.remove("active");
+        navLinksContainer.classList.remove("open");
+        navBurger.setAttribute("aria-expanded", "false");
+        navBurger.setAttribute("aria-label", "Open menu");
+    }
 
-// Clear previous lines
-neuralSvg.innerHTML = '';
-let nodes = [];
+    if (navBurger && navLinksContainer) {
+        navBurger.addEventListener("click", () => {
+            const isOpen = navLinksContainer.classList.toggle("open");
+            navBurger.classList.toggle("active", isOpen);
+            navBurger.setAttribute("aria-expanded", String(isOpen));
+            navBurger.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        });
 
-skills.forEach((skill, i) => {
-    // Create Node
-    const node = document.createElement('div');
-    node.className = 'neural-node';
-    node.innerText = skill.name;
-    node.style.top = skill.top;
-    node.style.left = skill.left;
-    neuralContainer.appendChild(node);
-    nodes.push(node);
+        $$(".nav-links a").forEach((link) => {
+            link.addEventListener("click", closeMobileMenu);
+        });
 
-    // Create SVG Line
-    const line = document.createElementNS('http://www.w3.org/2000/svg', 'line');
-    line.classList.add('neural-line');
-    line.setAttribute('data-node-index', i);
-    neuralSvg.appendChild(line);
+        document.addEventListener("click", (event) => {
+            if (!navLinksContainer.contains(event.target) && !navBurger.contains(event.target)) {
+                closeMobileMenu();
+            }
+        });
+    }
 
-    // Update line coordinates on resize/load
-    function updateLine() {
+    // =========================================================
+    // NEURAL NETWORK
+    // =========================================================
+    const neuralContainer = $("#neuralContainer");
+    const neuralCore = $("#neuralCore");
+    const neuralSvg = $("#neuralSvg");
+    const neuralInfo = $("#neuralInfo");
+
+    const skills = [
+        { name: "C#", top: "15%", left: "20%", desc: "Object-oriented, strongly typed language.", type: "LANGUAGE" },
+        { name: "ASP.NET", top: "25%", left: "75%", desc: "Backend APIs and web application framework.", type: "FRAMEWORK" },
+        { name: "SQL", top: "70%", left: "15%", desc: "Relational data modeling and querying.", type: "DATABASE" },
+        { name: "EF CORE", top: "75%", left: "70%", desc: "ORM, queries and database integration.", type: "DATA ACCESS" },
+        { name: "REST", top: "40%", left: "85%", desc: "HTTP-based API design and JSON communication.", type: "ARCHITECTURE" },
+        { name: "JWT", top: "10%", left: "50%", desc: "Authentication and authorization with tokens.", type: "SECURITY" },
+        { name: "GIT", top: "85%", left: "45%", desc: "Version control and collaborative workflows.", type: "TOOLS" },
+        { name: "LINQ", top: "50%", left: "10%", desc: "Queries, projections and lambda expressions.", type: "LANGUAGE" }
+    ];
+
+    let neuralNodes = [];
+    let neuralLines = [];
+
+    function updateNeuralLines() {
+        if (!neuralContainer || !neuralCore || !neuralSvg) return;
+
         const containerRect = neuralContainer.getBoundingClientRect();
         const coreRect = neuralCore.getBoundingClientRect();
-        const nodeRect = node.getBoundingClientRect();
 
         const coreX = coreRect.left - containerRect.left + coreRect.width / 2;
         const coreY = coreRect.top - containerRect.top + coreRect.height / 2;
-        const nodeX = nodeRect.left - containerRect.left + nodeRect.width / 2;
-        const nodeY = nodeRect.top - containerRect.top + nodeRect.height / 2;
 
-        line.setAttribute('x1', coreX);
-        line.setAttribute('y1', coreY);
-        line.setAttribute('x2', nodeX);
-        line.setAttribute('y2', nodeY);
-    }
-    
-    updateLine();
-    window.addEventListener('resize', updateLine);
+        neuralNodes.forEach((node, index) => {
+            const rect = node.getBoundingClientRect();
+            const line = neuralLines[index];
 
-    // Hover Interactions
-    node.addEventListener('mouseenter', () => {
-        line.classList.add('active');
-        neuralInfo.querySelector('.info-title').innerText = skill.name;
-        neuralInfo.querySelector('.info-desc').innerText = skill.desc;
-        
-        nodes.forEach((n, idx) => {
-            if (idx !== i) n.classList.add('dimmed');
+            if (!line) return;
+
+            const nodeX = rect.left - containerRect.left + rect.width / 2;
+            const nodeY = rect.top - containerRect.top + rect.height / 2;
+
+            line.setAttribute("x1", coreX);
+            line.setAttribute("y1", coreY);
+            line.setAttribute("x2", nodeX);
+            line.setAttribute("y2", nodeY);
         });
-    });
+    }
 
-    node.addEventListener('mouseleave', () => {
-        line.classList.remove('active');
-        neuralInfo.querySelector('.info-title').innerText = 'HOVER NODE';
-        neuralInfo.querySelector('.info-desc').innerText = 'Select a technology to view specs';
-        
-        nodes.forEach(n => n.classList.remove('dimmed'));
-    });
-});
+    function resetNeuralInfo() {
+        if (!neuralInfo) return;
+        $(".info-title", neuralInfo).textContent = "HOVER NODE";
+        $(".info-type", neuralInfo).textContent = "TECH STACK";
+        $(".info-desc", neuralInfo).textContent = "Select a technology to view its role.";
+    }
 
-// ===== SCROLL BEAM & ACTIVE NAV =====
-const scrollBeam = document.getElementById('scrollProgress');
-const sections = document.querySelectorAll('section');
-const navLinks = document.querySelectorAll('.nav-links a');
+    if (neuralContainer && neuralCore && neuralSvg && neuralInfo) {
+        neuralSvg.innerHTML = "";
 
-window.addEventListener('scroll', () => {
-    const scrollTop = window.scrollY;
-    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
-    const scrollPercent = (scrollTop / docHeight) * 100;
-    scrollBeam.style.width = `${scrollPercent}%`;
-    
-    // Active Nav
-    let current = '';
-    sections.forEach(section => {
-        const sectionTop = section.offsetTop - 120;
-        if (scrollTop >= sectionTop) {
-            current = section.getAttribute('id');
+        skills.forEach((skill, index) => {
+            const node = document.createElement("button");
+            node.type = "button";
+            node.className = "neural-node";
+            node.textContent = skill.name;
+            node.style.top = skill.top;
+            node.style.left = skill.left;
+            node.setAttribute("aria-label", `${skill.name}: ${skill.desc}`);
+
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.classList.add("neural-line");
+            line.dataset.nodeIndex = String(index);
+
+            neuralContainer.appendChild(node);
+            neuralSvg.appendChild(line);
+
+            neuralNodes.push(node);
+            neuralLines.push(line);
+
+            const activate = () => {
+                neuralLines.forEach((item, lineIndex) => {
+                    item.classList.toggle("active", lineIndex === index);
+                });
+
+                neuralNodes.forEach((item, nodeIndex) => {
+                    item.classList.toggle("dimmed", nodeIndex !== index);
+                });
+
+                $(".info-title", neuralInfo).textContent = skill.name;
+                $(".info-type", neuralInfo).textContent = skill.type;
+                $(".info-desc", neuralInfo).textContent = skill.desc;
+            };
+
+            const deactivate = () => {
+                neuralLines.forEach((item) => item.classList.remove("active"));
+                neuralNodes.forEach((item) => item.classList.remove("dimmed"));
+                resetNeuralInfo();
+            };
+
+            node.addEventListener("mouseenter", activate);
+            node.addEventListener("focus", activate);
+            node.addEventListener("mouseleave", deactivate);
+            node.addEventListener("blur", deactivate);
+        });
+
+        requestAnimationFrame(updateNeuralLines);
+        window.addEventListener("resize", updateNeuralLines, { passive: true });
+        window.addEventListener("load", updateNeuralLines, { once: true });
+    }
+
+    // =========================================================
+    // DVLD ARCHITECTURE TOOLTIP
+    // =========================================================
+    const archTooltip = $("#archTooltip");
+
+    if (archTooltip) {
+        $$(".arch-layer").forEach((layer) => {
+            const show = () => {
+                archTooltip.textContent = layer.dataset.desc || "";
+                archTooltip.classList.add("visible");
+                archTooltip.setAttribute("aria-hidden", "false");
+            };
+
+            const hide = () => {
+                archTooltip.classList.remove("visible");
+                archTooltip.setAttribute("aria-hidden", "true");
+            };
+
+            layer.addEventListener("mouseenter", show);
+            layer.addEventListener("focus", show);
+            layer.addEventListener("mouseleave", hide);
+            layer.addEventListener("blur", hide);
+        });
+    }
+
+    // =========================================================
+    // ACTIVE NAV + SCROLL PROGRESS
+    // =========================================================
+    const scrollBeam = $("#scrollProgress");
+    const sections = $$("main section");
+    const navLinks = $$(".nav-links a");
+
+    function updateScrollUI() {
+        const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+        const scrollPercent = maxScroll > 0 ? (window.scrollY / maxScroll) * 100 : 0;
+
+        if (scrollBeam) {
+            scrollBeam.style.width = `${Math.min(100, Math.max(0, scrollPercent))}%`;
         }
-    });
-    
-    navLinks.forEach(link => {
-        link.classList.remove('active');
-        if (link.getAttribute('href') === `#${current}`) {
-            link.classList.add('active');
-        }
-    });
-});
 
-// ===== SCROLL REVEAL (IntersectionObserver) =====
-const revealElements = document.querySelectorAll('.reveal');
+        let current = "hero";
 
-const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-        if (entry.isIntersecting) {
-            entry.target.classList.add('visible');
-            observer.unobserve(entry.target);
-        }
-    });
-}, { threshold: 0.1 });
+        sections.forEach((section) => {
+            if (window.scrollY >= section.offsetTop - 180) {
+                current = section.id;
+            }
+        });
 
-revealElements.forEach(el => {
-    observer.observe(el);
-});
+        navLinks.forEach((link) => {
+            const isActive = link.getAttribute("href") === `#${current}`;
+            link.classList.toggle("active", isActive);
+        });
+    }
 
-// ===== THEME TOGGLE =====
-const themeBtn = document.getElementById('theme');
-themeBtn.addEventListener('click', () => {
-    document.body.classList.toggle('light-theme');
-});
+    window.addEventListener("scroll", updateScrollUI, { passive: true });
+    updateScrollUI();
 
-// ===== YEAR =====
-document.getElementById('year').textContent = new Date().getFullYear();
+    // =========================================================
+    // SCROLL REVEAL
+    // =========================================================
+    const revealElements = $$(".reveal");
+
+    if ("IntersectionObserver" in window && !prefersReducedMotion) {
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add("visible");
+                    observer.unobserve(entry.target);
+                }
+            });
+        }, { threshold: 0.12 });
+
+        revealElements.forEach((element) => observer.observe(element));
+    } else {
+        revealElements.forEach((element) => element.classList.add("visible"));
+    }
+
+    // =========================================================
+    // THEME
+    // =========================================================
+    const themeBtn = $("#theme");
+    const storedTheme = localStorage.getItem("ayhm-theme");
+
+    if (storedTheme === "light") {
+        document.body.classList.add("light-theme");
+    }
+
+    if (themeBtn) {
+        themeBtn.addEventListener("click", () => {
+            const isLight = document.body.classList.toggle("light-theme");
+            localStorage.setItem("ayhm-theme", isLight ? "light" : "dark");
+            themeBtn.setAttribute("aria-label", isLight ? "Switch to dark mode" : "Switch to light mode");
+        });
+    }
+
+    // =========================================================
+    // YEAR
+    // =========================================================
+    const year = $("#year");
+    if (year) {
+        year.textContent = new Date().getFullYear();
+    }
+})();
