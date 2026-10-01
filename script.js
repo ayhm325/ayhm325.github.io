@@ -64,7 +64,7 @@
         }
 
         draw() {
-            ctx.fillStyle = `rgba(234, 255, 99, ${this.opacity})`;
+            ctx.fillStyle = `rgba(217, 243, 106, ${this.opacity})`;
             ctx.beginPath();
             ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
             ctx.fill();
@@ -458,4 +458,43 @@
     if (year) {
         year.textContent = new Date().getFullYear();
     }
+})();
+
+
+// =========================================================
+// V4 CINEMATIC ART-DIRECTION MOTION
+// =========================================================
+(() => {
+  if (prefersReducedMotion || isTouchDevice) return;
+  const hero = document.querySelector('.hero-section');
+  const visual = document.querySelector('.hero-visual');
+  if (!hero || !visual) return;
+  let raf = 0;
+  let px = 0, py = 0;
+  hero.addEventListener('pointermove', (event) => {
+    const rect = hero.getBoundingClientRect();
+    px = (event.clientX - rect.left) / rect.width - .5;
+    py = (event.clientY - rect.top) / rect.height - .5;
+    if (raf) return;
+    raf = requestAnimationFrame(() => {
+      raf = 0;
+      visual.style.setProperty('--mx', `${px * 18}px`);
+      visual.style.setProperty('--my', `${py * 14}px`);
+      visual.style.transform = `translate3d(${px * 10}px,${py * 8}px,0)`;
+    });
+  }, {passive:true});
+  hero.addEventListener('pointerleave', () => {
+    visual.style.transform = '';
+    visual.style.removeProperty('--mx');
+    visual.style.removeProperty('--my');
+  });
+
+  // Cursor spotlight on large interactive surfaces.
+  document.querySelectorAll('.glass-tilt,.build-card,.snapshot-card,.contact-cell').forEach((el) => {
+    el.addEventListener('pointermove', (event) => {
+      const r = el.getBoundingClientRect();
+      el.style.setProperty('--spot-x', `${event.clientX-r.left}px`);
+      el.style.setProperty('--spot-y', `${event.clientY-r.top}px`);
+    }, {passive:true});
+  });
 })();
