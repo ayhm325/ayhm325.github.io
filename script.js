@@ -26,7 +26,6 @@ const closeMenu = () => {
     links.classList.remove("open");
     body.style.overflow = "";
     menu.setAttribute("aria-expanded", "false");
-    menu.setAttribute("aria-label", "Open navigation menu");
 };
 
 const toggleMenu = () => {
@@ -34,7 +33,6 @@ const toggleMenu = () => {
     menu.classList.toggle("open", isOpen);
     body.style.overflow = isOpen ? "hidden" : "";
     menu.setAttribute("aria-expanded", String(isOpen));
-    menu.setAttribute("aria-label", isOpen ? "Close navigation menu" : "Open navigation menu");
 };
 
 menu.addEventListener("click", toggleMenu);
@@ -113,10 +111,10 @@ if (cursorDot && cursorOutline && window.innerWidth > 860) {
         cursorOutline.animate({
             left: `${posX}px`,
             top: `${posY}px`
-        }, { duration: 500, fill: "forwards" });
+        }, { duration: 400, fill: "forwards" });
     });
 
-    const interactiveElements = document.querySelectorAll("a, button, .glass-tilt");
+    const interactiveElements = document.querySelectorAll("a, button, .hud-card");
     interactiveElements.forEach(el => {
         el.addEventListener("mouseenter", () => cursorOutline.classList.add("hovered"));
         el.addEventListener("mouseleave", () => cursorOutline.classList.remove("hovered"));
@@ -135,10 +133,10 @@ tiltElements.forEach(el => {
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
         
-        const rotateX = ((y - centerY) / centerY) * -5;
-        const rotateY = ((x - centerX) / centerX) * 5;
+        const rotateX = ((y - centerY) / centerY) * -3; // Subtle tilt
+        const rotateY = ((x - centerX) / centerX) * 3;
         
-        el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.02)`;
+        el.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) scale(1.01)`;
     });
 
     el.addEventListener("mouseleave", () => {
