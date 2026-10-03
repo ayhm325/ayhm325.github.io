@@ -1,6 +1,6 @@
 # Ayhm Obeidat Portfolio — Grand Line Code Edition
 
-A pirate-adventure inspired portfolio focused on .NET backend engineering. The visual direction combines ocean/navigation motifs, manga-style typography, wanted-poster treatment, programming symbols, and the DVLD project architecture.
+A pirate-adventure inspired portfolio for Ayhm Obeidat, a Computer Science graduate targeting Junior .NET Backend Developer roles. The content is grounded in the DVLD project and the attached CV, while the visual direction combines ocean/navigation motifs, manga-style typography, wanted-poster treatment, programming symbols, and backend architecture.
 
 ## Files
 
@@ -37,7 +37,11 @@ This revision is a final polish pass focused on layout balance, interaction cost
 - Added a graceful profile-image fallback without inline event-handler JavaScript.
 - Improved mobile navigation with Escape and outside-click closing.
 - Kept decorative canvas interaction non-interactive so it cannot block clicks.
-- Preserved the portfolio's existing content, links, project, and overall pirate/.NET visual identity.
+- Reworked the portfolio copy around the CV and the DVLD state represented by commit `1fa548768dbd097efbb271b2fc64466536262191`.
+- Replaced generic architecture wording with the project's documented layered structure, shared `DVLD.Contracts` boundary, transactional Unit of Work, security controls, testing, and Azure DevOps CI.
+- Updated the skills network to emphasize C#, ASP.NET Core Web API, SQL Server, EF Core, REST, JWT, DI/UoW, and testing.
+- Avoided claiming a generic "Clean Architecture" label where the project documentation describes a layered solution.
+- Preserved the portfolio's overall pirate/.NET visual identity while making the engineering content more specific.
 
 ## Run locally
 

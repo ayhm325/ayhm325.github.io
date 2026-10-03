@@ -343,14 +343,14 @@
     const neuralInfo = $("#neuralInfo");
 
     const skills = [
-        { name: "C#", top: "15%", left: "19%", desc: "Object-oriented, strongly typed language.", type: "LANGUAGE" },
-        { name: "ASP.NET", top: "25%", left: "75%", desc: "Backend APIs and web application framework.", type: "FRAMEWORK" },
-        { name: "SQL", top: "70%", left: "15%", desc: "Relational data modeling and querying.", type: "DATABASE" },
-        { name: "EF CORE", top: "75%", left: "70%", desc: "ORM, queries and database integration.", type: "DATA ACCESS" },
-        { name: "REST", top: "42%", left: "84%", desc: "HTTP-based API design and JSON communication.", type: "ARCHITECTURE" },
-        { name: "JWT", top: "10%", left: "50%", desc: "Authentication and authorization with tokens.", type: "SECURITY" },
-        { name: "GIT", top: "64%", left: "49.5%", desc: "Version control and collaborative workflows.", type: "TOOLS" },
-        { name: "LINQ", top: "51%", left: "9%", desc: "Queries, projections and lambda expressions.", type: "LANGUAGE" }
+        { name: "C#", top: "15%", left: "19%", desc: "Core language used across the DVLD application and API.", type: "LANGUAGE" },
+        { name: "ASP.NET CORE", top: "25%", left: "75%", desc: "Web API layer for REST endpoints and HTTP concerns.", type: "WEB API" },
+        { name: "SQL SERVER", top: "70%", left: "15%", desc: "Relational persistence, queries, relationships and constraints.", type: "DATABASE" },
+        { name: "EF CORE", top: "75%", left: "70%", desc: "ORM and persistence layer connecting application workflows to SQL Server.", type: "DATA ACCESS" },
+        { name: "REST", top: "42%", left: "84%", desc: "HTTP + JSON API communication exposed by the ASP.NET Core backend.", type: "API DESIGN" },
+        { name: "JWT", top: "10%", left: "50%", desc: "Bearer authentication with backend authorization policies.", type: "SECURITY" },
+        { name: "DI + UoW", top: "64%", left: "49.5%", desc: "Dependency injection and shared transactional DbContext coordination.", type: "ARCHITECTURE" },
+        { name: "TESTING", top: "51%", left: "9%", desc: "Unit and integration testing across application, API and infrastructure behavior.", type: "QUALITY" }
     ];
 
     const neuralNodes = [];

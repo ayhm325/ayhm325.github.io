@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Ayhm Obeidat — Junior .NET Backend Developer focused on C#, ASP.NET Core, SQL Server and clean architecture.">
+    <meta name="description" content="Ayhm Obeidat — Computer Science graduate and Junior .NET Backend Developer focused on C#, .NET 8, ASP.NET Core Web API, EF Core and SQL Server.">
     <meta name="author" content="Ayhm Obeidat">
     <meta name="theme-color" content="#071827">
     <title>Ayhm Obeidat | .NET Backend Developer</title>
@@ -127,8 +127,8 @@
                 </div>
 
                 <p class="hero-desc reveal">
-                    Building reliable backend systems with C#, ASP.NET Core and SQL Server —
-                    focused on clear responsibilities, maintainable layers and code that is easy to understand.
+                    Computer Science graduate building backend systems with C#, .NET 8 and ASP.NET Core Web API —
+                    focused on clear responsibilities, transactional workflows, security and testable code.
                 </p>
 
                 <div class="hero-actions reveal">
@@ -143,8 +143,9 @@
 
                 <div class="tech-deck reveal" aria-label="Primary technologies">
                     <span><b>C#</b><small>LANG</small></span>
-                    <span><b>ASP.NET</b><small>API</small></span>
-                    <span><b>SQL</b><small>DATA</small></span>
+                    <span><b>.NET 8</b><small>RUNTIME</small></span>
+                    <span><b>ASP.NET CORE</b><small>API</small></span>
+                    <span><b>SQL SERVER</b><small>DATA</small></span>
                     <span><b>EF CORE</b><small>ORM</small></span>
                 </div>
             </div>
@@ -215,19 +216,20 @@
             <div class="section-heading reveal">
                 <span class="chapter">CHAPTER 01</span>
                 <h2>MY <em>JOURNEY</em></h2>
-                <p>A backend-focused developer who cares about structure, clarity and maintainability.</p>
+                <p>A Computer Science graduate focused on building understandable, testable .NET backend systems.</p>
             </div>
 
             <div class="about-grid">
                 <article class="story-panel paper-panel reveal glass-tilt" data-tilt>
                     <div class="panel-stamp">LOG BOOK</div>
                     <span class="panel-kicker">ENGINEERING_PRINCIPLE</span>
-                    <h3>Backend systems should be understandable before they become scalable.</h3>
+                    <h3>Build the business flow first. Then make the architecture carry it.</h3>
                     <p>
                         I'm a Computer Science graduate focused on .NET backend engineering.
-                        I work with C#, ASP.NET Core, SQL Server and Entity Framework Core,
-                        organizing applications into clear layers so business logic remains easy to reason about,
-                        test and extend.
+                        My main project is DVLD, a multi-layered driving-license management system built with
+                        C#, .NET 8, ASP.NET Core Web API, EF Core and SQL Server.
+                        I focus on separating API, business logic and persistence responsibilities,
+                        protecting workflows with authentication and authorization, and verifying behavior with automated tests.
                     </p>
                     <div class="signature">AYHM // BACKEND FOCUS</div>
                 </article>
@@ -245,8 +247,8 @@
                         <span>Backend Focus</span>
                     </div>
                     <div class="route-stop stop-three">
-                        <b>5-LAYER</b>
-                        <span>Clean Architecture</span>
+                        <b>6 PROJECTS</b>
+                        <span>Layered Solution</span>
                     </div>
                     <div class="route-stop stop-four">
                         <b>DVLD</b>
@@ -261,7 +263,7 @@
             <div class="section-heading reveal">
                 <span class="chapter">CHAPTER 02</span>
                 <h2>CREW <em>SKILLS</em></h2>
-                <p>Hover a node to inspect the role it plays in the backend stack.</p>
+                <p>Explore the technologies behind the DVLD backend, from API design and security to persistence and testing.</p>
             </div>
 
             <div class="crew-board reveal" id="neuralContainer">
@@ -288,7 +290,7 @@
             <div class="section-heading reveal">
                 <span class="chapter">CHAPTER 03</span>
                 <h2>THE <em>BUILD</em> LOG</h2>
-                <p>A practical workflow: understand the problem, shape the responsibilities, then make the system easier to change.</p>
+                <p>A practical backend workflow: understand the use case, separate responsibilities, implement safely, then verify the result.</p>
             </div>
 
             <div class="build-grid">
@@ -296,25 +298,25 @@
                     <span class="step-no">01</span>
                     <div class="step-icon">◈</div>
                     <h3>Understand</h3>
-                    <p>Start from the business requirement and the workflow, not from the framework.</p>
+                    <p>Start with the business workflow, its rules and failure cases before choosing how the code should be organized.</p>
                 </article>
                 <article class="build-card reveal">
                     <span class="step-no">02</span>
                     <div class="step-icon">⚓</div>
                     <h3>Separate</h3>
-                    <p>Keep responsibilities clear across Domain, Application, Infrastructure and API boundaries.</p>
+                    <p>Keep controllers thin and separate API, Application, Domain, Infrastructure and shared HTTP contracts.</p>
                 </article>
                 <article class="build-card reveal">
                     <span class="step-no">03</span>
                     <div class="step-icon">{ }</div>
                     <h3>Implement</h3>
-                    <p>Use C#, EF Core, SQL Server and ASP.NET Core to turn the design into working features.</p>
+                    <p>Implement real workflows with C#, ASP.NET Core, EF Core and SQL Server while keeping transaction boundaries explicit.</p>
                 </article>
                 <article class="build-card reveal">
                     <span class="step-no">04</span>
                     <div class="step-icon">✓</div>
                     <h3>Test</h3>
-                    <p>Verify business behavior with focused unit and integration tests before calling the work complete.</p>
+                    <p>Verify application logic, API behavior, infrastructure operations, authentication and security scenarios with automated tests.</p>
                 </article>
             </div>
         </section>
@@ -337,7 +339,7 @@
 
                     <div class="architecture-title">
                         <span>THE ARCHITECTURE</span>
-                        <small>FOLLOW THE ROUTE</small>
+                        <small>HTTP + JSON + JWT // DVLD.CONTRACTS</small>
                     </div>
 
                     <div class="arch-route">
@@ -351,17 +353,17 @@
                             <span><b>API</b><small>ASP.NET Core</small></span>
                         </div>
                         <div class="arch-connector"></div>
-                        <div class="arch-layer l3" tabindex="0" role="button" data-desc="Business workflows, validation and service orchestration.">
+                        <div class="arch-layer l3" tabindex="0" role="button" data-desc="Application services own use-case orchestration, validation and business workflows.">
                             <span class="arch-icon">03</span>
                             <span><b>Application</b><small>Services / Validation</small></span>
                         </div>
                         <div class="arch-connector"></div>
-                        <div class="arch-layer l4" tabindex="0" role="button" data-desc="Entities, contracts and core business abstractions.">
+                        <div class="arch-layer l4" tabindex="0" role="button" data-desc="Domain contains core entities and business abstractions; HTTP contracts are shared through DVLD.Contracts.">
                             <span class="arch-icon">04</span>
                             <span><b>Domain</b><small>Entities / Interfaces</small></span>
                         </div>
                         <div class="arch-connector"></div>
-                        <div class="arch-layer l5" tabindex="0" role="button" data-desc="EF Core, DbContext and data-access implementations.">
+                        <div class="arch-layer l5" tabindex="0" role="button" data-desc="Infrastructure owns EF Core, DbContext, repositories and SQL Server persistence.">
                             <span class="arch-icon">05</span>
                             <span><b>Infrastructure</b><small>EF Core / Data Access</small></span>
                         </div>
@@ -375,8 +377,9 @@
                     <div class="arch-tooltip" id="archTooltip" aria-hidden="true"></div>
 
                     <div class="project-tags">
-                        <span>WPF</span><span>MVVM</span><span>C#</span><span>ASP.NET CORE</span>
-                        <span>EF CORE</span><span>SQL SERVER</span><span>JWT</span><span>UoW</span><span>DI</span>
+                        <span>C#</span><span>.NET 8</span><span>ASP.NET CORE WEB API</span>
+                        <span>EF CORE 8</span><span>SQL SERVER</span><span>JWT</span>
+                        <span>DI</span><span>UoW</span><span>WPF</span><span>MVVM</span>
                     </div>
 
                     <div class="treasure-mark" aria-hidden="true">
@@ -390,16 +393,18 @@
                     <span class="wanted-label">PROJECT_01 // .NET SYSTEM</span>
                     <h3>DVLD Management System</h3>
                     <p>
-                        A multi-layered driving license management system built around clear separation of responsibilities,
-                        maintainable backend architecture and explicit business workflows.
+                        A .NET 8 driving-license department system with a WPF client, ASP.NET Core Web API,
+                        SQL Server persistence and transactional business workflows. The project is organized so
+                        controllers stay thin, application services own use cases, and Infrastructure owns persistence.
                     </p>
 
                     <div class="project-architecture">
-                        <div class="arch-item"><i></i>Repository &amp; Unit of Work</div>
-                        <div class="arch-item"><i></i>Dependency Injection</div>
-                        <div class="arch-item"><i></i>JWT Authentication</div>
-                        <div class="arch-item"><i></i>Entity Framework Core</div>
-                        <div class="arch-item"><i></i>SQL Server</div>
+                        <div class="arch-item"><i></i>ASP.NET Core Web API + DTOs</div>
+                        <div class="arch-item"><i></i>Application Services + Validation</div>
+                        <div class="arch-item"><i></i>Repository + Unit of Work</div>
+                        <div class="arch-item"><i></i>JWT + Policy Authorization</div>
+                        <div class="arch-item"><i></i>Rate Limiting + Problem Details</div>
+                        <div class="arch-item"><i></i>Unit + Integration Testing</div>
                     </div>
 
                     <a href="https://github.com/ayhm325/DVLD-WPF" target="_blank" rel="noopener noreferrer" class="btn-primary magnetic">
@@ -411,19 +416,19 @@
             <div class="snapshot-grid">
                 <article class="snapshot-card reveal">
                     <span>ARCHITECTURE</span>
-                    <ul><li>Clean Architecture</li><li>Separation of Concerns</li><li>Dependency Injection</li></ul>
+                    <ul><li>Layered Solution</li><li>Separation of Concerns</li><li>Dependency Injection</li></ul>
                 </article>
                 <article class="snapshot-card reveal">
                     <span>DATA</span>
-                    <ul><li>Entity Framework Core</li><li>SQL Server</li><li>LINQ</li></ul>
+                    <ul><li>EF Core 8</li><li>SQL Server</li><li>LINQ</li></ul>
                 </article>
                 <article class="snapshot-card reveal">
-                    <span>BACKEND</span>
-                    <ul><li>ASP.NET Core</li><li>REST API</li><li>JWT Authentication</li></ul>
+                    <span>SECURITY</span>
+                    <ul><li>JWT Bearer</li><li>Policy Authorization</li><li>Login Rate Limiting</li></ul>
                 </article>
                 <article class="snapshot-card reveal">
                     <span>QUALITY</span>
-                    <ul><li>Repository Pattern</li><li>Unit of Work</li><li>Layered Validation</li></ul>
+                    <ul><li>Result + Problem Details</li><li>Unit + Integration Tests</li><li>Azure DevOps CI</li></ul>
                 </article>
             </div>
         </section>
@@ -441,7 +446,7 @@
                     <div>
                         <span class="chapter">LAST PAGE</span>
                         <h2>LET'S BUILD<br><em>SOMETHING USEFUL.</em></h2>
-                        <p>Open to junior .NET backend developer roles and meaningful collaborations.</p>
+                        <p>Computer Science graduate seeking an entry-level .NET Backend Developer or Junior Software Engineer role.</p>
                     </div>
 
                     <div class="contact-seal" aria-hidden="true">
@@ -474,7 +479,7 @@
 
     <footer>
         <span>© <span id="year"></span> AYHM OBEIDAT</span>
-        <span>SAILING THE .NET SEA</span>
+        <span>JUNIOR .NET BACKEND // OPEN TO OPPORTUNITIES</span>
         <span>⚓ // CODE WITH PURPOSE</span>
     </footer>
 
