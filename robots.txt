@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://ayhm325.github.io/sitemap.xml

@@ -1,0 +1,13 @@
+{
+  "name": "Ayhm Obeidat — Junior .NET Backend Developer",
+  "short_name": "Ayhm Obeidat",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#071827",
+  "theme_color": "#071827",
+  "description": "Ayhm Obeidat portfolio — .NET backend engineering, DVLD case study and technical skills.",
+  "icons": [
+    {"src":"assets/apple-touch-icon.png","sizes":"180x180","type":"image/png"},
+    {"src":"assets/favicon.svg","sizes":"any","type":"image/svg+xml"}
+  ]
+}

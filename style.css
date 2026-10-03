@@ -1639,3 +1639,163 @@ body { min-width: 320px; }
 @media (prefers-reduced-motion: reduce) {
     .pirate-cursor { transform: none; }
 }
+
+/* =========================================================
+   PROFESSIONAL POLISH — ACCESSIBILITY / UX / EVIDENCE
+   ========================================================= */
+
+:focus-visible {
+    outline: 3px solid var(--gold);
+    outline-offset: 4px;
+}
+
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+.arch-layer {
+    appearance: none;
+    width: 100%;
+    text-align: left;
+    font: inherit;
+    cursor: pointer;
+}
+
+.arch-layer:hover,
+.arch-layer:focus-visible {
+    border-color: var(--gold);
+}
+
+.project-evidence {
+    margin: 24px 0 26px;
+    padding: 16px 18px;
+    border: 1px solid rgba(66,216,223,.18);
+    background: rgba(3,18,29,.5);
+}
+
+.project-evidence > span {
+    display: block;
+    margin-bottom: 12px;
+    color: var(--gold);
+    font: 600 .58rem "Share Tech Mono", monospace;
+    letter-spacing: .16em;
+}
+
+.project-evidence > div {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+}
+
+.project-evidence b,
+.project-evidence small {
+    display: block;
+}
+
+.project-evidence b {
+    color: var(--cyan-soft);
+    font: 700 .68rem "Share Tech Mono", monospace;
+}
+
+.project-evidence small {
+    margin-top: 6px;
+    color: var(--muted);
+    font-size: .78rem;
+    line-height: 1.45;
+}
+
+.availability-line {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    color: var(--gold-soft);
+    font: 600 .62rem "Share Tech Mono", monospace;
+    letter-spacing: .1em;
+}
+
+.availability-line::before {
+    content: "";
+    width: 7px;
+    height: 7px;
+    flex: 0 0 auto;
+    border-radius: 50%;
+    background: #48b96b;
+    box-shadow: 0 0 10px rgba(72,185,107,.55);
+}
+
+/* The cursor is intentionally subtle: it supports the theme without competing with content. */
+.pirate-cursor {
+    width: 22px;
+    height: 22px;
+    border: 1px solid rgba(244,189,79,.82);
+    border-radius: 50%;
+    background: rgba(3,17,28,.22);
+    box-shadow: 0 0 0 5px rgba(66,216,223,.08), 0 0 22px rgba(244,189,79,.18);
+}
+
+.pirate-cursor span {
+    display: none;
+}
+
+.pirate-cursor i {
+    width: 5px;
+    height: 5px;
+    background: var(--gold);
+}
+
+.pirate-cursor.hovered {
+    border-color: var(--cyan);
+    box-shadow: 0 0 0 7px rgba(66,216,223,.09), 0 0 24px rgba(66,216,223,.22);
+}
+
+/* Keep the hero portrait stable while its source asset loads. */
+.portrait-frame {
+    aspect-ratio: 4 / 5;
+    height: auto;
+}
+
+/* Prevent accidental horizontal overflow from decorative transforms. */
+html,
+body {
+    overflow-x: clip;
+}
+
+/* A compact mobile layout for project evidence. */
+@media (max-width: 760px) {
+    .project-evidence > div {
+        grid-template-columns: 1fr;
+    }
+
+    .availability-line {
+        line-height: 1.5;
+    }
+
+    .btn-primary,
+    .btn-secondary {
+        width: 100%;
+    }
+
+    .hero-actions {
+        width: 100%;
+    }
+}
+
+@media (hover: none), (pointer: coarse) {
+    .pirate-cursor {
+        display: none !important;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .scan-bar,
+    .neural-core::before {
+        animation: none !important;
+    }
+
+    .glass-tilt,
+    .magnetic {
+        transform: none !important;
+    }
+}

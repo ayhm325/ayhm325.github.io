@@ -307,21 +307,31 @@
     const burger = $("#navBurger");
     const nav = $("#navLinks");
 
-    const closeNav = () => {
+    const navLinks = burger && nav ? $$(".nav-links a") : [];
+
+    const closeNav = ({ restoreFocus = false } = {}) => {
         if (!burger || !nav) return;
         nav.classList.remove("open");
         burger.setAttribute("aria-expanded", "false");
-        burger.setAttribute("aria-label", "Open menu");
+        burger.setAttribute("aria-label", "Open navigation menu");
+        if (restoreFocus) burger.focus();
+    };
+
+    const openNav = () => {
+        if (!burger || !nav) return;
+        nav.classList.add("open");
+        burger.setAttribute("aria-expanded", "true");
+        burger.setAttribute("aria-label", "Close navigation menu");
+        navLinks[0]?.focus();
     };
 
     if (burger && nav) {
         burger.addEventListener("click", () => {
-            const isOpen = nav.classList.toggle("open");
-            burger.setAttribute("aria-expanded", String(isOpen));
-            burger.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+            if (nav.classList.contains("open")) closeNav({ restoreFocus: true });
+            else openNav();
         });
 
-        $$(".nav-links a").forEach(link => link.addEventListener("click", closeNav));
+        navLinks.forEach(link => link.addEventListener("click", () => closeNav()));
 
         document.addEventListener("click", event => {
             if (!nav.classList.contains("open")) return;
@@ -329,8 +339,28 @@
         });
 
         window.addEventListener("keydown", event => {
-            if (event.key === "Escape") closeNav();
+            if (!nav.classList.contains("open")) return;
+            if (event.key === "Escape") {
+                event.preventDefault();
+                closeNav({ restoreFocus: true });
+                return;
+            }
+            if (event.key !== "Tab" || navLinks.length < 2) return;
+
+            const first = navLinks[0];
+            const last = navLinks[navLinks.length - 1];
+            if (event.shiftKey && document.activeElement === first) {
+                event.preventDefault();
+                last.focus();
+            } else if (!event.shiftKey && document.activeElement === last) {
+                event.preventDefault();
+                first.focus();
+            }
         });
+
+        window.addEventListener("resize", () => {
+            if (window.innerWidth > 980 && nav.classList.contains("open")) closeNav();
+        }, { passive: true });
     }
 
     /* =========================================================
@@ -359,10 +389,12 @@
     const infoType = $(".info-type", neuralInfo);
     const infoDesc = $(".info-desc", neuralInfo);
 
+    let selectedSkill = -1;
+
     const resetInfo = () => {
-        if (infoTitle) infoTitle.textContent = "HOVER NODE";
+        if (infoTitle) infoTitle.textContent = "SELECT A NODE";
         if (infoType) infoType.textContent = "TECH STACK";
-        if (infoDesc) infoDesc.textContent = "Select a technology to view its role.";
+        if (infoDesc) infoDesc.textContent = "Choose a technology to view its role.";
     };
 
     const activateSkill = index => {
@@ -375,9 +407,20 @@
     };
 
     const deactivateSkill = () => {
+        if (selectedSkill !== -1) return;
         neuralLines.forEach(line => line.classList.remove("active"));
         neuralNodes.forEach(node => node.classList.remove("dimmed"));
         resetInfo();
+    };
+
+    const toggleSkill = index => {
+        if (selectedSkill === index) {
+            selectedSkill = -1;
+            deactivateSkill();
+            return;
+        }
+        selectedSkill = index;
+        activateSkill(index);
     };
 
     const updateNeuralLines = () => {
@@ -418,8 +461,13 @@
             neuralNodes.push(node);
             neuralLines.push(line);
 
-            node.addEventListener("pointerenter", () => activateSkill(index), { passive: true });
-            node.addEventListener("focus", () => activateSkill(index));
+            node.addEventListener("pointerenter", () => {
+                if (selectedSkill === -1) activateSkill(index);
+            }, { passive: true });
+            node.addEventListener("click", () => toggleSkill(index));
+            node.addEventListener("focus", () => {
+                if (selectedSkill === -1) activateSkill(index);
+            });
             node.addEventListener("pointerleave", deactivateSkill, { passive: true });
             node.addEventListener("blur", deactivateSkill);
         });
