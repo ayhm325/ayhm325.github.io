@@ -15,10 +15,20 @@ A pirate-adventure inspired portfolio focused on .NET backend engineering. The v
 
 ## Improvements in this revision
 
+This revision is a final polish pass focused on layout balance, interaction cost, responsive behavior, and accessibility consistency.
+
 - Fixed the mismatch between the HTML `pirate-cursor` markup and the previous cursor CSS/JS implementation.
 - Reworked the cursor into a lightweight compass-style interaction that follows the pointer smoothly.
 - Consolidated magnetic-button and 3D-tilt animation work into a shared animation loop instead of creating one `requestAnimationFrame` loop per element.
 - Batched scroll-progress updates with `requestAnimationFrame`.
+- Added the missing BUILD route to navigation and synchronized `aria-current` state.
+- Reworked pointer tracking to update the cursor with GPU-friendly transforms instead of `left/top`.
+- Replaced repeated magnetic/tilt array lookups with `WeakMap` element lookup.
+- Prevented particle pointer forces from running before the pointer is active.
+- Added `ResizeObserver` support for the skills network so connector lines follow layout changes more reliably.
+- Added earlier navigation collapse and tighter tablet/mobile spacing to prevent cramped layouts.
+- Tuned the hero, route map, skills board, architecture map, and contact layout for small screens.
+- Added lightweight paint containment for decorative layers and the particle canvas.
 - Replaced repeated section-position scanning with `IntersectionObserver` for active navigation.
 - Paused particle animation when the document is hidden and respected `prefers-reduced-motion`.
 - Throttled resize work through one animation-frame callback.

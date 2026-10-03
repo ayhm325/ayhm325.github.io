@@ -12,10 +12,11 @@
         scrollRaf: 0,
         resizeRaf: 0,
         pageVisible: !document.hidden,
-        pointerX: window.innerWidth / 2,
-        pointerY: window.innerHeight / 2,
-        cursorX: window.innerWidth / 2,
-        cursorY: window.innerHeight / 2,
+        pointerX: null,
+        pointerY: null,
+        cursorX: 0,
+        cursorY: 0,
+        pointerActive: false,
         magnetic: [],
         tilt: [],
         startMotionLoop: null
@@ -66,6 +67,7 @@
         const setCursorPosition = event => {
             state.pointerX = event.clientX;
             state.pointerY = event.clientY;
+            state.pointerActive = true;
             pirateCursor.classList.add("ready");
         };
 
@@ -83,8 +85,16 @@
             }
         }, { passive: true });
 
-        document.addEventListener("pointerleave", () => pirateCursor.classList.remove("ready"));
-        document.addEventListener("pointerenter", () => pirateCursor.classList.add("ready"));
+        window.addEventListener("blur", () => {
+            state.pointerActive = false;
+            pirateCursor.classList.remove("ready");
+        }, { passive: true });
+        window.addEventListener("pointerout", event => {
+            if (!event.relatedTarget) {
+                state.pointerActive = false;
+                pirateCursor.classList.remove("ready");
+            }
+        }, { passive: true });
     }
 
     /* =========================================================
@@ -114,6 +124,8 @@
             this.rotation = Math.random() * Math.PI * 2;
             this.spin = Math.random() * 0.002 - 0.001;
             this.symbol = symbols[Math.floor(Math.random() * symbols.length)];
+            this.baseX = this.x;
+            this.baseY = this.y;
         }
 
         update() {
@@ -126,7 +138,7 @@
                 return;
             }
 
-            if (state.pointerX !== null && !coarsePointer.matches) {
+            if (state.pointerActive && state.pointerX !== null && !coarsePointer.matches) {
                 const dx = state.pointerX - this.x;
                 const dy = state.pointerY - this.y;
                 const distance = Math.hypot(dx, dy);
@@ -209,34 +221,41 @@
        ========================================================= */
 
     if (!coarsePointer.matches && !reducedMotion.matches) {
+        const magneticMap = new WeakMap();
+        const tiltMap = new WeakMap();
+
         $$(".magnetic").forEach(element => {
-            state.magnetic.push({ element, targetX: 0, targetY: 0, x: 0, y: 0 });
+            const item = { element, targetX: 0, targetY: 0, x: 0, y: 0 };
+            state.magnetic.push(item);
+            magneticMap.set(element, item);
             element.addEventListener("pointermove", event => {
                 const rect = element.getBoundingClientRect();
                 const maxX = Math.min(12, rect.width * 0.08);
                 const maxY = Math.min(10, rect.height * 0.12);
-                const item = state.magnetic.find(entry => entry.element === element);
+                const item = magneticMap.get(element);
                 if (!item) return;
                 item.targetX = clamp((event.clientX - rect.left - rect.width / 2) * 0.12, -maxX, maxX);
                 item.targetY = clamp((event.clientY - rect.top - rect.height / 2) * 0.12, -maxY, maxY);
             }, { passive: true });
             element.addEventListener("pointerleave", () => {
-                const item = state.magnetic.find(entry => entry.element === element);
+                const item = magneticMap.get(element);
                 if (item) item.targetX = item.targetY = 0;
             }, { passive: true });
         });
 
         $$('[data-tilt]').forEach(element => {
-            state.tilt.push({ element, targetX: 0, targetY: 0, x: 0, y: 0 });
+            const item = { element, targetX: 0, targetY: 0, x: 0, y: 0 };
+            state.tilt.push(item);
+            tiltMap.set(element, item);
             element.addEventListener("pointermove", event => {
                 const rect = element.getBoundingClientRect();
-                const item = state.tilt.find(entry => entry.element === element);
+                const item = tiltMap.get(element);
                 if (!item) return;
                 item.targetX = ((event.clientY - rect.top) / rect.height - 0.5) * -4;
                 item.targetY = ((event.clientX - rect.left) / rect.width - 0.5) * 4;
             }, { passive: true });
             element.addEventListener("pointerleave", () => {
-                const item = state.tilt.find(entry => entry.element === element);
+                const item = tiltMap.get(element);
                 if (item) item.targetX = item.targetY = 0;
             }, { passive: true });
         });
@@ -247,11 +266,11 @@
                 return;
             }
 
-            if (pirateCursor) {
+            if (pirateCursor && state.pointerActive && state.pointerX !== null) {
                 state.cursorX += (state.pointerX - state.cursorX) * 0.22;
                 state.cursorY += (state.pointerY - state.cursorY) * 0.22;
-                pirateCursor.style.left = `${state.cursorX}px`;
-                pirateCursor.style.top = `${state.cursorY}px`;
+                pirateCursor.style.setProperty("--cursor-x", `${state.cursorX}px`);
+                pirateCursor.style.setProperty("--cursor-y", `${state.cursorY}px`);
             }
 
             for (const item of state.magnetic) {
@@ -407,7 +426,11 @@
 
         neuralContainer.appendChild(fragment);
         requestAnimationFrame(updateNeuralLines);
-        window.addEventListener("load", updateNeuralLines, { once: true, passive: true });
+        window.addEventListener("load", updateNeuralLines, { once: true });
+        if ("ResizeObserver" in window) {
+            const neuralResizeObserver = new ResizeObserver(updateNeuralLines);
+            neuralResizeObserver.observe(neuralContainer);
+        }
     }
 
     /* =========================================================
