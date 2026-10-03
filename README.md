@@ -15,33 +15,24 @@ A pirate-adventure inspired portfolio for Ayhm Obeidat, a Computer Science gradu
 
 ## Improvements in this revision
 
-This revision is a final polish pass focused on layout balance, interaction cost, responsive behavior, and accessibility consistency.
+This revision is a content-and-engineering audit against the attached CV and the DVLD repository state represented by commit `1fa548768dbd097efbb271b2fc64466536262191`.
 
-- Fixed the mismatch between the HTML `pirate-cursor` markup and the previous cursor CSS/JS implementation.
-- Reworked the cursor into a lightweight compass-style interaction that follows the pointer smoothly.
-- Consolidated magnetic-button and 3D-tilt animation work into a shared animation loop instead of creating one `requestAnimationFrame` loop per element.
-- Batched scroll-progress updates with `requestAnimationFrame`.
-- Added the missing BUILD route to navigation and synchronized `aria-current` state.
-- Reworked pointer tracking to update the cursor with GPU-friendly transforms instead of `left/top`.
-- Replaced repeated magnetic/tilt array lookups with `WeakMap` element lookup.
-- Prevented particle pointer forces from running before the pointer is active.
-- Added `ResizeObserver` support for the skills network so connector lines follow layout changes more reliably.
-- Added earlier navigation collapse and tighter tablet/mobile spacing to prevent cramped layouts.
-- Tuned the hero, route map, skills board, architecture map, and contact layout for small screens.
-- Added lightweight paint containment for decorative layers and the particle canvas.
-- Replaced repeated section-position scanning with `IntersectionObserver` for active navigation.
-- Paused particle animation when the document is hidden and respected `prefers-reduced-motion`.
-- Throttled resize work through one animation-frame callback.
-- Added keyboard support and visible focus states to the architecture route layers.
-- Added missing pirate/ocean decorative styles that were present in the HTML but had no corresponding CSS.
-- Added a graceful profile-image fallback without inline event-handler JavaScript.
-- Improved mobile navigation with Escape and outside-click closing.
-- Kept decorative canvas interaction non-interactive so it cannot block clicks.
-- Reworked the portfolio copy around the CV and the DVLD state represented by commit `1fa548768dbd097efbb271b2fc64466536262191`.
-- Replaced generic architecture wording with the project's documented layered structure, shared `DVLD.Contracts` boundary, transactional Unit of Work, security controls, testing, and Azure DevOps CI.
-- Updated the skills network to emphasize C#, ASP.NET Core Web API, SQL Server, EF Core, REST, JWT, DI/UoW, and testing.
-- Avoided claiming a generic "Clean Architecture" label where the project documentation describes a layered solution.
-- Preserved the portfolio's overall pirate/.NET visual identity while making the engineering content more specific.
+- Corrected the architecture wording to **layered solution / layered architecture** rather than claiming a generic Clean Architecture implementation.
+- Removed the unsupported-looking `6 PROJECTS` route-map claim; the portfolio now presents DVLD as the flagship project documented in the CV.
+- Corrected the architecture visualization so the runtime path is Presentation → API → Application → Infrastructure → SQL Server, while Domain and `DVLD.Contracts` are shown as architectural boundaries rather than incorrectly placed in the runtime chain.
+- Added documented security details: JWT bearer authentication, policy-based authorization, BCrypt password hashing, and login rate limiting.
+- Added the documented rate-limit configuration: 5 requests per IP in a 1-minute fixed window with HTTP 429 on excess requests.
+- Added the documented transaction model: shared scoped `DVLDDbContext` / Unit of Work and Serializable isolation for concurrency-sensitive workflows.
+- Added the documented API error boundary: global exception handling and ProblemDetails.
+- Added the documented testing picture and clearly labels the 1,487 passing tests as a **historical reported result**, not a fresh execution claim.
+- Kept Azure DevOps wording at Continuous Integration scope; no production deployment/CD claim is made.
+- Preserved the pirate/ocean/manga visual identity while tightening the technical language around the actual project.
+
+## Content source of truth
+
+Portfolio technical claims were aligned to:
+- The attached CV: C#, .NET, ASP.NET Core Web API, EF Core, SQL Server, LINQ, REST, layered architecture, SOLID, DI, Repository, Unit of Work, Result Pattern, JWT, role-based authorization, rate limiting, global exception handling, ProblemDetails, xUnit, unit/integration testing, WPF/MVVM and Azure DevOps.
+- DVLD repository documentation and implementation at commit `1fa548768dbd097efbb271b2fc64466536262191`, including the documented layered boundaries, `DVLD.Contracts`, shared scoped DbContext/Unit of Work, transaction handling, security model, test suites and CI flow.
 
 ## Run locally
 

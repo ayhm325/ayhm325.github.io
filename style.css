@@ -72,7 +72,7 @@ html.custom-cursor-active body { cursor: none; }
     opacity: 0;
     transform: translate(-50%, -50%);
     transition: opacity .18s ease, width .2s var(--ease), height .2s var(--ease);
-    will-change: left, top;
+    will-change: transform;
 }
 .pirate-cursor.ready { opacity: 1; }
 .pirate-cursor::before,
@@ -1206,6 +1206,31 @@ html.custom-cursor-active body { cursor: none; }
     margin: 0 auto;
     background: var(--red);
 }
+.architecture-notes {
+    position: relative;
+    z-index: 3;
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 14px auto 0;
+    width: min(560px, 100%);
+}
+.architecture-notes > div {
+    display: grid;
+    gap: 5px;
+    padding: 10px 12px;
+    border: 1px dashed rgba(23,19,14,.24);
+    background: rgba(255,248,221,.34);
+}
+.architecture-notes b {
+    color: var(--red-dark);
+    font: .62rem "Share Tech Mono";
+    letter-spacing: .08em;
+}
+.architecture-notes span {
+    color: rgba(23,19,14,.65);
+    font: .55rem/1.45 "Share Tech Mono";
+}
 .arch-tooltip {
     position: absolute;
     z-index: 10;
@@ -1270,6 +1295,33 @@ html.custom-cursor-active body { cursor: none; }
     border-radius: 50%;
     background: var(--red);
     box-shadow: 0 0 8px rgba(217,52,50,.5);
+}
+.project-proof-grid {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px;
+    margin: 4px 0 24px;
+}
+.proof-card {
+    display: grid;
+    gap: 6px;
+    padding: 13px 14px;
+    border: 1px solid rgba(66,216,223,.14);
+    background: rgba(5,27,40,.58);
+}
+.proof-card span {
+    color: var(--cyan);
+    font: .56rem "Share Tech Mono";
+    letter-spacing: .08em;
+}
+.proof-card b {
+    color: var(--white);
+    font-size: .92rem;
+    line-height: 1.25;
+}
+.proof-card small {
+    color: var(--muted);
+    font: .62rem/1.45 "Share Tech Mono";
 }
 .snapshot-grid {
     display: grid;
@@ -1387,6 +1439,9 @@ footer {
 }
 
 @media (max-width: 760px) {
+    .architecture-notes,
+    .project-proof-grid { grid-template-columns: 1fr; }
+
     .pirate-cursor { display: none; }
     .pirate-nav { width: calc(100% - 20px); }
     .route-label { display: none; }

@@ -6,6 +6,14 @@
     <meta name="description" content="Ayhm Obeidat — Computer Science graduate and Junior .NET Backend Developer focused on C#, .NET 8, ASP.NET Core Web API, EF Core and SQL Server.">
     <meta name="author" content="Ayhm Obeidat">
     <meta name="theme-color" content="#071827">
+    <meta name="robots" content="index, follow">
+    <meta property="og:type" content="website">
+    <meta property="og:title" content="Ayhm Obeidat | Junior .NET Backend Developer">
+    <meta property="og:description" content="Computer Science graduate focused on C#, .NET 8, ASP.NET Core Web API, EF Core and SQL Server.">
+    <meta property="og:site_name" content="Ayhm Obeidat Portfolio">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Ayhm Obeidat | Junior .NET Backend Developer">
+    <meta name="twitter:description" content="Computer Science graduate focused on .NET backend engineering and the DVLD project.">
     <title>Ayhm Obeidat | .NET Backend Developer</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -69,7 +77,7 @@
             </div>
 
             <ul class="nav-links" id="navLinks">
-                <li><a href="#hero" class="active" aria-current="page">HOME</a></li>
+                <li><a href="#hero" class="active" aria-current="location">HOME</a></li>
                 <li><a href="#about">ABOUT</a></li>
                 <li><a href="#skills">SKILLS</a></li>
                 <li><a href="#build">BUILD</a></li>
@@ -247,8 +255,8 @@
                         <span>Backend Focus</span>
                     </div>
                     <div class="route-stop stop-three">
-                        <b>6 PROJECTS</b>
-                        <span>Layered Solution</span>
+                        <b>DVLD</b>
+                        <span>Flagship Project</span>
                     </div>
                     <div class="route-stop stop-four">
                         <b>DVLD</b>
@@ -326,7 +334,7 @@
             <div class="section-heading reveal">
                 <span class="chapter">CHAPTER 04</span>
                 <h2>FLAGSHIP <em>PROJECT</em></h2>
-                <p>One substantial system, presented as an engineering case study.</p>
+                <p>A multi-layered .NET 8 system presented as an engineering case study.</p>
             </div>
 
             <article class="project-showcase reveal">
@@ -343,34 +351,40 @@
                     </div>
 
                     <div class="arch-route">
-                        <div class="arch-layer l1" tabindex="0" role="button" data-desc="WPF client using the MVVM pattern.">
+                        <div class="arch-layer l1" tabindex="0" data-desc="WPF desktop client using an MVVM-oriented presentation layer.">
                             <span class="arch-icon">01</span>
                             <span><b>Presentation</b><small>WPF / MVVM</small></span>
                         </div>
                         <div class="arch-connector"></div>
-                        <div class="arch-layer l2" tabindex="0" role="button" data-desc="REST endpoints, controllers and middleware.">
+                        <div class="arch-layer l2" tabindex="0" data-desc="HTTP boundary for REST endpoints, authentication, authorization, middleware and ProblemDetails handling.">
                             <span class="arch-icon">02</span>
                             <span><b>API</b><small>ASP.NET Core</small></span>
                         </div>
                         <div class="arch-connector"></div>
-                        <div class="arch-layer l3" tabindex="0" role="button" data-desc="Application services own use-case orchestration, validation and business workflows.">
+                        <div class="arch-layer l3" tabindex="0" data-desc="Application layer owns use cases, business workflows, validation, DTOs, Result types and abstractions.">
                             <span class="arch-icon">03</span>
-                            <span><b>Application</b><small>Services / Validation</small></span>
+                            <span><b>Application</b><small>Use Cases / Validation</small></span>
                         </div>
                         <div class="arch-connector"></div>
-                        <div class="arch-layer l4" tabindex="0" role="button" data-desc="Domain contains core entities and business abstractions; HTTP contracts are shared through DVLD.Contracts.">
+                        <div class="arch-layer l4" tabindex="0" data-desc="Infrastructure owns EF Core, repositories, Unit of Work, transactions and SQL Server persistence.">
                             <span class="arch-icon">04</span>
-                            <span><b>Domain</b><small>Entities / Interfaces</small></span>
+                            <span><b>Infrastructure</b><small>EF Core / UoW / Data</small></span>
                         </div>
                         <div class="arch-connector"></div>
-                        <div class="arch-layer l5" tabindex="0" role="button" data-desc="Infrastructure owns EF Core, DbContext, repositories and SQL Server persistence.">
+                        <div class="arch-layer l5" tabindex="0" data-desc="Relational database used for persistent system state, relationships and database-level integrity constraints.">
                             <span class="arch-icon">05</span>
-                            <span><b>Infrastructure</b><small>EF Core / Data Access</small></span>
+                            <span><b>SQL Server</b><small>Persistence / Constraints</small></span>
                         </div>
-                        <div class="arch-connector"></div>
-                        <div class="arch-layer l6" tabindex="0" role="button" data-desc="Relational database layer used by the system.">
-                            <span class="arch-icon">06</span>
-                            <span><b>Database</b><small>SQL Server</small></span>
+                    </div>
+
+                    <div class="architecture-notes">
+                        <div>
+                            <b>DOMAIN</b>
+                            <span>Core entities, enums and domain concepts</span>
+                        </div>
+                        <div>
+                            <b>DVLD.CONTRACTS</b>
+                            <span>Shared HTTP request/response boundary</span>
                         </div>
                     </div>
 
@@ -394,17 +408,30 @@
                     <h3>DVLD Management System</h3>
                     <p>
                         A .NET 8 driving-license department system with a WPF client, ASP.NET Core Web API,
-                        SQL Server persistence and transactional business workflows. The project is organized so
-                        controllers stay thin, application services own use cases, and Infrastructure owns persistence.
+                        SQL Server persistence and transactional business workflows. The documented solution separates
+                        HTTP concerns, application workflows, domain concepts, persistence and shared API contracts.
                     </p>
 
                     <div class="project-architecture">
-                        <div class="arch-item"><i></i>ASP.NET Core Web API + DTOs</div>
-                        <div class="arch-item"><i></i>Application Services + Validation</div>
-                        <div class="arch-item"><i></i>Repository + Unit of Work</div>
-                        <div class="arch-item"><i></i>JWT + Policy Authorization</div>
-                        <div class="arch-item"><i></i>Rate Limiting + Problem Details</div>
-                        <div class="arch-item"><i></i>Unit + Integration Testing</div>
+                        <div class="arch-item"><i></i>Thin Controllers + Application Use Cases</div>
+                        <div class="arch-item"><i></i>Repository + Shared Unit of Work</div>
+                        <div class="arch-item"><i></i>JWT + Policy-Based Authorization</div>
+                        <div class="arch-item"><i></i>Login Rate Limiting: 5 Requests / IP / Minute</div>
+                        <div class="arch-item"><i></i>Global Exception Handling + ProblemDetails</div>
+                        <div class="arch-item"><i></i>Unit + Integration Testing + Azure DevOps CI</div>
+                    </div>
+
+                    <div class="project-proof-grid">
+                        <div class="proof-card">
+                            <span>TRANSACTIONS</span>
+                            <b>Shared scoped DbContext / UoW</b>
+                            <small>Serializable transactions protect concurrency-sensitive workflows.</small>
+                        </div>
+                        <div class="proof-card">
+                            <span>TESTING</span>
+                            <b>1,487 historically reported passing</b>
+                            <small>631 unit + 364 API integration + 492 infrastructure tests; historical result, not a fresh run.</small>
+                        </div>
                     </div>
 
                     <a href="https://github.com/ayhm325/DVLD-WPF" target="_blank" rel="noopener noreferrer" class="btn-primary magnetic">

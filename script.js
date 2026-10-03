@@ -478,7 +478,7 @@
         links.forEach(link => {
             const active = link.getAttribute("href") === `#${id}`;
             link.classList.toggle("active", active);
-            if (active) link.setAttribute("aria-current", "page");
+            if (active) link.setAttribute("aria-current", "location");
             else link.removeAttribute("aria-current");
         });
     };
@@ -557,9 +557,12 @@
             state.raf = 0;
             state.motionRaf = 0;
         } else {
-            resizeCanvas();
-            initParticles();
-            startParticleLoop();
+            if (canvas && ctx) {
+                resizeCanvas();
+                initParticles();
+                startParticleLoop();
+            }
+            state.startMotionLoop?.();
         }
     });
 
