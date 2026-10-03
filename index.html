@@ -17,8 +17,13 @@
 <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <div class="cursor-core" aria-hidden="true"></div>
-    <div class="cursor-ring" aria-hidden="true"></div>
+    <div class="pirate-cursor" aria-hidden="true">
+        <span class="cursor-north">N</span>
+        <span class="cursor-east">E</span>
+        <span class="cursor-south">S</span>
+        <span class="cursor-west">W</span>
+        <i></i>
+    </div>
     <div class="scroll-line" id="scrollProgress" aria-hidden="true"></div>
 
     <div class="ocean-bg" aria-hidden="true">
@@ -28,6 +33,24 @@
         <div class="wave wave-two"></div>
         <div class="cloud cloud-one"></div>
         <div class="cloud cloud-two"></div>
+
+        <div class="sky-birds" aria-hidden="true">
+            <span>⌁</span><span>⌁</span><span>⌁</span>
+        </div>
+
+        <div class="distant-island" aria-hidden="true">
+            <span class="island-palm"></span>
+            <span class="island-rock"></span>
+        </div>
+
+        <div class="ocean-ship" aria-hidden="true">
+            <div class="ship-mast"></div>
+            <div class="ship-sail sail-main"></div>
+            <div class="ship-sail sail-small"></div>
+            <div class="ship-hull"></div>
+            <div class="ship-flag">☠</div>
+        </div>
+
         <canvas id="particle-canvas"></canvas>
         <div class="ink-noise"></div>
     </div>
@@ -68,6 +91,18 @@
                 <span>CODE</span>
                 <strong>LOG</strong>
                 <small>NO. 01</small>
+            </div>
+
+            <div class="pirate-flag" aria-hidden="true">
+                <div class="flag-pole"></div>
+                <div class="flag-cloth">
+                    <b>☠</b>
+                    <small>CODE CREW</small>
+                </div>
+            </div>
+
+            <div class="hero-wheel" aria-hidden="true">
+                <span>✦</span>
             </div>
 
             <div class="hero-content">
@@ -141,6 +176,11 @@
                         <span>BOUNTY</span>
                         <strong>∞</strong>
                         <span>FOR CLEAN CODE</span>
+                    </div>
+
+                    <div class="wanted-seal">
+                        <span>GRAND LINE</span>
+                        <b>CODE PIRATE</b>
                     </div>
 
                     <div class="wanted-footer">
@@ -338,6 +378,12 @@
                         <span>WPF</span><span>MVVM</span><span>C#</span><span>ASP.NET CORE</span>
                         <span>EF CORE</span><span>SQL SERVER</span><span>JWT</span><span>UoW</span><span>DI</span>
                     </div>
+
+                    <div class="treasure-mark" aria-hidden="true">
+                        <span>✦</span>
+                        <b>DATA TREASURE</b>
+                        <small>SQL // EF CORE</small>
+                    </div>
                 </div>
 
                 <div class="project-info reveal">
@@ -385,6 +431,7 @@
         <!-- CONTACT -->
         <section id="contact" class="section-block contact-section">
             <div class="contact-scroll reveal">
+                <div class="contact-coins" aria-hidden="true"><span>◉</span><span>◉</span><span>◉</span></div>
                 <div class="contact-top">
                     <span>FINAL LOG // CONNECTION</span>
                     <span>GRAND LINE — END OF ROUTE</span>
