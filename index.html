@@ -17,7 +17,7 @@
 <body>
     <a class="skip-link" href="#main-content">Skip to content</a>
 
-    <div class="pirate-cursor" aria-hidden="true">
+    <div class="pirate-cursor" aria-hidden="true" role="presentation">
         <span class="cursor-north">N</span>
         <span class="cursor-east">E</span>
         <span class="cursor-south">S</span>
@@ -163,8 +163,7 @@
                         <div class="portrait-corner c2"></div>
                         <div class="portrait-corner c3"></div>
                         <div class="portrait-corner c4"></div>
-                        <img src="assets/ayhmImage.JPG" alt="Portrait of Ayhm Obeidat" class="profile-photo"
-                             onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+                        <img src="assets/ayhmImage.JPG" alt="Portrait of Ayhm Obeidat" class="profile-photo" loading="eager" decoding="async">
                         <div class="profile-fallback" hidden>AO</div>
                         <div class="scan-bar"></div>
                     </div>
@@ -341,32 +340,32 @@
                     </div>
 
                     <div class="arch-route">
-                        <div class="arch-layer l1" data-desc="WPF client using the MVVM pattern.">
+                        <div class="arch-layer l1" tabindex="0" role="button" data-desc="WPF client using the MVVM pattern.">
                             <span class="arch-icon">01</span>
                             <span><b>Presentation</b><small>WPF / MVVM</small></span>
                         </div>
                         <div class="arch-connector"></div>
-                        <div class="arch-layer l2" data-desc="REST endpoints, controllers and middleware.">
+                        <div class="arch-layer l2" tabindex="0" role="button" data-desc="REST endpoints, controllers and middleware.">
                             <span class="arch-icon">02</span>
                             <span><b>API</b><small>ASP.NET Core</small></span>
                         </div>
                         <div class="arch-connector"></div>
-                        <div class="arch-layer l3" data-desc="Business workflows, validation and service orchestration.">
+                        <div class="arch-layer l3" tabindex="0" role="button" data-desc="Business workflows, validation and service orchestration.">
                             <span class="arch-icon">03</span>
                             <span><b>Application</b><small>Services / Validation</small></span>
                         </div>
                         <div class="arch-connector"></div>
-                        <div class="arch-layer l4" data-desc="Entities, contracts and core business abstractions.">
+                        <div class="arch-layer l4" tabindex="0" role="button" data-desc="Entities, contracts and core business abstractions.">
                             <span class="arch-icon">04</span>
                             <span><b>Domain</b><small>Entities / Interfaces</small></span>
                         </div>
                         <div class="arch-connector"></div>
-                        <div class="arch-layer l5" data-desc="EF Core, DbContext and data-access implementations.">
+                        <div class="arch-layer l5" tabindex="0" role="button" data-desc="EF Core, DbContext and data-access implementations.">
                             <span class="arch-icon">05</span>
                             <span><b>Infrastructure</b><small>EF Core / Data Access</small></span>
                         </div>
                         <div class="arch-connector"></div>
-                        <div class="arch-layer l6" data-desc="Relational database layer used by the system.">
+                        <div class="arch-layer l6" tabindex="0" role="button" data-desc="Relational database layer used by the system.">
                             <span class="arch-icon">06</span>
                             <span><b>Database</b><small>SQL Server</small></span>
                         </div>

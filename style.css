@@ -39,7 +39,6 @@ body {
     background: var(--navy-0);
     font-family: "Rajdhani", sans-serif;
     line-height: 1.55;
-    cursor: none;
 }
 
 a, button { -webkit-tap-highlight-color: transparent; }
@@ -60,33 +59,59 @@ a { color: inherit; }
 }
 .skip-link:focus { transform: translateY(0); }
 
-.cursor-core,
-.cursor-ring {
+html.custom-cursor-active body { cursor: none; }
+
+.pirate-cursor {
     position: fixed;
+    left: 0;
+    top: 0;
     z-index: 99999;
+    width: 48px;
+    height: 48px;
     pointer-events: none;
+    opacity: 0;
     transform: translate(-50%, -50%);
+    transition: opacity .18s ease, width .2s var(--ease), height .2s var(--ease);
+    will-change: left, top;
 }
-.cursor-core {
+.pirate-cursor.ready { opacity: 1; }
+.pirate-cursor::before,
+.pirate-cursor::after {
+    content: "";
+    position: absolute;
+    inset: 8px;
+    border: 1px solid rgba(66,216,223,.7);
+    border-radius: 50%;
+}
+.pirate-cursor::after {
+    inset: 16px;
+    border-color: rgba(244,189,79,.9);
+    box-shadow: 0 0 14px rgba(244,189,79,.22);
+}
+.pirate-cursor i {
+    position: absolute;
+    left: 50%;
+    top: 50%;
     width: 5px;
     height: 5px;
     border-radius: 50%;
     background: var(--gold);
     box-shadow: 0 0 12px var(--gold);
+    transform: translate(-50%, -50%);
 }
-.cursor-ring {
-    width: 32px;
-    height: 32px;
-    border: 1px solid rgba(66,216,223,.65);
-    border-radius: 50%;
-    transition: width .25s, height .25s, border-color .25s, background .25s;
+.pirate-cursor span {
+    position: absolute;
+    color: var(--cyan-soft);
+    font: 600 .46rem "Share Tech Mono", monospace;
+    letter-spacing: .04em;
 }
-.cursor-ring.hovered {
-    width: 52px;
-    height: 52px;
-    border-color: var(--gold);
-    background: rgba(244,189,79,.07);
-}
+.pirate-cursor .cursor-north { left: 50%; top: -1px; transform: translateX(-50%); }
+.pirate-cursor .cursor-east { right: -1px; top: 50%; transform: translateY(-50%); }
+.pirate-cursor .cursor-south { left: 50%; bottom: -1px; transform: translateX(-50%); }
+.pirate-cursor .cursor-west { left: -1px; top: 50%; transform: translateY(-50%); }
+.pirate-cursor.hovered { width: 64px; height: 64px; }
+.pirate-cursor.hovered::before { border-color: var(--gold); }
+
 .scroll-line {
     position: fixed;
     z-index: 9990;
@@ -153,13 +178,238 @@ a { color: inherit; }
 }
 .cloud-one { left: 3%; top: 15%; }
 .cloud-two { right: 15%; top: 29%; }
-#particle-canvas { position: absolute; inset: 0; width: 100%; height: 100%; }
+#particle-canvas { position: absolute; inset: 0; width: 100%; height: 100%; pointer-events: none; }
 .ink-noise {
     position: absolute;
     inset: 0;
     opacity: .035;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.75' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
 }
+
+/* ---------- world details ---------- */
+.sky-birds {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: .42;
+}
+.sky-birds span {
+    position: absolute;
+    color: rgba(245,241,223,.48);
+    font: 1.2rem "Rajdhani", sans-serif;
+    transform: rotate(-8deg);
+    animation: birdDrift 12s ease-in-out infinite alternate;
+}
+.sky-birds span:nth-child(1) { left: 14%; top: 17%; }
+.sky-birds span:nth-child(2) { left: 20%; top: 12%; animation-delay: -3s; transform: scale(.75) rotate(-8deg); }
+.sky-birds span:nth-child(3) { right: 19%; top: 24%; animation-delay: -6s; transform: scale(.6) rotate(-8deg); }
+
+.distant-island {
+    position: absolute;
+    right: 8%;
+    bottom: 10%;
+    width: 220px;
+    height: 100px;
+    opacity: .32;
+    filter: blur(.2px);
+}
+.island-rock {
+    position: absolute;
+    left: 30px;
+    bottom: 8px;
+    width: 160px;
+    height: 52px;
+    border-radius: 55% 45% 20% 20%;
+    background: linear-gradient(180deg, #163c42, #06151e);
+    clip-path: polygon(0 100%, 12% 65%, 28% 48%, 40% 64%, 55% 30%, 72% 50%, 100% 68%, 100% 100%);
+}
+.island-palm {
+    position: absolute;
+    left: 100px;
+    bottom: 42px;
+    width: 5px;
+    height: 52px;
+    border-radius: 5px;
+    background: #163c42;
+    transform: rotate(-8deg);
+}
+.island-palm::before {
+    content: "";
+    position: absolute;
+    left: -22px;
+    top: -5px;
+    width: 48px;
+    height: 25px;
+    background: repeating-conic-gradient(from 10deg, #163c42 0 12deg, transparent 12deg 34deg);
+    border-radius: 50%;
+}
+
+.ocean-ship {
+    position: absolute;
+    left: 7%;
+    bottom: 14%;
+    width: 160px;
+    height: 125px;
+    opacity: .22;
+    transform: scale(.9);
+    animation: shipFloat 7s ease-in-out infinite;
+}
+.ship-mast {
+    position: absolute;
+    left: 77px;
+    top: 6px;
+    width: 4px;
+    height: 78px;
+    background: #496a6d;
+}
+.ship-sail {
+    position: absolute;
+    border: 1px solid rgba(240,225,182,.35);
+    background: rgba(240,225,182,.08);
+    clip-path: polygon(0 0, 100% 10%, 78% 100%, 4% 86%);
+}
+.sail-main { left: 82px; top: 14px; width: 58px; height: 58px; }
+.sail-small { left: 40px; top: 30px; width: 40px; height: 40px; transform: scaleX(-1); }
+.ship-hull {
+    position: absolute;
+    left: 18px;
+    bottom: 20px;
+    width: 125px;
+    height: 35px;
+    border-radius: 8px 8px 45% 45%;
+    background: linear-gradient(180deg, #442b24, #140e0d);
+    border-top: 3px solid var(--gold);
+}
+.ship-flag {
+    position: absolute;
+    left: 76px;
+    top: 0;
+    color: var(--red);
+    font-size: .8rem;
+}
+
+.pirate-flag {
+    position: absolute;
+    right: 4%;
+    top: 22%;
+    width: 105px;
+    height: 150px;
+    z-index: 1;
+    opacity: .36;
+    transform: rotate(5deg);
+}
+.flag-pole {
+    position: absolute;
+    right: 14px;
+    bottom: 0;
+    width: 3px;
+    height: 145px;
+    background: linear-gradient(#8c6c3c, #3d2c1c);
+}
+.flag-cloth {
+    position: absolute;
+    right: 17px;
+    top: 8px;
+    width: 78px;
+    height: 62px;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    color: var(--paper);
+    background: var(--red-dark);
+    clip-path: polygon(0 0, 100% 8%, 90% 100%, 0 88%);
+    box-shadow: 0 8px 18px rgba(0,0,0,.2);
+    animation: flagWave 3.5s ease-in-out infinite;
+}
+.flag-cloth b { font-size: 1.35rem; line-height: 1; }
+.flag-cloth small { font: .38rem "Share Tech Mono"; letter-spacing: .1em; }
+
+.hero-wheel {
+    position: absolute;
+    right: 29%;
+    bottom: 7%;
+    width: 150px;
+    height: 150px;
+    border: 2px solid rgba(244,189,79,.15);
+    border-radius: 50%;
+    opacity: .45;
+    pointer-events: none;
+    animation: wheelSpin 28s linear infinite;
+}
+.hero-wheel::before,
+.hero-wheel::after {
+    content: "";
+    position: absolute;
+    inset: 17px;
+    border: 1px dashed rgba(66,216,223,.16);
+    border-radius: 50%;
+}
+.hero-wheel::after { inset: 48%; background: var(--gold); border: 0; }
+.hero-wheel span { position: absolute; inset: 0; display: grid; place-items: center; color: var(--gold); }
+
+.scroll-cue {
+    position: absolute;
+    left: 55px;
+    bottom: 28px;
+    z-index: 5;
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: rgba(245,241,223,.5);
+    text-decoration: none;
+    font: .55rem "Share Tech Mono";
+    letter-spacing: .12em;
+}
+.scroll-cue i { color: var(--gold); font-size: 1rem; font-style: normal; animation: scrollNudge 1.8s ease-in-out infinite; }
+
+.wanted-seal {
+    position: absolute;
+    right: 18px;
+    bottom: 52px;
+    width: 82px;
+    height: 82px;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    border: 2px solid rgba(142,30,37,.7);
+    border-radius: 50%;
+    color: var(--red-dark);
+    transform: rotate(8deg);
+    opacity: .8;
+}
+.wanted-seal span { font: .4rem "Share Tech Mono"; }
+.wanted-seal b { font: .9rem "Bangers"; }
+
+.treasure-mark {
+    position: absolute;
+    right: 20px;
+    bottom: 20px;
+    display: grid;
+    gap: 2px;
+    text-align: center;
+    transform: rotate(-6deg);
+    opacity: .62;
+}
+.treasure-mark span { color: var(--gold); font-size: 1.5rem; }
+.treasure-mark b { color: var(--red-dark); font: 1rem "Bangers"; }
+.treasure-mark small { color: rgba(23,19,14,.58); font: .42rem "Share Tech Mono"; }
+
+.contact-coins {
+    position: absolute;
+    top: 16px;
+    right: 24px;
+    display: flex;
+    gap: 7px;
+    color: var(--gold);
+    opacity: .6;
+}
+.contact-coins span { font-size: .8rem; }
+
+@keyframes birdDrift { to { translate: 22px 8px; } }
+@keyframes shipFloat { 50% { translate: 10px -6px; rotate: 1deg; } }
+@keyframes flagWave { 50% { rotate: -2deg; scale: .97 1; } }
+@keyframes wheelSpin { to { rotate: 360deg; } }
+@keyframes scrollNudge { 50% { translate: 0 5px; } }
 
 /* ---------- navigation ---------- */
 .pirate-nav {
@@ -177,6 +427,7 @@ a { color: inherit; }
     border: 1px solid rgba(244,189,79,.27);
     border-radius: 8px;
     background: rgba(3,17,28,.82);
+    -webkit-backdrop-filter: blur(18px);
     backdrop-filter: blur(18px);
     box-shadow: 0 18px 50px rgba(0,0,0,.28);
 }
@@ -288,14 +539,19 @@ a { color: inherit; }
 }
 .glass-tilt {
     transform-style: preserve-3d;
+    transform: perspective(1200px) rotateX(var(--tilt-x, 0deg)) rotateY(var(--tilt-y, 0deg));
     transition: transform .25s var(--ease), border-color .25s, box-shadow .25s;
+}
+.magnetic {
+    transform: translate3d(var(--mag-x, 0px), var(--mag-y, 0px), 0);
+    will-change: transform;
 }
 .reveal {
     opacity: 0;
-    transform: translateY(28px);
-    transition: opacity .8s var(--ease), transform .8s var(--ease);
+    translate: 0 28px;
+    transition: opacity .8s var(--ease), translate .8s var(--ease);
 }
-.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal.visible { opacity: 1; translate: 0 0; }
 
 /* ---------- hero ---------- */
 .hero-section {
@@ -919,10 +1175,19 @@ a { color: inherit; }
     border: 1px solid rgba(23,19,14,.24);
     background: rgba(255,248,221,.52);
     color: var(--ink);
-    cursor: default;
-    transition: transform .25s, background .25s;
+    cursor: pointer;
+    outline: none;
+    transition: transform .25s var(--ease), background .25s, box-shadow .25s;
 }
-.arch-layer:hover { transform: translateX(8px); background: rgba(255,248,221,.9); }
+.arch-layer:hover,
+.arch-layer:focus-visible {
+    transform: translateX(8px);
+    background: rgba(255,248,221,.9);
+    box-shadow: 0 8px 20px rgba(0,0,0,.12);
+}
+.arch-layer:focus-visible {
+    box-shadow: 0 0 0 2px var(--gold), 0 8px 20px rgba(0,0,0,.12);
+}
 .arch-icon {
     width: 37px;
     height: 37px;
@@ -1122,8 +1387,7 @@ footer {
 }
 
 @media (max-width: 760px) {
-    body { cursor: auto; }
-    .cursor-core, .cursor-ring { display: none; }
+    .pirate-cursor { display: none; }
     .pirate-nav { width: calc(100% - 20px); }
     .route-label { display: none; }
     .nav-links {
@@ -1148,7 +1412,7 @@ footer {
     .wanted-card { width: min(365px, 94%); }
     .portrait-frame { height: 300px; }
     .dev-compass { width: 140px; height: 140px; right: -12px; bottom: 3%; }
-    .code-c { display: none; }
+    .code-c, .pirate-flag, .hero-wheel, .ocean-ship, .distant-island { display: none; }
     .section-block { width: min(100% - 24px, var(--max)); padding: 90px 12px; }
     .story-panel { padding: 35px 25px; }
     .route-map { min-height: 500px; }
@@ -1165,6 +1429,8 @@ footer {
 
 @media (prefers-reduced-motion: reduce) {
     html { scroll-behavior: auto; }
+    html.custom-cursor-active body { cursor: auto; }
+    .pirate-cursor { display: none !important; }
     *, *::before, *::after {
         animation-duration: .001ms !important;
         animation-iteration-count: 1 !important;

@@ -1,371 +1,285 @@
 (() => {
     "use strict";
 
-    const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    const touch = window.matchMedia("(hover: none), (pointer: coarse)").matches;
-
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+    const coarsePointer = window.matchMedia("(hover: none), (pointer: coarse)");
     const $ = (selector, root = document) => root.querySelector(selector);
-    const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
+    const $$ = (selector, root = document) => Array.from(root.querySelectorAll(selector));
 
-    /* =========================================================
-       CODE + SEA PARTICLES
-       ========================================================= */
-
-    const canvas = $("#particle-canvas");
-    const ctx = canvas?.getContext("2d");
-
-    let particles = [];
-    let mouse = {
-        x: null,
-        y: null
+    const state = {
+        raf: 0,
+        motionRaf: 0,
+        scrollRaf: 0,
+        resizeRaf: 0,
+        pageVisible: !document.hidden,
+        pointerX: window.innerWidth / 2,
+        pointerY: window.innerHeight / 2,
+        cursorX: window.innerWidth / 2,
+        cursorY: window.innerHeight / 2,
+        magnetic: [],
+        tilt: [],
+        startMotionLoop: null
     };
 
-    const symbols = [
-        "C#",
-        ".NET",
-        "API",
-        "SQL",
-        "EF",
-        "JWT",
-        "LINQ",
-        "<>",
-        "{ }",
-        "=>",
-        "01",
-        "⚓",
-        "☠",
-        "✦",
-        "◈"
-    ];
+    /* =========================================================
+       HELPERS
+       ========================================================= */
 
-    class Particle {
+    const clamp = (value, min, max) => Math.min(max, Math.max(min, value));
 
-        constructor() {
-            this.reset(true);
-        }
+    const schedule = (key, callback) => {
+        if (state[key]) return;
+        state[key] = requestAnimationFrame(() => {
+            state[key] = 0;
+            callback();
+        });
+    };
 
-        reset(random = false) {
-            this.x = Math.random() * innerWidth;
-            this.y = random
-                ? Math.random() * innerHeight
-                : innerHeight + 40;
+    /* =========================================================
+       PORTRAIT FALLBACK
+       ========================================================= */
 
-            this.speedX = Math.random() * 0.18 - 0.09;
-            this.speedY = -(Math.random() * 0.18 + 0.035);
+    const profilePhoto = $(".profile-photo");
+    const profileFallback = $(".profile-fallback");
 
-            this.size = Math.random() * 5 + 7;
-            this.opacity = Math.random() * 0.16 + 0.035;
-
-            this.rotation = Math.random() * Math.PI * 2;
-            this.spin = Math.random() * 0.002 - 0.001;
-
-            this.symbol =
-                symbols[Math.floor(Math.random() * symbols.length)];
-        }
-
-        update() {
-            this.x += this.speedX;
-            this.y += this.speedY;
-
-            this.rotation += this.spin;
-
-            if (
-                this.y < -40 ||
-                this.x < -60 ||
-                this.x > innerWidth + 60
-            ) {
-                this.reset();
-            }
-
-            if (mouse.x !== null) {
-
-                const dx = mouse.x - this.x;
-                const dy = mouse.y - this.y;
-
-                const distance = Math.hypot(dx, dy);
-
-                if (distance < 130 && distance > 0) {
-                    this.x -= dx / 45;
-                    this.y -= dy / 45;
-                }
-            }
-        }
-
-        draw() {
-
-            if (!ctx) return;
-
-            ctx.save();
-
-            ctx.translate(this.x, this.y);
-            ctx.rotate(this.rotation);
-
-            ctx.font =
-                `600 ${this.size}px "Share Tech Mono", monospace`;
-
-            ctx.textAlign = "center";
-            ctx.textBaseline = "middle";
-
-            ctx.fillStyle =
-                `rgba(142,244,237,${this.opacity})`;
-
-            ctx.fillText(this.symbol, 0, 0);
-
-            ctx.restore();
-        }
+    if (profilePhoto && profileFallback) {
+        const showFallback = () => {
+            profilePhoto.hidden = true;
+            profileFallback.hidden = false;
+        };
+        profilePhoto.addEventListener("error", showFallback, { once: true });
+        if (profilePhoto.complete && profilePhoto.naturalWidth === 0) showFallback();
     }
-
-    function resizeCanvas() {
-
-        if (!canvas || !ctx) return;
-
-        const ratio =
-            Math.min(window.devicePixelRatio || 1, 1.5);
-
-        canvas.width = innerWidth * ratio;
-        canvas.height = innerHeight * ratio;
-
-        canvas.style.width = innerWidth + "px";
-        canvas.style.height = innerHeight + "px";
-
-        ctx.setTransform(
-            ratio,
-            0,
-            0,
-            ratio,
-            0,
-            0
-        );
-    }
-
-    function initParticles() {
-
-        if (!canvas || !ctx) return;
-
-        const count =
-            innerWidth < 700
-                ? 13
-                : innerWidth < 1100
-                    ? 24
-                    : 36;
-
-        particles = Array.from(
-            { length: count },
-            () => new Particle()
-        );
-    }
-
-    function animateParticles() {
-
-        if (!canvas || !ctx) return;
-
-        ctx.clearRect(
-            0,
-            0,
-            innerWidth,
-            innerHeight
-        );
-
-        for (const particle of particles) {
-            particle.update();
-            particle.draw();
-        }
-
-        requestAnimationFrame(animateParticles);
-    }
-
-    if (canvas && ctx && !reduced) {
-
-        resizeCanvas();
-        initParticles();
-        animateParticles();
-
-        addEventListener(
-            "resize",
-            () => {
-                resizeCanvas();
-                initParticles();
-                updateNeuralLines();
-            },
-            { passive: true }
-        );
-
-        addEventListener(
-            "mousemove",
-            event => {
-                mouse.x = event.clientX;
-                mouse.y = event.clientY;
-            },
-            { passive: true }
-        );
-    }
-
 
     /* =========================================================
        PIRATE COMPASS CURSOR
        ========================================================= */
 
     const pirateCursor = $(".pirate-cursor");
+    const interactiveSelector = [
+        "a", "button", ".magnetic", ".neural-node", ".arch-layer", "[data-tilt]"
+    ].join(",");
 
-    if (!touch && !reduced && pirateCursor) {
+    if (!coarsePointer.matches && !reducedMotion.matches && pirateCursor) {
+        document.documentElement.classList.add("custom-cursor-active");
 
-        addEventListener(
-            "mousemove",
-            event => {
+        const setCursorPosition = event => {
+            state.pointerX = event.clientX;
+            state.pointerY = event.clientY;
+            pirateCursor.classList.add("ready");
+        };
 
-                pirateCursor.style.left =
-                    event.clientX + "px";
+        window.addEventListener("pointermove", setCursorPosition, { passive: true });
 
-                pirateCursor.style.top =
-                    event.clientY + "px";
-            },
-            { passive: true }
-        );
+        document.addEventListener("pointerover", event => {
+            const target = event.target.closest?.(interactiveSelector);
+            if (target) pirateCursor.classList.add("hovered");
+        }, { passive: true });
 
-        const interactiveElements = $$(
-            ".magnetic, .glass-tilt, .neural-node, " +
-            ".arch-layer, a, button"
-        );
+        document.addEventListener("pointerout", event => {
+            const related = event.relatedTarget;
+            if (!related || !related.closest?.(interactiveSelector)) {
+                pirateCursor.classList.remove("hovered");
+            }
+        }, { passive: true });
 
-        interactiveElements.forEach(element => {
-
-            element.addEventListener(
-                "mouseenter",
-                () => {
-                    pirateCursor.classList.add("hovered");
-                }
-            );
-
-            element.addEventListener(
-                "mouseleave",
-                () => {
-                    pirateCursor.classList.remove("hovered");
-                }
-            );
-        });
+        document.addEventListener("pointerleave", () => pirateCursor.classList.remove("ready"));
+        document.addEventListener("pointerenter", () => pirateCursor.classList.add("ready"));
     }
-
 
     /* =========================================================
-       MAGNETIC BUTTONS
+       PARTICLE OCEAN
        ========================================================= */
 
-    if (!touch && !reduced) {
+    const canvas = $("#particle-canvas");
+    const ctx = canvas?.getContext("2d", { alpha: true });
+    let particles = [];
+    let canvasRatio = 1;
+    let particleCount = 0;
 
-        $$(".magnetic").forEach(element => {
+    const symbols = ["C#", ".NET", "API", "SQL", "EF", "JWT", "LINQ", "<>", "{ }", "=>", "01", "⚓", "☠", "✦", "◈"];
 
-            let targetX = 0;
-            let targetY = 0;
+    class Particle {
+        constructor() {
+            this.reset(true);
+        }
 
-            let currentX = 0;
-            let currentY = 0;
+        reset(random = false) {
+            this.x = Math.random() * window.innerWidth;
+            this.y = random ? Math.random() * window.innerHeight : window.innerHeight + 40;
+            this.speedX = Math.random() * 0.18 - 0.09;
+            this.speedY = -(Math.random() * 0.18 + 0.035);
+            this.size = Math.random() * 5 + 7;
+            this.opacity = Math.random() * 0.16 + 0.035;
+            this.rotation = Math.random() * Math.PI * 2;
+            this.spin = Math.random() * 0.002 - 0.001;
+            this.symbol = symbols[Math.floor(Math.random() * symbols.length)];
+        }
 
-            element.addEventListener(
-                "mousemove",
-                event => {
+        update() {
+            this.x += this.speedX;
+            this.y += this.speedY;
+            this.rotation += this.spin;
 
-                    const rect =
-                        element.getBoundingClientRect();
+            if (this.y < -40 || this.x < -60 || this.x > window.innerWidth + 60) {
+                this.reset();
+                return;
+            }
 
-                    targetX =
-                        (event.clientX -
-                            rect.left -
-                            rect.width / 2) * 0.12;
+            if (state.pointerX !== null && !coarsePointer.matches) {
+                const dx = state.pointerX - this.x;
+                const dy = state.pointerY - this.y;
+                const distance = Math.hypot(dx, dy);
 
-                    targetY =
-                        (event.clientY -
-                            rect.top -
-                            rect.height / 2) * 0.12;
+                if (distance > 0 && distance < 130) {
+                    const force = (130 - distance) / 130;
+                    this.x -= (dx / distance) * force * 0.7;
+                    this.y -= (dy / distance) * force * 0.7;
                 }
-            );
+            }
+        }
 
-            element.addEventListener(
-                "mouseleave",
-                () => {
-                    targetX = 0;
-                    targetY = 0;
-                }
-            );
-
-            const animateMagnetic = () => {
-
-                currentX +=
-                    (targetX - currentX) * 0.16;
-
-                currentY +=
-                    (targetY - currentY) * 0.16;
-
-                element.style.transform =
-                    `translate3d(${currentX}px,${currentY}px,0)`;
-
-                requestAnimationFrame(
-                    animateMagnetic
-                );
-            };
-
-            animateMagnetic();
-        });
-
-
-        /* =====================================================
-           3D TILT
-           ===================================================== */
-
-        $$("[data-tilt]").forEach(element => {
-
-            let rotateX = 0;
-            let rotateY = 0;
-
-            let targetX = 0;
-            let targetY = 0;
-
-            element.addEventListener(
-                "mousemove",
-                event => {
-
-                    const rect =
-                        element.getBoundingClientRect();
-
-                    targetX =
-                        ((event.clientY - rect.top) /
-                            rect.height - 0.5) * -4;
-
-                    targetY =
-                        ((event.clientX - rect.left) /
-                            rect.width - 0.5) * 4;
-                }
-            );
-
-            element.addEventListener(
-                "mouseleave",
-                () => {
-                    targetX = 0;
-                    targetY = 0;
-                }
-            );
-
-            const animateTilt = () => {
-
-                rotateX +=
-                    (targetX - rotateX) * 0.09;
-
-                rotateY +=
-                    (targetY - rotateY) * 0.09;
-
-                element.style.transform =
-                    `perspective(1200px)
-                     rotateX(${rotateX}deg)
-                     rotateY(${rotateY}deg)`;
-
-                requestAnimationFrame(
-                    animateTilt
-                );
-            };
-
-            animateTilt();
-        });
+        draw() {
+            ctx.save();
+            ctx.translate(this.x, this.y);
+            ctx.rotate(this.rotation);
+            ctx.font = `600 ${this.size}px "Share Tech Mono", monospace`;
+            ctx.textAlign = "center";
+            ctx.textBaseline = "middle";
+            ctx.fillStyle = `rgba(142,244,237,${this.opacity})`;
+            ctx.fillText(this.symbol, 0, 0);
+            ctx.restore();
+        }
     }
 
+    const resizeCanvas = () => {
+        if (!canvas || !ctx) return;
+
+        canvasRatio = Math.min(window.devicePixelRatio || 1, 1.5);
+        canvas.width = Math.floor(window.innerWidth * canvasRatio);
+        canvas.height = Math.floor(window.innerHeight * canvasRatio);
+        canvas.style.width = `${window.innerWidth}px`;
+        canvas.style.height = `${window.innerHeight}px`;
+        ctx.setTransform(canvasRatio, 0, 0, canvasRatio, 0, 0);
+    };
+
+    const getParticleCount = () => {
+        if (window.innerWidth < 700) return 10;
+        if (window.innerWidth < 1100) return 18;
+        return 28;
+    };
+
+    const initParticles = (preserve = false) => {
+        if (!canvas || !ctx) return;
+        const nextCount = getParticleCount();
+        if (preserve && particleCount === nextCount) return;
+        particleCount = nextCount;
+        particles = Array.from({ length: particleCount }, () => new Particle());
+    };
+
+    const animateParticles = () => {
+        if (!canvas || !ctx || reducedMotion.matches || !state.pageVisible) {
+            state.raf = 0;
+            return;
+        }
+
+        ctx.clearRect(0, 0, window.innerWidth, window.innerHeight);
+        for (const particle of particles) {
+            particle.update();
+            particle.draw();
+        }
+
+        state.raf = requestAnimationFrame(animateParticles);
+    };
+
+    const startParticleLoop = () => {
+        if (!state.raf && canvas && ctx && !reducedMotion.matches && state.pageVisible) {
+            state.raf = requestAnimationFrame(animateParticles);
+        }
+    };
+
+    if (canvas && ctx && !reducedMotion.matches) {
+        resizeCanvas();
+        initParticles();
+        startParticleLoop();
+    }
+
+    /* =========================================================
+       ONE MOTION LOOP: MAGNETIC + TILT + CURSOR
+       ========================================================= */
+
+    if (!coarsePointer.matches && !reducedMotion.matches) {
+        $$(".magnetic").forEach(element => {
+            state.magnetic.push({ element, targetX: 0, targetY: 0, x: 0, y: 0 });
+            element.addEventListener("pointermove", event => {
+                const rect = element.getBoundingClientRect();
+                const maxX = Math.min(12, rect.width * 0.08);
+                const maxY = Math.min(10, rect.height * 0.12);
+                const item = state.magnetic.find(entry => entry.element === element);
+                if (!item) return;
+                item.targetX = clamp((event.clientX - rect.left - rect.width / 2) * 0.12, -maxX, maxX);
+                item.targetY = clamp((event.clientY - rect.top - rect.height / 2) * 0.12, -maxY, maxY);
+            }, { passive: true });
+            element.addEventListener("pointerleave", () => {
+                const item = state.magnetic.find(entry => entry.element === element);
+                if (item) item.targetX = item.targetY = 0;
+            }, { passive: true });
+        });
+
+        $$('[data-tilt]').forEach(element => {
+            state.tilt.push({ element, targetX: 0, targetY: 0, x: 0, y: 0 });
+            element.addEventListener("pointermove", event => {
+                const rect = element.getBoundingClientRect();
+                const item = state.tilt.find(entry => entry.element === element);
+                if (!item) return;
+                item.targetX = ((event.clientY - rect.top) / rect.height - 0.5) * -4;
+                item.targetY = ((event.clientX - rect.left) / rect.width - 0.5) * 4;
+            }, { passive: true });
+            element.addEventListener("pointerleave", () => {
+                const item = state.tilt.find(entry => entry.element === element);
+                if (item) item.targetX = item.targetY = 0;
+            }, { passive: true });
+        });
+
+        const motionLoop = () => {
+            if (!state.pageVisible) {
+                state.motionRaf = 0;
+                return;
+            }
+
+            if (pirateCursor) {
+                state.cursorX += (state.pointerX - state.cursorX) * 0.22;
+                state.cursorY += (state.pointerY - state.cursorY) * 0.22;
+                pirateCursor.style.left = `${state.cursorX}px`;
+                pirateCursor.style.top = `${state.cursorY}px`;
+            }
+
+            for (const item of state.magnetic) {
+                item.x += (item.targetX - item.x) * 0.16;
+                item.y += (item.targetY - item.y) * 0.16;
+                item.element.style.setProperty("--mag-x", `${item.x}px`);
+                item.element.style.setProperty("--mag-y", `${item.y}px`);
+            }
+
+            for (const item of state.tilt) {
+                item.x += (item.targetX - item.x) * 0.09;
+                item.y += (item.targetY - item.y) * 0.09;
+                item.element.style.setProperty("--tilt-x", `${item.x}deg`);
+                item.element.style.setProperty("--tilt-y", `${item.y}deg`);
+            }
+
+            state.motionRaf = requestAnimationFrame(motionLoop);
+        };
+
+        const startMotionLoop = () => {
+            if (!state.motionRaf && state.pageVisible && !reducedMotion.matches) {
+                state.motionRaf = requestAnimationFrame(motionLoop);
+            }
+        };
+
+        state.startMotionLoop = startMotionLoop;
+        startMotionLoop();
+    }
 
     /* =========================================================
        MOBILE NAVIGATION
@@ -374,605 +288,262 @@
     const burger = $("#navBurger");
     const nav = $("#navLinks");
 
-    function closeNav() {
-
+    const closeNav = () => {
         if (!burger || !nav) return;
-
         nav.classList.remove("open");
-
-        burger.setAttribute(
-            "aria-expanded",
-            "false"
-        );
-    }
+        burger.setAttribute("aria-expanded", "false");
+        burger.setAttribute("aria-label", "Open menu");
+    };
 
     if (burger && nav) {
+        burger.addEventListener("click", () => {
+            const isOpen = nav.classList.toggle("open");
+            burger.setAttribute("aria-expanded", String(isOpen));
+            burger.setAttribute("aria-label", isOpen ? "Close menu" : "Open menu");
+        });
 
-        burger.addEventListener(
-            "click",
-            () => {
+        $$(".nav-links a").forEach(link => link.addEventListener("click", closeNav));
 
-                const isOpen =
-                    nav.classList.toggle("open");
+        document.addEventListener("click", event => {
+            if (!nav.classList.contains("open")) return;
+            if (!event.target.closest(".pirate-nav")) closeNav();
+        });
 
-                burger.setAttribute(
-                    "aria-expanded",
-                    String(isOpen)
-                );
-            }
-        );
-
-        $$(".nav-links a").forEach(
-            link => {
-                link.addEventListener(
-                    "click",
-                    closeNav
-                );
-            }
-        );
+        window.addEventListener("keydown", event => {
+            if (event.key === "Escape") closeNav();
+        });
     }
-
 
     /* =========================================================
        SKILLS NETWORK
        ========================================================= */
 
-    const neuralContainer =
-        $("#neuralContainer");
-
-    const neuralCore =
-        $("#neuralCore");
-
-    const neuralSvg =
-        $("#neuralSvg");
-
-    const neuralInfo =
-        $("#neuralInfo");
-
+    const neuralContainer = $("#neuralContainer");
+    const neuralCore = $("#neuralCore");
+    const neuralSvg = $("#neuralSvg");
+    const neuralInfo = $("#neuralInfo");
 
     const skills = [
-
-        {
-            name: "C#",
-            top: "15%",
-            left: "19%",
-            desc: "Object-oriented, strongly typed language.",
-            type: "LANGUAGE"
-        },
-
-        {
-            name: "ASP.NET",
-            top: "25%",
-            left: "75%",
-            desc: "Backend APIs and web application framework.",
-            type: "FRAMEWORK"
-        },
-
-        {
-            name: "SQL",
-            top: "70%",
-            left: "15%",
-            desc: "Relational data modeling and querying.",
-            type: "DATABASE"
-        },
-
-        {
-            name: "EF CORE",
-            top: "75%",
-            left: "70%",
-            desc: "ORM, queries and database integration.",
-            type: "DATA ACCESS"
-        },
-
-        {
-            name: "REST",
-            top: "42%",
-            left: "84%",
-            desc: "HTTP-based API design and JSON communication.",
-            type: "ARCHITECTURE"
-        },
-
-        {
-            name: "JWT",
-            top: "10%",
-            left: "50%",
-            desc: "Authentication and authorization with tokens.",
-            type: "SECURITY"
-        },
-
-        {
-            name: "GIT",
-            top: "64%",
-            left: "49.5%",
-            desc: "Version control and collaborative workflows.",
-            type: "TOOLS"
-        },
-
-        {
-            name: "LINQ",
-            top: "51%",
-            left: "9%",
-            desc: "Queries, projections and lambda expressions.",
-            type: "LANGUAGE"
-        }
+        { name: "C#", top: "15%", left: "19%", desc: "Object-oriented, strongly typed language.", type: "LANGUAGE" },
+        { name: "ASP.NET", top: "25%", left: "75%", desc: "Backend APIs and web application framework.", type: "FRAMEWORK" },
+        { name: "SQL", top: "70%", left: "15%", desc: "Relational data modeling and querying.", type: "DATABASE" },
+        { name: "EF CORE", top: "75%", left: "70%", desc: "ORM, queries and database integration.", type: "DATA ACCESS" },
+        { name: "REST", top: "42%", left: "84%", desc: "HTTP-based API design and JSON communication.", type: "ARCHITECTURE" },
+        { name: "JWT", top: "10%", left: "50%", desc: "Authentication and authorization with tokens.", type: "SECURITY" },
+        { name: "GIT", top: "64%", left: "49.5%", desc: "Version control and collaborative workflows.", type: "TOOLS" },
+        { name: "LINQ", top: "51%", left: "9%", desc: "Queries, projections and lambda expressions.", type: "LANGUAGE" }
     ];
 
+    const neuralNodes = [];
+    const neuralLines = [];
+    const infoTitle = $(".info-title", neuralInfo);
+    const infoType = $(".info-type", neuralInfo);
+    const infoDesc = $(".info-desc", neuralInfo);
 
-    let neuralNodes = [];
-    let neuralLines = [];
+    const resetInfo = () => {
+        if (infoTitle) infoTitle.textContent = "HOVER NODE";
+        if (infoType) infoType.textContent = "TECH STACK";
+        if (infoDesc) infoDesc.textContent = "Select a technology to view its role.";
+    };
 
+    const activateSkill = index => {
+        const skill = skills[index];
+        neuralLines.forEach((line, i) => line.classList.toggle("active", i === index));
+        neuralNodes.forEach((node, i) => node.classList.toggle("dimmed", i !== index));
+        if (infoTitle) infoTitle.textContent = skill.name;
+        if (infoType) infoType.textContent = skill.type;
+        if (infoDesc) infoDesc.textContent = skill.desc;
+    };
 
-    function updateNeuralLines() {
+    const deactivateSkill = () => {
+        neuralLines.forEach(line => line.classList.remove("active"));
+        neuralNodes.forEach(node => node.classList.remove("dimmed"));
+        resetInfo();
+    };
 
-        if (
-            !neuralContainer ||
-            !neuralCore ||
-            !neuralSvg
-        ) {
-            return;
-        }
+    const updateNeuralLines = () => {
+        if (!neuralContainer || !neuralCore || !neuralSvg) return;
+        const containerRect = neuralContainer.getBoundingClientRect();
+        const coreRect = neuralCore.getBoundingClientRect();
+        const centerX = coreRect.left - containerRect.left + coreRect.width / 2;
+        const centerY = coreRect.top - containerRect.top + coreRect.height / 2;
 
-        const containerRect =
-            neuralContainer.getBoundingClientRect();
+        neuralNodes.forEach((node, index) => {
+            const line = neuralLines[index];
+            if (!line) return;
+            const nodeRect = node.getBoundingClientRect();
+            line.setAttribute("x1", centerX);
+            line.setAttribute("y1", centerY);
+            line.setAttribute("x2", nodeRect.left - containerRect.left + nodeRect.width / 2);
+            line.setAttribute("y2", nodeRect.top - containerRect.top + nodeRect.height / 2);
+        });
+    };
 
-        const coreRect =
-            neuralCore.getBoundingClientRect();
+    if (neuralContainer && neuralCore && neuralSvg && neuralInfo) {
+        const fragment = document.createDocumentFragment();
 
-        const centerX =
-            coreRect.left -
-            containerRect.left +
-            coreRect.width / 2;
+        skills.forEach((skill, index) => {
+            const node = document.createElement("button");
+            node.type = "button";
+            node.className = "neural-node";
+            node.textContent = skill.name;
+            node.style.top = skill.top;
+            node.style.left = skill.left;
+            node.setAttribute("aria-label", `${skill.name}: ${skill.desc}`);
 
-        const centerY =
-            coreRect.top -
-            containerRect.top +
-            coreRect.height / 2;
+            const line = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            line.classList.add("neural-line");
 
+            fragment.appendChild(node);
+            neuralSvg.appendChild(line);
+            neuralNodes.push(node);
+            neuralLines.push(line);
 
-        neuralNodes.forEach(
-            (node, index) => {
+            node.addEventListener("pointerenter", () => activateSkill(index), { passive: true });
+            node.addEventListener("focus", () => activateSkill(index));
+            node.addEventListener("pointerleave", deactivateSkill, { passive: true });
+            node.addEventListener("blur", deactivateSkill);
+        });
 
-                const line =
-                    neuralLines[index];
-
-                if (!line) return;
-
-                const nodeRect =
-                    node.getBoundingClientRect();
-
-                line.setAttribute(
-                    "x1",
-                    centerX
-                );
-
-                line.setAttribute(
-                    "y1",
-                    centerY
-                );
-
-                line.setAttribute(
-                    "x2",
-                    nodeRect.left -
-                    containerRect.left +
-                    nodeRect.width / 2
-                );
-
-                line.setAttribute(
-                    "y2",
-                    nodeRect.top -
-                    containerRect.top +
-                    nodeRect.height / 2
-                );
-            }
-        );
+        neuralContainer.appendChild(fragment);
+        requestAnimationFrame(updateNeuralLines);
+        window.addEventListener("load", updateNeuralLines, { once: true, passive: true });
     }
-
-
-    function resetInfo() {
-
-        if (!neuralInfo) return;
-
-        const title =
-            $(".info-title", neuralInfo);
-
-        const type =
-            $(".info-type", neuralInfo);
-
-        const desc =
-            $(".info-desc", neuralInfo);
-
-        if (title) {
-            title.textContent = "HOVER NODE";
-        }
-
-        if (type) {
-            type.textContent = "TECH STACK";
-        }
-
-        if (desc) {
-            desc.textContent =
-                "Select a technology to view its role.";
-        }
-    }
-
-
-    if (
-        neuralContainer &&
-        neuralCore &&
-        neuralSvg &&
-        neuralInfo
-    ) {
-
-        skills.forEach(
-            (skill, index) => {
-
-                const node =
-                    document.createElement("button");
-
-                node.type = "button";
-
-                node.className =
-                    "neural-node";
-
-                node.textContent =
-                    skill.name;
-
-                node.style.top =
-                    skill.top;
-
-                node.style.left =
-                    skill.left;
-
-                node.setAttribute(
-                    "aria-label",
-                    `${skill.name}: ${skill.desc}`
-                );
-
-
-                const line =
-                    document.createElementNS(
-                        "http://www.w3.org/2000/svg",
-                        "line"
-                    );
-
-                line.classList.add(
-                    "neural-line"
-                );
-
-
-                neuralContainer.appendChild(node);
-
-                neuralSvg.appendChild(line);
-
-                neuralNodes.push(node);
-                neuralLines.push(line);
-
-
-                const activate = () => {
-
-                    neuralLines.forEach(
-                        (lineElement, lineIndex) => {
-
-                            lineElement.classList.toggle(
-                                "active",
-                                lineIndex === index
-                            );
-                        }
-                    );
-
-
-                    neuralNodes.forEach(
-                        (nodeElement, nodeIndex) => {
-
-                            nodeElement.classList.toggle(
-                                "dimmed",
-                                nodeIndex !== index
-                            );
-                        }
-                    );
-
-
-                    const title =
-                        $(".info-title", neuralInfo);
-
-                    const type =
-                        $(".info-type", neuralInfo);
-
-                    const desc =
-                        $(".info-desc", neuralInfo);
-
-
-                    if (title) {
-                        title.textContent =
-                            skill.name;
-                    }
-
-                    if (type) {
-                        type.textContent =
-                            skill.type;
-                    }
-
-                    if (desc) {
-                        desc.textContent =
-                            skill.desc;
-                    }
-                };
-
-
-                const deactivate = () => {
-
-                    neuralLines.forEach(
-                        lineElement => {
-                            lineElement.classList.remove(
-                                "active"
-                            );
-                        }
-                    );
-
-
-                    neuralNodes.forEach(
-                        nodeElement => {
-                            nodeElement.classList.remove(
-                                "dimmed"
-                            );
-                        }
-                    );
-
-                    resetInfo();
-                };
-
-
-                node.addEventListener(
-                    "mouseenter",
-                    activate
-                );
-
-                node.addEventListener(
-                    "focus",
-                    activate
-                );
-
-                node.addEventListener(
-                    "mouseleave",
-                    deactivate
-                );
-
-                node.addEventListener(
-                    "blur",
-                    deactivate
-                );
-            }
-        );
-
-
-        requestAnimationFrame(
-            updateNeuralLines
-        );
-
-        addEventListener(
-            "load",
-            updateNeuralLines,
-            { once: true }
-        );
-
-        addEventListener(
-            "resize",
-            updateNeuralLines,
-            { passive: true }
-        );
-    }
-
 
     /* =========================================================
-       PROJECT ARCHITECTURE TOOLTIP
+       ARCHITECTURE TOOLTIP
        ========================================================= */
 
-    const tooltip =
-        $("#archTooltip");
-
+    const tooltip = $("#archTooltip");
     if (tooltip) {
+        $$(".arch-layer").forEach(layer => {
+            const showTooltip = () => {
+                tooltip.textContent = layer.dataset.desc || "";
+                tooltip.classList.add("visible");
+                tooltip.setAttribute("aria-hidden", "false");
+            };
+            const hideTooltip = () => {
+                tooltip.classList.remove("visible");
+                tooltip.setAttribute("aria-hidden", "true");
+            };
 
-        $$(".arch-layer").forEach(
-            layer => {
-
-                const showTooltip = () => {
-
-                    tooltip.textContent =
-                        layer.dataset.desc || "";
-
-                    tooltip.classList.add(
-                        "visible"
-                    );
-
-                    tooltip.setAttribute(
-                        "aria-hidden",
-                        "false"
-                    );
-                };
-
-
-                const hideTooltip = () => {
-
-                    tooltip.classList.remove(
-                        "visible"
-                    );
-
-                    tooltip.setAttribute(
-                        "aria-hidden",
-                        "true"
-                    );
-                };
-
-
-                layer.addEventListener(
-                    "mouseenter",
-                    showTooltip
-                );
-
-                layer.addEventListener(
-                    "focus",
-                    showTooltip
-                );
-
-                layer.addEventListener(
-                    "mouseleave",
-                    hideTooltip
-                );
-
-                layer.addEventListener(
-                    "blur",
-                    hideTooltip
-                );
-            }
-        );
+            layer.addEventListener("pointerenter", showTooltip, { passive: true });
+            layer.addEventListener("focus", showTooltip);
+            layer.addEventListener("pointerleave", hideTooltip, { passive: true });
+            layer.addEventListener("blur", hideTooltip);
+        });
     }
-
 
     /* =========================================================
        SCROLL PROGRESS + ACTIVE NAV
        ========================================================= */
 
-    const progress =
-        $("#scrollProgress");
+    const progress = $("#scrollProgress");
+    const sections = $$('main section[id]');
+    const links = $$(".nav-links a");
+    let currentSection = "hero";
 
-    const sections =
-        $$("main section");
+    const updateScrollProgress = () => {
+        const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight);
+        const percent = maxScroll ? (window.scrollY / maxScroll) * 100 : 0;
+        if (progress) progress.style.width = `${clamp(percent, 0, 100)}%`;
+    };
 
-    const links =
-        $$(".nav-links a");
+    const setActiveSection = id => {
+        if (!id || id === currentSection) return;
+        currentSection = id;
+        links.forEach(link => {
+            const active = link.getAttribute("href") === `#${id}`;
+            link.classList.toggle("active", active);
+            if (active) link.setAttribute("aria-current", "page");
+            else link.removeAttribute("aria-current");
+        });
+    };
 
+    window.addEventListener("scroll", () => {
+        schedule("scrollRaf", updateScrollProgress);
+    }, { passive: true });
 
-    function updateScrollUI() {
+    updateScrollProgress();
 
-        const maxScroll =
-            document.documentElement.scrollHeight -
-            innerHeight;
-
-        const percent =
-            maxScroll > 0
-                ? scrollY / maxScroll * 100
-                : 0;
-
-
-        if (progress) {
-
-            progress.style.width =
-                Math.min(
-                    100,
-                    Math.max(0, percent)
-                ) + "%";
-        }
-
-
-        let currentSection = "hero";
-
-
-        sections.forEach(
-            section => {
-
-                if (
-                    scrollY >=
-                    section.offsetTop - 180
-                ) {
-                    currentSection =
-                        section.id;
-                }
-            }
-        );
-
-
-        links.forEach(
-            link => {
-
-                link.classList.toggle(
-                    "active",
-                    link.getAttribute("href") ===
-                    "#" + currentSection
-                );
-            }
-        );
+    if ("IntersectionObserver" in window && sections.length) {
+        const sectionObserver = new IntersectionObserver(entries => {
+            const visible = entries
+                .filter(entry => entry.isIntersecting)
+                .sort((a, b) => b.intersectionRatio - a.intersectionRatio);
+            if (visible[0]) setActiveSection(visible[0].target.id);
+        }, {
+            rootMargin: "-35% 0px -55% 0px",
+            threshold: [0, 0.25, 0.5, 0.75, 1]
+        });
+        sections.forEach(section => sectionObserver.observe(section));
     }
-
-
-    addEventListener(
-        "scroll",
-        updateScrollUI,
-        { passive: true }
-    );
-
-    updateScrollUI();
-
 
     /* =========================================================
        REVEAL ANIMATIONS
        ========================================================= */
 
-    const reveals =
-        $$(".reveal");
+    const reveals = $$(".reveal");
 
-
-    if (
-        "IntersectionObserver" in window &&
-        !reduced
-    ) {
-
-        const observer =
-            new IntersectionObserver(
-                entries => {
-
-                    entries.forEach(
-                        entry => {
-
-                            if (
-                                entry.isIntersecting
-                            ) {
-
-                                entry.target.classList.add(
-                                    "visible"
-                                );
-
-                                observer.unobserve(
-                                    entry.target
-                                );
-                            }
-                        }
-                    );
-                },
-                {
-                    threshold: 0.1
-                }
-            );
-
-
-        reveals.forEach(
-            element => {
-                observer.observe(element);
-            }
-        );
-
+    if ("IntersectionObserver" in window && !reducedMotion.matches) {
+        const revealObserver = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                if (!entry.isIntersecting) return;
+                entry.target.classList.add("visible");
+                revealObserver.unobserve(entry.target);
+            });
+        }, { threshold: 0.08, rootMargin: "0px 0px -8% 0px" });
+        reveals.forEach(element => revealObserver.observe(element));
     } else {
-
-        reveals.forEach(
-            element => {
-                element.classList.add(
-                    "visible"
-                );
-            }
-        );
+        reveals.forEach(element => element.classList.add("visible"));
     }
 
+    /* =========================================================
+       PAGE VISIBILITY + RESIZE
+       ========================================================= */
+
+    document.addEventListener("visibilitychange", () => {
+        state.pageVisible = !document.hidden;
+        if (state.pageVisible) {
+            startParticleLoop();
+            state.startMotionLoop?.();
+        }
+    });
+
+    window.addEventListener("resize", () => {
+        schedule("resizeRaf", () => {
+            if (canvas && ctx && !reducedMotion.matches) {
+                resizeCanvas();
+                initParticles(true);
+                startParticleLoop();
+            }
+            updateNeuralLines();
+            updateScrollProgress();
+        });
+    }, { passive: true });
+
+    /* =========================================================
+       REDUCED MOTION CHANGES
+       ========================================================= */
+
+    reducedMotion.addEventListener?.("change", event => {
+        document.documentElement.classList.toggle("reduced-motion", event.matches);
+        if (event.matches) {
+            if (state.raf) cancelAnimationFrame(state.raf);
+            if (state.motionRaf) cancelAnimationFrame(state.motionRaf);
+            state.raf = 0;
+            state.motionRaf = 0;
+        } else {
+            resizeCanvas();
+            initParticles();
+            startParticleLoop();
+        }
+    });
 
     /* =========================================================
        CURRENT YEAR
        ========================================================= */
 
-    const year =
-        $("#year");
-
-    if (year) {
-
-        year.textContent =
-            new Date().getFullYear();
-    }
-
+    const year = $("#year");
+    if (year) year.textContent = new Date().getFullYear();
 })();
