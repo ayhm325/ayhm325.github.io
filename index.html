@@ -5,12 +5,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ayhm Obeidat — Junior .NET Backend Developer focused on C#, ASP.NET Core, SQL Server and clean architecture.">
     <meta name="author" content="Ayhm Obeidat">
-    <meta name="theme-color" content="#171b0f">
+    <meta name="theme-color" content="#071827">
     <title>Ayhm Obeidat | .NET Backend Developer</title>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=JetBrains+Mono:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Bangers&family=JetBrains+Mono:wght@400;500;600;700&family=Rajdhani:wght@400;500;600;700&family=Share+Tech+Mono&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
 
@@ -19,59 +19,76 @@
 
     <div class="cursor-core" aria-hidden="true"></div>
     <div class="cursor-ring" aria-hidden="true"></div>
-    <div class="scroll-beam" id="scrollProgress" aria-hidden="true"></div>
+    <div class="scroll-line" id="scrollProgress" aria-hidden="true"></div>
 
-    <div class="bg-canvas-wrapper" aria-hidden="true">
-        <div class="bg-layer-atmosphere"></div>
-        <div class="bg-layer-orbs">
-            <div class="orb orb-1"></div>
-            <div class="orb orb-2"></div>
-        </div>
+    <div class="ocean-bg" aria-hidden="true">
+        <div class="sun-glow"></div>
+        <div class="sea-grid"></div>
+        <div class="wave wave-one"></div>
+        <div class="wave wave-two"></div>
+        <div class="cloud cloud-one"></div>
+        <div class="cloud cloud-two"></div>
         <canvas id="particle-canvas"></canvas>
-        <div class="grid-distortion"></div>
-        <div class="holo-scanlines"></div>
-        <div class="noise-overlay"></div>
+        <div class="ink-noise"></div>
     </div>
 
     <header>
-        <nav class="hud-nav" aria-label="Main navigation">
-            <a href="#hero" class="nav-logo" aria-label="Ayhm Obeidat home">
-                <span class="logo-bracket">[</span>A.O<span class="logo-bracket">]</span>
+        <nav class="pirate-nav" aria-label="Main navigation">
+            <a href="#hero" class="brand">
+                <span class="brand-mark">⚓</span>
+                <span class="brand-name">A.O</span>
+                <span class="brand-code">// DEV</span>
             </a>
 
+            <div class="route-label">
+                <span class="route-dot"></span>
+                GRAND LINE // BACKEND ROUTE
+            </div>
+
             <ul class="nav-links" id="navLinks">
-                <li><a href="#hero" class="active"><span class="nav-dot"></span>Home</a></li>
-                <li><a href="#about"><span class="nav-dot"></span>About</a></li>
-                <li><a href="#skills"><span class="nav-dot"></span>Skills</a></li>
-                <li><a href="#projects"><span class="nav-dot"></span>Project</a></li>
-                <li><a href="#contact"><span class="nav-dot"></span>Contact</a></li>
+                <li><a href="#hero" class="active">HOME</a></li>
+                <li><a href="#about">ABOUT</a></li>
+                <li><a href="#skills">SKILLS</a></li>
+                <li><a href="#projects">PROJECT</a></li>
+                <li><a href="#contact">CONTACT</a></li>
             </ul>
 
-            <div class="nav-actions">
-<button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
-                    <span></span><span></span><span></span>
-                </button>
-            </div>
+            <button class="nav-burger" id="navBurger" type="button" aria-label="Open menu" aria-expanded="false" aria-controls="navLinks">
+                <span></span><span></span><span></span>
+            </button>
         </nav>
     </header>
 
     <main id="main-content">
+
         <!-- HERO -->
         <section id="hero" class="hero-section">
-            <div class="hero-bg-decor" aria-hidden="true">
-                <div class="meta-drift meta-1">.NET // BACKEND</div>
-                <div class="meta-drift meta-2">C# / ASP.NET CORE</div>
-                <div class="meta-drift meta-3">SQL SERVER</div>
-                <div class="meta-drift meta-4">CLEAN ARCHITECTURE</div>
+            <div class="manga-lines" aria-hidden="true"></div>
+            <div class="hero-stamp" aria-hidden="true">
+                <span>CODE</span>
+                <strong>LOG</strong>
+                <small>NO. 01</small>
             </div>
 
             <div class="hero-content">
-                <p class="hero-eyebrow reveal">Junior .NET Backend Developer</p>
+                <div class="eyebrow reveal">
+                    <span class="eyebrow-icon">☠</span>
+                    JUNIOR .NET BACKEND DEVELOPER
+                </div>
+
+                <p class="manga-caption reveal">THE DEVELOPER WHO CHOSE THE BACKEND SEA</p>
 
                 <h1 class="hero-title">
-                    <span class="title-line reveal">AYHM</span>
-                    <span class="title-line reveal glitch" data-text="OBEIDAT">OBEIDAT</span>
+                    <span class="hero-name reveal">AYHM</span>
+                    <span class="hero-name last reveal">OBEIDAT</span>
                 </h1>
+
+                <div class="hero-ribbon reveal">
+                    <span>CODE</span>
+                    <b>×</b>
+                    <span>ADVENTURE</span>
+                    <span class="ribbon-tail">GRAND LINE EDITION</span>
+                </div>
 
                 <p class="hero-desc reveal">
                     Building reliable backend systems with C#, ASP.NET Core and SQL Server —
@@ -79,140 +96,144 @@
                 </p>
 
                 <div class="hero-actions reveal">
-                    <a href="#projects" class="btn-cyber magnetic">
-                        <span class="btn-text">View DVLD Project</span>
-                        <span class="btn-glow"></span>
+                    <a href="#projects" class="btn-primary magnetic">
+                        <span>VIEW DVLD PROJECT</span>
+                        <i>→</i>
                     </a>
-                    <a href="assets/Ayhm_Obeidat_CV.pdf" download class="btn-ghost magnetic">
-                        <span class="btn-text">Download CV</span>
+                    <a href="assets/Ayhm_Obeidat_CV.pdf" download class="btn-secondary magnetic">
+                        DOWNLOAD CV
                     </a>
                 </div>
 
-                <div class="hero-stack reveal" aria-label="Primary technologies">
-                    <span>C#</span>
-                    <span>ASP.NET CORE</span>
-                    <span>SQL SERVER</span>
-                    <span>EF CORE</span>
+                <div class="tech-deck reveal" aria-label="Primary technologies">
+                    <span><b>C#</b><small>LANG</small></span>
+                    <span><b>ASP.NET</b><small>API</small></span>
+                    <span><b>SQL</b><small>DATA</small></span>
+                    <span><b>EF CORE</b><small>ORM</small></span>
                 </div>
             </div>
 
-            <div class="hero-visual" aria-label="Ayhm profile and backend core">
-                <!-- Put your real portrait at assets/ayhmImage.JPG -->
-                <div class="profile-card glass-tilt" data-tilt>
-                    <div class="profile-frame">
-                        <img
-                            src="assets/ayhmImage.JPG"
-                            alt="Portrait of Ayhm Obeidat"
-                            class="profile-photo"
-                            onerror="this.hidden=true; this.nextElementSibling.hidden=false;"
-                        >
-                        <div class="profile-fallback" hidden aria-hidden="true">AO</div>
-                        <div class="profile-scan"></div>
+            <div class="hero-visual">
+                <div class="wanted-card reveal glass-tilt" data-tilt>
+                    <div class="wanted-top">
+                        <span>WORLD DEVELOPER GOVERNMENT</span>
+                        <span>01</span>
                     </div>
 
-                    <div class="profile-info">
-                        <span class="profile-kicker">ENGINEER_ID</span>
-                        <strong>AYHM OBEIDAT</strong>
-                        <span>Junior .NET Backend Developer</span>
+                    <div class="wanted-title">WANTED</div>
+                    <div class="wanted-sub">DEAD OR ALIVE — FOR GREAT CODE</div>
+
+                    <div class="portrait-frame">
+                        <div class="portrait-corner c1"></div>
+                        <div class="portrait-corner c2"></div>
+                        <div class="portrait-corner c3"></div>
+                        <div class="portrait-corner c4"></div>
+                        <img src="assets/ayhmImage.JPG" alt="Portrait of Ayhm Obeidat" class="profile-photo"
+                             onerror="this.hidden=true; this.nextElementSibling.hidden=false;">
+                        <div class="profile-fallback" hidden>AO</div>
+                        <div class="scan-bar"></div>
                     </div>
 
-                    <div class="profile-status">
-                        <i></i>
-                        OPEN TO OPPORTUNITIES
+                    <div class="wanted-name">AYHM OBEIDAT</div>
+                    <div class="wanted-role">JUNIOR .NET BACKEND DEVELOPER</div>
+
+                    <div class="bounty-row">
+                        <span>BOUNTY</span>
+                        <strong>∞</strong>
+                        <span>FOR CLEAN CODE</span>
                     </div>
-                </div>
 
-                <div class="hero-reactor" aria-hidden="true">
-                    <div class="reactor-ring r1"></div>
-                    <div class="reactor-ring r2"></div>
-                    <div class="reactor-ring r3"></div>
-
-                    <div class="reactor-core glass-tilt" data-tilt>
-                        <div class="core-glow"></div>
-                        <div class="core-inner">
-<pre><code><span class="c-key">public class</span> <span class="c-type">BackendSystem</span>
-{
-  <span class="c-key">public string</span> Stack <span class="c-op">=&gt;</span> <span class="c-str">".NET"</span>;
-  <span class="c-key">public bool</span> Reliable <span class="c-op">=&gt;</span> <span class="c-str">true</span>;
-}</code></pre>
-                        </div>
-                        <div class="reactor-node node-1" data-label="C#"></div>
-                        <div class="reactor-node node-2" data-label="API"></div>
-                        <div class="reactor-node node-3" data-label="SQL"></div>
-                        <div class="reactor-node node-4" data-label="EF"></div>
-                        <div class="reactor-node node-5" data-label="JWT"></div>
+                    <div class="wanted-footer">
+                        <span>OPEN TO OPPORTUNITIES</span>
+                        <span class="status-dot"></span>
                     </div>
                 </div>
+
+                <div class="dev-compass" aria-hidden="true">
+                    <div class="compass-ring ring-a"></div>
+                    <div class="compass-ring ring-b"></div>
+                    <div class="compass-core">.NET</div>
+                    <span class="north">N</span>
+                    <span class="east">API</span>
+                    <span class="south">SQL</span>
+                    <span class="west">C#</span>
+                </div>
+
+                <div class="floating-code code-a">&lt;API /&gt;</div>
+                <div class="floating-code code-b">{ EF }</div>
+                <div class="floating-code code-c">JWT::AUTH</div>
             </div>
 
-            <a class="scroll-cue" href="#about" aria-label="Scroll to About">
-                <span class="scroll-cue-line"></span>
-                <span>SCROLL TO EXPLORE</span>
+            <a class="scroll-cue" href="#about">
+                <span>SAIL DOWN</span>
+                <i>↓</i>
             </a>
         </section>
 
         <!-- ABOUT -->
         <section id="about" class="section-block">
-            <div class="section-header reveal">
-                <span class="section-id">01 //</span>
-                <h2 class="section-title">Engineering <span class="text-gradient">Identity</span></h2>
-                <p class="section-lead">A backend-focused developer who cares about structure, clarity and maintainability.</p>
+            <div class="section-heading reveal">
+                <span class="chapter">CHAPTER 01</span>
+                <h2>MY <em>JOURNEY</em></h2>
+                <p>A backend-focused developer who cares about structure, clarity and maintainability.</p>
             </div>
 
-            <div class="about-layout">
-                <div class="about-main reveal glass-tilt" data-tilt>
-                    <div class="card-corner"></div>
-                    <span class="card-label">ENGINEERING_PRINCIPLE</span>
-                    <h3 class="about-statement">Backend systems should be understandable before they become scalable.</h3>
+            <div class="about-grid">
+                <article class="story-panel paper-panel reveal glass-tilt" data-tilt>
+                    <div class="panel-stamp">LOG BOOK</div>
+                    <span class="panel-kicker">ENGINEERING_PRINCIPLE</span>
+                    <h3>Backend systems should be understandable before they become scalable.</h3>
                     <p>
                         I'm a Computer Science graduate focused on .NET backend engineering.
                         I work with C#, ASP.NET Core, SQL Server and Entity Framework Core,
                         organizing applications into clear layers so business logic remains easy to reason about,
                         test and extend.
                     </p>
+                    <div class="signature">AYHM // BACKEND FOCUS</div>
+                </article>
 
-                    <div class="about-signature">
-                        <span class="signature-line"></span>
-                        <span>AYHM // BACKEND FOCUS</span>
-                    </div>
-                </div>
+                <div class="route-map reveal">
+                    <div class="map-title">LOG POSE // CURRENT ROUTE</div>
+                    <div class="route-line"></div>
 
-                <div class="about-side">
-                    <div class="stat-readout reveal">
-                        <span class="stat-value">2026</span>
-                        <span class="stat-label">Computer Science Graduate</span>
+                    <div class="route-stop stop-one">
+                        <b>2026</b>
+                        <span>Computer Science Graduate</span>
                     </div>
-                    <div class="stat-readout reveal">
-                        <span class="stat-value">.NET</span>
-                        <span class="stat-label">Backend Focus</span>
+                    <div class="route-stop stop-two">
+                        <b>.NET</b>
+                        <span>Backend Focus</span>
                     </div>
-                    <div class="stat-readout reveal">
-                        <span class="stat-value">5-Layer</span>
-                        <span class="stat-label">Clean Architecture</span>
+                    <div class="route-stop stop-three">
+                        <b>5-LAYER</b>
+                        <span>Clean Architecture</span>
                     </div>
-                    <div class="stat-readout reveal">
-                        <span class="stat-value">DVLD</span>
-                        <span class="stat-label">Main Project</span>
+                    <div class="route-stop stop-four">
+                        <b>DVLD</b>
+                        <span>Main Project</span>
                     </div>
                 </div>
             </div>
         </section>
 
         <!-- SKILLS -->
-        <section id="skills" class="section-block">
-            <div class="section-header reveal">
-                <span class="section-id">02 //</span>
-                <h2 class="section-title">Technical <span class="text-gradient">Network</span></h2>
-                <p class="section-lead">Hover a node to inspect the role it plays in the backend stack.</p>
+        <section id="skills" class="section-block skills-section">
+            <div class="section-heading reveal">
+                <span class="chapter">CHAPTER 02</span>
+                <h2>CREW <em>SKILLS</em></h2>
+                <p>Hover a node to inspect the role it plays in the backend stack.</p>
             </div>
 
-            <div class="neural-container" id="neuralContainer">
-                <svg class="neural-svg" id="neuralSvg" aria-hidden="true"></svg>
+            <div class="crew-board reveal" id="neuralContainer">
+                <div class="board-radar"></div>
+                <svg id="neuralSvg" class="neural-svg" aria-hidden="true"></svg>
 
                 <div class="neural-core" id="neuralCore">
                     <span>.NET</span>
                     <small>BACKEND CORE</small>
                 </div>
+
+                <div class="skill-compass-label">SKILL COMPASS</div>
 
                 <div class="neural-info-panel" id="neuralInfo" aria-live="polite">
                     <span class="info-title">HOVER NODE</span>
@@ -222,187 +243,192 @@
             </div>
         </section>
 
-        <!-- PROJECT -->
+        <!-- BUILD -->
         <section id="build" class="section-block build-section">
-<div class="section-header reveal"><span class="section-id">04 //</span><h2 class="section-title">How I <span class="text-gradient">Build</span></h2><p class="section-lead">A practical workflow: understand the problem, shape the responsibilities, then make the system easier to change.</p></div>
-<div class="build-grid">
-<article class="build-card reveal"><span>01</span><h3>Understand</h3><p>Start from the business requirement and the workflow, not from the framework.</p></article>
-<article class="build-card reveal"><span>02</span><h3>Separate</h3><p>Keep responsibilities clear across Domain, Application, Infrastructure and API boundaries.</p></article>
-<article class="build-card reveal"><span>03</span><h3>Implement</h3><p>Use C#, EF Core, SQL Server and ASP.NET Core to turn the design into working features.</p></article>
-<article class="build-card reveal"><span>04</span><h3>Test</h3><p>Verify business behavior with focused unit and integration tests before calling the work complete.</p></article></div></section>
+            <div class="section-heading reveal">
+                <span class="chapter">CHAPTER 03</span>
+                <h2>THE <em>BUILD</em> LOG</h2>
+                <p>A practical workflow: understand the problem, shape the responsibilities, then make the system easier to change.</p>
+            </div>
 
-<section id="projects" class="section-block">
-            <div class="section-header reveal">
-                <span class="section-id">03 //</span>
-                <h2 class="section-title">Featured <span class="text-gradient">Project</span></h2>
-                <p class="section-lead">One substantial system, presented as an engineering case study.</p>
+            <div class="build-grid">
+                <article class="build-card reveal">
+                    <span class="step-no">01</span>
+                    <div class="step-icon">◈</div>
+                    <h3>Understand</h3>
+                    <p>Start from the business requirement and the workflow, not from the framework.</p>
+                </article>
+                <article class="build-card reveal">
+                    <span class="step-no">02</span>
+                    <div class="step-icon">⚓</div>
+                    <h3>Separate</h3>
+                    <p>Keep responsibilities clear across Domain, Application, Infrastructure and API boundaries.</p>
+                </article>
+                <article class="build-card reveal">
+                    <span class="step-no">03</span>
+                    <div class="step-icon">{ }</div>
+                    <h3>Implement</h3>
+                    <p>Use C#, EF Core, SQL Server and ASP.NET Core to turn the design into working features.</p>
+                </article>
+                <article class="build-card reveal">
+                    <span class="step-no">04</span>
+                    <div class="step-icon">✓</div>
+                    <h3>Test</h3>
+                    <p>Verify business behavior with focused unit and integration tests before calling the work complete.</p>
+                </article>
+            </div>
+        </section>
+
+        <!-- PROJECT -->
+        <section id="projects" class="section-block project-section">
+            <div class="section-heading reveal">
+                <span class="chapter">CHAPTER 04</span>
+                <h2>FLAGSHIP <em>PROJECT</em></h2>
+                <p>One substantial system, presented as an engineering case study.</p>
             </div>
 
             <article class="project-showcase reveal">
-                <div class="project-visual glass-tilt" data-tilt>
-                    <div class="visual-overlay">
-                        <span>DVLD // ARCHITECTURE</span>
+                <div class="project-map paper-panel glass-tilt" data-tilt>
+                    <div class="map-compass">N</div>
+                    <div class="map-header">
+                        <span>LOG POSE // DVLD</span>
                         <span>ACTIVE BUILD</span>
                     </div>
 
-                    <div class="visual-mockup dvld-mock">
+                    <div class="architecture-title">
+                        <span>THE ARCHITECTURE</span>
+                        <small>FOLLOW THE ROUTE</small>
+                    </div>
+
+                    <div class="arch-route">
                         <div class="arch-layer l1" data-desc="WPF client using the MVVM pattern.">
-                            <span class="arch-label">Presentation</span>
-                            <span class="arch-sub">WPF / MVVM</span>
+                            <span class="arch-icon">01</span>
+                            <span><b>Presentation</b><small>WPF / MVVM</small></span>
                         </div>
-                        <div class="arch-connector"><span></span></div>
-
+                        <div class="arch-connector"></div>
                         <div class="arch-layer l2" data-desc="REST endpoints, controllers and middleware.">
-                            <span class="arch-label">API</span>
-                            <span class="arch-sub">ASP.NET Core</span>
+                            <span class="arch-icon">02</span>
+                            <span><b>API</b><small>ASP.NET Core</small></span>
                         </div>
-                        <div class="arch-connector"><span></span></div>
-
+                        <div class="arch-connector"></div>
                         <div class="arch-layer l3" data-desc="Business workflows, validation and service orchestration.">
-                            <span class="arch-label">Application</span>
-                            <span class="arch-sub">Services / Validation</span>
+                            <span class="arch-icon">03</span>
+                            <span><b>Application</b><small>Services / Validation</small></span>
                         </div>
-                        <div class="arch-connector"><span></span></div>
-
+                        <div class="arch-connector"></div>
                         <div class="arch-layer l4" data-desc="Entities, contracts and core business abstractions.">
-                            <span class="arch-label">Domain</span>
-                            <span class="arch-sub">Entities / Interfaces</span>
+                            <span class="arch-icon">04</span>
+                            <span><b>Domain</b><small>Entities / Interfaces</small></span>
                         </div>
-                        <div class="arch-connector"><span></span></div>
-
+                        <div class="arch-connector"></div>
                         <div class="arch-layer l5" data-desc="EF Core, DbContext and data-access implementations.">
-                            <span class="arch-label">Infrastructure</span>
-                            <span class="arch-sub">EF Core / Data Access</span>
+                            <span class="arch-icon">05</span>
+                            <span><b>Infrastructure</b><small>EF Core / Data Access</small></span>
                         </div>
-                        <div class="arch-connector"><span></span></div>
-
+                        <div class="arch-connector"></div>
                         <div class="arch-layer l6" data-desc="Relational database layer used by the system.">
-                            <span class="arch-label">Database</span>
-                            <span class="arch-sub">SQL Server</span>
+                            <span class="arch-icon">06</span>
+                            <span><b>Database</b><small>SQL Server</small></span>
                         </div>
                     </div>
 
                     <div class="arch-tooltip" id="archTooltip" aria-hidden="true"></div>
 
-                    <div class="project-meta-tags">
-                        <span>WPF</span>
-                        <span>MVVM</span>
-                        <span>C#</span>
-                        <span>ASP.NET CORE</span>
-                        <span>EF CORE</span>
-                        <span>SQL SERVER</span>
-                        <span>JWT</span>
-                        <span>UoW</span>
-                        <span>DI</span>
+                    <div class="project-tags">
+                        <span>WPF</span><span>MVVM</span><span>C#</span><span>ASP.NET CORE</span>
+                        <span>EF CORE</span><span>SQL SERVER</span><span>JWT</span><span>UoW</span><span>DI</span>
                     </div>
                 </div>
 
-                <div class="project-info">
-                    <small>PROJECT_01 // .NET SYSTEM</small>
+                <div class="project-info reveal">
+                    <span class="wanted-label">PROJECT_01 // .NET SYSTEM</span>
                     <h3>DVLD Management System</h3>
-
                     <p>
                         A multi-layered driving license management system built around clear separation of responsibilities,
                         maintainable backend architecture and explicit business workflows.
                     </p>
 
                     <div class="project-architecture">
-                        <div class="arch-item"><span class="arch-dot"></span>Repository &amp; Unit of Work</div>
-                        <div class="arch-item"><span class="arch-dot"></span>Dependency Injection</div>
-                        <div class="arch-item"><span class="arch-dot"></span>JWT Authentication</div>
-                        <div class="arch-item"><span class="arch-dot"></span>Entity Framework Core</div>
-                        <div class="arch-item"><span class="arch-dot"></span>SQL Server</div>
+                        <div class="arch-item"><i></i>Repository &amp; Unit of Work</div>
+                        <div class="arch-item"><i></i>Dependency Injection</div>
+                        <div class="arch-item"><i></i>JWT Authentication</div>
+                        <div class="arch-item"><i></i>Entity Framework Core</div>
+                        <div class="arch-item"><i></i>SQL Server</div>
                     </div>
 
-                    <div class="project-actions">
-                        <a href="https://github.com/ayhm325/DVLD-WPF" target="_blank" rel="noopener noreferrer" class="project-link magnetic">
-                            View on GitHub
-                            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
-                                <path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/>
-                                <polyline points="15 3 21 3 21 9"/>
-                                <line x1="10" y1="14" x2="21" y2="3"/>
-                            </svg>
-                        </a>
-                    </div>
+                    <a href="https://github.com/ayhm325/DVLD-WPF" target="_blank" rel="noopener noreferrer" class="btn-primary magnetic">
+                        VIEW ON GITHUB <i>↗</i>
+                    </a>
                 </div>
             </article>
 
             <div class="snapshot-grid">
-                <div class="snapshot-card reveal">
-                    <span class="snapshot-id">ARCHITECTURE</span>
-                    <ul>
-                        <li>Clean Architecture</li>
-                        <li>Separation of Concerns</li>
-                        <li>Dependency Injection</li>
-                    </ul>
-                </div>
-                <div class="snapshot-card reveal">
-                    <span class="snapshot-id">DATA</span>
-                    <ul>
-                        <li>Entity Framework Core</li>
-                        <li>SQL Server</li>
-                        <li>LINQ</li>
-                    </ul>
-                </div>
-                <div class="snapshot-card reveal">
-                    <span class="snapshot-id">BACKEND</span>
-                    <ul>
-                        <li>ASP.NET Core</li>
-                        <li>REST API</li>
-                        <li>JWT Authentication</li>
-                    </ul>
-                </div>
-                <div class="snapshot-card reveal">
-                    <span class="snapshot-id">QUALITY</span>
-                    <ul>
-                        <li>Repository Pattern</li>
-                        <li>Unit of Work</li>
-                        <li>Layered Validation</li>
-                    </ul>
-                </div>
+                <article class="snapshot-card reveal">
+                    <span>ARCHITECTURE</span>
+                    <ul><li>Clean Architecture</li><li>Separation of Concerns</li><li>Dependency Injection</li></ul>
+                </article>
+                <article class="snapshot-card reveal">
+                    <span>DATA</span>
+                    <ul><li>Entity Framework Core</li><li>SQL Server</li><li>LINQ</li></ul>
+                </article>
+                <article class="snapshot-card reveal">
+                    <span>BACKEND</span>
+                    <ul><li>ASP.NET Core</li><li>REST API</li><li>JWT Authentication</li></ul>
+                </article>
+                <article class="snapshot-card reveal">
+                    <span>QUALITY</span>
+                    <ul><li>Repository Pattern</li><li>Unit of Work</li><li>Layered Validation</li></ul>
+                </article>
             </div>
         </section>
 
         <!-- CONTACT -->
         <section id="contact" class="section-block contact-section">
-            <div class="contact-terminal reveal glass-tilt" data-tilt>
-                <div class="terminal-header">
-                    <div class="dots" aria-hidden="true"><i></i><i></i><i></i></div>
-                    <span>comms_init.exe</span>
+            <div class="contact-scroll reveal">
+                <div class="contact-top">
+                    <span>FINAL LOG // CONNECTION</span>
+                    <span>GRAND LINE — END OF ROUTE</span>
                 </div>
 
-                <div class="terminal-body">
-                    <span class="contact-kicker">05 // CONNECTION</span>
-                    <h3>LET'S BUILD SOMETHING USEFUL.</h3>
-                    <p>Open to junior .NET backend developer roles and meaningful collaborations.</p>
-
-                    <div class="contact-grid">
-                        <a href="mailto:ayhmobeidat.cs@gmail.com" class="contact-cell magnetic">
-                            <span class="cell-pulse"></span>
-                            <span class="cell-label">EMAIL</span>
-                            <span class="cell-value">ayhmobeidat.cs@gmail.com</span>
-                        </a>
-
-                        <a href="https://github.com/ayhm325" target="_blank" rel="noopener noreferrer" class="contact-cell magnetic">
-                            <span class="cell-pulse"></span>
-                            <span class="cell-label">GITHUB</span>
-                            <span class="cell-value">@ayhm325</span>
-                        </a>
-
-                        <a href="https://www.linkedin.com/in/ayhm-obeidat-75a10a352" target="_blank" rel="noopener noreferrer" class="contact-cell magnetic">
-                            <span class="cell-pulse"></span>
-                            <span class="cell-label">LINKEDIN</span>
-                            <span class="cell-value">/in/ayhm-obeidat</span>
-                        </a>
+                <div class="contact-main">
+                    <div>
+                        <span class="chapter">LAST PAGE</span>
+                        <h2>LET'S BUILD<br><em>SOMETHING USEFUL.</em></h2>
+                        <p>Open to junior .NET backend developer roles and meaningful collaborations.</p>
                     </div>
+
+                    <div class="contact-seal" aria-hidden="true">
+                        <span>⚓</span>
+                        <b>A.O</b>
+                        <small>CODE CREW</small>
+                    </div>
+                </div>
+
+                <div class="contact-grid">
+                    <a href="mailto:ayhmobeidat.cs@gmail.com" class="contact-cell magnetic">
+                        <span>EMAIL</span>
+                        <b>ayhmobeidat.cs@gmail.com</b>
+                        <i>↗</i>
+                    </a>
+                    <a href="https://github.com/ayhm325" target="_blank" rel="noopener noreferrer" class="contact-cell magnetic">
+                        <span>GITHUB</span>
+                        <b>@ayhm325</b>
+                        <i>↗</i>
+                    </a>
+                    <a href="https://www.linkedin.com/in/ayhm-obeidat-75a10a352" target="_blank" rel="noopener noreferrer" class="contact-cell magnetic">
+                        <span>LINKEDIN</span>
+                        <b>/in/ayhm-obeidat</b>
+                        <i>↗</i>
+                    </a>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <span class="footer-main">&copy; <span id="year"></span> Ayhm Obeidat</span>
-        <span class="footer-sub">Junior .NET Backend Developer</span>
+        <span>© <span id="year"></span> AYHM OBEIDAT</span>
+        <span>SAILING THE .NET SEA</span>
+        <span>⚓ // CODE WITH PURPOSE</span>
     </footer>
 
     <script src="script.js"></script>
