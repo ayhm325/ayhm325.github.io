@@ -244,8 +244,8 @@
             }
 
             if (frontierCursor && state.pointerActive) {
-                state.cursorX += (state.pointerX - state.cursorX) * 0.25;
-                state.cursorY += (state.pointerY - state.cursorY) * 0.25;
+                state.cursorX += (state.pointerX - state.cursorX) * 0.45;
+                state.cursorY += (state.pointerY - state.cursorY) * 0.45;
                 frontierCursor.style.setProperty("--cursor-x", `${state.cursorX}px`);
                 frontierCursor.style.setProperty("--cursor-y", `${state.cursorY}px`);
             }
@@ -273,24 +273,40 @@
     const coreFilterBtns = $$(".core-filter-btn");
 
     const coreNodes = [
-        { id: "wpf", label: "Presentation (WPF)", group: "all", x: -155, y: -58, z: 45, color: "#94a3b8", radius: 6 },
-        { id: "dtos", label: "DTOs & Result", group: "api", x: -82, y: -74, z: -40, color: "#38bdf8", radius: 6 },
+        { id: "wpf", label: "Desktop Client (WPF)", group: "clients", x: -155, y: -62, z: 45, color: "#94a3b8", radius: 6.5 },
+        { id: "dtos", label: "DTOs & Result", group: "api", x: -82, y: -74, z: -40, color: "#60a5fa", radius: 6 },
         { id: "jwt", label: "JWT & RateLimit", group: "security", x: -45, y: 74, z: 65, color: "#a78bfa", radius: 6.5 },
-        { id: "api", label: "ASP.NET Core API", group: "api", x: -18, y: -8, z: 18, color: "#00f0ff", radius: 8.5 },
+        { id: "api", label: "ASP.NET Core API", group: "api", x: -18, y: -8, z: 18, color: "#06b6d4", radius: 8.5 },
         { id: "app", label: "Application & Domain", group: "app", x: 55, y: 12, z: -15, color: "#8b5cf6", radius: 8.5 },
-        { id: "uow", label: "EF Core & UoW", group: "data", x: 118, y: -42, z: 42, color: "#00f0ff", radius: 7.5 },
-        { id: "sql", label: "SQL Server DB", group: "data", x: 162, y: 48, z: -32, color: "#10b981", radius: 8 }
+        { id: "uow", label: "EF Core & UoW", group: "data", x: 118, y: -42, z: 42, color: "#0ea5e9", radius: 7.5 },
+        { id: "sql", label: "SQL Server DB", group: "data", x: 162, y: 48, z: -32, color: "#10b981", radius: 8 },
+        { id: "react", label: "React + TS (ClientApp)", group: "clients", x: -165, y: 56, z: -35, color: "#38bdf8", radius: 6.5 }
     ];
 
     const coreEdges = [
-        { from: 0, to: 1 },
-        { from: 1, to: 3 },
-        { from: 0, to: 3 },
-        { from: 2, to: 3 },
-        { from: 3, to: 4 },
-        { from: 4, to: 5 },
-        { from: 5, to: 6 }
+        { from: 0, to: 1 }, // WPF -> DTOs
+        { from: 1, to: 3 }, // DTOs -> API
+        { from: 0, to: 3 }, // WPF -> API
+        { from: 2, to: 3 }, // JWT -> API
+        { from: 3, to: 4 }, // API -> Application
+        { from: 4, to: 5 }, // Application -> UoW
+        { from: 5, to: 6 }, // UoW -> SQL Server
+        { from: 7, to: 3 }, // React ClientApp -> API (HTTP / REST)
+        { from: 7, to: 1 }  // React ClientApp -> DTOs
     ];
+
+    const nodeDescriptions = {
+        react: "REACT + TS (ClientApp): Independent frontend client consuming ASP.NET Core Web API via HTTP/JSON (In Development)",
+        wpf: "WPF CLIENT (MVVM): Desktop presentation layer consuming backend services via DVLD.Contracts",
+        api: "ASP.NET CORE WEB API: 20 RESTful controllers, 101 HTTP actions, JWT Bearer auth & RFC 7807 ProblemDetails",
+        app: "APPLICATION & DOMAIN: 21 services, 13 validators, 11 mappers & 14 pure domain entities using Result Pattern",
+        uow: "EF CORE & UNIT OF WORK: 15 scoped repositories with deferred physical commit & rollback safety",
+        sql: "SQL SERVER: Relational database with 14 tables, filtered indexes, row locks, and 0 SQL views",
+        jwt: "JWT & RATE LIMITING: Bearer auth with active-user validation & brute-force IP rate limiting",
+        dtos: "DTOs & RESULT: Shared request/response contracts & Result/Result<T> domain outcomes"
+    };
+
+    let selectedCoreNodeId = null;
 
     const corePackets = coreEdges.map((edge, idx) => ({
         edgeIndex: idx,
@@ -339,6 +355,7 @@
 
     const isNodeHighlighted = node => {
         if (activeCoreFilter === "all") return true;
+        if (activeCoreFilter === "clients") return node.group === "clients" || node.id === "wpf" || node.id === "react";
         return node.group === activeCoreFilter;
     };
 
@@ -376,7 +393,7 @@
                 if (i === 0) coreCtx.moveTo(pt.sx, pt.sy);
                 else coreCtx.lineTo(pt.sx, pt.sy);
             }
-            coreCtx.strokeStyle = rIdx === 0 ? "rgba(0, 240, 255, 0.11)" : "rgba(139, 92, 246, 0.11)";
+            coreCtx.strokeStyle = rIdx === 0 ? "rgba(6, 182, 212, 0.14)" : "rgba(139, 92, 246, 0.14)";
             coreCtx.lineWidth = 1;
             coreCtx.stroke();
         });
@@ -396,8 +413,8 @@
             coreCtx.moveTo(nA.proj.sx, nA.proj.sy);
             coreCtx.lineTo(nB.proj.sx, nB.proj.sy);
             coreCtx.strokeStyle = activeEdge
-                ? "rgba(0, 240, 255, 0.36)"
-                : "rgba(148, 163, 184, 0.09)";
+                ? "rgba(56, 189, 248, 0.38)"
+                : "rgba(148, 163, 184, 0.11)";
             coreCtx.lineWidth = activeEdge ? 1.5 : 1;
             coreCtx.stroke();
         });
@@ -416,7 +433,7 @@
 
             coreCtx.beginPath();
             coreCtx.arc(px, py, 2.6, 0, Math.PI * 2);
-            coreCtx.fillStyle = "#67f9ff";
+            coreCtx.fillStyle = "#38bdf8";
             coreCtx.fill();
         }
 
@@ -447,20 +464,39 @@
             coreCtx.strokeStyle = "#f8fafc";
             coreCtx.stroke();
 
-            coreCtx.font = `600 ${Math.round(10.5 * clamp(scale, 0.85, 1.15))}px "JetBrains Mono", monospace`;
+            // High-legibility sans-serif badge for 3D architecture
+            const isSelected = node.id === selectedCoreNodeId;
+            if (isSelected) {
+                coreCtx.save();
+                coreCtx.beginPath();
+                coreCtx.arc(sx, sy, r + 4, 0, Math.PI * 2);
+                coreCtx.strokeStyle = "#38bdf8";
+                coreCtx.lineWidth = 2;
+                coreCtx.setLineDash([3, 3]);
+                coreCtx.stroke();
+                coreCtx.restore();
+            }
+
+            coreCtx.font = `600 ${Math.round(11 * clamp(scale, 0.9, 1.2))}px "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif`;
             const textWidth = coreCtx.measureText(node.label).width;
-            const boxX = sx - textWidth / 2 - 6;
-            const boxY = sy + r + 5;
+            const padX = 7;
+            const boxH = 19;
+            const boxW = textWidth + padX * 2;
+            const boxX = sx - boxW / 2;
+            const boxY = sy + r + 6;
 
-            coreCtx.fillStyle = "rgba(5, 7, 11, 0.85)";
-            coreCtx.fillRect(boxX, boxY, textWidth + 12, 17);
-            coreCtx.strokeStyle = node.highlighted ? "rgba(0, 240, 255, 0.38)" : "rgba(148, 163, 184, 0.15)";
-            coreCtx.strokeRect(boxX, boxY, textWidth + 12, 17);
+            coreCtx.fillStyle = "rgba(7, 10, 16, 0.92)";
+            coreCtx.fillRect(boxX, boxY, boxW, boxH);
+            coreCtx.strokeStyle = isSelected
+                ? "#38bdf8"
+                : (node.highlighted ? "rgba(56, 189, 248, 0.5)" : "rgba(148, 163, 184, 0.18)");
+            coreCtx.lineWidth = isSelected ? 1.5 : 1;
+            coreCtx.strokeRect(boxX, boxY, boxW, boxH);
 
-            coreCtx.fillStyle = node.highlighted ? "#f8fafc" : "#94a3b8";
+            coreCtx.fillStyle = (isSelected || node.highlighted) ? "#f8fafc" : "#94a3b8";
             coreCtx.textAlign = "center";
             coreCtx.textBaseline = "middle";
-            coreCtx.fillText(node.label, sx, boxY + 8.5);
+            coreCtx.fillText(node.label, sx, boxY + boxH / 2);
             coreCtx.restore();
         });
 
@@ -474,10 +510,13 @@
     if (coreCanvas && coreCtx) {
         resizeCoreCanvas();
 
+        let dragDistance = 0;
+
         coreCanvas.addEventListener("pointerdown", e => {
             isDraggingCore = true;
             dragStartX = e.clientX;
             dragStartY = e.clientY;
+            dragDistance = 0;
         });
 
         window.addEventListener("pointermove", e => {
@@ -486,6 +525,7 @@
             const dy = e.clientY - dragStartY;
             dragStartX = e.clientX;
             dragStartY = e.clientY;
+            dragDistance += Math.hypot(dx, dy);
             targetRotY += dx * 0.008;
             targetRotX = clamp(targetRotX + dy * 0.006, -0.65, 0.65);
             if (reducedMotion.matches) {
@@ -493,12 +533,43 @@
             }
         }, { passive: true });
 
-        window.addEventListener("pointerup", () => {
+        window.addEventListener("pointerup", e => {
+            if (isDraggingCore && dragDistance < 6 && e.target === coreCanvas) {
+                // Click selection detection
+                const rect = coreCanvas.getBoundingClientRect();
+                const mx = e.clientX - rect.left;
+                const my = e.clientY - rect.top;
+                const cx = (coreCanvas.clientWidth || 600) / 2;
+                const cy = (coreCanvas.clientHeight || 295) / 2 - 6;
+
+                let closestNode = null;
+                let minDist = 28;
+
+                coreNodes.forEach(node => {
+                    const proj = project3D(node.x, node.y, node.z, cx, cy, coreRotX, coreRotY);
+                    const d = Math.hypot(proj.sx - mx, proj.sy - my);
+                    if (d < minDist) {
+                        minDist = d;
+                        closestNode = node;
+                    }
+                });
+
+                if (closestNode) {
+                    selectedCoreNodeId = closestNode.id;
+                    if (coreActiveLayerBadge && nodeDescriptions[closestNode.id]) {
+                        coreActiveLayerBadge.textContent = nodeDescriptions[closestNode.id];
+                    }
+                    if (reducedMotion.matches) {
+                        renderSystemCore(false);
+                    }
+                }
+            }
             isDraggingCore = false;
         }, { passive: true });
 
         const filterLabels = {
             all: "ACTIVE: FULL STACK TOPOLOGY",
+            clients: "ACTIVE: CLIENTS (REACT & WPF)",
             api: "ACTIVE: HTTP API & DTO BOUNDARY",
             app: "ACTIVE: APPLICATION & DOMAIN LAYERS",
             data: "ACTIVE: EF CORE, UoW & SQL SERVER",
@@ -508,6 +579,7 @@
         coreFilterBtns.forEach(btn => {
             btn.addEventListener("click", () => {
                 activeCoreFilter = btn.dataset.coreFilter || "all";
+                selectedCoreNodeId = null;
                 coreFilterBtns.forEach(b => {
                     const active = b === btn;
                     b.classList.toggle("active", active);
@@ -816,6 +888,27 @@
        7. INSIDE THE SYSTEM — ARCHITECTURE INSPECTOR (#architecture)
        ========================================================================== */
     const archData = {
+        react: {
+            code: "INSPECTOR // CLIENT_02 :: REACT_TYPESCRIPT_CLIENT",
+            badge: "EARLY STAGE // IN DEVELOPMENT",
+            title: "Companion Client — React 19 + TypeScript (ClientApp)",
+            summary: "An independent frontend client built with React 19, TypeScript, and Vite (located in ClientApp), created to consume the ASP.NET Core Web API over HTTP/JSON with JWT authentication via the \"ReactApp\" CORS policy.",
+            decisions: [
+                "Separate the frontend cleanly from the .NET solution using modern React 19 and TypeScript with Vite build tooling.",
+                "Consume backend REST endpoints via HTTP/JSON, authenticated with JWT Bearer tokens.",
+                "Supported on the backend via the configured <code>\"ReactApp\"</code> CORS policy allowing local frontend dev server access (<code>http://localhost:5173</code>).",
+                "Kept explicitly in active development as a companion web client alongside the primary WPF MVVM desktop presentation."
+            ],
+            current: "Early-stage companion web application scaffolded with React 19, TypeScript, and Vite, consuming the ASP.NET Core Web API.",
+            planned: "In active development; expanding UI coverage for license applications and user authentication alongside the WPF desktop app.",
+            filename: "CLIENT SPECIFICATION // REACT 19 & TYPESCRIPT FRONTEND",
+            snippet: `Client Project   : ClientApp (React 19 + TypeScript + Vite)
+Architecture     : Single-Page Application (SPA) consuming ASP.NET Core Web API
+Communication    : RESTful HTTP/JSON calls with JWT Bearer authentication
+CORS Config      : Handled by "ReactApp" CORS policy on Web API (localhost:5173)
+Status           : In active development as an independent web client`,
+            tags: ["React 19", "TypeScript", "Vite", "REST API Client", "JWT Auth", "In Development"]
+        },
         api: {
             code: "INSPECTOR // LAYER_02 :: ASP.NET_CORE_WEB_API",
             badge: "VERIFIED SOURCE SPECIFICATION",

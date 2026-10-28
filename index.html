@@ -275,6 +275,7 @@
                             <!-- Interactive Layer Filter Controls (Keyboard & Pointer accessible) -->
                             <div class="core-layer-controls" role="toolbar" aria-label="Filter 3D architecture core nodes">
                                 <button type="button" class="core-filter-btn active" data-core-filter="all" aria-pressed="true">ALL NODES</button>
+                                <button type="button" class="core-filter-btn" data-core-filter="clients" aria-pressed="false">CLIENTS (REACT &amp; WPF)</button>
                                 <button type="button" class="core-filter-btn" data-core-filter="api" aria-pressed="false">HTTP / API</button>
                                 <button type="button" class="core-filter-btn" data-core-filter="app" aria-pressed="false">APPLICATION / DOMAIN</button>
                                 <button type="button" class="core-filter-btn" data-core-filter="data" aria-pressed="false">EF CORE / SQL</button>
@@ -437,7 +438,18 @@
                                             <strong>Presentation — WPF Desktop (MVVM)</strong>
                                             <span class="node-badge">DESKTOP UI</span>
                                         </div>
-                                        <span class="node-meta">WPF Presentation Layer · MVVM Pattern</span>
+                                        <span class="node-meta">WPF Presentation Layer · MVVM Pattern · DVLD.Contracts</span>
+                                    </div>
+                                </button>
+
+                                <button type="button" class="topo-node topo-boundary-node" role="option" aria-selected="false" data-layer-id="react">
+                                    <div class="node-index">WEB</div>
+                                    <div class="node-main">
+                                        <div class="node-title-row">
+                                            <strong>Frontend — React 19 &amp; TypeScript</strong>
+                                            <span class="node-badge badge-cyan">COMPANION CLIENT</span>
+                                        </div>
+                                        <span class="node-meta">Independent ClientApp · HTTP / JSON · In Development</span>
                                     </div>
                                 </button>
 
