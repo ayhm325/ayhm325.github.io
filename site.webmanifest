@@ -1,11 +1,11 @@
 {
-  "name": "Ayhm Mohammed Obeidat | .NET Backend & Systems Engineer",
+  "name": "Ayhm Mohammed Obeidat | .NET Backend & Software Engineer",
   "short_name": "Ayhm Obeidat",
   "start_url": "./",
   "display": "standalone",
   "background_color": "#05070b",
   "theme_color": "#05070b",
-  "description": "Engineering portfolio of Ayhm Mohammed Obeidat — Junior .NET Backend Developer & Software Engineer specializing in C#, .NET 8, ASP.NET Core Web API, EF Core, and SQL Server.",
+  "description": "Engineering portfolio of Ayhm Mohammed Obeidat — Junior .NET Backend Developer & Software Engineer specializing in C#, .NET, ASP.NET Core Web API, Entity Framework Core, and SQL Server.",
   "icons": [
     {"src": "assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"},
     {"src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml"}
