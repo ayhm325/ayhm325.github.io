@@ -131,7 +131,7 @@
                 </span>
                 <span class="brand-text">
                     <strong class="brand-handle">AYHM.OBEIDAT</strong>
-                    <small class="brand-sub">SYS.ARCH // .NET BACKEND</small>
+                    <small class="brand-sub">JUNIOR .NET BACKEND</small>
                 </span>
             </a>
 
@@ -577,23 +577,23 @@ Verification     : Integration tests covering API behavior, auth &amp; security<
                     <div class="case-metrics-grid" role="list" aria-label="DVLD verified engineering specifications">
                         <div class="metric-card" role="listitem">
                             <span class="metric-kicker">SOLUTION ARCHITECTURE</span>
-                            <strong class="metric-val">5 Separate Layers</strong>
-                            <small class="metric-note">Domain, Application, Infrastructure, ASP.NET Core Web API, and WPF Presentation layers.</small>
+                            <strong class="metric-val">9 .NET Projects + React Client</strong>
+                            <small class="metric-note">Domain (14 entities), Application (21 services), Infrastructure, API (20 controllers), Contracts, WPF MVVM, 3 test suites, and companion React 19/TS client.</small>
+                        </div>
+                        <div class="metric-card" role="listitem">
+                            <span class="metric-kicker">REST API &amp; SECURITY</span>
+                            <strong class="metric-val">101 HTTP Actions · JWT</strong>
+                            <small class="metric-note">ASP.NET Core Web API with active-user validation, role-based policies (AdminOnly, StaffOnly), 5 req/min login rate limiting, and RFC 7807 ProblemDetails.</small>
                         </div>
                         <div class="metric-card" role="listitem">
                             <span class="metric-kicker">PERSISTENCE &amp; TRANSACTIONS</span>
-                            <strong class="metric-val">Repository + UoW</strong>
-                            <small class="metric-note">Applied Dependency Injection, Service Layer, Repository, and Unit of Work for transactional consistency.</small>
+                            <strong class="metric-val">14 Tables · 0 SQL Views</strong>
+                            <small class="metric-note">Direct EF Core 8 LINQ projections + raw SQL repository queries with explicit row-level locks (UPDLOCK, ROWLOCK, HOLDLOCK) &amp; Unit of Work deferred physical commit.</small>
                         </div>
                         <div class="metric-card" role="listitem">
-                            <span class="metric-kicker">API SECURITY &amp; ERRORS</span>
-                            <strong class="metric-val">JWT + HTTP 429 Limit</strong>
-                            <small class="metric-note">JWT auth, role-based authorization, login rate limiting (HTTP 429), and Problem Details responses.</small>
-                        </div>
-                        <div class="metric-card" role="listitem">
-                            <span class="metric-kicker">QUALITY &amp; CI PIPELINE</span>
-                            <strong class="metric-val">xUnit + Moq + CI</strong>
-                            <small class="metric-note">Unit &amp; integration tests across application, API, infrastructure, and security + Azure DevOps build pipeline.</small>
+                            <span class="metric-kicker">AUTOMATED TESTING &amp; CI</span>
+                            <strong class="metric-val">3 Test Suites · Azure CI</strong>
+                            <small class="metric-note">Application unit tests (633 tests) + API &amp; Infrastructure integration test suites with xUnit &amp; Moq, automated via Azure DevOps pipeline.</small>
                         </div>
                     </div>
 
@@ -654,52 +654,53 @@ Verification     : Integration tests covering API behavior, auth &amp; security<
                     <!-- Deep Engineering Breakdown: Problem, Decisions, Challenges & Testing Proof -->
                     <div class="case-deep-grid">
                         <div class="deep-panel">
-                            <span class="mono-kicker">01 // PROBLEM &amp; DOMAIN COMPLEXITY</span>
+                            <span class="mono-kicker">01 // DOMAIN COMPLEXITY &amp; SYSTEM SCALE</span>
                             <h4>Why Ordinary CRUD Was Insufficient</h4>
                             <p>
-                                Managing a driving and vehicle license department involves interdependent business rules across citizen records, driving license applications, test appointments, license issuance, renewals, replacements, detentions, and international licenses.
+                                Managing a driving and vehicle licensing authority involves interdependent business rules across 14 database tables, 21 application services, 13 validators, and strict state transitions across applications, test appointments, licenses, detentions, and releases.
                             </p>
                             <ul class="technical-bullet-list">
-                                <li><strong>Separation of Responsibilities:</strong> Built an ASP.NET Core Web API exposing application functionality through RESTful endpoints while separating API, business logic, and data-access layers.</li>
-                                <li><strong>Relational Integrity:</strong> Used Entity Framework Core and SQL Server for entity relationships, CRUD operations, and LINQ-based queries.</li>
+                                <li><strong>9 .NET Projects + Contracts Boundary:</strong> Architectural separation between Domain (entities &amp; enums), Application (services &amp; DTOs), Infrastructure (repositories &amp; EF Core 8), API (20 controllers / 101 actions), Contracts (shared transport requests/responses), and Presentation (WPF MVVM). Presentation references only <code>DVLD.Contracts</code>, completely decoupled from API and Application.</li>
+                                <li><strong>Companion Early-Stage React Frontend:</strong> An early-stage companion web client built with React 19, TypeScript, and Vite consuming the Web API over HTTP + JSON + JWT, configured via a dedicated <code>"ReactApp"</code> CORS policy.</li>
                             </ul>
                         </div>
 
                         <div class="deep-panel">
-                            <span class="mono-kicker">02 // ARCHITECTURAL TRADE-OFFS &amp; SOLUTIONS</span>
-                            <h4>Engineering Decisions Under the Hood</h4>
+                            <span class="mono-kicker">02 // ARCHITECTURAL TRADE-OFFS &amp; PERSISTENCE</span>
+                            <h4>Engineering Decisions: UoW &amp; Zero SQL Views</h4>
                             <ul class="technical-bullet-list">
-                                <li><strong>Dependency Injection, Repository &amp; Unit of Work:</strong> Applied Service Layer, Repository, and Unit of Work patterns to decouple domain/application logic from EF Core and maintain transactional consistency across multi-step operations.</li>
-                                <li><strong>Global Exception Handling, Result Pattern &amp; Problem Details:</strong> Centralized API error handling so domain failures and unhandled exceptions produce consistent, structured HTTP error responses.</li>
+                                <li><strong>Unit of Work with Deferred Commit:</strong> Implemented <code>ExecuteInTransactionCoreAsync</code> with deferred physical commit (<code>deferPhysicalCommit: true</code>). Guarantees automatic rollback and <code>ChangeTracker.Clear()</code> on failure, prevents nested transactions with <code>EnsureNoActiveTransaction</code>, and uses a probe tracker to verify commit success if connection drops during commit.</li>
+                                <li><strong>Why 0 SQL Views:</strong> Instead of database views, standard queries leverage direct EF Core 8 LINQ projections, while high-concurrency repository queries target base tables with explicit row-level locks (<code>UPDLOCK, ROWLOCK, HOLDLOCK</code>) and a single aggregate query for dashboard metrics.</li>
+                                <li><strong>API Security &amp; Error Standards:</strong> JWT bearer authentication with active-user validation on every request (<code>OnTokenValidated</code> verifies active status), role policies (<code>AdminOnly</code>, <code>StaffOnly</code>, <code>StaffOrAdmin</code>), 5 requests/min login rate limiting (HTTP 429), and RFC 7807 <code>ProblemDetails</code> with clean HTTP 499 handling on client cancellations.</li>
                             </ul>
                         </div>
 
                         <div class="deep-panel verification-panel">
                             <span class="mono-kicker">03 // AUTOMATED TESTING STRATEGY &amp; CI PIPELINE</span>
-                            <h4>4-Pillar Verification Coverage (xUnit &amp; Moq)</h4>
+                            <h4>3 Test Suites Across the Solution (xUnit &amp; Moq)</h4>
                             <p class="verification-disclaimer">
-                                Developed unit and integration tests using <code>xUnit</code> and <code>Moq</code> alongside a <strong>Git/GitHub + Azure DevOps pipeline</strong> for automated restore and build operations:
+                                Verified across 3 dedicated test projects alongside a <strong>Git/GitHub + Azure DevOps pipeline</strong> (<code>azure-pipelines.yml</code>) running automated restore, build, and test verification on <code>windows-latest</code>:
                             </p>
 
                             <div class="test-breakdown-bars" aria-label="Automated testing coverage domains">
                                 <div class="test-bar-row">
                                     <div class="test-bar-meta">
-                                        <strong>Application Logic (Unit Tests · xUnit &amp; Moq)</strong>
-                                        <span>VERIFIED SCOPE</span>
+                                        <strong>DVLD.Application.UnitTests (21 Test Classes)</strong>
+                                        <span>633 PASSED UNIT TESTS</span>
                                     </div>
                                     <div class="test-bar-track"><div class="test-bar-fill fill-cyan" style="width: 100%"></div></div>
                                 </div>
                                 <div class="test-bar-row">
                                     <div class="test-bar-meta">
-                                        <strong>API Behavior &amp; Problem Details (Integration Tests)</strong>
-                                        <span>VERIFIED SCOPE</span>
+                                        <strong>DVLD.API.IntegrationTests (Controllers &amp; Workflows)</strong>
+                                        <span>20 CONTROLLERS + 9 WORKFLOWS</span>
                                     </div>
                                     <div class="test-bar-track"><div class="test-bar-fill fill-violet" style="width: 100%"></div></div>
                                 </div>
                                 <div class="test-bar-row">
                                     <div class="test-bar-meta">
-                                        <strong>Infrastructure, Persistence &amp; Auth Security Scenarios</strong>
-                                        <span>VERIFIED SCOPE</span>
+                                        <strong>DVLD.Infrastructure.IntegrationTests (Repositories &amp; UoW)</strong>
+                                        <span>15 REPOSITORIES + UoW TESTS</span>
                                     </div>
                                     <div class="test-bar-track"><div class="test-bar-fill fill-emerald" style="width: 100%"></div></div>
                                 </div>

@@ -622,12 +622,13 @@
                 appendTerminalLines([
                     { html: `<span class="term-cyan">Available Engineering Commands:</span>` },
                     { html: `  <span class="term-white">whoami</span>    — Engineer identity, degree (JUST '26) &amp; target role` },
-                    { html: `  <span class="term-white">arch</span>      — Inspect 5-layer .NET architecture &amp; patterns` },
-                    { html: `  <span class="term-white">dvld</span>      — DVLD system summary, workflows &amp; repository link` },
-                    { html: `  <span class="term-white">tests</span>     — View xUnit &amp; Moq automated testing strategy &amp; Azure DevOps CI` },
-                    { html: `  <span class="term-white">security</span>  — Inspect JWT Auth, Role-Based Auth &amp; HTTP 429 Login Rate Limiting` },
-                    { html: `  <span class="term-white">stack</span>     — List primary backend &amp; database technologies` },
-                    { html: `  <span class="term-white">contact</span>   — Display verified email, GitHub &amp; LinkedIn channels` },
+                    { html: `  <span class="term-white">arch</span>      — Inspect verified 5-layer .NET architecture &amp; patterns` },
+                    { html: `  <span class="term-white">dvld</span>      — DVLD solution metrics (9 projects, 20 controllers, 101 actions)` },
+                    { html: `  <span class="term-white">tests</span>     — 3 test suites (633 unit tests), xUnit, Moq &amp; Azure DevOps CI` },
+                    { html: `  <span class="term-white">security</span>  — JWT Auth, active-user validation, role policies &amp; 5 req/min rate limit` },
+                    { html: `  <span class="term-white">stack</span>     — Primary backend (.NET 8 / C#), database (SQL Server) &amp; tools` },
+                    { html: `  <span class="term-white">uow</span>       — Unit of Work deferred physical commit &amp; rollback mechanics` },
+                    { html: `  <span class="term-white">contact</span>   — Verified email, GitHub &amp; LinkedIn channels` },
                     { html: `  <span class="term-white">cv</span>        — Download verified PDF Curriculum Vitae` },
                     { html: `  <span class="term-white">clear</span>     — Clear terminal buffer` }
                 ]);
@@ -640,23 +641,31 @@
                     { html: `  Role:     Junior .NET Backend Developer / Software Engineer` },
                     { html: `  Degree:   B.Sc. in Computer Science (2026) — Jordan University of Science &amp; Technology (JUST)` },
                     { html: `  Location: Irbid / Amman, Jordan` },
-                    { html: `  Focus:    C#, .NET, ASP.NET Core Web API, Entity Framework Core, SQL Server, Automated Testing` }
+                    { html: `  Focus:    C#, .NET 8, ASP.NET Core Web API, Entity Framework Core 8, SQL Server, xUnit, Azure DevOps` }
                 ]);
                 break;
 
             case "arch":
             case "layers":
                 appendTerminalLines([
-                    { html: `<span class="term-cyan">[TOPOLOGY]</span> 5-Layer Architecture: <span class="term-white">Domain · Application · Infrastructure · API · Presentation (WPF / MVVM)</span>` },
-                    { html: `  Patterns: Dependency Injection, Repository Pattern, Service Layer, Unit of Work, DTOs, Result Pattern, Problem Details` }
+                    { html: `<span class="term-cyan">[TOPOLOGY]</span> 9 .NET Projects across 5 Layers + React Client:` },
+                    { html: `  • Domain:         14 entities, 6 enums (pure domain model)` },
+                    { html: `  • Application:    21 scoped services, 13 validators, 11 mappers, 36 interfaces, Result Pattern` },
+                    { html: `  • Infrastructure: 15 repositories, EF Core 8 DbContext, Unit of Work deferred commit` },
+                    { html: `  • Contracts:      DVLD.Contracts shared transport request/response types` },
+                    { html: `  • API:            20 controllers, 101 HTTP actions, JWT, role policies, rate limiting` },
+                    { html: `  • Clients:        WPF desktop (MVVM) + companion early-stage React 19/TS client (CORS: ReactApp)` }
                 ]);
                 break;
 
             case "dvld":
             case "project":
+            case "repo":
                 appendTerminalLines([
                     { html: `<span class="term-cyan">[FLAGSHIP]</span> <span class="term-white">DVLD — Driving &amp; Vehicle License Department System</span>` },
-                    { html: `  Workflows:  License Applications, Test Appointments, License Issuance, Renewal, Replacement, Detention &amp; Release, International Licenses` },
+                    { html: `  Scale:      9 .NET projects · 20 controllers · 101 HTTP actions · 14 SQL tables · 0 SQL views` },
+                    { html: `  Workflows:  License Applications, Test Appointments, Issuance, Renewal, Replacement, Detention &amp; Release, International` },
+                    { html: `  Testing:    3 test suites (Application, API Integration, Infrastructure Integration) + Azure DevOps CI` },
                     { html: `  Repository: <a href="https://github.com/ayhm325/DVLD-WPF" target="_blank" rel="noopener noreferrer" class="term-cyan">https://github.com/ayhm325/DVLD-WPF ↗</a>` }
                 ]);
                 break;
@@ -665,30 +674,45 @@
             case "test-suite":
             case "qa":
                 appendTerminalLines([
-                    { html: `<span class="term-emerald">[VERIFICATION]</span> <span class="term-white">Automated Unit &amp; Integration Testing (xUnit &amp; Moq)</span>` },
-                    { html: `  • Application Logic: Unit tests for business workflows &amp; service rules` },
-                    { html: `  • API Behavior: Integration tests for RESTful endpoints &amp; Problem Details responses` },
-                    { html: `  • Infrastructure: Persistence &amp; entity relationship tests with EF Core &amp; SQL Server` },
-                    { html: `  • Security: Authentication, role-based authorization &amp; HTTP 429 login rate-limiting scenarios` },
-                    { html: `  • CI Pipeline: Git/GitHub + Azure DevOps automated restore &amp; build pipeline` }
+                    { html: `<span class="term-emerald">[VERIFICATION]</span> <span class="term-white">3 Test Suites Across Solution (xUnit &amp; Moq)</span>` },
+                    { html: `  • DVLD.Application.UnitTests:        21 test classes · 633 verified passed unit tests` },
+                    { html: `  • DVLD.API.IntegrationTests:         20 controller suites + 9 end-to-end workflow suites` },
+                    { html: `  • DVLD.Infrastructure.IntegrationTests: 15 repository test suites + UnitOfWork tests` },
+                    { html: `  • CI Automation:                     Azure DevOps pipeline (azure-pipelines.yml) on windows-latest` }
                 ]);
                 break;
 
             case "security":
             case "auth":
                 appendTerminalLines([
-                    { html: `<span class="term-violet">[SECURITY BOUNDARY]</span>` },
-                    { html: `  • Authentication: JWT authentication for protected API endpoints` },
-                    { html: `  • Authorization:  Role-Based authorization across API resources` },
-                    { html: `  • Rate Limiting:  Login rate limiting returning HTTP 429 when configured limits are exceeded` },
-                    { html: `  • Error Handling: Global exception handling, Result Pattern &amp; Problem Details` }
+                    { html: `<span class="term-violet">[API SECURITY &amp; GUARDS]</span>` },
+                    { html: `  • JWT Auth:       Bearer token authentication with OnTokenValidated active-user verification` },
+                    { html: `  • Role Policies:  AdminOnly, StaffOnly (strictly excludes Admin), StaffOrAdmin` },
+                    { html: `  • Rate Limiting:  5 requests / 1 min per client IP returning HTTP 429 on abuse` },
+                    { html: `  • Error Standards:RFC 7807 ProblemDetails with traceId; clean HTTP 499 on client aborts` }
+                ]);
+                break;
+
+            case "uow":
+            case "transactions":
+                appendTerminalLines([
+                    { html: `<span class="term-cyan">[UNIT OF WORK &amp; TRANSACTIONS]</span>` },
+                    { html: `  • Deferred Commit: ExecuteInTransactionCoreAsync with deferPhysicalCommit: true` },
+                    { html: `  • Auto Rollback:   ChangeTracker.Clear() + transaction rollback on Result.IsFailure or exception` },
+                    { html: `  • Guards:          EnsureNoActiveTransaction blocks illegal nested transactions` },
+                    { html: `  • Recovery:        TransactionVerificationTracker probe checks if commit landed if connection drops` }
                 ]);
                 break;
 
             case "stack":
             case "skills":
                 appendTerminalLines([
-                    { html: `<span class="term-cyan">[CORE STACK]</span> C# · SQL · .NET · ASP.NET Core Web API · Entity Framework Core · SQL Server · LINQ · REST APIs · JWT · xUnit · Moq · WPF (MVVM) · Git · Azure DevOps` }
+                    { html: `<span class="term-cyan">[CORE STACK]</span>` },
+                    { html: `  • Languages: C# (.NET 8), SQL` },
+                    { html: `  • Backend:   ASP.NET Core Web API, Entity Framework Core 8, REST APIs, LINQ, JWT` },
+                    { html: `  • Database:  Microsoft SQL Server (14 tables, filtered unique indexes, 0 views, SSMS)` },
+                    { html: `  • Testing:   xUnit, Moq (Unit Testing, Integration Testing)` },
+                    { html: `  • Tooling:   Git, GitHub, Azure DevOps CI, Visual Studio, VS Code` }
                 ]);
                 break;
 
@@ -794,137 +818,158 @@
     const archData = {
         api: {
             code: "INSPECTOR // LAYER_02 :: ASP.NET_CORE_WEB_API",
-            badge: "CV-VERIFIED SPECIFICATION",
-            title: "API Layer — ASP.NET Core Web API",
-            summary: "Exposes application functionality through RESTful endpoints while strictly separating HTTP transport, authentication, and error formatting from underlying business logic and data-access responsibilities.",
+            badge: "VERIFIED SOURCE SPECIFICATION",
+            title: "API Layer — ASP.NET Core Web API (20 Controllers / 101 Actions)",
+            summary: "Exposes application functionality through 101 RESTful HTTP endpoints across 20 controllers, enforcing active-user JWT bearer authentication, role-based authorization policies, login rate limiting (HTTP 429), and standardized RFC 7807 ProblemDetails error responses.",
             decisions: [
-                "Separate API controller concerns from business workflows and persistence logic via Dependency Injection.",
-                "Protect endpoints with JWT authentication, role-based authorization, and login rate limiting (returning <code>HTTP 429</code> when limits are exceeded).",
-                "Centralize API error handling using global exception handling, the Result Pattern, and standardized <code>Problem Details</code> responses."
+                "Enforce security at the HTTP boundary via JWT Bearer tokens with <code>OnTokenValidated</code> active-user verification against <code>IUserService</code>.",
+                "Define explicit role policies: <code>AdminOnly</code>, <code>StaffOnly</code> (strictly requires Staff and excludes Admin), and <code>StaffOrAdmin</code>.",
+                "Protect against brute-force authentication with IP-based rate limiting (5 requests / 1 minute per IP, returning <code>HTTP 429</code>).",
+                "Centralize error handling with global exception handling returning RFC 7807 <code>ProblemDetails</code> with <code>traceId</code>, mapping client cancellations cleanly to <code>HTTP 499</code>.",
+                "Configure CORS policy <code>\"ReactApp\"</code> to support the companion early-stage frontend client."
             ],
-            current: "RESTful ASP.NET Core Web API endpoints, JWT authentication, role-based authorization, login rate limiting (HTTP 429), Global Exception Handling, Problem Details, and Swagger/OpenAPI documentation.",
-            planned: "Verified with automated unit and integration tests using xUnit and Moq covering API behavior, authentication, and security-related scenarios.",
+            current: "20 RESTful controllers, 101 HTTP actions, JWT Bearer auth, active-user validation, role-based authorization, login rate limiting (HTTP 429), RFC 7807 ProblemDetails, and Swagger/OpenAPI documentation.",
+            planned: "Verified with 20 controller integration test suites and 9 end-to-end workflow suites in DVLD.API.IntegrationTests using xUnit and Moq.",
             filename: "LAYER SPECIFICATION // HTTP & SECURITY BOUNDARY",
-            snippet: `Layer Role       : Expose RESTful endpoints & enforce security boundary
-Inbound Contract : HTTP Request + DTOs + JWT Bearer Token
-Security Guards  : JWT Authentication + Role-Based Authorization
-Abuse Protection : Login Rate Limiting -> returns HTTP 429 on repeated attempts
-Error Semantics  : Global Exception Handling + Result Pattern -> Problem Details
-Verification     : Integration tests covering API behavior, auth & security`,
-            tags: ["ASP.NET Core Web API", "REST APIs", "JWT Authentication", "Role-Based Authorization", "Rate Limiting (HTTP 429)", "Problem Details", "Swagger / OpenAPI"]
+            snippet: `Layer Scale      : 20 Controllers · 101 HTTP Actions
+Inbound Contract : HTTP Request + DVLD.Contracts DTOs + JWT Bearer Token
+Security Guards  : JWT Bearer + OnTokenValidated Active Check + Role Policies (Admin/Staff)
+Abuse Protection : Login Rate Limiting (5 req / 1 min / IP -> HTTP 429)
+Error Semantics  : RFC 7807 ProblemDetails with traceId · HTTP 499 on cancellation
+CORS Policy      : "ReactApp" (origin: http://localhost:5173 for companion client)
+Verification     : 20 Controller integration suites + 9 workflow integration suites`,
+            tags: ["ASP.NET Core Web API", "20 Controllers", "101 Actions", "JWT Bearer", "Role Policies", "Rate Limiting (HTTP 429)", "Problem Details", "Swagger / OpenAPI"]
         },
         application: {
             code: "INSPECTOR // LAYER_03 :: APPLICATION_SERVICE_LAYER",
-            badge: "CV-VERIFIED SPECIFICATION",
-            title: "Application Layer — Service Layer & Business Workflows",
-            summary: "Coordinates core driving-license business workflows (license applications, test appointments, license issuance, renewal, replacement, detention/release, and international licenses) using the Service Layer, DTOs, and Result Pattern while remaining decoupled from HTTP and SQL Server details.",
+            badge: "VERIFIED SOURCE SPECIFICATION",
+            title: "Application Layer — 21 Services, 13 Validators & Result Pattern",
+            summary: "Orchestrates core driving-license business workflows (applications, test appointments, license issuance, renewal, replacement, detention/release, and international licenses) across 21 scoped services, 13 validators, 11 mappers, and 36 interfaces using the Result Pattern.",
             decisions: [
-                "Model expected business rule failures explicitly through the <code>Result Pattern</code> rather than relying on unhandled exceptions for control flow.",
-                "Apply Dependency Injection and SOLID principles so application services depend on Repository and Unit of Work abstractions.",
-                "Isolate domain entities from external callers using Data Transfer Objects (<code>DTOs</code>)."
+                "Model domain and validation outcomes explicitly using <code>Result</code> and <code>Result&lt;T&gt;</code> instead of throwing control-flow exceptions.",
+                "Enforce strict business invariants across 13 dedicated validators before invoking persistence operations.",
+                "Apply Dependency Injection so services depend exclusively on 15 Repository and Unit of Work abstractions.",
+                "Map domain entities to transport DTOs via 11 dedicated mappers to isolate internal domain state."
             ],
-            current: "Service Layer workflows for license applications, test appointments, license issuance, renewal, replacement, detention and release, and international licenses.",
-            planned: "Verified with automated unit tests using xUnit and Moq covering application logic and service-layer business rules.",
+            current: "21 scoped services, 13 validators, 11 mappers, 36 interfaces, DTOs, and Result Pattern orchestrating all DVLD licensing, testing, and detention workflows.",
+            planned: "Verified by 21 unit test classes with 633 passed unit tests in DVLD.Application.UnitTests using xUnit and Moq.",
             filename: "LAYER SPECIFICATION // APPLICATION WORKFLOW ENGINE",
-            snippet: `Layer Role       : Orchestrate business rules & multi-step licensing workflows
-Patterns Applied : Service Layer, Dependency Injection, DTOs, Result Pattern
-Core Workflows   : Applications, Test Appointments, Issuance, Renewal,
-                   Replacement, Detention & Release, International Licenses
-Outbound Ports   : Repository & Unit of Work interfaces
-Verification     : Unit tests covering application logic with xUnit & Moq`,
-            tags: ["C#", ".NET", "Service Layer", "Result Pattern", "DTOs", "SOLID Principles", "Dependency Injection", "xUnit & Moq"]
+            snippet: `Layer Scale      : 21 Scoped Services · 13 Validators · 11 Mappers · 36 Interfaces
+Patterns Applied : Service Layer, Dependency Injection, DTOs, Result Pattern (Result/Result<T>)
+Core Workflows   : License Applications, Written/Vision/Driving Tests, Issuance,
+                   Renewal, Damaged/Lost Replacement, Detention & Release, International
+Outbound Ports   : 15 Repository interfaces + IUnitOfWork abstraction
+Verification     : 21 test classes · 633 passing unit tests in DVLD.Application.UnitTests`,
+            tags: ["C#", ".NET 8", "21 Services", "13 Validators", "Result Pattern", "DTOs", "Dependency Injection", "xUnit & Moq"]
         },
         infrastructure: {
             code: "INSPECTOR // LAYER_04 :: INFRASTRUCTURE_DATA_ACCESS",
-            badge: "CV-VERIFIED SPECIFICATION",
-            title: "Infrastructure Layer — EF Core, Repositories & Unit of Work",
-            summary: "Implements data-access responsibilities using Entity Framework Core and SQL Server. Applies the Repository and Unit of Work patterns to improve separation of concerns and maintain transactional consistency across persistence operations.",
+            badge: "VERIFIED SOURCE SPECIFICATION",
+            title: "Infrastructure Layer — EF Core 8 & Unit of Work with Deferred Commit",
+            summary: "Manages relational persistence via Entity Framework Core 8 and SQL Server across 15 scoped repositories. Coordinates multi-repository operations through a transactional Unit of Work featuring deferred physical commits and ambiguous commit recovery.",
             decisions: [
-                "Encapsulate Entity Framework Core queries and CRUD operations behind Repository interfaces.",
-                "Coordinate multi-step persistence changes through the <code>Unit of Work</code> pattern to maintain transactional consistency.",
-                "Use LINQ-based queries and entity relationship mappings aligned with the SQL Server relational schema."
+                "Encapsulate EF Core 8 LINQ queries and CRUD persistence behind 15 scoped repository interfaces.",
+                "Implement <code>ExecuteInTransactionCoreAsync</code> with deferred physical commit (<code>deferPhysicalCommit: true</code>) for transactional consistency.",
+                "Enforce automatic rollback and <code>ChangeTracker.Clear()</code> upon <code>Result.IsFailure</code> or unhandled exceptions.",
+                "Guard against illegal nested transactions using <code>EnsureNoActiveTransaction</code>.",
+                "Implement <code>TransactionVerificationTracker</code> probe checks to verify if commit landed in case of network drops during commit.",
+                "Configure <code>DVLDDbContext</code> with <code>EnableRetryOnFailure()</code> for transient connection resilience."
             ],
-            current: "Entity Framework Core persistence, Repository Pattern, Unit of Work pattern, entity relationships, CRUD operations, and LINQ-based queries.",
-            planned: "Verified with automated integration tests covering infrastructure operations and relational persistence.",
-            filename: "LAYER SPECIFICATION // INFRASTRUCTURE & PERSISTENCE",
-            snippet: `Layer Role       : Persist domain state & enforce transactional consistency
-Patterns Applied : Repository Pattern, Unit of Work, Dependency Injection
-Data Access      : Entity Framework Core + LINQ-based queries + CRUD operations
-Database Target  : Microsoft SQL Server (Entity Relationships & Constraints)
-Verification     : Integration tests covering infrastructure operations`,
-            tags: ["Entity Framework Core", "Repository Pattern", "Unit of Work", "LINQ", "SQL Server", "Transactional Consistency"]
+            current: "15 scoped repositories, EF Core 8 DVLDDbContext, Unit of Work with deferred physical commit, ambiguous outcome probe verification, and transactional consistency.",
+            planned: "Verified by 15 repository integration test suites and dedicated UnitOfWorkTests in DVLD.Infrastructure.IntegrationTests.",
+            filename: "LAYER SPECIFICATION // INFRASTRUCTURE & TRANSACTIONS",
+            snippet: `Repositories     : 15 Scoped Repositories encapsulating EF Core 8 persistence
+UoW Pattern      : ExecuteInTransactionCoreAsync with deferPhysicalCommit: true
+Rollback Safety  : ChangeTracker.Clear() + rollback on failure or exception
+Transaction Guard: EnsureNoActiveTransaction blocks nested transactions
+Recovery System  : TransactionVerificationTracker probe check for ambiguous commit drops
+Resilience       : EnableRetryOnFailure() configured on scoped DVLDDbContext
+Verification     : 15 repository integration suites + UnitOfWork transactional tests`,
+            tags: ["Entity Framework Core 8", "15 Repositories", "Unit of Work", "Deferred Commit", "Transaction Recovery", "SQL Server"]
         },
         database: {
             code: "INSPECTOR // LAYER_05 :: SQL_SERVER_DATABASE",
-            badge: "CV-VERIFIED SPECIFICATION",
-            title: "Database Layer — Microsoft SQL Server",
-            summary: "Provides relational persistence, entity relationships, and data integrity for driving license applications, test appointments, license issuance, renewal, replacement, detention and release, and international licenses.",
+            badge: "VERIFIED SOURCE SPECIFICATION",
+            title: "Database Layer — Microsoft SQL Server (14 Tables · 0 SQL Views)",
+            summary: "Provides relational persistence for the entire licensing authority across 14 tables and 4 EF Core migrations. Deliberately uses 0 database views in favor of direct EF Core LINQ projections and base-table row locks for concurrency safety.",
             decisions: [
-                "Design relational tables with explicit entity relationships in Microsoft SQL Server.",
-                "Write SQL queries utilizing <code>JOINs</code>, <code>GROUP BY</code> aggregations, and <code>Subqueries</code> alongside EF Core LINQ queries.",
-                "Manage and inspect database schemas and queries using SQL Server Management Studio (SSMS)."
+                "Structure relational data across 14 tables with strict foreign key constraints and restrictive deletes.",
+                "Apply filtered unique indexes: <code>(DriverID, LicenseClass) WHERE IsActive = 1</code>, <code>(LicenseID, IsReleased) WHERE IsReleased = 0</code>, and <code>DriverID WHERE IsActive = 1</code>.",
+                "Deliberate architectural choice of <strong>0 SQL views</strong>: application reads use direct EF Core LINQ projections, while high-concurrency repository queries target base tables with explicit row-level locks (<code>UPDLOCK, ROWLOCK, HOLDLOCK</code>) and a single aggregate query for dashboard telemetry.",
+                "Manage migrations and verify database schema and query performance using SSMS."
             ],
-            current: "Relational database design and entity relationships in Microsoft SQL Server supporting all DVLD licensing, testing, and detention workflows.",
-            planned: "Verified through infrastructure and persistence integration tests alongside EF Core CRUD and LINQ operations.",
+            current: "14 relational tables, 4 migrations, filtered unique indexes, restrictive foreign keys, and 0 SQL views in Microsoft SQL Server.",
+            planned: "Verified through infrastructure persistence suites and multi-step transaction integration tests against SQL Server.",
             filename: "LAYER SPECIFICATION // RELATIONAL DATABASE DESIGN",
-            snippet: `Database Engine  : Microsoft SQL Server (Managed via SSMS & EF Core)
-Core Capabilities: Database Design, Entity Relationships, CRUD Operations
-Query Techniques : SQL Queries, JOINs, GROUP BY, Subqueries, LINQ
-Domain Workflows : License Applications, Test Appointments, Issuance,
-                   Renewal, Replacement, Detention & Release, International`,
-            tags: ["SQL Server", "SQL Queries", "JOINs", "GROUP BY", "Subqueries", "Database Design", "Entity Relationships", "SSMS"]
+            snippet: `Database Engine  : Microsoft SQL Server (14 Tables · 4 Migrations)
+View Strategy    : 0 SQL Views — Direct EF Core LINQ projections + raw SQL repository queries
+Row-Level Locks  : UPDLOCK, ROWLOCK, HOLDLOCK applied on concurrency-sensitive base tables
+Filtered Indexes : (DriverID, LicenseClass) WHERE IsActive = 1
+                   (LicenseID, IsReleased) WHERE IsReleased = 0
+Data Integrity   : Restrictive delete foreign keys + unique constraints
+Management Tools : SQL Server Management Studio (SSMS) & EF Core Migrations`,
+            tags: ["SQL Server", "14 Tables", "0 SQL Views", "Filtered Indexes", "Row Locks (UPDLOCK)", "EF Core Migrations", "SSMS"]
         },
         presentation: {
-            code: "INSPECTOR // LAYER_01 :: WPF_MVVM_PRESENTATION",
-            badge: "CV-VERIFIED SPECIFICATION",
-            title: "Presentation Layer — WPF Desktop Client (MVVM)",
-            summary: "Provides the desktop presentation layer for the driving license management system using Windows Presentation Foundation (WPF) structured with the Model-View-ViewModel (MVVM) pattern.",
+            code: "INSPECTOR // LAYER_01 :: PRESENTATION_AND_CLIENTS",
+            badge: "VERIFIED SOURCE SPECIFICATION",
+            title: "Presentation Layer — WPF Desktop Client (MVVM) & Companion Web App",
+            summary: "Includes a desktop presentation client built with Windows Presentation Foundation (WPF) structured with MVVM (CommunityToolkit.Mvvm), referencing only DVLD.Contracts, alongside an early-stage companion client built with React 19, TypeScript, and Vite.",
             decisions: [
-                "Apply the <code>MVVM</code> pattern to separate UI presentation views from state and command handling.",
-                "Keep presentation responsibilities isolated from business logic and database persistence layers."
+                "Structure WPF presentation with <code>CommunityToolkit.Mvvm</code> separating UI views from view models.",
+                "Enforce compile-time decoupling: Presentation references only <code>DVLD.Contracts</code>, NOT the API or Application projects.",
+                "Companion React Frontend (<code>ClientApp</code>): Early-stage companion web client built with React 19 + TypeScript + Vite, consuming the Web API over HTTP/JSON with JWT authentication via the <code>\"ReactApp\"</code> CORS policy."
             ],
-            current: "WPF desktop presentation layer structured with the MVVM pattern as part of the 5-layer DVLD architecture.",
-            planned: "Maintained alongside the multi-layered .NET solution using Git, GitHub, and Azure DevOps build automation.",
-            filename: "LAYER SPECIFICATION // DESKTOP PRESENTATION",
-            snippet: `Layer Role       : Desktop presentation layer for DVLD workflows
-UI Framework     : Windows Presentation Foundation (WPF)
-Design Pattern   : Model-View-ViewModel (MVVM)
-Boundary Rule    : Separated from business logic and data-access layers`,
-            tags: ["WPF", "MVVM", "C#", ".NET", "Separation of Concerns"]
+            current: "WPF desktop presentation layer (MVVM) referencing DVLD.Contracts, plus early-stage React 19/TS companion client consuming the Web API.",
+            planned: "Maintained alongside the multi-layered solution with Git, GitHub, and Azure DevOps CI build verification.",
+            filename: "LAYER SPECIFICATION // CLIENT PRESENTATION",
+            snippet: `Desktop Client   : Windows Presentation Foundation (WPF)
+MVVM Framework   : CommunityToolkit.Mvvm (Views, ViewModels, Commands)
+Decoupling Rule  : Presentation references only DVLD.Contracts (never API or Application)
+Companion Web App: ClientApp (React 19 + TypeScript + Vite, early-stage companion client)
+API Connectivity : HTTP + JSON + JWT Bearer via "ReactApp" CORS policy`,
+            tags: ["WPF", "MVVM", "CommunityToolkit.Mvvm", "DVLD.Contracts", "React 19 (Companion)", "TypeScript"]
         },
         domain: {
             code: "INSPECTOR // CORE_LAYER :: DOMAIN_ENTITIES",
-            badge: "CV-VERIFIED SPECIFICATION",
-            title: "Domain Layer — Core Entities & Domain Concepts",
-            summary: "Represents the core domain layer of the multi-layered DVLD architecture, modeling essential entities and domain relationships across applications, tests, drivers, and licenses.",
+            badge: "VERIFIED SOURCE SPECIFICATION",
+            title: "Domain Layer — 14 Entities & 6 Enums",
+            summary: "Models the core licensing domain through 14 entities and 6 enums without external dependencies, capturing license applications, test types, drivers, licenses, detentions, and international permits.",
             decisions: [
-                "Separate the Domain layer from API transport, presentation UI, and infrastructure persistence concerns.",
-                "Represent core licensing entities and relationships cleanly using object-oriented C# principles."
+                "Keep the Domain layer completely free of EF Core, ASP.NET Core, or WPF dependencies.",
+                "Model core concepts with 14 entities (Person, User, Driver, License, LicenseClass, Application, LocalDrivingLicenseApplication, TestAppointment, Test, DetainedLicense, InternationalLicense, ApplicationType, TestType) and 6 enums.",
+                "Represent core domain relationships cleanly using object-oriented C# principles."
             ],
-            current: "Separate Domain layer within the 5-layer DVLD solution architecture.",
-            planned: "Exercised through unit tests of application workflows and domain rules using xUnit and Moq.",
+            current: "14 domain entities and 6 enums representing the full licensing lifecycle in pure C#.",
+            planned: "Exercised through 633 unit tests in DVLD.Application.UnitTests using xUnit and Moq.",
             filename: "LAYER SPECIFICATION // DOMAIN MODEL",
-            snippet: `Layer Role       : Core business entities and domain concepts
-Architecture     : Separate Domain layer in the 5-layer DVLD solution
-Principles       : Object-Oriented Programming (OOP) & Separation of Concerns`,
-            tags: ["Domain Layer", "C#", "OOP", "Entity Relationships", "Layered Architecture"]
+            snippet: `Layer Scope      : Pure domain model (0 external framework dependencies)
+Entities (14)    : Person, User, Driver, License, LicenseClass, Application,
+                   LocalDrivingLicenseApplication, TestAppointment, Test,
+                   DetainedLicense, InternationalLicense, ApplicationType, TestType
+Enums (6)        : EnApplicationStatus, EnTestType, EnLicenseClass, etc.
+Architecture     : Core independent domain layer in the 9-project solution`,
+            tags: ["Domain Layer", "14 Entities", "6 Enums", "Pure C#", "OOP", "Zero Dependencies"]
         },
         contracts: {
-            code: "INSPECTOR // BOUNDARY :: DTOS_AND_RESULT_PATTERN",
-            badge: "CV-VERIFIED SPECIFICATION",
-            title: "DTOs, Result Pattern & Problem Details Boundary",
-            summary: "Defines clean data-transfer and error-handling contracts across layers—using DTOs for request/response data, the Result Pattern for business outcomes, and Problem Details for standardized HTTP error responses.",
+            code: "INSPECTOR // BOUNDARY :: DVLD_CONTRACTS_ASSEMBLY",
+            badge: "VERIFIED SOURCE SPECIFICATION",
+            title: "DVLD.Contracts — Shared Transport Contracts & Boundary",
+            summary: "A dedicated project (DVLD.Contracts) providing shared request/response DTOs between the Web API and client applications, ensuring clients remain completely decoupled from internal Application and Domain types.",
             decisions: [
-                "Use Data Transfer Objects (<code>DTOs</code>) to decouple internal domain entities from API request/response payloads.",
-                "Combine the <code>Result Pattern</code> with global exception handling and <code>Problem Details</code> for consistent error reporting."
+                "Package transport contracts in an independent assembly (<code>DVLD.Contracts</code>) shared between API and WPF.",
+                "Presentation references <code>DVLD.Contracts</code> directly, preventing accidental coupling to backend domain entities.",
+                "Combine DTOs with the <code>Result Pattern</code> and RFC 7807 <code>ProblemDetails</code> for consistent API contracts."
             ],
-            current: "DTOs, Result Pattern, Global Exception Handling, and Problem Details responses implemented across the API and Application layers.",
-            planned: "Verified through API and application test suites covering expected failure and error-handling scenarios.",
-            filename: "LAYER SPECIFICATION // DATA & ERROR CONTRACTS",
-            snippet: `Data Contracts   : Data Transfer Objects (DTOs) across service/API boundaries
-Outcome Modeling : Result Pattern for explicit success/failure handling
-HTTP Error Format: Centralized Global Exception Handling + Problem Details`,
-            tags: ["DTOs", "Result Pattern", "Problem Details", "Global Exception Handling", "REST APIs"]
+            current: "DVLD.Contracts shared project providing transport request/response contracts for all 101 API endpoints and WPF client.",
+            planned: "Verified across API integration test suites and WPF client view model unit tests.",
+            filename: "LAYER SPECIFICATION // SHARED TRANSPORT CONTRACTS",
+            snippet: `Project Name     : DVLD.Contracts (Independent assembly)
+Role             : Shared DTO transport contracts for API & Client applications
+Decoupling Rule  : WPF references DVLD.Contracts instead of Application or API projects
+Format Standards : JSON serialization + RFC 7807 ProblemDetails for errors
+Endpoints Served : 101 RESTful HTTP actions across 20 controllers`,
+            tags: ["DVLD.Contracts", "DTOs", "Shared Transport", "Result Pattern", "Problem Details", "Decoupled Architecture"]
         }
     };
 

@@ -18,17 +18,17 @@ Designed around the **Digital Frontier** aesthetic—deep near-black and graphit
    - Real-time 3D-projected architectural topology visualizing the 5-layer DVLD .NET solution (`Presentation (WPF)`, `ASP.NET Core API`, `Application & Domain`, `EF Core & UoW`, `SQL Server`) plus `DTOs & Result` and `JWT & RateLimit` nodes.
    - Pointer-draggable 3D perspective with live telemetry packets and keyboard-accessible layer filtering.
 2. **Keyboard-Accessible Engineering CLI (`ayhm@core:~$`)**:
-   - Functional inspection shell supporting commands (`help`, `whoami`, `arch`, `dvld`, `tests`, `security`, `stack`, `contact`, `cv`, `goto`, `clear`), command history (`ArrowUp` / `ArrowDown`), clickable quick-command chips, and `/` global focus shortcut.
+   - Functional inspection shell supporting commands (`help`, `whoami`, `arch`, `dvld`, `tests`, `security`, `stack`, `uow`, `contact`, `cv`, `goto`, `clear`), command history (`ArrowUp` / `ArrowDown`), clickable quick-command chips, and `/` global focus shortcut.
 3. **"Inside the System" Layered .NET Architecture Workbench (`#architecture`)**:
-   - Explorable schematic of the 5 verified layers (`Presentation`, `API`, `Application`, `Domain`, `Infrastructure`), `SQL Server` persistence, and `DTOs & Result Pattern` boundary.
-   - Selecting any component reveals its verified responsibility, applied patterns, layer specification contract, and **Implementation & Verification Scope**.
+   - Explorable schematic of the verified layers (`Presentation`, `API`, `Application`, `Domain`, `Infrastructure`), `SQL Server` persistence (14 tables, 0 SQL views), and `DVLD.Contracts` shared transport boundary.
+   - Selecting any component reveals its verified responsibility, applied patterns (Unit of Work with deferred physical commit, Result Pattern, active-user JWT validation), and **Implementation & Verification Scope**.
 4. **DVLD Flagship Case Study & Workflow Explorer (`#projects`)**:
-   - End-to-end interactive trace of 4 verified DVLD business workflows:
+   - Deep dive into the 9 .NET projects + early companion React client, 20 controllers, 101 actions, and interactive trace of 4 verified DVLD business workflows:
      1. Authentication, Role-Based Authorization & Login Rate Limiting (`HTTP 429`)
      2. Driving License Applications & Test Appointments
      3. License Issuance, Renewal & Replacement Workflows
      4. License Detention, Release & International Licenses
-   - Highlights the 4-pillar automated test coverage (`xUnit` & `Moq` covering application logic, API behavior, infrastructure operations, and security scenarios) and the Git/GitHub + Azure DevOps automated restore and build pipeline.
+   - Highlights the 3 test suites (DVLD.Application.UnitTests with 633 tests, DVLD.API.IntegrationTests, and DVLD.Infrastructure.IntegrationTests) and the Git/GitHub + Azure DevOps automated restore and build pipeline.
 5. **Evidence-Backed Capabilities Matrix (`#skills`)**:
    - Organized across 8 core engineering categories with interactive domain filtering and concrete project evidence rather than arbitrary percentage scores.
 
