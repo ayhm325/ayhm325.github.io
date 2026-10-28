@@ -151,54 +151,60 @@ kbd {
 }
 
 /* --------------------------------------------------------------------------
-   CUSTOM PRECISION RETICLE CURSOR (DESKTOP FINE POINTER)
+   NATIVE HARDWARE CURSOR & INTERACTIVE POINTER STATES
    -------------------------------------------------------------------------- */
-.frontier-cursor {
-    position: fixed;
-    top: 0;
-    left: 0;
-    z-index: 99990;
-    pointer-events: none;
-    opacity: 0;
-    transform: translate3d(var(--cursor-x, -100px), var(--cursor-y, -100px), 0);
-    transition: opacity 0.2s ease;
-    will-change: transform;
+body {
+    cursor: default;
 }
 
-.frontier-cursor.ready {
-    opacity: 1;
+/* Clear, responsive pointer feedback on interactive elements */
+a,
+button,
+[role="button"],
+[role="tab"],
+.btn,
+.nav-link,
+.chip,
+.term-chip,
+.core-filter-btn,
+.workflow-step,
+.topo-node,
+.contact-card,
+.tool-item,
+summary {
+    cursor: pointer;
 }
 
-.cursor-ring {
-    width: 24px;
-    height: 24px;
-    border: 1.5px solid rgba(6, 182, 212, 0.65);
-    box-shadow: 0 0 0 1px rgba(0, 0, 0, 0.45);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
-    transition: width 0.18s var(--ease-out), height 0.18s var(--ease-out), border-color 0.18s, background-color 0.18s;
+/* Precise text-selection cursor across readable text */
+p,
+span,
+li,
+td,
+th,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+code,
+pre,
+.terminal-output {
+    cursor: text;
 }
 
-.cursor-dot {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 4px;
-    height: 4px;
-    background: var(--cyan-bright);
-    border-radius: 50%;
-    transform: translate(-50%, -50%);
+/* Override text cursor for interactive children */
+a,
+button,
+.btn,
+.term-chip,
+.core-filter-btn {
+    cursor: pointer;
 }
 
-.cursor-coords {
-    display: none; /* Hidden to prevent obscuring text, cards, or controls */
-}
-
-.frontier-cursor.hovered .cursor-ring {
-    width: 36px;
-    height: 36px;
-    border-color: var(--cyan);
-    background-color: rgba(6, 182, 212, 0.08);
+:focus-visible {
+    outline: 2px solid var(--cyan-bright);
+    outline-offset: 3px;
 }
 
 /* --------------------------------------------------------------------------
@@ -880,12 +886,64 @@ kbd {
     flex-shrink: 0;
 }
 
+/* --------------------------------------------------------------------------
+   HERO 3D ARCHITECTURE VISUALIZATION & UNCONSTRAINED TOPOLOGY STAGE
+   -------------------------------------------------------------------------- */
+.core-info-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 18px;
+    background: rgba(11, 15, 25, 0.95);
+    border-bottom: 1px solid var(--line-subtle);
+    gap: 12px;
+}
+
+.core-info-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.core-info-title {
+    font-family: var(--font-sans);
+    font-size: 0.76rem;
+    font-weight: 600;
+    letter-spacing: 0.04em;
+    color: var(--text-muted);
+}
+
+.core-coords-display {
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--cyan);
+}
+
+.core-info-status {
+    flex-shrink: 0;
+}
+
+.hud-chip {
+    display: inline-block;
+    padding: 4px 10px;
+    font-family: var(--font-sans);
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: var(--cyan-bright);
+    background: rgba(7, 10, 16, 0.9);
+    border: 1px solid var(--cyan-border);
+    border-radius: var(--radius-sm);
+    box-shadow: 0 1px 4px rgba(0, 0, 0, 0.35);
+}
+
+/* Dedicated animated canvas region with zero overlapping UI controls */
 .core-stage {
     position: relative;
-    height: 295px;
+    width: 100%;
+    height: 380px;
     background:
-        radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.08), transparent 65%),
-        #090e17;
+        radial-gradient(circle at 50% 50%, rgba(6, 182, 212, 0.08), transparent 70%),
+        #080c14;
     border-bottom: 1px solid var(--line-subtle);
     overflow: hidden;
 }
@@ -895,73 +953,65 @@ kbd {
     height: 100%;
     display: block;
     cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
 }
 
 #systemCoreCanvas:active {
     cursor: grabbing;
 }
 
-.core-hud-topleft {
-    position: absolute;
-    top: 12px;
-    left: 14px;
+/* Filter toolbar below visualization in normal document flow */
+.core-toolbar-region {
     display: flex;
-    flex-direction: column;
-    gap: 3px;
-    font-family: var(--font-sans);
-    font-size: 0.76rem;
-    color: var(--text-muted);
-    pointer-events: none;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 18px;
+    background: rgba(11, 15, 25, 0.98);
+    border-bottom: 1px solid var(--line-subtle);
 }
 
-.core-hud-topright {
-    position: absolute;
-    top: 12px;
-    right: 14px;
-    pointer-events: none;
-}
-
-.hud-chip {
-    display: inline-block;
-    padding: 4px 9px;
-    font-family: var(--font-sans);
-    font-size: 0.78rem;
+.core-toolbar-label {
+    font-family: var(--font-mono);
+    font-size: 0.74rem;
     font-weight: 600;
-    color: var(--cyan-bright);
-    background: rgba(7, 10, 16, 0.88);
-    border: 1px solid var(--cyan-border);
-    border-radius: 3px;
+    color: var(--text-muted);
+    letter-spacing: 0.05em;
+    white-space: nowrap;
 }
 
 .core-layer-controls {
-    position: absolute;
-    bottom: 10px;
-    left: 12px;
-    right: 12px;
     display: flex;
     flex-wrap: wrap;
-    gap: 6px;
-    justify-content: center;
+    gap: 8px;
+    align-items: center;
 }
 
 .core-filter-btn {
-    padding: 5px 11px;
+    padding: 6px 12px;
     font-family: var(--font-sans);
     font-size: 0.76rem;
     font-weight: 600;
     color: var(--text-secondary);
-    background: rgba(7, 10, 16, 0.9);
+    background: rgba(15, 23, 42, 0.85);
     border: 1px solid var(--line-subtle);
-    border-radius: 3px;
-    transition: all 0.18s;
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+    transition: all 0.18s ease;
+    white-space: nowrap;
 }
 
-.core-filter-btn:hover,
-.core-filter-btn.active {
-    color: var(--bg-void);
-    background: var(--cyan);
+.core-filter-btn:hover {
+    color: var(--text-primary);
     border-color: var(--cyan);
-    font-weight: 600;
+    background: rgba(6, 182, 212, 0.12);
+}
+
+.core-filter-btn.active {
+    color: #070a10;
+    background: var(--cyan-bright);
+    border-color: var(--cyan-bright);
+    font-weight: 700;
 }
 
 /* Interactive Engineering Terminal */
@@ -2446,7 +2496,34 @@ kbd {
     }
 
     .core-stage {
-        height: 250px;
+        height: 320px;
+    }
+
+    .core-info-bar {
+        padding: 8px 14px;
+        flex-wrap: wrap;
+    }
+
+    .core-toolbar-region {
+        flex-direction: column;
+        align-items: flex-start;
+        padding: 10px 14px;
+        gap: 6px;
+    }
+
+    .core-layer-controls {
+        width: 100%;
+        overflow-x: auto;
+        flex-wrap: nowrap;
+        padding-bottom: 4px;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+    }
+
+    .core-filter-btn {
+        flex-shrink: 0;
+        font-size: 0.74rem;
+        padding: 5px 10px;
     }
 
     .footer-container {
@@ -2458,20 +2535,13 @@ kbd {
 /* --------------------------------------------------------------------------
    TOUCH & REDUCED MOTION SAFEGUARDS
    -------------------------------------------------------------------------- */
-@media (hover: none), (pointer: coarse) {
-    .frontier-cursor {
-        display: none !important;
-    }
-}
+
 
 @media (prefers-reduced-motion: reduce) {
     html {
         scroll-behavior: auto;
     }
 
-    .frontier-cursor {
-        display: none !important;
-    }
 
     .reveal {
         opacity: 1 !important;

@@ -101,12 +101,7 @@
 <body>
     <a class="skip-link" href="#main-content">Skip to main engineering content</a>
 
-    <!-- Custom Precision Reticle Cursor (Desktop fine pointer only) -->
-    <div class="frontier-cursor" id="frontierCursor" aria-hidden="true" role="presentation">
-        <div class="cursor-ring"></div>
-        <div class="cursor-dot"></div>
-        <span class="cursor-coords" id="cursorCoords">0000 : 0000</span>
-    </div>
+    <!-- Native OS Cursor with polished interactive states -->
 
     <!-- Top Reading Progress Telemetry Line -->
     <div class="scroll-progress-track" aria-hidden="true">
@@ -258,21 +253,25 @@
                             <div class="topbar-badge">5-LAYER ARCH</div>
                         </div>
 
-                        <!-- Interactive 3D System Core Visualization -->
-                        <div class="core-stage" id="coreStage">
-                            <canvas id="systemCoreCanvas" width="600" height="320" aria-label="Interactive 3D visualization of the 5-layer DVLD .NET architecture"></canvas>
-
-                            <!-- HUD Overlays inside 3D stage -->
-                            <div class="core-hud-topleft" aria-hidden="true">
-                                <span>TOPOLOGY: 5-LAYER .NET SOLUTION</span>
-                                <span id="coreCoordsReadout">ROT_X: +0.22rad // ROT_Y: -0.35rad</span>
+                        <!-- 2. Topology Status & Telemetry Bar (Above Canvas) -->
+                        <div class="core-info-bar">
+                            <div class="core-info-meta" aria-hidden="true">
+                                <span class="core-info-title">TOPOLOGY: 5-LAYER .NET SOLUTION + CLIENTS</span>
+                                <span class="core-coords-display" id="coreCoordsReadout">ROT_X: +0.22rad // ROT_Y: -0.35rad</span>
                             </div>
-
-                            <div class="core-hud-topright">
+                            <div class="core-info-status">
                                 <span class="hud-chip" id="coreActiveLayerBadge">ACTIVE: FULL STACK TOPOLOGY</span>
                             </div>
+                        </div>
 
-                            <!-- Interactive Layer Filter Controls (Keyboard & Pointer accessible) -->
+                        <!-- 3. Dedicated Animated Canvas Region (Unobstructed 3D Space) -->
+                        <div class="core-stage" id="coreStage">
+                            <canvas id="systemCoreCanvas" aria-label="Interactive 3D visualization of the 5-layer DVLD .NET architecture"></canvas>
+                        </div>
+
+                        <!-- 4. Filter Toolbar Below Visualization in Normal Document Flow -->
+                        <div class="core-toolbar-region">
+                            <span class="core-toolbar-label" aria-hidden="true">FILTER VIEW:</span>
                             <div class="core-layer-controls" role="toolbar" aria-label="Filter 3D architecture core nodes">
                                 <button type="button" class="core-filter-btn active" data-core-filter="all" aria-pressed="true">ALL NODES</button>
                                 <button type="button" class="core-filter-btn" data-core-filter="clients" aria-pressed="false">CLIENTS (REACT &amp; WPF)</button>

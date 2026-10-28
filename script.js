@@ -12,8 +12,6 @@
         pageVisible: !document.hidden,
         pointerX: window.innerWidth / 2,
         pointerY: window.innerHeight / 2,
-        cursorX: window.innerWidth / 2,
-        cursorY: window.innerHeight / 2,
         pointerActive: false,
         motionRaf: 0,
         ambientRaf: 0,
@@ -168,12 +166,9 @@
     }
 
     /* ==========================================================================
-       3. PRECISION CURSOR, SPOTLIGHT CARDS & MAGNETIC INTERACTIONS
+       3. SPOTLIGHT CARDS & SUBTLE MAGNETIC INTERACTIONS (NATIVE OS CURSOR)
        ========================================================================== */
-    const frontierCursor = $("#frontierCursor");
-    const cursorCoords = $("#cursorCoords");
     const spotlightCards = $$(".spotlight-card");
-    const interactiveSelectors = "a, button, input, .topo-node, .wf-tab, .skill-filter-btn, .core-filter-btn, .term-chip";
 
     if (!coarsePointer.matches && !reducedMotion.matches) {
         $$(".magnetic").forEach(el => {
@@ -199,15 +194,6 @@
             state.pointerY = e.clientY;
             state.pointerActive = true;
 
-            if (frontierCursor) {
-                frontierCursor.classList.add("ready");
-            }
-            if (cursorCoords) {
-                const xStr = String(Math.round(e.clientX)).padStart(4, "0");
-                const yStr = String(Math.round(e.clientY)).padStart(4, "0");
-                cursorCoords.textContent = `${xStr} : ${yStr}`;
-            }
-
             for (const card of spotlightCards) {
                 const rect = card.getBoundingClientRect();
                 if (
@@ -222,32 +208,10 @@
             }
         }, { passive: true });
 
-        document.addEventListener("pointerover", e => {
-            if (!frontierCursor) return;
-            if (e.target.closest?.(interactiveSelectors)) {
-                frontierCursor.classList.add("hovered");
-            }
-        }, { passive: true });
-
-        document.addEventListener("pointerout", e => {
-            if (!frontierCursor) return;
-            const rel = e.relatedTarget;
-            if (!rel || !rel.closest?.(interactiveSelectors)) {
-                frontierCursor.classList.remove("hovered");
-            }
-        }, { passive: true });
-
         const tickPointerMotion = () => {
             if (!state.pageVisible || reducedMotion.matches) {
                 state.motionRaf = 0;
                 return;
-            }
-
-            if (frontierCursor && state.pointerActive) {
-                state.cursorX += (state.pointerX - state.cursorX) * 0.45;
-                state.cursorY += (state.pointerY - state.cursorY) * 0.45;
-                frontierCursor.style.setProperty("--cursor-x", `${state.cursorX}px`);
-                frontierCursor.style.setProperty("--cursor-y", `${state.cursorY}px`);
             }
 
             for (const item of state.magneticItems) {
@@ -273,14 +237,14 @@
     const coreFilterBtns = $$(".core-filter-btn");
 
     const coreNodes = [
-        { id: "wpf", label: "Desktop Client (WPF)", group: "clients", x: -155, y: -62, z: 45, color: "#94a3b8", radius: 6.5 },
-        { id: "dtos", label: "DTOs & Result", group: "api", x: -82, y: -74, z: -40, color: "#60a5fa", radius: 6 },
-        { id: "jwt", label: "JWT & RateLimit", group: "security", x: -45, y: 74, z: 65, color: "#a78bfa", radius: 6.5 },
-        { id: "api", label: "ASP.NET Core API", group: "api", x: -18, y: -8, z: 18, color: "#06b6d4", radius: 8.5 },
-        { id: "app", label: "Application & Domain", group: "app", x: 55, y: 12, z: -15, color: "#8b5cf6", radius: 8.5 },
-        { id: "uow", label: "EF Core & UoW", group: "data", x: 118, y: -42, z: 42, color: "#0ea5e9", radius: 7.5 },
-        { id: "sql", label: "SQL Server DB", group: "data", x: 162, y: 48, z: -32, color: "#10b981", radius: 8 },
-        { id: "react", label: "React + TS (ClientApp)", group: "clients", x: -165, y: 56, z: -35, color: "#38bdf8", radius: 6.5 }
+        { id: "wpf", label: "Desktop Client (WPF)", group: "clients", x: -148, y: -60, z: 38, color: "#94a3b8", radius: 6.5, labelPos: "top" },
+        { id: "dtos", label: "DTOs & Result", group: "api", x: -78, y: -68, z: -38, color: "#60a5fa", radius: 6, labelPos: "top" },
+        { id: "jwt", label: "JWT & RateLimit", group: "security", x: -42, y: 68, z: 58, color: "#a78bfa", radius: 6.5, labelPos: "bottom" },
+        { id: "api", label: "ASP.NET Core API", group: "api", x: -14, y: -8, z: 15, color: "#06b6d4", radius: 8.5, labelPos: "bottom" },
+        { id: "app", label: "Application & Domain", group: "app", x: 52, y: 12, z: -15, color: "#8b5cf6", radius: 8.5, labelPos: "top" },
+        { id: "uow", label: "EF Core & UoW", group: "data", x: 112, y: -46, z: 38, color: "#0ea5e9", radius: 7.5, labelPos: "top" },
+        { id: "sql", label: "SQL Server DB", group: "data", x: 152, y: 50, z: -30, color: "#10b981", radius: 8, labelPos: "bottom" },
+        { id: "react", label: "React + TS (ClientApp)", group: "clients", x: -152, y: 56, z: -35, color: "#38bdf8", radius: 6.5, labelPos: "bottom" }
     ];
 
     const coreEdges = [
@@ -363,9 +327,9 @@
         if (!coreCanvas || !coreCtx) return;
 
         const width = coreCanvas.clientWidth || 600;
-        const height = coreCanvas.clientHeight || 295;
+        const height = coreCanvas.clientHeight || 380;
         const cx = width / 2;
-        const cy = height / 2 - 6;
+        const cy = height / 2;
 
         coreCtx.clearRect(0, 0, width, height);
 
@@ -380,7 +344,7 @@
             coreCoordsReadout.textContent = `ROT_X: ${coreRotX.toFixed(2)}rad // ROT_Y: ${(coreRotY % (Math.PI * 2)).toFixed(2)}rad`;
         }
 
-        const ringRadii = [110, 165];
+        const ringRadii = [105, 155];
         ringRadii.forEach((r, rIdx) => {
             coreCtx.beginPath();
             const steps = 48;
@@ -483,7 +447,8 @@
             const boxH = 19;
             const boxW = textWidth + padX * 2;
             const boxX = sx - boxW / 2;
-            const boxY = sy + r + 6;
+            const isTopLabel = node.labelPos === "top";
+            const boxY = isTopLabel ? (sy - r - boxH - 5) : (sy + r + 5);
 
             coreCtx.fillStyle = "rgba(7, 10, 16, 0.92)";
             coreCtx.fillRect(boxX, boxY, boxW, boxH);
@@ -540,7 +505,7 @@
                 const mx = e.clientX - rect.left;
                 const my = e.clientY - rect.top;
                 const cx = (coreCanvas.clientWidth || 600) / 2;
-                const cy = (coreCanvas.clientHeight || 295) / 2 - 6;
+                const cy = (coreCanvas.clientHeight || 380) / 2;
 
                 let closestNode = null;
                 let minDist = 28;
