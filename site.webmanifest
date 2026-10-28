@@ -1,13 +1,13 @@
 {
-  "name": "Ayhm Obeidat — Junior .NET Backend Developer",
+  "name": "Ayhm Mohammed Obeidat | .NET Backend & Systems Engineer",
   "short_name": "Ayhm Obeidat",
-  "start_url": "/",
+  "start_url": "./",
   "display": "standalone",
-  "background_color": "#071827",
-  "theme_color": "#071827",
-  "description": "Ayhm Obeidat portfolio — .NET backend engineering, DVLD case study and technical skills.",
+  "background_color": "#05070b",
+  "theme_color": "#05070b",
+  "description": "Engineering portfolio of Ayhm Mohammed Obeidat — Junior .NET Backend Developer & Software Engineer specializing in C#, .NET 8, ASP.NET Core Web API, EF Core, and SQL Server.",
   "icons": [
-    {"src":"assets/apple-touch-icon.png","sizes":"180x180","type":"image/png"},
-    {"src":"assets/favicon.svg","sizes":"any","type":"image/svg+xml"}
+    {"src": "assets/apple-touch-icon.png", "sizes": "180x180", "type": "image/png"},
+    {"src": "assets/favicon.svg", "sizes": "any", "type": "image/svg+xml"}
   ]
 }

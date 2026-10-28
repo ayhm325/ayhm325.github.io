@@ -1,119 +1,64 @@
-# Ayhm Obeidat Portfolio — Grand Line Code Edition
+# Ayhm Mohammed Obeidat — Digital Frontier Engineering Portfolio
 
-A pirate-adventure inspired portfolio for Ayhm Obeidat, a Computer Science graduate targeting Junior .NET Backend Developer / Junior Software Engineer roles. The visual direction keeps the ocean, navigation and manga-inspired identity while making the technical content the primary message.
+A custom-engineered developer portfolio for **Ayhm Mohammed Obeidat** (Computer Science graduate from Jordan University of Science and Technology, based in Irbid, Jordan), targeting **Junior .NET Backend Developer / Junior Software Engineer** roles.
 
-## Included files
+**Live Website:** [https://ayhm325.github.io/](https://ayhm325.github.io/)  
+**Repository:** [https://github.com/ayhm325/ayhm325.github.io](https://github.com/ayhm325/ayhm325.github.io)  
+**Flagship System Repository:** [https://github.com/ayhm325/DVLD-WPF](https://github.com/ayhm325/DVLD-WPF)
 
-- `index.html` — semantic portfolio structure, SEO/social metadata, structured data and project content.
-- `style.css` — responsive design system, visual effects, accessibility states and mobile layout.
-- `script.js` — navigation, keyboard-friendly interactions, skill network, reveal effects, particles and motion controls.
-- `site.webmanifest` — installable-site metadata.
-- `robots.txt` — crawler rules and sitemap location.
-- `sitemap.xml` — GitHub Pages sitemap.
-- `assets/favicon.svg` — primary scalable favicon.
-- `assets/favicon.ico` — legacy favicon fallback.
-- `assets/apple-touch-icon.png` — iOS/home-screen icon.
-- `assets/og-cover.png` — social sharing preview image.
+---
 
-## Existing personal assets
+## Creative Direction & Engineering Architecture
 
-Keep the existing project assets in the repository:
+Designed around the **Digital Frontier** aesthetic—deep near-black and graphite surfaces (`#05070b`, `#080c13`, `#0c121d`), electric cyan (`#00f0ff`), and restrained ultraviolet (`#8b5cf6`) accents—built entirely with semantic HTML5, modern CSS3, and zero-dependency ES6+ JavaScript for instantaneous GitHub Pages loading.
 
-- `assets/ayhmImage.JPG` — profile portrait used by the wanted-poster card.
-- `assets/Ayhm_Obeidat_CV.pdf` — downloadable CV.
+### Key Interactive Systems
 
-The current package does not replace those personal files because only the portfolio source files were provided for this revision.
+1. **Interactive 3D Dimensional System Core (`#systemCoreCanvas`)**:
+   - Real-time 3D-projected architectural topology visualizing the 5-layer .NET runtime path (`WPF MVVM` → `ASP.NET Core API` → `Application Core` → `EF Core 8 / UoW` → `SQL Server`) plus `DVLD.Contracts` and `JWT + RateLimit` nodes.
+   - Pointer-draggable 3D perspective with live telemetry packets and keyboard-accessible layer filtering.
+2. **Keyboard-Accessible Engineering CLI (`ayhm@core:~$`)**:
+   - Functional inspection shell supporting commands (`help`, `whoami`, `arch`, `dvld`, `tests`, `security`, `stack`, `contact`, `cv`, `goto`, `clear`), command history (`ArrowUp` / `ArrowDown`), clickable quick-command chips, and `/` global focus shortcut.
+3. **"Inside the System" Layered .NET Architecture Workbench (`#architecture`)**:
+   - Explorable schematic of the 7 architectural layers and boundaries (`API`, `Application`, `Infrastructure`, `Database`, `Presentation`, `Domain`, `DVLD.Contracts`).
+   - Selecting any component reveals its verified responsibility, key engineering trade-offs, C# implementation pattern, and **Implemented in Repo vs. Planned Evolution**.
+4. **DVLD Flagship Case Study & Workflow Simulator (`#projects`)**:
+   - End-to-end interactive trace of 4 real DVLD business workflows:
+     1. Authentication & IP Login Rate Limiting (`5 requests / IP / minute` returning `HTTP 429 ProblemDetails`)
+     2. Sequential Test Appointment Workflow (`Vision → Written → Street`)
+     3. First-Time License Issuance under a Shared Scoped `DbContext` & `Serializable` Unit of Work Transaction
+     4. License Detention, Release, Renewal & Replacement Rules
+   - Visual breakdown of the **1,487 historically reported passing automated tests** (`631` unit, `364` API integration, `492` infrastructure tests with `xUnit` and `Moq`) and Azure DevOps CI build pipeline.
+5. **Evidence-Backed Capabilities Matrix (`#skills`)**:
+   - Organized across 8 core engineering categories with interactive domain filtering and concrete project evidence rather than arbitrary percentage scores.
 
-## What was improved
+---
 
-### SEO and sharing
+## Repository Structure
 
-- Added canonical URL.
-- Added Open Graph URL, image, dimensions and locale.
-- Added Twitter/X preview image metadata.
-- Added `Person` JSON-LD for the portfolio owner and public profile links.
-- Added favicon, Apple touch icon and web manifest.
-- Added `robots.txt` and `sitemap.xml`.
-- Removed the unused JetBrains Mono web-font request.
+- `index.html` — Semantic document structure, JSON-LD (`Person` & `SoftwareSourceCode`), Open Graph/Twitter metadata, and accessible interactive sections.
+- `style.css` — Digital Frontier design system, responsive grid layouts (`320px` to `1920px+`), spotlight cards, and `prefers-reduced-motion` safeguards.
+- `script.js` — 3D projection canvas, interactive CLI terminal, architecture workbench inspector, workflow simulator, skill filter, and pointer telemetry.
+- `assets/ayhm-portrait.jpg` — Web-optimized portrait (`67 KB`, upright EXIF-corrected `560×840` JPEG) for fast Largest Contentful Paint (LCP).
+- `assets/ayhmImage.JPG` — Original high-resolution portrait preserved intact as fallback.
+- `assets/Ayhm_Obeidat_CV.pdf` — Downloadable Curriculum Vitae PDF.
+- `assets/favicon.svg`, `assets/favicon.ico`, `assets/apple-touch-icon.png`, `assets/og-cover.png` — Brand icons and social preview cover.
+- `site.webmanifest`, `robots.txt`, `sitemap.xml` — PWA manifest and search engine indexing configuration.
 
-### Accessibility and UX
+---
 
-- Preserved the skip link and reduced-motion support.
-- Added strong `:focus-visible` states.
-- Architecture layers are semantic buttons rather than generic focusable `div` elements.
-- Mobile navigation now restores focus, supports Escape and keeps keyboard focus inside the open menu.
-- Skill nodes support pointer, keyboard and click/touch interaction; clicking a skill can pin its details.
-- Decorative cursor is hidden for coarse pointers and reduced-motion users.
+## Local Preview
 
-### Visual polish
-
-- Kept the existing pirate/ocean/manga identity rather than replacing it with a generic developer template.
-- Simplified the custom cursor so it supports the theme without competing with the content.
-- Added a clearer project-evidence block.
-- Added an explicit availability line in the contact section.
-- Removed duplicate route-map wording around DVLD.
-- Kept technical claims centered on the documented DVLD architecture and capabilities.
-
-### Performance
-
-- Kept particle counts deliberately small and responsive to viewport size.
-- Pauses animation while the page is hidden.
-- Respects `prefers-reduced-motion`.
-- Uses `requestAnimationFrame` for pointer/scroll motion work.
-- Keeps the hero portrait stable with an explicit aspect ratio.
-- Avoids adding unnecessary libraries or frameworks.
-
-## Content source of truth
-
-Technical claims were aligned to the provided portfolio source and its stated CV/DVLD evidence. The project is presented as a layered solution rather than as a generic Clean Architecture implementation. The documented runtime path is:
-
-`Presentation → API → Application → Infrastructure → SQL Server`
-
-`Domain` and `DVLD.Contracts` are presented as architectural boundaries rather than being incorrectly inserted into the runtime chain.
-
-The portfolio retains the documented security, transaction, error-handling, testing and CI claims and labels the reported 1,487 passing tests as historical rather than a fresh execution result.
-
-## Local preview
-
-Run the site through a local web server so relative assets behave like GitHub Pages:
+Because Node.js is installed on Windows, you can preview the site locally with zero global installations using `npx serve` or a lightweight Node static server:
 
 ```powershell
-python -m http.server 8000
+npx.cmd serve . -l 8080
 ```
 
-Then open:
-
-`http://localhost:8000`
-
-## GitHub Pages
-
-Repository:
-
-`https://github.com/ayhm325/ayhm325.github.io`
-
-After replacing the files:
+Or if Python is available in your PATH:
 
 ```powershell
-git status
-git add index.html style.css script.js README.md site.webmanifest robots.txt sitemap.xml assets/favicon.svg assets/favicon.ico assets/apple-touch-icon.png assets/og-cover.png
-git commit -m "Polish portfolio accessibility SEO and performance"
-git push origin main
+python -m http.server 8080
 ```
 
-After deployment, hard-refresh with `Ctrl + F5`.
-
-## Final QA checklist
-
-Before publishing, test:
-
-- Chrome, Edge and Firefox.
-- Mobile widths around 320, 375, 390 and 430px.
-- Tablet widths around 768 and 1024px.
-- Desktop widths around 1280, 1440 and 1920px.
-- Keyboard-only navigation with Tab / Shift+Tab / Escape.
-- Reduced-motion mode.
-- CV download.
-- GitHub and LinkedIn links.
-- Profile image and favicon loading.
-- Social preview image after deployment.
-- No console errors in the browser developer tools.
+Then open `http://localhost:8080` in your browser.
