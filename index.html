@@ -1,1225 +1,161 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-    <meta name="description" content="Ayhm Mohammed Obeidat — Junior .NET Backend Developer &amp; Software Engineer in Irbid / Amman, Jordan. Building reliable layered systems with C#, .NET, ASP.NET Core Web API, Entity Framework Core, SQL Server, JWT, and automated testing.">
-    <meta name="author" content="Ayhm Mohammed Obeidat">
-    <meta name="theme-color" content="#05070b">
-    <meta name="robots" content="index, follow">
-
-    <!-- Open Graph / Social -->
-    <meta property="og:type" content="website">
-    <meta property="og:title" content="Ayhm Mohammed Obeidat | .NET Backend &amp; Software Engineer">
-    <meta property="og:description" content="Engineering reliable backend systems, maintainable layered architectures, and transactional workflows with C#, .NET, ASP.NET Core Web API, EF Core, and SQL Server.">
-    <meta property="og:site_name" content="Ayhm Obeidat — Engineering Workspace">
-    <meta property="og:url" content="https://ayhm325.github.io/">
-    <meta property="og:locale" content="en_US">
-    <meta property="og:image" content="https://ayhm325.github.io/assets/og-cover.png">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
-
-    <!-- Twitter / X -->
-    <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Ayhm Mohammed Obeidat | .NET Backend &amp; Software Engineer">
-    <meta name="twitter:description" content="Junior .NET Backend Developer focused on C#, .NET, ASP.NET Core Web API, EF Core, SQL Server, and the multi-layered DVLD system.">
-    <meta name="twitter:image" content="https://ayhm325.github.io/assets/og-cover.png">
-    <meta name="twitter:image:alt" content="Ayhm Mohammed Obeidat — .NET Backend &amp; Software Engineer portfolio">
-
-    <title>Ayhm Mohammed Obeidat | .NET Backend &amp; Software Engineer</title>
-    <link rel="canonical" href="https://ayhm325.github.io/">
-    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
-    <link rel="alternate icon" href="assets/favicon.ico">
-    <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
-    <link rel="manifest" href="site.webmanifest">
-
-    <!-- Typography: Space Grotesk (Display), Inter (Editorial UI), JetBrains Mono (Telemetry & Specs) -->
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:ital,wght@0,400;0,500;0,600;0,700;1,400&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
-
-    <!-- Structured Data -->
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@graph": [
-        {
-          "@type": "Person",
-          "@id": "https://ayhm325.github.io/#person",
-          "name": "Ayhm Mohammed Obeidat",
-          "alternateName": "Ayhm Obeidat",
-          "url": "https://ayhm325.github.io/",
-          "jobTitle": "Junior .NET Backend Developer / Software Engineer",
-          "email": "mailto:ayhmobeidat.cs@gmail.com",
-          "address": {
-            "@type": "PostalAddress",
-            "addressLocality": "Irbid",
-            "addressCountry": "JO"
-          },
-          "alumniOf": {
-            "@type": "CollegeOrUniversity",
-            "name": "Jordan University of Science and Technology (JUST)"
-          },
-          "knowsAbout": [
-            "C#",
-            ".NET",
-            "ASP.NET Core Web API",
-            "Entity Framework Core",
-            "SQL Server",
-            "REST APIs",
-            "JWT Authentication",
-            "Role-Based Authorization",
-            "Layered Architecture",
-            "Unit Testing",
-            "Integration Testing",
-            "xUnit",
-            "Moq",
-            "WPF",
-            "MVVM",
-            "Azure DevOps"
-          ],
-          "sameAs": [
-            "https://github.com/ayhm325",
-            "https://www.linkedin.com/in/ayhm-obeidat-75a10a352"
-          ]
-        },
-        {
-          "@type": "SoftwareSourceCode",
-          "name": "DVLD — Driving & Vehicle License Department System",
-          "author": { "@id": "https://ayhm325.github.io/#person" },
-          "codeRepository": "https://github.com/ayhm325/DVLD-WPF",
-          "programmingLanguage": ["C#", "SQL"],
-          "runtimePlatform": ".NET",
-          "description": "Multi-layered driving license management system built with C#, .NET, ASP.NET Core Web API, Entity Framework Core, SQL Server, WPF (MVVM), JWT authentication, and xUnit automated tests."
-        }
-      ]
-    }
-    </script>
-
-    <link rel="stylesheet" href="style.css">
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101713">
+  <meta name="description" content="Ayhm Mohammed Obeidat is a Junior .NET Backend Developer in Amman, Jordan, focused on C#, ASP.NET Core Web API, Entity Framework Core, SQL Server, and the DVLD business application.">
+  <meta name="author" content="Ayhm Mohammed Obeidat">
+  <meta property="og:type" content="website">
+  <meta property="og:title" content="Ayhm Mohammed Obeidat | .NET Backend Developer">
+  <meta property="og:description" content="Computer Science graduate focused on building reliable backend applications with .NET.">
+  <meta property="og:url" content="https://ayhm325.github.io/">
+  <meta property="og:image" content="https://ayhm325.github.io/assets/og-cover.png">
+  <link rel="canonical" href="https://ayhm325.github.io/">
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+  <link rel="alternate icon" href="assets/favicon.ico">
+  <link rel="apple-touch-icon" href="assets/apple-touch-icon.png">
+  <link rel="manifest" href="site.webmanifest">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+  <title>Ayhm Mohammed Obeidat | .NET Backend Developer</title>
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"Person",
+    "name":"Ayhm Mohammed Obeidat",
+    "url":"https://ayhm325.github.io/",
+    "jobTitle":".NET Backend Developer",
+    "email":"mailto:ayhmobeidat.cs@gmail.com",
+    "address":{"@type":"PostalAddress","addressLocality":"Amman","addressCountry":"JO"},
+    "alumniOf":{"@type":"CollegeOrUniversity","name":"Jordan University of Science and Technology"},
+    "sameAs":["https://github.com/ayhm325","https://www.linkedin.com/in/ayhm-obeidat-75a10a352"]
+  }
+  </script>
 </head>
 <body>
-    <a class="skip-link" href="#main-content">Skip to main engineering content</a>
-
-    <!-- Native OS Cursor with polished interactive states -->
-
-    <!-- Top Reading Progress Telemetry Line -->
-    <div class="scroll-progress-track" aria-hidden="true">
-        <div class="scroll-progress-bar" id="scrollProgress"></div>
-    </div>
-
-    <!-- Atmospheric Digital Frontier Background -->
-    <div class="frontier-atmosphere" aria-hidden="true">
-        <div class="atmo-grid"></div>
-        <div class="atmo-glow glow-cyan"></div>
-        <div class="atmo-glow glow-violet"></div>
-        <canvas id="ambientCanvas"></canvas>
-        <div class="atmo-vignette"></div>
-    </div>
-
-    <!-- Fixed Engineering HUD Header -->
-    <header class="hud-header">
-        <nav class="hud-nav" aria-label="Primary system navigation">
-            <a href="#hero" class="brand-identity" aria-label="Ayhm Mohammed Obeidat — Home">
-                <span class="brand-sigil" aria-hidden="true">
-                    <span class="sigil-core"></span>
-                </span>
-                <span class="brand-text">
-                    <strong class="brand-handle">AYHM.OBEIDAT</strong>
-                    <small class="brand-sub">JUNIOR .NET BACKEND</small>
-                </span>
-            </a>
-
-            <div class="hud-telemetry" aria-hidden="true">
-                <span class="telemetry-pill">
-                    <span class="pulse-dot"></span>
-                    <span>LOC: IRBID / AMMAN, JO</span>
-                </span>
-                <span class="telemetry-divider">//</span>
-                <span class="telemetry-route" id="hudActiveSection">SEC_01 :: SYSTEM_OVERVIEW</span>
-            </div>
-
-            <ul class="nav-links" id="navLinks">
-                <li><a href="#hero" class="nav-link active" aria-current="location"><span class="nav-idx">01</span>OVERVIEW</a></li>
-                <li><a href="#architecture" class="nav-link"><span class="nav-idx">02</span>ARCHITECTURE</a></li>
-                <li><a href="#projects" class="nav-link"><span class="nav-idx">03</span>DVLD SYSTEM</a></li>
-                <li><a href="#skills" class="nav-link"><span class="nav-idx">04</span>CAPABILITIES</a></li>
-                <li><a href="#philosophy" class="nav-link"><span class="nav-idx">05</span>PHILOSOPHY</a></li>
-                <li><a href="#contact" class="nav-link"><span class="nav-idx">06</span>CONTACT</a></li>
-            </ul>
-
-            <div class="hud-actions">
-                <button type="button" class="btn-cli-trigger" id="focusCliBtn" aria-label="Focus interactive engineering terminal" title="Focus Interactive Terminal (Shortcut: /)">
-                    <span class="cli-prompt-icon" aria-hidden="true">&gt;_</span>
-                    <span>CLI</span>
-                    <kbd aria-hidden="true">/</kbd>
-                </button>
-                <a href="assets/Ayhm_Obeidat_CV.pdf" download class="btn-hud-cv">
-                    <span>CV.PDF</span>
-                    <span aria-hidden="true">↓</span>
-                </a>
-                <button class="nav-burger" id="navBurger" type="button" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
-                    <span></span>
-                    <span></span>
-                    <span></span>
-                </button>
-            </div>
-        </nav>
-    </header>
-
-    <main id="main-content">
-
-        <!-- =========================================================
-             SECTION 01: HERO — DIGITAL FRONTIER WORKSPACE
-             ========================================================= -->
-        <section id="hero" class="hero-section" aria-labelledby="hero-headline">
-            <div class="hero-container">
-
-                <!-- Left Column: Identity, Mission Statement & Actions -->
-                <div class="hero-copy">
-                    <div class="telemetry-banner reveal">
-                        <span class="status-led" aria-hidden="true"></span>
-                        <span class="status-code">SYS.READY // AVAILABLE FOR JUNIOR .NET BACKEND &amp; SOFTWARE ENGINEER ROLES</span>
-                    </div>
-
-                    <div class="engineer-meta reveal">
-                        <span>AYHM MOHAMMED OBEIDAT</span>
-                        <span class="meta-sep" aria-hidden="true">·</span>
-                        <span>B.SC. COMPUTER SCIENCE (JUST ’26)</span>
-                        <span class="meta-sep" aria-hidden="true">·</span>
-                        <span>IRBID / AMMAN, JORDAN</span>
-                    </div>
-
-                    <h1 id="hero-headline" class="hero-headline reveal">
-                        <span class="headline-line">ENGINEERING SYSTEMS.</span>
-                        <span class="headline-line accent-line">BUILDING WHAT’S NEXT.</span>
-                    </h1>
-
-                    <p class="hero-lead reveal">
-                        I build reliable software, design maintainable architectures, and turn complex requirements into practical engineering solutions. Focused on <strong>C#</strong>, <strong>.NET</strong>, <strong>ASP.NET Core Web API</strong>, <strong>Entity Framework Core</strong>, and <strong>SQL Server</strong> — with layered separation of concerns, transactional consistency, role-based API security, and automated test verification.
-                    </p>
-
-                    <div class="hero-cta-group reveal">
-                        <a href="#projects" class="btn-frontier-primary magnetic">
-                            <span>EXPLORE DVLD CASE STUDY</span>
-                            <span class="btn-arrow" aria-hidden="true">→</span>
-                        </a>
-                        <a href="#architecture" class="btn-frontier-secondary magnetic">
-                            <span>INSIDE THE SYSTEM</span>
-                            <span class="btn-arrow" aria-hidden="true">↘</span>
-                        </a>
-                        <a href="https://github.com/ayhm325" target="_blank" rel="noopener noreferrer" class="btn-frontier-ghost magnetic" aria-label="View Ayhm Obeidat on GitHub (opens in new tab)">
-                            <span>GITHUB // @ayhm325</span>
-                            <span aria-hidden="true">↗</span>
-                        </a>
-                        <a href="#contact" class="btn-frontier-ghost magnetic">
-                            <span>INITIATE CONTACT</span>
-                        </a>
-                    </div>
-
-                    <!-- Primary Stack Telemetry Readout -->
-                    <div class="hero-telemetry-strip reveal" role="list" aria-label="Core engineering stack">
-                        <div class="telemetry-cell" role="listitem">
-                            <span class="cell-label">RUNTIME &amp; API</span>
-                            <strong class="cell-value">C# · .NET · ASP.NET Core Web API</strong>
-                        </div>
-                        <div class="telemetry-cell" role="listitem">
-                            <span class="cell-label">DATA &amp; ORM</span>
-                            <strong class="cell-value">SQL Server · EF Core · Unit of Work</strong>
-                        </div>
-                        <div class="telemetry-cell" role="listitem">
-                            <span class="cell-label">SECURITY &amp; ERRORS</span>
-                            <strong class="cell-value">JWT · Role Auth · Rate Limiting · ProblemDetails</strong>
-                        </div>
-                        <div class="telemetry-cell" role="listitem">
-                            <span class="cell-label">VERIFICATION &amp; CI</span>
-                            <strong class="cell-value">xUnit · Moq · Git · Azure DevOps</strong>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Right Column: Interactive 3D System Core + Live Engineering Terminal -->
-                <div class="hero-workspace reveal">
-                    <div class="workspace-frame spotlight-card">
-                        <!-- Top Frame Bar -->
-                        <div class="workspace-topbar">
-                            <div class="topbar-dots" aria-hidden="true">
-                                <span></span><span></span><span></span>
-                            </div>
-                            <div class="topbar-title">
-                                <span class="mono-tag">DOTNET.LAYERED.TOPOLOGY</span>
-                                <span class="topbar-sub" id="coreStatusLabel">INTERACTIVE 3D SYSTEM CORE // DRAG OR SELECT LAYER</span>
-                            </div>
-                            <div class="topbar-badge">5-LAYER ARCH</div>
-                        </div>
-
-                        <!-- 2. Topology Status & Telemetry Bar (Above Canvas) -->
-                        <div class="core-info-bar">
-                            <div class="core-info-meta" aria-hidden="true">
-                                <span class="core-info-title">TOPOLOGY: 5-LAYER .NET SOLUTION + CLIENTS</span>
-                                <span class="core-coords-display" id="coreCoordsReadout">ROT_X: +0.22rad // ROT_Y: -0.35rad</span>
-                            </div>
-                            <div class="core-info-status">
-                                <span class="hud-chip" id="coreActiveLayerBadge">ACTIVE: FULL STACK TOPOLOGY</span>
-                            </div>
-                        </div>
-
-                        <!-- 3. Dedicated Animated Canvas Region (Unobstructed 3D Space) -->
-                        <div class="core-stage" id="coreStage">
-                            <canvas id="systemCoreCanvas" aria-label="Interactive 3D visualization of the 5-layer DVLD .NET architecture"></canvas>
-                        </div>
-
-                        <!-- 4. Filter Toolbar Below Visualization in Normal Document Flow -->
-                        <div class="core-toolbar-region">
-                            <span class="core-toolbar-label" aria-hidden="true">FILTER VIEW:</span>
-                            <div class="core-layer-controls" role="toolbar" aria-label="Filter 3D architecture core nodes">
-                                <button type="button" class="core-filter-btn active" data-core-filter="all" aria-pressed="true">ALL NODES</button>
-                                <button type="button" class="core-filter-btn" data-core-filter="clients" aria-pressed="false">CLIENTS (REACT &amp; WPF)</button>
-                                <button type="button" class="core-filter-btn" data-core-filter="api" aria-pressed="false">HTTP / API</button>
-                                <button type="button" class="core-filter-btn" data-core-filter="app" aria-pressed="false">APPLICATION / DOMAIN</button>
-                                <button type="button" class="core-filter-btn" data-core-filter="data" aria-pressed="false">EF CORE / SQL</button>
-                                <button type="button" class="core-filter-btn" data-core-filter="security" aria-pressed="false">JWT / SECURITY</button>
-                            </div>
-                        </div>
-
-                        <!-- Genuinely Useful, Keyboard-Accessible Engineering Terminal -->
-                        <div class="terminal-console" id="heroTerminalContainer">
-                            <div class="terminal-header">
-                                <span class="terminal-title">
-                                    <span class="term-icon" aria-hidden="true">&gt;_</span>
-                                    <span>ayhm@dotnet-workspace:~/dvld-system$</span>
-                                </span>
-                                <span class="terminal-hint">Type <kbd>help</kbd> or click a command below</span>
-                            </div>
-
-                            <!-- Quick Command Buttons for Mouse / Touch / Keyboard convenience -->
-                            <div class="terminal-quick-bar" role="group" aria-label="Quick terminal commands">
-                                <button type="button" class="term-chip" data-cmd="help">help</button>
-                                <button type="button" class="term-chip" data-cmd="whoami">whoami</button>
-                                <button type="button" class="term-chip" data-cmd="arch">arch</button>
-                                <button type="button" class="term-chip" data-cmd="dvld">dvld</button>
-                                <button type="button" class="term-chip" data-cmd="tests">tests</button>
-                                <button type="button" class="term-chip" data-cmd="security">security</button>
-                                <button type="button" class="term-chip" data-cmd="contact">contact</button>
-                                <button type="button" class="term-chip" data-cmd="clear">clear</button>
-                            </div>
-
-                            <div class="terminal-output" id="terminalOutput" role="log" aria-live="polite" aria-label="Engineering terminal output">
-                                <div class="term-line term-muted">// DVLD .NET Engineering Shell initialized.</div>
-                                <div class="term-line"><span class="term-accent">[OK]</span> Stack: <span class="term-white">C# / .NET / ASP.NET Core Web API / EF Core / SQL Server / WPF</span></div>
-                                <div class="term-line"><span class="term-accent">[OK]</span> Verification: <span class="term-emerald">xUnit &amp; Moq</span> unit + integration test suites &amp; Azure DevOps CI</div>
-                                <div class="term-line term-muted">Execute a command (e.g., <span class="term-cyan">arch</span>, <span class="term-cyan">dvld</span>, <span class="term-cyan">security</span>, <span class="term-cyan">tests</span>) to inspect verified specs.</div>
-                            </div>
-
-                            <form class="terminal-input-row" id="terminalForm" autocomplete="off">
-                                <label for="terminalInput" class="sr-only">Enter terminal command</label>
-                                <span class="terminal-prompt" aria-hidden="true">ayhm@core:~$</span>
-                                <input
-                                    type="text"
-                                    id="terminalInput"
-                                    class="terminal-input"
-                                    placeholder="Type command (help, arch, dvld, tests, security, cv)..."
-                                    spellcheck="false"
-                                    autocapitalize="off"
-                                >
-                                <button type="submit" class="terminal-exec-btn">EXEC</button>
-                            </form>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- =========================================================
-             SECTION 02: INSIDE THE SYSTEM — INTERACTIVE ARCHITECTURE
-             ========================================================= -->
-        <section id="architecture" class="frontier-section" aria-labelledby="arch-heading">
-            <div class="section-container">
-                <div class="section-header reveal">
-                    <div class="section-eyebrow">
-                        <span class="eyebrow-index">02 // INSIDE THE SYSTEM</span>
-                        <span class="eyebrow-line" aria-hidden="true"></span>
-                        <span class="eyebrow-tag">VERIFIED 5-LAYER ARCHITECTURE</span>
-                    </div>
-                    <h2 id="arch-heading" class="section-title">LAYERED .NET SYSTEM ARCHITECTURE</h2>
-                    <p class="section-subtitle">
-                        How I structure backend systems to separate API transport, business logic, domain entities, and data-access responsibilities. Select any component below to inspect its actual responsibility, applied design patterns, and automated test verification scope.
-                    </p>
-                </div>
-
-                <div class="architecture-workbench reveal">
-                    <!-- Left Column: Interactive Topology Diagram -->
-                    <div class="topology-panel spotlight-card">
-                        <div class="panel-header-bar">
-                            <span class="panel-code">SCHEMATIC // 5-LAYER SOLUTION &amp; DATABASE</span>
-                            <div class="view-mode-switch" role="group" aria-label="Architecture diagram mode">
-                                <button type="button" class="mode-btn active" id="modeRuntimeBtn" data-arch-mode="runtime" aria-pressed="true">RUNTIME FLOW</button>
-                                <button type="button" class="mode-btn" id="modeContractsBtn" data-arch-mode="contracts" aria-pressed="false">SEPARATION &amp; DI</button>
-                            </div>
-                        </div>
-
-                        <p class="topology-instruction" id="archModeNotice">
-                            <strong>Runtime Path:</strong> Requests flow across <code>Presentation → API → Application → Infrastructure → SQL Server</code>, with <code>Domain</code> entities and <code>DTOs / Result Pattern</code> maintaining clean layer boundaries.
-                        </p>
-
-                        <!-- Interactive Explorable Nodes -->
-                        <div class="topology-stack" role="listbox" aria-label="Layered .NET Architecture Components">
-
-                            <button type="button" class="topo-node active" role="option" aria-selected="true" data-layer-id="api">
-                                <div class="node-index">02</div>
-                                <div class="node-main">
-                                    <div class="node-title-row">
-                                        <strong>API Layer — ASP.NET Core Web API</strong>
-                                        <span class="node-badge badge-cyan">HTTP BOUNDARY</span>
-                                    </div>
-                                    <span class="node-meta">RESTful Endpoints · JWT Auth · Role-Based Auth · Login Rate Limiting · ProblemDetails</span>
-                                </div>
-                                <span class="node-chevron" aria-hidden="true">→</span>
-                            </button>
-
-                            <div class="topo-connector" aria-hidden="true">
-                                <span class="connector-line"></span>
-                                <span class="connector-label">DTOs &amp; Result Pattern Boundary</span>
-                            </div>
-
-                            <button type="button" class="topo-node" role="option" aria-selected="false" data-layer-id="application">
-                                <div class="node-index">03</div>
-                                <div class="node-main">
-                                    <div class="node-title-row">
-                                        <strong>Application Layer — Service Layer &amp; Workflows</strong>
-                                        <span class="node-badge badge-violet">BUSINESS LOGIC</span>
-                                    </div>
-                                    <span class="node-meta">Business Workflows · Service Layer · DTOs · Result Pattern · Dependency Injection</span>
-                                </div>
-                                <span class="node-chevron" aria-hidden="true">→</span>
-                            </button>
-
-                            <div class="topo-connector" aria-hidden="true">
-                                <span class="connector-line"></span>
-                                <span class="connector-label">Repository &amp; Unit of Work Interfaces</span>
-                            </div>
-
-                            <button type="button" class="topo-node" role="option" aria-selected="false" data-layer-id="infrastructure">
-                                <div class="node-index">04</div>
-                                <div class="node-main">
-                                    <div class="node-title-row">
-                                        <strong>Infrastructure Layer — EF Core &amp; Unit of Work</strong>
-                                        <span class="node-badge badge-cyan">DATA ACCESS</span>
-                                    </div>
-                                    <span class="node-meta">Entity Framework Core · Repository Pattern · Unit of Work · Transactional Consistency</span>
-                                </div>
-                                <span class="node-chevron" aria-hidden="true">→</span>
-                            </button>
-
-                            <div class="topo-connector" aria-hidden="true">
-                                <span class="connector-line"></span>
-                                <span class="connector-label">LINQ Queries, CRUD &amp; Entity Relationships</span>
-                            </div>
-
-                            <button type="button" class="topo-node" role="option" aria-selected="false" data-layer-id="database">
-                                <div class="node-index">05</div>
-                                <div class="node-main">
-                                    <div class="node-title-row">
-                                        <strong>Database — Microsoft SQL Server</strong>
-                                        <span class="node-badge badge-emerald">PERSISTENCE</span>
-                                    </div>
-                                    <span class="node-meta">Database Design · Entity Relationships · JOINs · GROUP BY · Subqueries</span>
-                                </div>
-                                <span class="node-chevron" aria-hidden="true">→</span>
-                            </button>
-
-                            <div class="topo-side-boundaries">
-                                <button type="button" class="topo-node topo-boundary-node" role="option" aria-selected="false" data-layer-id="presentation">
-                                    <div class="node-index">01</div>
-                                    <div class="node-main">
-                                        <div class="node-title-row">
-                                            <strong>Presentation — WPF Desktop (MVVM)</strong>
-                                            <span class="node-badge">DESKTOP UI</span>
-                                        </div>
-                                        <span class="node-meta">WPF Presentation Layer · MVVM Pattern · DVLD.Contracts</span>
-                                    </div>
-                                </button>
-
-                                <button type="button" class="topo-node topo-boundary-node" role="option" aria-selected="false" data-layer-id="react">
-                                    <div class="node-index">WEB</div>
-                                    <div class="node-main">
-                                        <div class="node-title-row">
-                                            <strong>Frontend — React 19 &amp; TypeScript</strong>
-                                            <span class="node-badge badge-cyan">COMPANION CLIENT</span>
-                                        </div>
-                                        <span class="node-meta">Independent ClientApp · HTTP / JSON · In Development</span>
-                                    </div>
-                                </button>
-
-                                <button type="button" class="topo-node topo-boundary-node" role="option" aria-selected="false" data-layer-id="domain">
-                                    <div class="node-index">CORE</div>
-                                    <div class="node-main">
-                                        <div class="node-title-row">
-                                            <strong>Domain Layer — Core Entities</strong>
-                                            <span class="node-badge">DOMAIN MODEL</span>
-                                        </div>
-                                        <span class="node-meta">Core Licensing Entities &amp; Domain Concepts</span>
-                                    </div>
-                                </button>
-
-                                <button type="button" class="topo-node topo-boundary-node" role="option" aria-selected="false" data-layer-id="contracts">
-                                    <div class="node-index">CONTRACTS</div>
-                                    <div class="node-main">
-                                        <div class="node-title-row">
-                                            <strong>DTOs &amp; Result Pattern</strong>
-                                            <span class="node-badge">BOUNDARY</span>
-                                        </div>
-                                        <span class="node-meta">Data Transfer Objects · Problem Details Mapping</span>
-                                    </div>
-                                </button>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Right Column: Deep Architectural Component Inspector -->
-                    <div class="inspector-panel spotlight-card" id="archInspectorPanel" aria-live="polite">
-                        <div class="panel-header-bar">
-                            <span class="panel-code" id="inspectorCode">INSPECTOR // LAYER_02 :: ASP.NET_CORE_WEB_API</span>
-                            <span class="status-pill verified-pill" id="inspectorBadge">CV-VERIFIED SPECIFICATION</span>
-                        </div>
-
-                        <div class="inspector-body">
-                            <h3 class="inspector-title" id="inspectorTitle">API Layer — ASP.NET Core Web API</h3>
-                            <p class="inspector-summary" id="inspectorSummary">
-                                Exposes application functionality through RESTful endpoints while strictly separating HTTP transport, authentication, and error formatting from underlying business logic and data-access responsibilities.
-                            </p>
-
-                            <div class="inspector-grid">
-                                <div class="inspector-box">
-                                    <h4>VERIFIED RESPONSIBILITIES &amp; DECISIONS</h4>
-                                    <ul class="inspector-list" id="inspectorDecisions">
-                                        <li>Separate API controller concerns from business workflows and persistence logic via Dependency Injection.</li>
-                                        <li>Protect endpoints with JWT authentication, role-based authorization, and login rate limiting (returning <code>HTTP 429</code> when limits are exceeded).</li>
-                                        <li>Centralize API error handling using global exception handling, the Result Pattern, and standardized <code>Problem Details</code> responses.</li>
-                                    </ul>
-                                </div>
-
-                                <div class="inspector-box">
-                                    <h4>IMPLEMENTATION &amp; VERIFICATION SCOPE</h4>
-                                    <div class="impl-comparison">
-                                        <div class="impl-block impl-current">
-                                            <span class="impl-tag">IMPLEMENTED IN DVLD</span>
-                                            <p id="inspectorCurrent">RESTful ASP.NET Core Web API endpoints, JWT authentication, role-based authorization, login rate limiting (HTTP 429), Global Exception Handling, Problem Details, and Swagger/OpenAPI documentation.</p>
-                                        </div>
-                                        <div class="impl-block impl-planned">
-                                            <span class="impl-tag planned-tag">VERIFICATION &amp; QUALITY</span>
-                                            <p id="inspectorPlanned">Verified with automated unit and integration tests using xUnit and Moq covering API behavior, authentication, and security-related scenarios.</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- Architectural Boundary & Verification Specification -->
-                            <div class="inspector-code-block">
-                                <div class="code-header">
-                                    <span id="inspectorCodeFilename">LAYER SPECIFICATION // HTTP &amp; SECURITY BOUNDARY</span>
-                                    <span class="code-lang">ARCHITECTURAL CONTRACT</span>
-                                </div>
-                                <pre><code id="inspectorCodeSnippet">Layer Role       : Expose RESTful endpoints &amp; enforce security boundary
-Inbound Contract : HTTP Request + DTOs + JWT Bearer Token
-Security Guards  : JWT Authentication + Role-Based Authorization
-Abuse Protection : Login Rate Limiting -> returns HTTP 429 on repeated attempts
-Error Semantics  : Global Exception Handling + Result Pattern -> Problem Details
-Verification     : Integration tests covering API behavior, auth &amp; security</code></pre>
-                            </div>
-
-                            <div class="inspector-tech-tags" id="inspectorTechTags" aria-label="Technologies used in this layer">
-                                <span>ASP.NET Core Web API</span>
-                                <span>REST APIs</span>
-                                <span>JWT Authentication</span>
-                                <span>Role-Based Authorization</span>
-                                <span>Rate Limiting (HTTP 429)</span>
-                                <span>Problem Details</span>
-                                <span>Swagger / OpenAPI</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- =========================================================
-             SECTION 03: PROJECTS — ENGINEERING CASE STUDY SHOWCASE
-             ========================================================= -->
-        <section id="projects" class="frontier-section" aria-labelledby="projects-heading">
-            <div class="section-container">
-                <div class="section-header reveal">
-                    <div class="section-eyebrow">
-                        <span class="eyebrow-index">03 // ENGINEERING SHOWCASE</span>
-                        <span class="eyebrow-line" aria-hidden="true"></span>
-                        <span class="eyebrow-tag">PROOF OF WORK &amp; SYSTEM DESIGN</span>
-                    </div>
-                    <h2 id="projects-heading" class="section-title">FLAGSHIP SYSTEM: DVLD ARCHITECTURE</h2>
-                    <p class="section-subtitle">
-                        Presented as a software engineering case study — examining business workflows, 5-layer architectural separation, transactional consistency, API security, and automated test verification.
-                    </p>
-                </div>
-
-                <!-- Primary Case Study Container: DVLD -->
-                <article class="case-study-monolith spotlight-card reveal" aria-labelledby="dvld-title">
-                    <!-- Top Case Study Banner -->
-                    <div class="case-banner">
-                        <div class="case-banner-left">
-                            <span class="case-id">CASE_STUDY_01 // MULTI-LAYERED .NET SYSTEM</span>
-                            <h3 id="dvld-title" class="case-title">DVLD — Driving &amp; Vehicle License Department System</h3>
-                            <p class="case-summary">
-                                A multi-layered driving license management system built with C#, .NET, ASP.NET Core Web API, Entity Framework Core, SQL Server, and WPF (MVVM) — implementing core business workflows for driving license applications, test appointments, license issuance, renewal, replacement, detention and release, and international licenses.
-                            </p>
-                        </div>
-                        <div class="case-banner-actions">
-                            <a href="https://github.com/ayhm325/DVLD-WPF" target="_blank" rel="noopener noreferrer" class="btn-frontier-primary magnetic">
-                                <span>INSPECT DVLD REPOSITORY</span>
-                                <span aria-hidden="true">↗</span>
-                            </a>
-                            <div class="repo-meta-tag">
-                                <span class="pulse-dot"></span>
-                                <span>GITHUB // ayhm325/DVLD-WPF</span>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- 4-Column Engineering Proof Telemetry Strip -->
-                    <div class="case-metrics-grid" role="list" aria-label="DVLD verified engineering specifications">
-                        <div class="metric-card" role="listitem">
-                            <span class="metric-kicker">SOLUTION ARCHITECTURE</span>
-                            <strong class="metric-val">9 .NET Projects + React Client</strong>
-                            <small class="metric-note">Domain (14 entities), Application (21 services), Infrastructure, API (20 controllers), Contracts, WPF MVVM, 3 test suites, and companion React 19/TS client.</small>
-                        </div>
-                        <div class="metric-card" role="listitem">
-                            <span class="metric-kicker">REST API &amp; SECURITY</span>
-                            <strong class="metric-val">101 HTTP Actions · JWT</strong>
-                            <small class="metric-note">ASP.NET Core Web API with active-user validation, role-based policies (AdminOnly, StaffOnly), 5 req/min login rate limiting, and RFC 7807 ProblemDetails.</small>
-                        </div>
-                        <div class="metric-card" role="listitem">
-                            <span class="metric-kicker">PERSISTENCE &amp; TRANSACTIONS</span>
-                            <strong class="metric-val">14 Tables · 0 SQL Views</strong>
-                            <small class="metric-note">Direct EF Core 8 LINQ projections + raw SQL repository queries with explicit row-level locks (UPDLOCK, ROWLOCK, HOLDLOCK) &amp; Unit of Work deferred physical commit.</small>
-                        </div>
-                        <div class="metric-card" role="listitem">
-                            <span class="metric-kicker">AUTOMATED TESTING &amp; CI</span>
-                            <strong class="metric-val">3 Test Suites · Azure CI</strong>
-                            <small class="metric-note">Application unit tests (633 tests) + API &amp; Infrastructure integration test suites with xUnit &amp; Moq, automated via Azure DevOps pipeline.</small>
-                        </div>
-                    </div>
-
-                    <!-- Interactive Workflow & Request Trace Simulator -->
-                    <div class="workflow-explorer">
-                        <div class="workflow-header">
-                            <div>
-                                <span class="mono-kicker">INTERACTIVE WORKFLOW EXPLORER // LAYER-BY-LAYER EXECUTION TRACE</span>
-                                <h4>Explore Verified DVLD Business Workflows Across the Stack</h4>
-                            </div>
-                            <div class="workflow-tabs" role="tablist" aria-label="Select a DVLD business workflow to trace">
-                                <button type="button" class="wf-tab active" role="tab" aria-selected="true" aria-controls="wfTracePanel" id="wfTabAuth" data-wf="auth">
-                                    01 // Auth &amp; Rate Limiting
-                                </button>
-                                <button type="button" class="wf-tab" role="tab" aria-selected="false" aria-controls="wfTracePanel" id="wfTabTests" data-wf="appointments">
-                                    02 // Applications &amp; Test Appointments
-                                </button>
-                                <button type="button" class="wf-tab" role="tab" aria-selected="false" aria-controls="wfTracePanel" id="wfTabIssue" data-wf="issuance">
-                                    03 // License Issuance, Renewal &amp; Replacement
-                                </button>
-                                <button type="button" class="wf-tab" role="tab" aria-selected="false" aria-controls="wfTracePanel" id="wfTabDetain" data-wf="detention">
-                                    04 // Detention, Release &amp; International
-                                </button>
-                            </div>
-                        </div>
-
-                        <div class="workflow-stage" id="wfTracePanel" role="tabpanel" aria-labelledby="wfTabAuth" aria-live="polite">
-                            <div class="wf-meta-bar">
-                                <span class="wf-endpoint" id="wfEndpointBadge">WORKFLOW 01 // AUTHENTICATION &amp; ENDPOINT PROTECTION</span>
-                                <span class="wf-constraint" id="wfConstraintBadge">SECURITY: JWT + ROLE-BASED AUTH + LOGIN RATE LIMITING (HTTP 429)</span>
-                            </div>
-
-                            <div class="wf-pipeline-steps" id="wfPipelineSteps">
-                                <div class="wf-step">
-                                    <span class="wf-step-layer">01 // API GATEWAY</span>
-                                    <strong class="wf-step-title">Login Rate Limiting Guard</strong>
-                                    <p class="wf-step-desc">Restricts repeated authentication attempts at the API boundary and returns HTTP 429 when configured rate limits are exceeded.</p>
-                                </div>
-                                <div class="wf-step">
-                                    <span class="wf-step-layer">02 // APPLICATION</span>
-                                    <strong class="wf-step-title">Credential Verification &amp; Result Pattern</strong>
-                                    <p class="wf-step-desc">Validates user credentials through the Service Layer and models outcomes using the Result Pattern and Problem Details responses.</p>
-                                </div>
-                                <div class="wf-step">
-                                    <span class="wf-step-layer">03 // AUTHORIZATION</span>
-                                    <strong class="wf-step-title">JWT &amp; Role-Based Access Control</strong>
-                                    <p class="wf-step-desc">Issues JWT tokens and enforces role-based authorization across protected RESTful API endpoints.</p>
-                                </div>
-                                <div class="wf-step">
-                                    <span class="wf-step-layer">04 // VERIFICATION</span>
-                                    <strong class="wf-step-title">Authentication &amp; Security Tests</strong>
-                                    <p class="wf-step-desc">Verified with automated unit and integration tests covering authentication flows, authorization rules, and security-related scenarios.</p>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-
-                    <!-- Deep Engineering Breakdown: Problem, Decisions, Challenges & Testing Proof -->
-                    <div class="case-deep-grid">
-                        <div class="deep-panel">
-                            <span class="mono-kicker">01 // DOMAIN COMPLEXITY &amp; SYSTEM SCALE</span>
-                            <h4>Why Ordinary CRUD Was Insufficient</h4>
-                            <p>
-                                Managing a driving and vehicle licensing authority involves interdependent business rules across 14 database tables, 21 application services, 13 validators, and strict state transitions across applications, test appointments, licenses, detentions, and releases.
-                            </p>
-                            <ul class="technical-bullet-list">
-                                <li><strong>9 .NET Projects + Contracts Boundary:</strong> Architectural separation between Domain (entities &amp; enums), Application (services &amp; DTOs), Infrastructure (repositories &amp; EF Core 8), API (20 controllers / 101 actions), Contracts (shared transport requests/responses), and Presentation (WPF MVVM). Presentation references only <code>DVLD.Contracts</code>, completely decoupled from API and Application.</li>
-                                <li><strong>Companion Early-Stage React Frontend:</strong> An early-stage companion web client built with React 19, TypeScript, and Vite consuming the Web API over HTTP + JSON + JWT, configured via a dedicated <code>"ReactApp"</code> CORS policy.</li>
-                            </ul>
-                        </div>
-
-                        <div class="deep-panel">
-                            <span class="mono-kicker">02 // ARCHITECTURAL TRADE-OFFS &amp; PERSISTENCE</span>
-                            <h4>Engineering Decisions: UoW &amp; Zero SQL Views</h4>
-                            <ul class="technical-bullet-list">
-                                <li><strong>Unit of Work with Deferred Commit:</strong> Implemented <code>ExecuteInTransactionCoreAsync</code> with deferred physical commit (<code>deferPhysicalCommit: true</code>). Guarantees automatic rollback and <code>ChangeTracker.Clear()</code> on failure, prevents nested transactions with <code>EnsureNoActiveTransaction</code>, and uses a probe tracker to verify commit success if connection drops during commit.</li>
-                                <li><strong>Why 0 SQL Views:</strong> Instead of database views, standard queries leverage direct EF Core 8 LINQ projections, while high-concurrency repository queries target base tables with explicit row-level locks (<code>UPDLOCK, ROWLOCK, HOLDLOCK</code>) and a single aggregate query for dashboard metrics.</li>
-                                <li><strong>API Security &amp; Error Standards:</strong> JWT bearer authentication with active-user validation on every request (<code>OnTokenValidated</code> verifies active status), role policies (<code>AdminOnly</code>, <code>StaffOnly</code>, <code>StaffOrAdmin</code>), 5 requests/min login rate limiting (HTTP 429), and RFC 7807 <code>ProblemDetails</code> with clean HTTP 499 handling on client cancellations.</li>
-                            </ul>
-                        </div>
-
-                        <div class="deep-panel verification-panel">
-                            <span class="mono-kicker">03 // AUTOMATED TESTING STRATEGY &amp; CI PIPELINE</span>
-                            <h4>3 Test Suites Across the Solution (xUnit &amp; Moq)</h4>
-                            <p class="verification-disclaimer">
-                                Verified across 3 dedicated test projects alongside a <strong>Git/GitHub + Azure DevOps pipeline</strong> (<code>azure-pipelines.yml</code>) running automated restore, build, and test verification on <code>windows-latest</code>:
-                            </p>
-
-                            <div class="test-breakdown-bars" aria-label="Automated testing coverage domains">
-                                <div class="test-bar-row">
-                                    <div class="test-bar-meta">
-                                        <strong>DVLD.Application.UnitTests (21 Test Classes)</strong>
-                                        <span>633 PASSED UNIT TESTS</span>
-                                    </div>
-                                    <div class="test-bar-track"><div class="test-bar-fill fill-cyan" style="width: 100%"></div></div>
-                                </div>
-                                <div class="test-bar-row">
-                                    <div class="test-bar-meta">
-                                        <strong>DVLD.API.IntegrationTests (Controllers &amp; Workflows)</strong>
-                                        <span>20 CONTROLLERS + 9 WORKFLOWS</span>
-                                    </div>
-                                    <div class="test-bar-track"><div class="test-bar-fill fill-violet" style="width: 100%"></div></div>
-                                </div>
-                                <div class="test-bar-row">
-                                    <div class="test-bar-meta">
-                                        <strong>DVLD.Infrastructure.IntegrationTests (Repositories &amp; UoW)</strong>
-                                        <span>15 REPOSITORIES + UoW TESTS</span>
-                                    </div>
-                                    <div class="test-bar-track"><div class="test-bar-fill fill-emerald" style="width: 100%"></div></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </article>
-
-                <!-- Secondary Engineering Artifact: This Digital Frontier System -->
-                <div class="secondary-projects-grid reveal">
-                    <article class="artifact-card spotlight-card">
-                        <div class="artifact-top">
-                            <span class="mono-kicker">ARTIFACT_02 // ZERO-DEPENDENCY FRONTEND ARCHITECTURE</span>
-                            <span class="status-pill">LIVE PRODUCTION // GITHUB PAGES</span>
-                        </div>
-                        <h3>Digital Frontier Engineering Workspace (<code>ayhm325.github.io</code>)</h3>
-                        <p>
-                            Custom-built interactive engineering portfolio designed and implemented in semantic HTML5, modern CSS3, and vanilla JavaScript without external framework dependencies. Features a mathematical 3D-projected system topology canvas, an accessible command-line inspection shell, and responsive layout engineering.
-                        </p>
-                        <div class="artifact-specs">
-                            <span>Semantic HTML5</span>
-                            <span>Modern CSS3</span>
-                            <span>Vanilla ES6+ JS</span>
-                            <span>WCAG AA &amp; Keyboard Accessible</span>
-                            <span>Reduced-Motion Safe</span>
-                        </div>
-                        <div class="artifact-links">
-                            <a href="https://github.com/ayhm325/ayhm325.github.io" target="_blank" rel="noopener noreferrer" class="artifact-link">
-                                <span>SOURCE REPOSITORY</span>
-                                <span aria-hidden="true">↗</span>
-                            </a>
-                            <a href="https://ayhm325.github.io/" target="_blank" rel="noopener noreferrer" class="artifact-link">
-                                <span>LIVE DEPLOYMENT</span>
-                                <span aria-hidden="true">↗</span>
-                            </a>
-                        </div>
-                    </article>
-
-                    <article class="artifact-card spotlight-card">
-                        <div class="artifact-top">
-                            <span class="mono-kicker">ARTIFACT_03 // CONTINUOUS INTEGRATION &amp; VERSION CONTROL</span>
-                            <span class="status-pill">VERIFIED TOOLING</span>
-                        </div>
-                        <h3>Azure DevOps Build Pipeline &amp; Git Workflow</h3>
-                        <p>
-                            Used Git and GitHub for source control and maintained an Azure DevOps pipeline for automated package restore and solution build operations across the multi-layered DVLD .NET project.
-                        </p>
-                        <div class="artifact-specs">
-                            <span>Azure DevOps</span>
-                            <span>Git &amp; GitHub</span>
-                            <span>Automated Restore &amp; Build</span>
-                            <span>xUnit &amp; Moq</span>
-                        </div>
-                        <div class="artifact-links">
-                            <a href="https://github.com/ayhm325/DVLD-WPF" target="_blank" rel="noopener noreferrer" class="artifact-link">
-                                <span>VIEW DVLD REPOSITORY</span>
-                                <span aria-hidden="true">↗</span>
-                            </a>
-                        </div>
-                    </article>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- =========================================================
-             SECTION 04: SKILLS & CAPABILITIES MATRIX (EVIDENCE-LINKED)
-             ========================================================= -->
-        <section id="skills" class="frontier-section" aria-labelledby="skills-heading">
-            <div class="section-container">
-                <div class="section-header reveal">
-                    <div class="section-eyebrow">
-                        <span class="eyebrow-index">04 // TECHNICAL CAPABILITIES</span>
-                        <span class="eyebrow-line" aria-hidden="true"></span>
-                        <span class="eyebrow-tag">EVIDENCE-BACKED SPECIFICATION</span>
-                    </div>
-                    <h2 id="skills-heading" class="section-title">ENGINEERING STACK &amp; APPLIED EVIDENCE</h2>
-                    <p class="section-subtitle">
-                        Organized by core engineering domain rather than arbitrary percentage bars. Every capability listed below is backed by concrete implementation work in my .NET projects and Computer Science degree.
-                    </p>
-                </div>
-
-                <!-- Interactive Domain Filter Bar -->
-                <div class="skills-filter-bar reveal" role="toolbar" aria-label="Filter technical capabilities by domain">
-                    <button type="button" class="skill-filter-btn active" data-skill-filter="all" aria-pressed="true">ALL DOMAINS (08)</button>
-                    <button type="button" class="skill-filter-btn" data-skill-filter="backend" aria-pressed="false">BACKEND &amp; C#</button>
-                    <button type="button" class="skill-filter-btn" data-skill-filter="data" aria-pressed="false">DATA &amp; ARCHITECTURE</button>
-                    <button type="button" class="skill-filter-btn" data-skill-filter="security-qa" aria-pressed="false">SECURITY, TESTING &amp; CI</button>
-                    <button type="button" class="skill-filter-btn" data-skill-filter="client" aria-pressed="false">CLIENT &amp; DESKTOP</button>
-                </div>
-
-                <!-- 8-Category Engineering Matrix -->
-                <div class="capabilities-grid reveal" id="capabilitiesGrid">
-
-                    <!-- 1. Backend Development -->
-                    <article class="capability-card spotlight-card" data-skill-category="backend">
-                        <div class="cap-header">
-                            <span class="cap-index">DOMAIN_01</span>
-                            <span class="cap-priority">PRIMARY FOCUS</span>
-                        </div>
-                        <h3>Backend Development</h3>
-                        <p class="cap-desc">
-                            Designing and building RESTful HTTP services in ASP.NET Core Web API with clean controller boundaries, centralized error handling, and standardized API documentation.
-                        </p>
-                        <div class="cap-tags">
-                            <span>ASP.NET Core Web API</span>
-                            <span>.NET</span>
-                            <span>REST APIs</span>
-                            <span>Problem Details</span>
-                            <span>Global Exception Handling</span>
-                            <span>Swagger / OpenAPI</span>
-                        </div>
-                        <div class="cap-evidence">
-                            <span class="evidence-label">APPLIED EVIDENCE</span>
-                            <p>Built the DVLD ASP.NET Core Web API exposing application functionality through RESTful endpoints with centralized Problem Details error responses.</p>
-                        </div>
-                    </article>
-
-                    <!-- 2. C# and Object-Oriented Programming -->
-                    <article class="capability-card spotlight-card" data-skill-category="backend">
-                        <div class="cap-header">
-                            <span class="cap-index">DOMAIN_02</span>
-                            <span class="cap-priority">CORE LANGUAGE</span>
-                        </div>
-                        <h3>C# &amp; Object-Oriented Programming</h3>
-                        <p class="cap-desc">
-                            Writing maintainable, strongly-typed C# code using object-oriented principles, SOLID design, service abstractions, and expressive LINQ queries.
-                        </p>
-                        <div class="cap-tags">
-                            <span>C#</span>
-                            <span>OOP</span>
-                            <span>SOLID Principles</span>
-                            <span>LINQ</span>
-                            <span>DTOs</span>
-                            <span>Result Pattern</span>
-                        </div>
-                        <div class="cap-evidence">
-                            <span class="evidence-label">APPLIED EVIDENCE</span>
-                            <p>Implemented domain entities, service-layer workflows, DTOs, and Result Pattern error handling across the multi-layered DVLD system.</p>
-                        </div>
-                    </article>
-
-                    <!-- 3. Databases and Data Access -->
-                    <article class="capability-card spotlight-card" data-skill-category="data">
-                        <div class="cap-header">
-                            <span class="cap-index">DOMAIN_03</span>
-                            <span class="cap-priority">PERSISTENCE</span>
-                        </div>
-                        <h3>Databases &amp; Data Access</h3>
-                        <p class="cap-desc">
-                            Designing relational schemas, managing entity relationships, and executing CRUD and analytical queries using SQL Server and Entity Framework Core.
-                        </p>
-                        <div class="cap-tags">
-                            <span>SQL Server</span>
-                            <span>Entity Framework Core</span>
-                            <span>SQL Queries &amp; JOINs</span>
-                            <span>GROUP BY &amp; Subqueries</span>
-                            <span>Database Design</span>
-                            <span>Entity Relationships</span>
-                            <span>SSMS</span>
-                        </div>
-                        <div class="cap-evidence">
-                            <span class="evidence-label">APPLIED EVIDENCE</span>
-                            <p>Used Entity Framework Core and SQL Server for persistence, entity relationships, CRUD operations, and LINQ-based queries in DVLD.</p>
-                        </div>
-                    </article>
-
-                    <!-- 4. Software Architecture and Design Patterns -->
-                    <article class="capability-card spotlight-card" data-skill-category="data">
-                        <div class="cap-header">
-                            <span class="cap-index">DOMAIN_04</span>
-                            <span class="cap-priority">SYSTEM DESIGN</span>
-                        </div>
-                        <h3>Software Architecture &amp; Patterns</h3>
-                        <p class="cap-desc">
-                            Structuring multi-layered solutions to enforce separation of concerns, dependency inversion, and transactional consistency across business workflows.
-                        </p>
-                        <div class="cap-tags">
-                            <span>Layered Architecture</span>
-                            <span>Separation of Concerns</span>
-                            <span>Dependency Injection</span>
-                            <span>Repository Pattern</span>
-                            <span>Unit of Work</span>
-                            <span>Service Layer</span>
-                        </div>
-                        <div class="cap-evidence">
-                            <span class="evidence-label">APPLIED EVIDENCE</span>
-                            <p>Developed DVLD using separate Domain, Application, Infrastructure, API, and Presentation layers with Repository and Unit of Work patterns.</p>
-                        </div>
-                    </article>
-
-                    <!-- 5. Authentication and API Security -->
-                    <article class="capability-card spotlight-card" data-skill-category="security-qa">
-                        <div class="cap-header">
-                            <span class="cap-index">DOMAIN_05</span>
-                            <span class="cap-priority">API SECURITY</span>
-                        </div>
-                        <h3>Authentication &amp; API Security</h3>
-                        <p class="cap-desc">
-                            Protecting API endpoints against unauthorized access and repeated login abuse using token authentication, role checks, and rate limiting.
-                        </p>
-                        <div class="cap-tags">
-                            <span>JWT Authentication</span>
-                            <span>Role-Based Authorization</span>
-                            <span>Login Rate Limiting (HTTP 429)</span>
-                            <span>Protected API Endpoints</span>
-                        </div>
-                        <div class="cap-evidence">
-                            <span class="evidence-label">APPLIED EVIDENCE</span>
-                            <p>Implemented JWT authentication, role-based authorization, and login rate limiting returning HTTP 429 when configured limits are exceeded.</p>
-                        </div>
-                    </article>
-
-                    <!-- 6. Automated Testing -->
-                    <article class="capability-card spotlight-card" data-skill-category="security-qa">
-                        <div class="cap-header">
-                            <span class="cap-index">DOMAIN_06</span>
-                            <span class="cap-priority">QUALITY ASSURANCE</span>
-                        </div>
-                        <h3>Automated Testing</h3>
-                        <p class="cap-desc">
-                            Verifying application logic, HTTP API behavior, persistence operations, and security scenarios through isolated unit and integration tests.
-                        </p>
-                        <div class="cap-tags">
-                            <span>xUnit</span>
-                            <span>Moq</span>
-                            <span>Unit Testing</span>
-                            <span>Integration Testing</span>
-                        </div>
-                        <div class="cap-evidence">
-                            <span class="evidence-label">APPLIED EVIDENCE</span>
-                            <p>Developed unit and integration tests with xUnit and Moq covering application logic, API behavior, infrastructure operations, authentication, and security scenarios.</p>
-                        </div>
-                    </article>
-
-                    <!-- 7. Version Control and CI/CD -->
-                    <article class="capability-card spotlight-card" data-skill-category="security-qa">
-                        <div class="cap-header">
-                            <span class="cap-index">DOMAIN_07</span>
-                            <span class="cap-priority">DEVOPS &amp; TOOLING</span>
-                        </div>
-                        <h3>Version Control &amp; CI/CD</h3>
-                        <p class="cap-desc">
-                            Managing source control and maintaining automated build pipelines to verify package restore and compilation across multi-project .NET solutions.
-                        </p>
-                        <div class="cap-tags">
-                            <span>Git</span>
-                            <span>GitHub</span>
-                            <span>Azure DevOps</span>
-                            <span>Visual Studio</span>
-                            <span>VS Code</span>
-                        </div>
-                        <div class="cap-evidence">
-                            <span class="evidence-label">APPLIED EVIDENCE</span>
-                            <p>Used Git and GitHub for version control and maintained an Azure DevOps pipeline for automated restore and build operations.</p>
-                        </div>
-                    </article>
-
-                    <!-- 8. Frontend & Desktop Fundamentals -->
-                    <article class="capability-card spotlight-card" data-skill-category="client">
-                        <div class="cap-header">
-                            <span class="cap-index">DOMAIN_08</span>
-                            <span class="cap-priority">PRESENTATION LAYER</span>
-                        </div>
-                        <h3>Desktop &amp; Frontend Fundamentals</h3>
-                        <p class="cap-desc">
-                            Building structured desktop presentation layers with WPF and MVVM alongside accessible, responsive web interfaces.
-                        </p>
-                        <div class="cap-tags">
-                            <span>WPF</span>
-                            <span>MVVM</span>
-                            <span>Semantic HTML5</span>
-                            <span>Modern CSS3</span>
-                            <span>JavaScript</span>
-                        </div>
-                        <div class="cap-evidence">
-                            <span class="evidence-label">APPLIED EVIDENCE</span>
-                            <p>Built the DVLD Presentation layer using WPF and MVVM and engineered this static web portfolio for GitHub Pages.</p>
-                        </div>
-                    </article>
-
-                </div>
-            </div>
-        </section>
-
-        <!-- =========================================================
-             SECTION 05: ENGINEERING PHILOSOPHY & OPERATOR DOSSIER
-             ========================================================= -->
-        <section id="philosophy" class="frontier-section" aria-labelledby="philosophy-heading">
-            <div class="section-container">
-                <div class="section-header reveal">
-                    <div class="section-eyebrow">
-                        <span class="eyebrow-index">05 // ENGINEERING PHILOSOPHY</span>
-                        <span class="eyebrow-line" aria-hidden="true"></span>
-                        <span class="eyebrow-tag">PRINCIPLES &amp; BACKGROUND</span>
-                    </div>
-                    <h2 id="philosophy-heading" class="section-title">HOW I APPROACH SOFTWARE ENGINEERING</h2>
-                    <p class="section-subtitle">
-                        Code is read and maintained far more often than it is written. My focus is on building backend systems that remain understandable, testable, and reliable as requirements evolve.
-                    </p>
-                </div>
-
-                <div class="philosophy-layout">
-                    <!-- Left: 4 Core Engineering Principles -->
-                    <div class="tenets-grid reveal">
-                        <article class="tenet-card spotlight-card">
-                            <span class="tenet-num">PRINCIPLE // 01</span>
-                            <h3>Strict Separation of Concerns</h3>
-                            <p>
-                                API controllers handle HTTP transport; Application services orchestrate business workflows; Domain models represent core entities; Infrastructure manages EF Core and SQL Server persistence. Keeping these layers distinct makes each part easier to reason about and maintain.
-                            </p>
-                        </article>
-
-                        <article class="tenet-card spotlight-card">
-                            <span class="tenet-num">PRINCIPLE // 02</span>
-                            <h3>Transactional Consistency</h3>
-                            <p>
-                                Real business workflows often span multiple repositories and tables. Coordinating persistence through the Repository and Unit of Work patterns backed by relational SQL Server constraints keeps system state consistent.
-                            </p>
-                        </article>
-
-                        <article class="tenet-card spotlight-card">
-                            <span class="tenet-num">PRINCIPLE // 03</span>
-                            <h3>Structured Error Handling</h3>
-                            <p>
-                                Centralizing API error handling with global exception handling, the <code>Result Pattern</code>, and standardized <code>Problem Details</code> responses ensures clients receive clear, predictable outcomes instead of raw unhandled exceptions.
-                            </p>
-                        </article>
-
-                        <article class="tenet-card spotlight-card">
-                            <span class="tenet-num">PRINCIPLE // 04</span>
-                            <h3>Verification Through Automated Testing</h3>
-                            <p>
-                                Applying Dependency Injection and SOLID principles allows application logic, API behavior, infrastructure persistence, and authentication security rules to be verified systematically with <code>xUnit</code> and <code>Moq</code>.
-                            </p>
-                        </article>
-                    </div>
-
-                    <!-- Right: Engineer Identity & Education Dossier -->
-                    <aside class="engineer-dossier spotlight-card reveal" aria-labelledby="dossier-name">
-                        <div class="dossier-topbar">
-                            <span class="mono-kicker">ENGINEER_DOSSIER // VERIFIED PROFILE</span>
-                            <span class="status-led" aria-hidden="true"></span>
-                        </div>
-
-                        <div class="dossier-profile-row">
-                            <div class="dossier-avatar-frame">
-                                <picture>
-                                    <source srcset="assets/ayhm-portrait.jpg" type="image/jpeg">
-                                    <img
-                                        src="assets/ayhm-portrait.jpg"
-                                        alt="Portrait of Ayhm Mohammed Obeidat"
-                                        width="560"
-                                        height="840"
-                                        loading="lazy"
-                                        decoding="async"
-                                        class="dossier-photo"
-                                        onerror="this.onerror=null;this.src='assets/ayhmImage.JPG';"
-                                    >
-                                </picture>
-                                <div class="dossier-fallback" hidden>AO</div>
-                            </div>
-                            <div class="dossier-identity">
-                                <h3 id="dossier-name">Ayhm Mohammed Obeidat</h3>
-                                <p class="dossier-role">Junior .NET Backend Developer / Software Engineer</p>
-                                <span class="dossier-loc">Irbid / Amman, Jordan</span>
-                            </div>
-                        </div>
-
-                        <dl class="dossier-specs">
-                            <div class="spec-row">
-                                <dt>EDUCATION</dt>
-                                <dd>
-                                    <strong>B.Sc. in Computer Science (2026)</strong>
-                                    <span>Jordan University of Science and Technology (JUST) — Irbid, Jordan</span>
-                                </dd>
-                            </div>
-                            <div class="spec-row">
-                                <dt>PRIMARY SPECIALIZATION</dt>
-                                <dd>
-                                    <strong>.NET Backend Engineering</strong>
-                                    <span>C#, .NET, ASP.NET Core Web API, Entity Framework Core, SQL Server</span>
-                                </dd>
-                            </div>
-                            <div class="spec-row">
-                                <dt>LANGUAGES</dt>
-                                <dd>
-                                    <strong>Arabic (Native) · English (Professional Working Proficiency)</strong>
-                                </dd>
-                            </div>
-                            <div class="spec-row">
-                                <dt>AVAILABILITY</dt>
-                                <dd>
-                                    <strong class="text-emerald">Open to Entry-Level / Junior .NET Backend &amp; Software Engineer Roles</strong>
-                                </dd>
-                            </div>
-                        </dl>
-
-                        <div class="dossier-actions">
-                            <a href="assets/Ayhm_Obeidat_CV.pdf" download class="btn-frontier-primary full-width">
-                                <span>DOWNLOAD FULL CV (PDF)</span>
-                                <span aria-hidden="true">↓</span>
-                            </a>
-                        </div>
-                    </aside>
-                </div>
-            </div>
-        </section>
-
-        <!-- =========================================================
-             SECTION 06: CONTACT & PROFESSIONAL CONVERSION
-             ========================================================= -->
-        <section id="contact" class="frontier-section contact-section" aria-labelledby="contact-heading">
-            <div class="section-container">
-                <div class="contact-command-center spotlight-card reveal">
-                    <div class="contact-header-bar">
-                        <span class="mono-kicker">06 // TRANSMISSION &amp; CONVERSION</span>
-                        <span class="availability-badge">
-                            <span class="pulse-dot"></span>
-                            AVAILABLE FOR IMMEDIATE HIRE &amp; TECHNICAL INTERVIEWS
-                        </span>
-                    </div>
-
-                    <div class="contact-body">
-                        <div class="contact-pitch">
-                            <h2 id="contact-heading" class="contact-title">READY TO CONTRIBUTE TO YOUR ENGINEERING TEAM.</h2>
-                            <p class="contact-desc">
-                                I am seeking a <strong>Junior .NET Backend Developer</strong> or <strong>Junior Software Engineer</strong> position where I can build reliable APIs, maintain clean relational data models, write meaningful automated tests, and grow alongside experienced engineers.
-                            </p>
-
-                            <div class="contact-primary-actions">
-                                <a href="mailto:ayhmobeidat.cs@gmail.com" class="btn-frontier-primary magnetic">
-                                    <span>EMAIL AYHM DIRECTLY</span>
-                                    <span aria-hidden="true">↗</span>
-                                </a>
-                                <button type="button" class="btn-frontier-secondary" id="copyEmailBtn" data-email="ayhmobeidat.cs@gmail.com">
-                                    <span id="copyEmailLabel">COPY EMAIL ADDRESS</span>
-                                    <span aria-hidden="true">⎘</span>
-                                </button>
-                                <a href="assets/Ayhm_Obeidat_CV.pdf" download class="btn-frontier-ghost magnetic">
-                                    <span>DOWNLOAD CV (PDF)</span>
-                                    <span aria-hidden="true">↓</span>
-                                </a>
-                            </div>
-                            <p class="copy-feedback" id="copyFeedback" role="status" aria-live="polite"></p>
-                        </div>
-
-                        <!-- Verified Direct Channels Grid -->
-                        <div class="contact-channels-grid" role="list" aria-label="Verified professional channels">
-                            <a href="mailto:ayhmobeidat.cs@gmail.com" class="channel-card" role="listitem">
-                                <div class="channel-top">
-                                    <span class="channel-type">01 // DIRECT EMAIL</span>
-                                    <span class="channel-arrow" aria-hidden="true">↗</span>
-                                </div>
-                                <strong class="channel-handle">ayhmobeidat.cs@gmail.com</strong>
-                                <span class="channel-sub">Primary recruiting &amp; engineering inbox</span>
-                            </a>
-
-                            <a href="https://github.com/ayhm325" target="_blank" rel="noopener noreferrer" class="channel-card" role="listitem">
-                                <div class="channel-top">
-                                    <span class="channel-type">02 // CODE REPOSITORIES</span>
-                                    <span class="channel-arrow" aria-hidden="true">↗</span>
-                                </div>
-                                <strong class="channel-handle">github.com/ayhm325</strong>
-                                <span class="channel-sub">Inspect DVLD source code, commits &amp; tests</span>
-                            </a>
-
-                            <a href="https://www.linkedin.com/in/ayhm-obeidat-75a10a352" target="_blank" rel="noopener noreferrer" class="channel-card" role="listitem">
-                                <div class="channel-top">
-                                    <span class="channel-type">03 // PROFESSIONAL NETWORK</span>
-                                    <span class="channel-arrow" aria-hidden="true">↗</span>
-                                </div>
-                                <strong class="channel-handle">/in/ayhm-obeidat-75a10a352</strong>
-                                <span class="channel-sub">Connect on LinkedIn · Irbid / Amman, Jordan</span>
-                            </a>
-
-                            <a href="assets/Ayhm_Obeidat_CV.pdf" download class="channel-card" role="listitem">
-                                <div class="channel-top">
-                                    <span class="channel-type">04 // CURRICULUM VITAE</span>
-                                    <span class="channel-arrow" aria-hidden="true">↓</span>
-                                </div>
-                                <strong class="channel-handle">Ayhm_Obeidat_CV.pdf</strong>
-                                <span class="channel-sub">Verified PDF Resume · Education, Stack &amp; DVLD</span>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="frontier-footer">
-        <div class="footer-container">
-            <div class="footer-left">
-                <strong>AYHM MOHAMMED OBEIDAT</strong>
-                <span>// JUNIOR .NET BACKEND DEVELOPER &amp; SOFTWARE ENGINEER</span>
-            </div>
-            <div class="footer-center">
-                <span>C# · .NET · ASP.NET CORE WEB API · EF CORE · SQL SERVER</span>
-            </div>
-            <div class="footer-right">
-                <span>© <span id="year">2026</span> · IRBID / AMMAN, JORDAN</span>
-            </div>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <nav class="nav wrap" aria-label="Main navigation">
+      <a class="wordmark" href="#home" aria-label="Ayhm Obeidat, home"><span class="wordmark-icon">A<span>.</span></span><span>AYHM OBEIDAT<small>.NET BACKEND DEVELOPER</small></span></a>
+      <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open navigation">Menu <span>☰</span></button>
+      <div class="nav-menu" id="nav-menu">
+        <a href="#about">About</a><a href="#skills">Skills</a><a href="#project">DVLD Project</a><a href="#education">Education</a><a href="#contact">Contact</a>
+        <a class="nav-cv" href="assets/Ayhm_Obeidat_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
+      </div>
+    </nav>
+  </header>
+  <main id="main">
+    <section class="hero section" id="home">
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-dot"></span> JUNIOR .NET BACKEND DEVELOPER <span class="eyebrow-divider">/</span> AMMAN, JORDAN</p>
+          <h1>Building reliable<br><span>backend applications</span><br>with .NET.</h1>
+          <p class="hero-intro">I’m Ayhm, a Computer Science graduate focused on .NET backend development. I build structured Web APIs and solve business problems with maintainable code.</p>
+          <div class="hero-actions">
+            <a class="button button-primary" href="#project">Explore the DVLD project <span aria-hidden="true">↘</span></a>
+            <a class="button button-outline" href="assets/Ayhm_Obeidat_CV.pdf" download>Download CV <span aria-hidden="true">↓</span></a>
+          </div>
+          <div class="hero-links"><a href="https://github.com/ayhm325" target="_blank" rel="noopener noreferrer">GitHub profile ↗</a><a href="mailto:ayhmobeidat.cs@gmail.com">Get in touch ↗</a></div>
         </div>
-    </footer>
+        <aside class="hero-card" aria-label="Professional focus">
+          <div class="card-top"><span>CORE STACK</span><span class="card-index">01 / 05</span></div>
+          <div class="stack-display"><span>C#</span><span>.NET</span><span>API</span></div>
+          <div class="hero-card-line"></div>
+          <p class="mono-label">BUILDING WITH</p>
+          <ul class="stack-list"><li><span>C# &amp; .NET 8</span><span>01</span></li><li><span>ASP.NET Core Web API</span><span>02</span></li><li><span>Entity Framework Core</span><span>03</span></li><li><span>SQL Server &amp; LINQ</span><span>04</span></li></ul>
+          <div class="hero-card-foot"><span>JUST · COMPUTER SCIENCE</span><span>CLASS OF 2026</span></div>
+        </aside>
+        <div class="hero-bottom"><span>BACKEND FOCUS <i>·</i> BUSINESS SYSTEMS <i>·</i> API DESIGN</span><a href="#about" aria-label="Scroll to about section">SCROLL TO EXPLORE <span>↓</span></a></div>
+      </div>
+    </section>
 
-    <script src="script.js"></script>
+    <section class="section about-section" id="about">
+      <div class="wrap two-col">
+        <div class="section-heading"><p class="eyebrow">01 / ABOUT</p><h2>Backend work,<br><span>grounded in purpose.</span></h2></div>
+        <div class="about-copy">
+          <p class="lead">I’m a Computer Science graduate from Jordan University of Science and Technology (JUST), focused on C# and .NET backend development.</p>
+          <p>My hands-on work includes ASP.NET Core Web APIs, Entity Framework Core, SQL Server, LINQ, and REST principles. In the DVLD project, I’ve applied these tools across a multi-layered application with business workflows for licensing and examination operations.</p>
+          <p>I’m interested in backend architecture, relational data design, authentication, and application security. I aim to make business rules clear and systems dependable as they grow.</p>
+          <a class="text-link" href="#project">See how I applied these skills <span>→</span></a>
+        </div>
+      </div>
+    </section>
+
+    <section class="section skills-section" id="skills">
+      <div class="wrap">
+        <div class="section-heading wide-heading"><p class="eyebrow">02 / TECHNICAL SKILLS</p><h2>Tools I use to build<br><span>maintainable systems.</span></h2><p>Backend development is my primary focus. Frontend tools are supporting experience from the DVLD client application.</p></div>
+        <div class="skills-layout">
+          <article class="skill-card skill-primary"><p class="mono-label">01 / BACKEND DEVELOPMENT</p><h3>Core stack</h3><div class="skill-tags prominent"><span>C#</span><span>.NET 8</span><span>ASP.NET Core Web API</span><span>Entity Framework Core</span><span>SQL Server</span><span>LINQ</span></div><p class="skill-note">RESTful APIs · DTOs · Dependency Injection · Async/Await</p></article>
+          <article class="skill-card"><p class="mono-label">02 / DATA</p><h3>Database</h3><div class="skill-tags"><span>SQL queries</span><span>JOINs</span><span>GROUP BY</span><span>Subqueries</span><span>Relationships</span></div></article>
+          <article class="skill-card"><p class="mono-label">03 / DESIGN</p><h3>Architecture &amp; fundamentals</h3><div class="skill-tags"><span>OOP</span><span>SOLID</span><span>Layered architecture</span><span>Repository</span><span>Unit of Work</span><span>Result pattern</span><span>Collections</span></div></article>
+          <article class="skill-card"><p class="mono-label">04 / API SECURITY</p><h3>Authentication &amp; authorization</h3><div class="skill-tags"><span>JWT bearer</span><span>Role-based authorization</span><span>HTTP methods</span><span>Status codes</span></div></article>
+          <article class="skill-card"><p class="mono-label">05 / PROJECT EXPERIENCE</p><h3>Frontend</h3><div class="skill-tags"><span>React</span><span>TypeScript</span><span>Vite</span><span>Tailwind CSS</span></div><p class="skill-note">Supporting experience building the DVLD client for its ASP.NET Core API.</p></article>
+          <article class="skill-card"><p class="mono-label">06 / DAILY TOOLS</p><h3>Development tools</h3><div class="skill-tags"><span>Git &amp; GitHub</span><span>Visual Studio</span><span>VS Code</span><span>SSMS</span><span>Swagger / OpenAPI</span><span>Azure DevOps Pipelines</span></div></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="section project-section" id="project">
+      <div class="wrap">
+        <div class="section-heading project-heading"><p class="eyebrow">03 / FEATURED PROJECT</p><h2>A business system with<br><span>real workflows to protect.</span></h2><p>DVLD — Driving &amp; Vehicle License Department System</p></div>
+        <div class="project-banner">
+          <div><p class="mono-label">FULL-STACK BUSINESS MANAGEMENT APPLICATION</p><p class="project-summary">A system for managing people, drivers, applications, examinations, and license operations. The backend is built around clear application workflows, shared persistence, and access controls.</p></div>
+          <a class="button button-light" href="https://github.com/ayhm325/DVLD-System" target="_blank" rel="noopener noreferrer">View source on GitHub <span>↗</span></a>
+        </div>
+        <div class="project-meta">
+          <div><p class="mono-label">BACKEND</p><p>C# · .NET 8 · ASP.NET Core Web API<br>EF Core 8 · SQL Server</p></div>
+          <div><p class="mono-label">CLIENT</p><p>React 19 · TypeScript · Vite<br>Tailwind CSS</p></div>
+          <div><p class="mono-label">ENGINEERING</p><p>JWT · RBAC · Unit of Work<br>xUnit · Azure DevOps Pipelines</p></div>
+          <div><p class="mono-label">SOURCE SNAPSHOT</p><p>Commit <a class="commit-link" href="https://github.com/ayhm325/DVLD-System/tree/2420274d5a01a0e4fa2d6e416148daebf13523cf" target="_blank" rel="noopener noreferrer">2420274 ↗</a></p></div>
+        </div>
+
+        <div class="project-details">
+          <div class="feature-block">
+            <p class="mono-label">BUSINESS CAPABILITIES</p>
+            <div class="feature-groups">
+              <article><span class="feature-num">01</span><h3>People &amp; operations</h3><p>People and user records, driver management, dashboard statistics, and reference data for countries, application types, license classes, and test types.</p></article>
+              <article><span class="feature-num">02</span><h3>Applications &amp; exams</h3><p>Local driving-license applications, test types, appointment scheduling, test results, and progression through required examinations.</p></article>
+              <article><span class="feature-num">03</span><h3>License services</h3><p>First-time license issuance, renewals, replacement licenses, license detention and release, and international license issuance.</p></article>
+            </div>
+          </div>
+          <div class="architecture-block">
+            <p class="mono-label">BACKEND STRUCTURE</p>
+            <h3>Responsibilities stay in their layers.</h3>
+            <div class="layer-list"><div><span>01</span><strong>Domain</strong><p>Core entities and business rules.</p></div><div><span>02</span><strong>Application</strong><p>Services orchestrate use cases and coordinate business workflows.</p></div><div><span>03</span><strong>Infrastructure</strong><p>EF Core, SQL Server, repositories, and Unit of Work persistence.</p></div><div><span>04</span><strong>API</strong><p>HTTP endpoints, request and response contracts, authentication, and authorization.</p></div></div>
+            <p class="architecture-foot">The API stays focused on HTTP responsibilities while application services coordinate operations.</p>
+          </div>
+        </div>
+
+        <div class="engineering-section">
+          <div class="engineering-intro"><p class="mono-label">ENGINEERING DECISIONS</p><h3>Designing for consistent outcomes.</h3><p>Examples of engineering concerns addressed in the DVLD source.</p></div>
+          <div class="decision-list">
+            <article><h4>Multi-step business operations</h4><p><b>Problem</b> A licensing workflow can change several related records.</p><p><b>Approach</b> Services coordinate work through a shared DbContext and Unit of Work transaction.</p><p><b>Why it matters</b> Related changes can commit or roll back together, protecting data consistency.</p></article>
+            <article><h4>Concurrent requests</h4><p><b>Problem</b> Two requests may compete for the same appointment or licensing state.</p><p><b>Approach</b> Sensitive workflows use Serializable transactions, SQL application and row locks, and database constraints.</p><p><b>Why it matters</b> The database helps enforce business invariants under concurrent access.</p></article>
+            <article><h4>Securing API access</h4><p><b>Problem</b> Clients must not be trusted to enforce staff permissions.</p><p><b>Approach</b> JWT bearer authentication and server-side role policies protect API endpoints.</p><p><b>Why it matters</b> Authorization is applied at the backend boundary.</p></article>
+            <article><h4>Reliable testing</h4><p><b>Problem</b> Persistence tests need isolation from real application data.</p><p><b>Approach</b> Separate unit and integration suites use isolated SQL Server test databases and safety checks.</p><p><b>Why it matters</b> Tests can exercise database behavior without targeting the production database.</p></article>
+          </div>
+        </div>
+        <div class="testing-strip"><p class="mono-label">TEST PROJECTS IN THE REPOSITORY</p><div><code>Application.UnitTests</code><code>API.IntegrationTests</code><code>Infrastructure.IntegrationTests</code></div><p>These suites are part of the project structure. No test pass counts are claimed here.</p></div>
+
+        <div class="client-showcase">
+          <div class="client-copy"><p class="mono-label">CLIENT APPLICATION</p><h3>A React interface for the DVLD API.</h3><p>The browser client communicates with the ASP.NET Core API over HTTP, JSON, and JWT. The repository includes a real login screen capture from its browser test screenshots.</p><a class="text-link" href="https://github.com/ayhm325/DVLD-System/tree/2420274d5a01a0e4fa2d6e416148daebf13523cf/ClientApp" target="_blank" rel="noopener noreferrer">Explore the ClientApp source <span>↗</span></a></div>
+          <figure class="screenshot-card"><img src="https://raw.githubusercontent.com/ayhm325/DVLD-System/2420274d5a01a0e4fa2d6e416148daebf13523cf/ClientApp/tests/screenshots/chromium/login-current-1440-.png" alt="Actual DVLD React client login screen captured at 1440 pixels wide" loading="lazy" width="1440" height="900"><figcaption><span>DVLD CLIENT · LOGIN</span><span>ACTUAL APP SCREENSHOT · 1440 PX</span></figcaption></figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section education-section" id="education">
+      <div class="wrap education-row"><div><p class="eyebrow">04 / EDUCATION</p><h2>Computer Science,<br><span>JUST · 2026.</span></h2></div><div class="education-detail"><strong>B.Sc. in Computer Science</strong><span>Jordan University of Science and Technology (JUST)</span><span>Irbid, Jordan · 2026</span></div></div>
+    </section>
+
+    <section class="section contact-section" id="contact">
+      <div class="wrap contact-panel"><div><p class="eyebrow">05 / CONTACT</p><h2>Let’s talk about<br><span>backend engineering.</span></h2><p>I’m seeking a Junior .NET Backend Developer opportunity where I can contribute to dependable APIs and keep growing as an engineer.</p><a class="button button-primary" href="mailto:ayhmobeidat.cs@gmail.com">Email Ayhm <span>↗</span></a></div><div class="contact-links"><a href="mailto:ayhmobeidat.cs@gmail.com"><span>EMAIL</span><strong>ayhmobeidat.cs@gmail.com ↗</strong></a><a href="https://github.com/ayhm325" target="_blank" rel="noopener noreferrer"><span>GITHUB</span><strong>github.com/ayhm325 ↗</strong></a><a href="https://www.linkedin.com/in/ayhm-obeidat-75a10a352" target="_blank" rel="noopener noreferrer"><span>LINKEDIN</span><strong>Ayhm Obeidat ↗</strong></a><a href="assets/Ayhm_Obeidat_CV.pdf" download><span>CURRICULUM VITAE</span><strong>Download PDF ↓</strong></a><p>Amman, Jordan</p></div></div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="wrap footer-row"><span>AYHM MOHAMMED OBEIDAT</span><span>.NET BACKEND DEVELOPER · AMMAN, JORDAN</span><span>© <span id="year">2026</span></span></div></footer>
+  <script src="script.js"></script>
 </body>
 </html>

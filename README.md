@@ -1,58 +1,20 @@
-# Ayhm Mohammed Obeidat — Digital Frontier Engineering Portfolio
+# Ayhm Mohammed Obeidat — Portfolio
 
-A custom-engineered developer portfolio for **Ayhm Mohammed Obeidat** (Computer Science graduate from Jordan University of Science and Technology, based in Irbid / Amman, Jordan), targeting **Junior .NET Backend Developer / Junior Software Engineer** roles.
+Personal portfolio for a Junior .NET Backend Developer based in Amman, Jordan.
 
-**Live Website:** [https://ayhm325.github.io/](https://ayhm325.github.io/)  
-**Repository:** [https://github.com/ayhm325/ayhm325.github.io](https://github.com/ayhm325/ayhm325.github.io)  
-**Flagship System Repository:** [https://github.com/ayhm325/DVLD-WPF](https://github.com/ayhm325/DVLD-WPF)
+**Live site:** [ayhm325.github.io](https://ayhm325.github.io/)  
+**GitHub:** [github.com/ayhm325](https://github.com/ayhm325)  
+**Featured project:** [DVLD-System](https://github.com/ayhm325/DVLD-System)
 
----
+## Site contents
 
-## Creative Direction & Engineering Architecture
+- index.html — portfolio content, metadata, and structured data.
+- style.css — responsive visual system and layout.
+- script.js — accessible mobile navigation and current year.
+- assets/Ayhm_Obeidat_CV.pdf — downloadable CV.
 
-Designed around the **Digital Frontier** aesthetic—deep near-black and graphite surfaces (`#05070b`, `#080c13`, `#0c121d`), electric cyan (`#00f0ff`), and restrained ultraviolet (`#8b5cf6`) accents—built entirely with semantic HTML5, modern CSS3, and zero-dependency ES6+ JavaScript for fast GitHub Pages loading.
+The DVLD project content is based on commit [2420274d5a01a0e4fa2d6e416148daebf13523cf](https://github.com/ayhm325/DVLD-System/tree/2420274d5a01a0e4fa2d6e416148daebf13523cf). The client showcase uses a real login screenshot stored in that repository snapshot.
 
-### Key Interactive Systems
+## Local preview
 
-1. **Interactive 3D Dimensional System Core (`#systemCoreCanvas`)**:
-   - Real-time 3D-projected architectural topology visualizing the 5-layer DVLD .NET solution (`Presentation (WPF)`, `ASP.NET Core API`, `Application & Domain`, `EF Core & UoW`, `SQL Server`) plus `DTOs & Result` and `JWT & RateLimit` nodes.
-   - Pointer-draggable 3D perspective with live telemetry packets and keyboard-accessible layer filtering.
-2. **Keyboard-Accessible Engineering CLI (`ayhm@core:~$`)**:
-   - Functional inspection shell supporting commands (`help`, `whoami`, `arch`, `dvld`, `tests`, `security`, `stack`, `uow`, `contact`, `cv`, `goto`, `clear`), command history (`ArrowUp` / `ArrowDown`), clickable quick-command chips, and `/` global focus shortcut.
-3. **"Inside the System" Layered .NET Architecture Workbench (`#architecture`)**:
-   - Explorable schematic of the verified layers (`Presentation`, `API`, `Application`, `Domain`, `Infrastructure`), `SQL Server` persistence (14 tables, 0 SQL views), and `DVLD.Contracts` shared transport boundary.
-   - Selecting any component reveals its verified responsibility, applied patterns (Unit of Work with deferred physical commit, Result Pattern, active-user JWT validation), and **Implementation & Verification Scope**.
-4. **DVLD Flagship Case Study & Workflow Explorer (`#projects`)**:
-   - Deep dive into the 9 .NET projects + early companion React client, 20 controllers, 101 actions, and interactive trace of 4 verified DVLD business workflows:
-     1. Authentication, Role-Based Authorization & Login Rate Limiting (`HTTP 429`)
-     2. Driving License Applications & Test Appointments
-     3. License Issuance, Renewal & Replacement Workflows
-     4. License Detention, Release & International Licenses
-   - Highlights the 3 test suites (DVLD.Application.UnitTests with 633 tests, DVLD.API.IntegrationTests, and DVLD.Infrastructure.IntegrationTests) and the Git/GitHub + Azure DevOps automated restore and build pipeline.
-5. **Evidence-Backed Capabilities Matrix (`#skills`)**:
-   - Organized across 8 core engineering categories with interactive domain filtering and concrete project evidence rather than arbitrary percentage scores.
-
----
-
-## Repository Structure
-
-- `index.html` — Semantic document structure, JSON-LD (`Person` & `SoftwareSourceCode`), Open Graph/Twitter metadata, and accessible interactive sections.
-- `style.css` — Digital Frontier design system, responsive grid layouts (`320px` to `1920px+`), spotlight cards, and `prefers-reduced-motion` safeguards.
-- `script.js` — 3D projection canvas, interactive CLI terminal, architecture workbench inspector, workflow explorer, skill filter, and pointer telemetry.
-- `assets/ayhm-portrait.jpg` — Web-optimized primary portrait (`67.8 KB`, upright EXIF-corrected `560×840` JPEG) for fast Largest Contentful Paint (LCP).
-- `assets/ayhmImage.JPG` — Original high-resolution portrait preserved untouched as fallback.
-- `assets/Ayhm_Obeidat_CV.pdf` — Downloadable Curriculum Vitae PDF (preserved untouched).
-- `assets/favicon.svg`, `assets/favicon.ico`, `assets/apple-touch-icon.png`, `assets/og-cover.png` — Brand icons and social preview cover.
-- `site.webmanifest`, `robots.txt`, `sitemap.xml` — PWA manifest and search engine indexing configuration.
-
----
-
-## Local Preview
-
-Preview the site locally using Node.js:
-
-```powershell
-npx.cmd serve . -l 8080
-```
-
-Then open `http://localhost:8080` in your browser.
+This is a static site with no build step or package dependencies. Open index.html directly, or serve the folder with any static HTTP server.
