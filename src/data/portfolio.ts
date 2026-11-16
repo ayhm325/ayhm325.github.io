@@ -130,10 +130,6 @@ export const dvldProject = {
   name: "DVLD — Driving & Vehicle License Department System",
   shortName: "DVLD System",
   repoUrl: "https://github.com/ayhm325/DVLD-System",
-  commitHash: "b3ba343f4f47d886a57869a8ed0a45f0d535329b",
-  commitShort: "b3ba343",
-  commitUrl:
-    "https://github.com/ayhm325/DVLD-System/tree/b3ba343f4f47d886a57869a8ed0a45f0d535329b",
   description:
     "A multi-layered driving license management system built with .NET 8 and ASP.NET Core Web API. The system manages licensing operations through structured application services, SQL Server persistence, and secure role-based access control.",
   backendTechnologies: [

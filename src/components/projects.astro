@@ -304,31 +304,6 @@ import { dvldProject, personalInfo } from "../data/portfolio";
             >
               <span>View Source Code</span>
             </SpecularButton>
-
-            <SpecularButton
-              client:visible
-              target="_blank"
-              rel="noopener noreferrer"
-              href={dvldProject.commitUrl}
-              size="md"
-              radius={14}
-              tint="#ffffff"
-              tintOpacity={0.04}
-              textColor="#f5f5f5"
-              lineColor="#ffffff"
-              baseColor="#525252"
-              intensity={1}
-              idleIntensity={0.35}
-              shineSize={10}
-              shineFade={34}
-              thickness={1.2}
-              glow={1}
-              followMouse
-              proximity={250}
-              className="font-mono"
-            >
-              <span>View Commit ({dvldProject.commitShort})</span>
-            </SpecularButton>
           </div>
         </div>
       </div>
