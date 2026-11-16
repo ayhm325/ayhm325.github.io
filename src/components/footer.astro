@@ -1,5 +1,7 @@
 ---
 import LikeButton from "../React/LikeButton.tsx";
+import ElectricLine from "../React/ElectricLine.tsx";
+import SpecularButton from "../React/SpecularButton.tsx";
 import { personalInfo } from "../data/portfolio";
 
 const currentYear = new Date().getFullYear();
@@ -26,31 +28,57 @@ const socialLinks = [
 ];
 ---
 
-<footer class="w-full py-12 border-t border-[#ffffff10]">
+<footer class="w-full pb-12">
+  <ElectricLine
+    client:visible
+    color="#7df9ff"
+    speed={1}
+    chaos={0.5}
+    spread={0.6}
+    strands={3}
+    thickness={1.5}
+    className="mb-10"
+  />
   <div class="max-w-5xl mx-auto">
-    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-center">
-      <div class="flex flex-col lg:items-start items-center space-y-6">
-        <div class="flex items-center space-x-6 sm:space-x-8">
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 md:gap-6 items-center">
+      <!-- Left: Social Icons + LikeButton -->
+      <div class="flex flex-col md:items-start items-center gap-4">
+        <div class="flex items-center gap-4">
           {
             socialLinks.map((link) => (
-              <a
+              <SpecularButton
+                client:visible
                 href={link.href}
                 target={link.external ? "_blank" : undefined}
                 rel={link.external ? "noopener noreferrer" : undefined}
-                class="flex flex-col items-center group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)] rounded-md p-1"
-                aria-label={link.label}
+                ariaLabel={link.label}
+                size="sm"
+                radius={12}
+                tint="#ffffff"
+                tintOpacity={0.04}
+                textColor="#f5f5f5"
+                lineColor="#ffffff"
+                baseColor="#525252"
+                intensity={1}
+                idleIntensity={0.35}
+                shineSize={10}
+                shineFade={34}
+                thickness={1.2}
+                glow={1}
+                followMouse
+                proximity={250}
+                className="!p-2.5"
               >
-                <div class="text-[var(--white-icon)] hover:text-[var(--white)] transition duration-300 ease-in-out">
-                  <Fragment set:html={link.icon} />
-                </div>
-              </a>
+                <Fragment set:html={link.icon} />
+              </SpecularButton>
             ))
           }
         </div>
         <LikeButton client:load />
       </div>
 
-      <div class="flex flex-col items-center space-y-3">
+      <!-- Center: Tech Badges -->
+      <div class="flex flex-row flex-wrap md:flex-col items-center justify-center gap-3">
         {
           [
             {
@@ -66,38 +94,67 @@ const socialLinks = [
               alt: "TailwindCSS Logo",
             },
           ].map((tech) => (
-            <div class="flex items-center space-x-3">
-              <span class="text-[var(--white-icon)] text-sm">{tech.desc}</span>
+            <SpecularButton
+              client:visible
+              size="sm"
+              radius={999}
+              tint="#ffffff"
+              tintOpacity={0.04}
+              textColor="#f5f5f5"
+              lineColor="#ffffff"
+              baseColor="#525252"
+              intensity={1}
+              idleIntensity={0.35}
+              shineSize={10}
+              shineFade={34}
+              thickness={1.2}
+              glow={1}
+              followMouse
+              proximity={250}
+              className="!px-3.5 !py-1.5 !cursor-default"
+            >
+              <span class="text-[var(--white-icon)] text-xs sm:text-sm font-normal">
+                {tech.desc}
+              </span>
               <img
                 src={tech.icon}
                 alt={tech.alt}
-                class="h-5 w-5 object-contain filter brightness-0 invert opacity-60"
+                class="h-4 w-4 object-contain filter brightness-0 invert opacity-70"
                 loading="lazy"
               />
-              <span class="text-[var(--white-icon)] text-sm">{tech.name}</span>
-            </div>
+              <span class="text-[var(--white)] text-xs sm:text-sm font-medium">
+                {tech.name}
+              </span>
+            </SpecularButton>
           ))
         }
       </div>
 
-      <div class="flex flex-col items-center lg:items-end space-y-2 text-center lg:text-right">
-        <p class="text-sm font-medium text-[var(--white)]">
+      <!-- Right: Author & Role -->
+      <div class="flex flex-col items-center md:items-end gap-1.5 text-center md:text-right">
+        <p class="text-lg font-semibold tracking-tight text-[var(--white)]">
           {personalInfo.fullName}
         </p>
-        <p class="text-xs text-[var(--white-icon)]">
-          {personalInfo.title} · {personalInfo.location}
+        <p class="text-sm font-medium text-[#d4d4d8]">
+          {personalInfo.title}
         </p>
-        <a
-          href={personalInfo.cvPath}
-          download={personalInfo.cvFileName}
-          class="text-xs text-[var(--sec)] hover:underline focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)] rounded"
-        >
-          Download CV (PDF)
-        </a>
+        <p class="text-xs tracking-wide text-[var(--white-icon)]">
+          {personalInfo.location}
+        </p>
       </div>
     </div>
 
-    <div class="mt-10 pt-8 border-t border-[#ffffff10]">
+    <div class="mt-10">
+      <ElectricLine
+        client:visible
+        color="#7df9ff"
+        speed={1}
+        chaos={0.5}
+        spread={0.6}
+        strands={3}
+        thickness={1.5}
+        className="mb-6"
+      />
       <p class="text-center text-sm text-[var(--white-icon)]">
         <span>
           Copyright &copy; {currentYear} {personalInfo.fullName}.

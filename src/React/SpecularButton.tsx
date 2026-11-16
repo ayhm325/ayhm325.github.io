@@ -24,6 +24,7 @@ export interface SpecularButtonProps {
   type?: "button" | "submit" | "reset";
   className?: string;
   disabled?: boolean;
+  ariaLabel?: string;
   onClick?: React.MouseEventHandler<HTMLElement>;
 }
 
@@ -74,6 +75,7 @@ export default function SpecularButton({
   type = "button",
   className = "",
   disabled = false,
+  ariaLabel,
   onClick,
 }: SpecularButtonProps) {
   const ref = useRef<HTMLButtonElement | HTMLAnchorElement | null>(null);
@@ -196,7 +198,7 @@ export default function SpecularButton({
         className="pointer-events-none absolute inset-0"
         style={borderMaskStyle}
       />
-      <span className="relative z-10 inline-flex items-center justify-center gap-2">
+      <span className="relative z-10 inline-flex w-full items-center justify-center gap-2">
         {children}
       </span>
     </>
@@ -210,6 +212,7 @@ export default function SpecularButton({
         download={download}
         target={target}
         rel={rel}
+        aria-label={ariaLabel}
         onClick={onClick}
         style={containerStyle}
         className={sharedClassName}
@@ -224,6 +227,7 @@ export default function SpecularButton({
       ref={ref as React.RefObject<HTMLButtonElement>}
       type={type}
       disabled={disabled}
+      aria-label={ariaLabel}
       onClick={onClick}
       style={containerStyle}
       className={sharedClassName}

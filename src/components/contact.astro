@@ -2,6 +2,7 @@
 import SpecularButton from "../React/SpecularButton.tsx";
 import ShinyText from "../React/ShinyText.tsx";
 import ElectricBorder from "../React/ElectricBorder.tsx";
+import MaskedHeading from "../React/MaskedHeading.tsx";
 import { contactContent, personalInfo } from "../data/portfolio";
 ---
 
@@ -27,23 +28,34 @@ import { contactContent, personalInfo } from "../data/portfolio";
         easing="smooth"
       />
     </p>
-    <h2 class="text-3xl md:text-5xl font-medium mb-6">
-      <ShinyText
+    <div class="mb-6">
+      <MaskedHeading
+        client:visible
+        tag="h2"
         text={contactContent.title}
-        color="#d9d9d9"
-        shineColor="#ffffff"
-        speed={4}
-        shineWidth={70}
-        softness={0.8}
-        trigger="loop"
-        delay={0.7}
-        angle={120}
-        bands={1}
-        glow={0}
-        direction="left"
-        easing="smooth"
+        fillScale={1.25}
+        parallax={26}
+        reveal="scale"
+        trigger="view"
+        spotlight={false}
+        spotlightRadius={180}
+        outline={false}
+        duration={1.1}
+        stagger={0.09}
+        drift={18}
+        hoverZoom={0}
+        align="left"
+        brightness={1}
+        saturation={1}
+        grayscale={false}
+        outlineWidth={1}
+        weight={700}
+        tracking={-0.03}
+        lineHeight={1.06}
+        textScale={0.052}
+        tint="#f43f5e"
       />
-    </h2>
+    </div>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
       <div class="space-y-6">

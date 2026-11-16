@@ -2,6 +2,7 @@
 import SpecularButton from "../React/SpecularButton.tsx";
 import ShinyText from "../React/ShinyText.tsx";
 import ElectricBorder from "../React/ElectricBorder.tsx";
+import MaskedHeading from "../React/MaskedHeading.tsx";
 import { dvldProject, personalInfo } from "../data/portfolio";
 ---
 
@@ -27,23 +28,34 @@ import { dvldProject, personalInfo } from "../data/portfolio";
         easing="smooth"
       />
     </p>
-    <h2 class="text-3xl md:text-5xl font-medium mb-8">
-      <ShinyText
+    <div class="mb-8">
+      <MaskedHeading
+        client:visible
+        tag="h2"
         text={dvldProject.name}
-        color="#d9d9d9"
-        shineColor="#ffffff"
-        speed={4}
-        shineWidth={70}
-        softness={0.8}
-        trigger="loop"
-        delay={0.7}
-        angle={120}
-        bands={1}
-        glow={0}
-        direction="left"
-        easing="smooth"
+        fillScale={1.25}
+        parallax={26}
+        reveal="scale"
+        trigger="view"
+        spotlight={false}
+        spotlightRadius={180}
+        outline={false}
+        duration={1.1}
+        stagger={0.09}
+        drift={18}
+        hoverZoom={0}
+        align="left"
+        brightness={1}
+        saturation={1}
+        grayscale={false}
+        outlineWidth={1}
+        weight={700}
+        tracking={-0.03}
+        lineHeight={1.06}
+        textScale={0.045}
+        tint="#f43f5e"
       />
-    </h2>
+    </div>
 
     <ElectricBorder
       client:visible
@@ -70,11 +82,6 @@ import { dvldProject, personalInfo } from "../data/portfolio";
               >
                 Multi-Layered Architecture
               </span>
-              <span
-                class="text-[11px] font-mono text-[var(--white-icon)] px-2 py-0.5 rounded bg-[#1a1a1a] border border-[#ffffff10]"
-              >
-                commit {dvldProject.commitShort}
-              </span>
             </div>
 
             <ol class="space-y-2.5 pt-2" aria-label="DVLD architecture flow">
@@ -87,14 +94,34 @@ import { dvldProject, personalInfo } from "../data/portfolio";
                   { layer: "Domain & SQL Server", sub: "Entities · Relational DB" },
                 ].map((node, index) => (
                   <li class="relative">
-                    <div class="px-3.5 py-2.5 rounded-xl bg-[#141414] border border-[#ffffff12] flex items-center justify-between gap-2">
-                      <span class="text-sm font-medium text-[var(--white)]">
-                        {node.layer}
+                    <SpecularButton
+                      client:visible
+                      size="md"
+                      radius={12}
+                      tint="#ffffff"
+                      tintOpacity={0.04}
+                      textColor="#f5f5f5"
+                      lineColor="#a476ff"
+                      baseColor="#525252"
+                      intensity={1}
+                      idleIntensity={0.35}
+                      shineSize={10}
+                      shineFade={34}
+                      thickness={1.2}
+                      glow={0.8}
+                      followMouse
+                      proximity={250}
+                      className="w-full !px-3.5 !py-2.5 !cursor-default"
+                    >
+                      <span class="flex w-full items-center justify-between gap-2">
+                        <span class="text-sm font-medium text-[var(--white)]">
+                          {node.layer}
+                        </span>
+                        <span class="text-xs text-[var(--white-icon)] text-right font-normal">
+                          {node.sub}
+                        </span>
                       </span>
-                      <span class="text-xs text-[var(--white-icon)] text-right">
-                        {node.sub}
-                      </span>
-                    </div>
+                    </SpecularButton>
                     {index < 4 && (
                       <div
                         class="flex justify-center py-0.5 text-[var(--sec)] text-xs leading-none"
@@ -131,8 +158,28 @@ import { dvldProject, personalInfo } from "../data/portfolio";
                 <ul class="flex flex-wrap gap-2">
                   {
                     dvldProject.backendTechnologies.map((tech) => (
-                      <li class="px-3 py-1 rounded-lg bg-[#1a1a1a] border border-[#a476ff35] text-xs md:text-sm text-[var(--white)]">
-                        {tech}
+                      <li>
+                        <SpecularButton
+                          client:visible
+                          size="sm"
+                          radius={10}
+                          tint="#a476ff"
+                          tintOpacity={0.08}
+                          textColor="#f5f5f5"
+                          lineColor="#a476ff"
+                          baseColor="#525252"
+                          intensity={1}
+                          idleIntensity={0.35}
+                          shineSize={10}
+                          shineFade={34}
+                          thickness={1.2}
+                          glow={0.8}
+                          followMouse
+                          proximity={250}
+                          className="!px-3 !py-1 !text-xs md:!text-sm !font-normal !cursor-default"
+                        >
+                          {tech}
+                        </SpecularButton>
                       </li>
                     ))
                   }
@@ -146,8 +193,28 @@ import { dvldProject, personalInfo } from "../data/portfolio";
                 <ul class="flex flex-wrap gap-2">
                   {
                     dvldProject.frontendTechnologies.map((tech) => (
-                      <li class="px-3 py-1 rounded-lg bg-[#1a1a1a] border border-[#ffffff12] text-xs md:text-sm text-[var(--white-icon)]">
-                        {tech}
+                      <li>
+                        <SpecularButton
+                          client:visible
+                          size="sm"
+                          radius={10}
+                          tint="#ffffff"
+                          tintOpacity={0.04}
+                          textColor="#a1a1aa"
+                          lineColor="#ffffff"
+                          baseColor="#525252"
+                          intensity={1}
+                          idleIntensity={0.3}
+                          shineSize={10}
+                          shineFade={34}
+                          thickness={1.2}
+                          glow={0.8}
+                          followMouse
+                          proximity={250}
+                          className="!px-3 !py-1 !text-xs md:!text-sm !font-normal !cursor-default"
+                        >
+                          {tech}
+                        </SpecularButton>
                       </li>
                     ))
                   }

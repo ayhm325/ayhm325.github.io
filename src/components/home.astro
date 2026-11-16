@@ -2,9 +2,8 @@
 import LetterGlitch from "../React/LetterGlitch.tsx";
 import LogoWall from "../components/logoWall.astro";
 import SkillsList from "../React/SkillsList.tsx";
-import SpecularButton from "../React/SpecularButton.tsx";
 import FallingText from "../React/FallingText.tsx";
-import ShinyText from "../React/ShinyText.tsx";
+import MaskedHeading from "../React/MaskedHeading.tsx";
 import { personalInfo, heroContent } from "../data/portfolio";
 ---
 
@@ -24,26 +23,32 @@ import { personalInfo, heroContent } from "../data/portfolio";
       </div>
 
       <div class="space-y-5">
-        <h1
-          class="text-[var(--white)] text-4xl sm:text-5xl md:text-6xl font-medium text-pretty leading-[1.08] tracking-tight"
-        >
-          Building Reliable Backend Systems with{" "}
-          <ShinyText
-            text=".NET."
-            color="#a476ff"
-            shineColor="#f3ecff"
-            speed={4}
-            shineWidth={70}
-            softness={0.8}
-            trigger="loop"
-            delay={0.7}
-            angle={120}
-            bands={1}
-            glow={0.35}
-            direction="left"
-            easing="smooth"
-          />
-        </h1>
+        <MaskedHeading
+          client:load
+          tag="h1"
+          text={heroContent.heading}
+          fillScale={1.25}
+          parallax={26}
+          reveal="scale"
+          trigger="mount"
+          spotlight={false}
+          spotlightRadius={180}
+          outline={false}
+          duration={1.1}
+          stagger={0.09}
+          drift={18}
+          hoverZoom={0}
+          align="left"
+          brightness={1}
+          saturation={1}
+          grayscale={false}
+          outlineWidth={1}
+          weight={700}
+          tracking={-0.03}
+          lineHeight={1.06}
+          textScale={0.056}
+          tint="#f43f5e"
+        />
         <div class="h-[170px] sm:h-[145px] md:h-[160px] max-w-3xl">
           <FallingText
             client:load
@@ -68,137 +73,6 @@ import { personalInfo, heroContent } from "../data/portfolio";
             wireframes={false}
           />
         </div>
-      </div>
-
-      <div class="flex flex-wrap items-center gap-3 pt-2 md:pt-4">
-        <SpecularButton
-          client:load
-          href="#projects"
-          size="lg"
-          radius={14}
-          tint="#a476ff"
-          tintOpacity={0.14}
-          textColor="#f5f5f5"
-          lineColor="#a476ff"
-          baseColor="#525252"
-          intensity={1}
-          idleIntensity={0.45}
-          shineSize={10}
-          shineFade={34}
-          thickness={1.2}
-          glow={1}
-          followMouse
-          proximity={250}
-          className="font-semibold"
-        >
-          <span>View My Projects</span>
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="size-4 text-[var(--sec)]"
-            aria-hidden="true"
-          >
-            <path
-              d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
-            ></path>
-          </svg>
-        </SpecularButton>
-
-        <SpecularButton
-          client:load
-          href={personalInfo.cvPath}
-          download={personalInfo.cvFileName}
-          size="lg"
-          radius={14}
-          tint="#ffffff"
-          tintOpacity={0.04}
-          textColor="#f5f5f5"
-          lineColor="#ffffff"
-          baseColor="#525252"
-          intensity={1}
-          idleIntensity={0.35}
-          shineSize={10}
-          shineFade={34}
-          thickness={1.2}
-          glow={1}
-          followMouse
-          proximity={250}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="none"
-            stroke="currentColor"
-            stroke-width="2"
-            stroke-linecap="round"
-            stroke-linejoin="round"
-            class="size-4 text-[var(--sec)]"
-            aria-hidden="true"
-          >
-            <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"></path>
-            <polyline points="7 10 12 15 17 10"></polyline>
-            <line x1="12" x2="12" y1="15" y2="3"></line>
-          </svg>
-          <span>Download CV</span>
-        </SpecularButton>
-
-        <SpecularButton
-          client:load
-          href="#contact"
-          size="lg"
-          radius={14}
-          tint="#ffffff"
-          tintOpacity={0.04}
-          textColor="#f5f5f5"
-          lineColor="#ffffff"
-          baseColor="#525252"
-          intensity={1}
-          idleIntensity={0.35}
-          shineSize={10}
-          shineFade={34}
-          thickness={1.2}
-          glow={1}
-          followMouse
-          proximity={250}
-        >
-          <span>Contact Me</span>
-        </SpecularButton>
-
-        <SpecularButton
-          client:load
-          target="_blank"
-          rel="noopener noreferrer"
-          href={personalInfo.github}
-          size="lg"
-          radius={14}
-          tint="#ffffff"
-          tintOpacity={0.04}
-          textColor="#f5f5f5"
-          lineColor="#ffffff"
-          baseColor="#525252"
-          intensity={1}
-          idleIntensity={0.35}
-          shineSize={10}
-          shineFade={34}
-          thickness={1.2}
-          glow={1}
-          followMouse
-          proximity={250}
-        >
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 24 24"
-            fill="currentColor"
-            class="size-5"
-            aria-hidden="true"
-          >
-            <path
-              d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"
-            ></path>
-          </svg>
-          <span class="text-sm font-medium">GitHub</span>
-        </SpecularButton>
       </div>
     </div>
 

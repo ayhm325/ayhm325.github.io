@@ -1,6 +1,8 @@
 ---
 import ShinyText from "../React/ShinyText.tsx";
 import ElectricBorder from "../React/ElectricBorder.tsx";
+import MaskedHeading from "../React/MaskedHeading.tsx";
+import SpecularButton from "../React/SpecularButton.tsx";
 import { educationInfo } from "../data/portfolio";
 ---
 
@@ -26,23 +28,34 @@ import { educationInfo } from "../data/portfolio";
         easing="smooth"
       />
     </p>
-    <h2 class="text-3xl md:text-5xl font-medium mb-8">
-      <ShinyText
+    <div class="mb-8">
+      <MaskedHeading
+        client:visible
+        tag="h2"
         text="Education"
-        color="#d9d9d9"
-        shineColor="#ffffff"
-        speed={4}
-        shineWidth={70}
-        softness={0.8}
-        trigger="loop"
-        delay={0.7}
-        angle={120}
-        bands={1}
-        glow={0}
-        direction="left"
-        easing="smooth"
+        fillScale={1.25}
+        parallax={26}
+        reveal="scale"
+        trigger="view"
+        spotlight={false}
+        spotlightRadius={180}
+        outline={false}
+        duration={1.1}
+        stagger={0.09}
+        drift={18}
+        hoverZoom={0}
+        align="left"
+        brightness={1}
+        saturation={1}
+        grayscale={false}
+        outlineWidth={1}
+        weight={700}
+        tracking={-0.03}
+        lineHeight={1.06}
+        textScale={0.052}
+        tint="#f43f5e"
       />
-    </h2>
+    </div>
 
     <ElectricBorder
       client:visible
@@ -67,16 +80,48 @@ import { educationInfo } from "../data/portfolio";
         </div>
 
         <div class="flex flex-wrap items-center gap-3 md:text-right">
-          <span
-            class="px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#ffffff10] text-sm text-[var(--white-icon)]"
+          <SpecularButton
+            client:visible
+            size="sm"
+            radius={10}
+            tint="#ffffff"
+            tintOpacity={0.04}
+            textColor="#a1a1aa"
+            lineColor="#ffffff"
+            baseColor="#525252"
+            intensity={1}
+            idleIntensity={0.35}
+            shineSize={10}
+            shineFade={34}
+            thickness={1.2}
+            glow={1}
+            followMouse
+            proximity={250}
+            className="!px-3 !py-1.5 !text-sm !font-normal !cursor-default"
           >
             {educationInfo.location}
-          </span>
-          <span
-            class="px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#a476ff45] text-sm font-medium text-[var(--sec)]"
+          </SpecularButton>
+          <SpecularButton
+            client:visible
+            size="sm"
+            radius={10}
+            tint="#a476ff"
+            tintOpacity={0.12}
+            textColor="#a476ff"
+            lineColor="#a476ff"
+            baseColor="#525252"
+            intensity={1}
+            idleIntensity={0.45}
+            shineSize={10}
+            shineFade={34}
+            thickness={1.2}
+            glow={1}
+            followMouse
+            proximity={250}
+            className="!px-3 !py-1.5 !text-sm !font-medium !cursor-default"
           >
             {educationInfo.year}
-          </span>
+          </SpecularButton>
         </div>
       </div>
     </ElectricBorder>

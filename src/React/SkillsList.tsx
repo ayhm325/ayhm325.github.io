@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import Folder, { type FolderEntry } from "./Folder";
-import ShinyText from "./ShinyText";
+import MaskedHeading from "./MaskedHeading";
+import ElectricBorder from "./ElectricBorder";
 
 interface FocusCategory {
   title: string;
@@ -126,50 +127,71 @@ const folderItems: FolderEntry[] = categories.map((cat) => ({
 const SkillsList = () => {
   return (
     <div className="text-left pt-3 md:pt-9 w-full lg:w-auto flex flex-col items-center lg:items-start">
-      <h2 className="text-3xl md:text-4xl font-semibold mb-4 self-start">
-        <ShinyText
+      <div className="mb-4 w-full md:w-[420px]">
+        <MaskedHeading
+          tag="h2"
           text="Core Focus"
-          color="#d9d9d9"
-          shineColor="#ffffff"
-          speed={4}
-          shineWidth={70}
-          softness={0.8}
-          trigger="loop"
-          delay={0.7}
-          angle={120}
-          bands={1}
-          glow={0}
-          direction="left"
-          easing="smooth"
+          fillScale={1.25}
+          parallax={26}
+          reveal="scale"
+          trigger="view"
+          spotlight={false}
+          spotlightRadius={180}
+          outline={false}
+          duration={1.1}
+          stagger={0.09}
+          drift={18}
+          hoverZoom={0}
+          align="left"
+          brightness={1}
+          saturation={1}
+          grayscale={false}
+          outlineWidth={1}
+          weight={700}
+          tracking={-0.03}
+          lineHeight={1.06}
+          textScale={0.085}
+          tint="#f43f5e"
         />
-      </h2>
-
-      <div className="relative flex flex-col items-center justify-center py-6 px-4 md:w-[420px] w-full min-h-[300px] rounded-2xl bg-[#0b0b10]/70 border border-[#a476ff30]">
-        <Folder
-          label="Core Focus"
-          items={folderItems}
-          mode="flap"
-          variant="neon"
-          layout="spread"
-          color="#0d0d12"
-          paperColor="#101018"
-          neonColor="#a476ff"
-          tabPosition="right"
-          openOn="click"
-          size={1.22}
-          tilt={0.5}
-          speed={1}
-          bounce={0.4}
-          peek
-          intro
-          draggable
-          zoomOnClick
-          theme="dark"
-        />
-        <p className="mt-5 text-xs text-[var(--white-icon)] text-center">
-          Click folder to spread cards · Drag or click any card to inspect
-        </p>
       </div>
+
+      <ElectricBorder
+        color="#7df9ff"
+        speed={1}
+        chaos={0.5}
+        spread={0.6}
+        strands={3}
+        thickness={1.5}
+        borderRadius={16}
+        className="md:w-[420px] w-full"
+      >
+        <div className="relative flex flex-col items-center justify-center py-6 px-4 w-full min-h-[300px] rounded-2xl bg-[#0b0b10]/70 border border-[#a476ff30]">
+          <Folder
+            label="Core Focus"
+            items={folderItems}
+            mode="flap"
+            variant="neon"
+            layout="spread"
+            color="#0d0d12"
+            paperColor="#101018"
+            neonColor="#a476ff"
+            tabPosition="right"
+            openOn="click"
+            size={1.22}
+            tilt={0.5}
+            speed={1}
+            bounce={0.4}
+            peek
+            intro
+            draggable
+            zoomOnClick
+            theme="dark"
+          />
+          <p className="mt-5 text-xs text-[var(--white-icon)] text-center">
+            Click folder to spread cards · Drag or click any card to inspect
+          </p>
+        </div>
+      </ElectricBorder>
     </div>
   );
 };
