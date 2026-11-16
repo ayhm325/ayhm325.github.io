@@ -1,5 +1,7 @@
 ---
 import SpecularButton from "../React/SpecularButton.tsx";
+import ShinyText from "../React/ShinyText.tsx";
+import ElectricBorder from "../React/ElectricBorder.tsx";
 import { contactContent, personalInfo } from "../data/portfolio";
 ---
 
@@ -8,9 +10,39 @@ import { contactContent, personalInfo } from "../data/portfolio";
   class="w-full py-12 md:py-16 border-t border-[#ffffff10] text-[var(--white)]"
 >
   <div class="max-w-5xl mx-auto">
-    <p class="text-lg text-[var(--sec)] mb-2 shiny-sec">Get in touch</p>
+    <p class="text-lg mb-2">
+      <ShinyText
+        text="Get in touch"
+        color="#a476ff"
+        shineColor="#f3ecff"
+        speed={4}
+        shineWidth={70}
+        softness={0.8}
+        trigger="loop"
+        delay={0.7}
+        angle={120}
+        bands={1}
+        glow={0}
+        direction="left"
+        easing="smooth"
+      />
+    </p>
     <h2 class="text-3xl md:text-5xl font-medium mb-6">
-      {contactContent.title}
+      <ShinyText
+        text={contactContent.title}
+        color="#d9d9d9"
+        shineColor="#ffffff"
+        speed={4}
+        shineWidth={70}
+        softness={0.8}
+        trigger="loop"
+        delay={0.7}
+        angle={120}
+        bands={1}
+        glow={0}
+        direction="left"
+        easing="smooth"
+      />
     </h2>
 
     <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
@@ -47,9 +79,19 @@ import { contactContent, personalInfo } from "../data/portfolio";
         </div>
       </div>
 
-      <div
-        class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 space-y-4"
+      <ElectricBorder
+        client:visible
+        color="#7df9ff"
+        speed={1}
+        chaos={0.5}
+        spread={0.6}
+        strands={3}
+        thickness={1.5}
+        borderRadius={16}
       >
+        <div
+          class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 space-y-4"
+        >
         <h3 class="text-lg font-semibold text-[var(--white)]">
           Direct Channels
         </h3>
@@ -202,7 +244,8 @@ import { contactContent, personalInfo } from "../data/portfolio";
             <span>Download CV</span>
           </SpecularButton>
         </div>
-      </div>
+        </div>
+      </ElectricBorder>
     </div>
   </div>
 </section>

@@ -1,5 +1,7 @@
 ---
 import SpecularButton from "../React/SpecularButton.tsx";
+import ShinyText from "../React/ShinyText.tsx";
+import ElectricBorder from "../React/ElectricBorder.tsx";
 import { dvldProject, personalInfo } from "../data/portfolio";
 ---
 
@@ -8,11 +10,51 @@ import { dvldProject, personalInfo } from "../data/portfolio";
   class="py-12 md:py-16 border-t border-[#ffffff10] text-[var(--white)]"
 >
   <div class="max-w-5xl mx-auto">
-    <p class="text-lg text-[var(--sec)] mb-2 shiny-sec">Featured Project</p>
+    <p class="text-lg mb-2">
+      <ShinyText
+        text="Featured Project"
+        color="#a476ff"
+        shineColor="#f3ecff"
+        speed={4}
+        shineWidth={70}
+        softness={0.8}
+        trigger="loop"
+        delay={0.7}
+        angle={120}
+        bands={1}
+        glow={0}
+        direction="left"
+        easing="smooth"
+      />
+    </p>
     <h2 class="text-3xl md:text-5xl font-medium mb-8">
-      {dvldProject.name}
+      <ShinyText
+        text={dvldProject.name}
+        color="#d9d9d9"
+        shineColor="#ffffff"
+        speed={4}
+        shineWidth={70}
+        softness={0.8}
+        trigger="loop"
+        delay={0.7}
+        angle={120}
+        bands={1}
+        glow={0}
+        direction="left"
+        easing="smooth"
+      />
     </h2>
 
+    <ElectricBorder
+      client:visible
+      color="#7df9ff"
+      speed={1}
+      chaos={0.5}
+      spread={0.6}
+      strands={3}
+      thickness={1.5}
+      borderRadius={16}
+    >
     <article
       class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl overflow-hidden shadow-lg hover:border-[#a476ff45] transition-colors duration-300"
     >
@@ -224,6 +266,7 @@ import { dvldProject, personalInfo } from "../data/portfolio";
         </div>
       </div>
     </article>
+    </ElectricBorder>
 
     <div class="mt-8">
       <SpecularButton

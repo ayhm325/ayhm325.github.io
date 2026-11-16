@@ -1,4 +1,6 @@
 ---
+import ShinyText from "../React/ShinyText.tsx";
+import ElectricBorder from "../React/ElectricBorder.tsx";
 import { educationInfo } from "../data/portfolio";
 ---
 
@@ -7,33 +9,76 @@ import { educationInfo } from "../data/portfolio";
   class="py-12 md:py-16 border-t border-[#ffffff10] text-[var(--white)]"
 >
   <div class="max-w-5xl mx-auto">
-    <p class="text-lg text-[var(--sec)] mb-2 shiny-sec">Academic</p>
-    <h2 class="text-3xl md:text-5xl font-medium mb-8">Education</h2>
+    <p class="text-lg mb-2">
+      <ShinyText
+        text="Academic"
+        color="#a476ff"
+        shineColor="#f3ecff"
+        speed={4}
+        shineWidth={70}
+        softness={0.8}
+        trigger="loop"
+        delay={0.7}
+        angle={120}
+        bands={1}
+        glow={0}
+        direction="left"
+        easing="smooth"
+      />
+    </p>
+    <h2 class="text-3xl md:text-5xl font-medium mb-8">
+      <ShinyText
+        text="Education"
+        color="#d9d9d9"
+        shineColor="#ffffff"
+        speed={4}
+        shineWidth={70}
+        softness={0.8}
+        trigger="loop"
+        delay={0.7}
+        angle={120}
+        bands={1}
+        glow={0}
+        direction="left"
+        easing="smooth"
+      />
+    </h2>
 
-    <div
-      class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 hover:border-[#a476ff45] transition-colors duration-300"
+    <ElectricBorder
+      client:visible
+      color="#7df9ff"
+      speed={1}
+      chaos={0.5}
+      spread={0.6}
+      strands={3}
+      thickness={1.5}
+      borderRadius={16}
     >
-      <div class="space-y-1.5">
-        <h3 class="text-xl md:text-2xl font-semibold text-[var(--white)]">
-          {educationInfo.institution}
-        </h3>
-        <p class="text-base md:text-lg text-[var(--white-icon)]">
-          {educationInfo.degree}
-        </p>
-      </div>
+      <div
+        class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 hover:border-[#a476ff45] transition-colors duration-300"
+      >
+        <div class="space-y-1.5">
+          <h3 class="text-xl md:text-2xl font-semibold text-[var(--white)]">
+            {educationInfo.institution}
+          </h3>
+          <p class="text-base md:text-lg text-[var(--white-icon)]">
+            {educationInfo.degree}
+          </p>
+        </div>
 
-      <div class="flex flex-wrap items-center gap-3 md:text-right">
-        <span
-          class="px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#ffffff10] text-sm text-[var(--white-icon)]"
-        >
-          {educationInfo.location}
-        </span>
-        <span
-          class="px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#a476ff45] text-sm font-medium text-[var(--sec)]"
-        >
-          {educationInfo.year}
-        </span>
+        <div class="flex flex-wrap items-center gap-3 md:text-right">
+          <span
+            class="px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#ffffff10] text-sm text-[var(--white-icon)]"
+          >
+            {educationInfo.location}
+          </span>
+          <span
+            class="px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#a476ff45] text-sm font-medium text-[var(--sec)]"
+          >
+            {educationInfo.year}
+          </span>
+        </div>
       </div>
-    </div>
+    </ElectricBorder>
   </div>
 </section>

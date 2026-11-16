@@ -3,6 +3,7 @@ import Layout from "@/layouts/Layout.astro";
 import Nav from "@/components/nav.astro";
 import Footer from "@/components/footer.astro";
 import SpecularButton from "@/React/SpecularButton.tsx";
+import ShinyText from "@/React/ShinyText.tsx";
 import { dvldProject } from "@/data/portfolio";
 ---
 
@@ -49,7 +50,21 @@ import { dvldProject } from "@/data/portfolio";
         </div>
 
         <h1 class="text-3xl sm:text-4xl md:text-5xl font-medium leading-tight">
-          {dvldProject.name}
+          <ShinyText
+            text={dvldProject.name}
+            color="#d9d9d9"
+            shineColor="#ffffff"
+            speed={4}
+            shineWidth={70}
+            softness={0.8}
+            trigger="loop"
+            delay={0.7}
+            angle={120}
+            bands={1}
+            glow={0}
+            direction="left"
+            easing="smooth"
+          />
         </h1>
 
         <p class="text-base md:text-xl text-[var(--white-icon)] leading-relaxed max-w-4xl">

@@ -4,6 +4,7 @@ import LogoWall from "../components/logoWall.astro";
 import SkillsList from "../React/SkillsList.tsx";
 import SpecularButton from "../React/SpecularButton.tsx";
 import FallingText from "../React/FallingText.tsx";
+import ShinyText from "../React/ShinyText.tsx";
 import { personalInfo, heroContent } from "../data/portfolio";
 ---
 
@@ -27,7 +28,21 @@ import { personalInfo, heroContent } from "../data/portfolio";
           class="text-[var(--white)] text-4xl sm:text-5xl md:text-6xl font-medium text-pretty leading-[1.08] tracking-tight"
         >
           Building Reliable Backend Systems with{" "}
-          <span class="text-[var(--sec)] shiny-sec">.NET.</span>
+          <ShinyText
+            text=".NET."
+            color="#a476ff"
+            shineColor="#f3ecff"
+            speed={4}
+            shineWidth={70}
+            softness={0.8}
+            trigger="loop"
+            delay={0.7}
+            angle={120}
+            bands={1}
+            glow={0.35}
+            direction="left"
+            easing="smooth"
+          />
         </h1>
         <div class="h-[170px] sm:h-[145px] md:h-[160px] max-w-3xl">
           <FallingText
