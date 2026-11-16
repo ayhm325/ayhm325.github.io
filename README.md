@@ -2,7 +2,6 @@
 
 Personal developer portfolio for **Ayhm Mohammed Obeidat**, a Computer Science graduate from Jordan University of Science and Technology (JUST) focused on C#, .NET 8, ASP.NET Core Web API, Entity Framework Core, SQL Server, and backend architecture.
 
-Built on top of the [dark-minimal](https://github.com/Gothsec/dark-minimal) Astro template while preserving its dark visual identity, animations, and interactive components.
 
 ---
 
