@@ -1,5 +1,6 @@
 export interface SkillGroup {
   title: string;
+  statusLabel?: string;
   items: string[];
 }
 
@@ -95,6 +96,19 @@ export const skillGroups: SkillGroup[] = [
       "Visual Studio Code",
       "SQL Server Management Studio",
       "Swagger/OpenAPI",
+    ],
+  },
+  {
+    title: "Frontend Development",
+    statusLabel: "Learning Path",
+    items: [
+      "HTML5",
+      "CSS3",
+      "JavaScript",
+      "TypeScript",
+      "React",
+      "Tailwind CSS",
+      "Vite",
     ],
   },
 ];
