@@ -1,0 +1,16 @@
+# Ayhm Mohammed Obeidat — .NET Backend Developer
+
+> Personal developer portfolio of Ayhm Mohammed Obeidat, a Computer Science graduate from Jordan University of Science and Technology (JUST) focused on C#, .NET 8, ASP.NET Core Web API, Entity Framework Core, SQL Server, and backend architecture.
+
+## Featured Project
+
+- [DVLD — Driving & Vehicle License Department System](https://github.com/ayhm325/DVLD-System)
+- Reference Commit: [b3ba343f4f47d886a57869a8ed0a45f0d535329b](https://github.com/ayhm325/DVLD-System/tree/b3ba343f4f47d886a57869a8ed0a45f0d535329b)
+
+## Contact
+
+- Email: ayhmobeidat.cs@gmail.com
+- Phone: +962 788 234 055
+- Location: Amman, Jordan
+- GitHub: https://github.com/ayhm325
+- CV: /files/AyhmObeidat_CV.pdf

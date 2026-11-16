@@ -1,0 +1,201 @@
+---
+import { dvldProject, personalInfo } from "../data/portfolio";
+---
+
+<section
+  id="projects"
+  class="py-12 md:py-16 border-t border-[#ffffff10] text-[var(--white)]"
+>
+  <div class="max-w-5xl mx-auto">
+    <p class="text-lg text-[var(--sec)] mb-2 shiny-sec">Featured Project</p>
+    <h2 class="text-3xl md:text-5xl font-medium mb-8">
+      {dvldProject.name}
+    </h2>
+
+    <article
+      class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl overflow-hidden shadow-lg hover:border-[#a476ff45] transition-colors duration-300"
+    >
+      <div class="grid grid-cols-1 lg:grid-cols-5">
+        <!-- Left: Architecture Visual Diagram -->
+        <div
+          class="lg:col-span-2 bg-[#0c0c0c] border-b lg:border-b-0 lg:border-r border-[#ffffff10] p-6 md:p-8 flex flex-col justify-between gap-6"
+        >
+          <div class="space-y-3">
+            <div class="flex items-center justify-between">
+              <span
+                class="text-xs uppercase tracking-wider text-[var(--sec)] font-semibold"
+              >
+                Multi-Layered Architecture
+              </span>
+              <span
+                class="text-[11px] font-mono text-[var(--white-icon)] px-2 py-0.5 rounded bg-[#1a1a1a] border border-[#ffffff10]"
+              >
+                commit {dvldProject.commitShort}
+              </span>
+            </div>
+
+            <ol class="space-y-2.5 pt-2" aria-label="DVLD architecture flow">
+              {
+                [
+                  { layer: "ClientApp", sub: "React · TypeScript · Vite" },
+                  { layer: "DVLD.Api", sub: "REST Endpoints · JWT · Rate Limit" },
+                  { layer: "Application", sub: "Services · DTOs · Result<T>" },
+                  { layer: "Infrastructure", sub: "EF Core · Unit of Work" },
+                  { layer: "Domain & SQL Server", sub: "Entities · Relational DB" },
+                ].map((node, index) => (
+                  <li class="relative">
+                    <div class="px-3.5 py-2.5 rounded-xl bg-[#141414] border border-[#ffffff12] flex items-center justify-between gap-2">
+                      <span class="text-sm font-medium text-[var(--white)]">
+                        {node.layer}
+                      </span>
+                      <span class="text-xs text-[var(--white-icon)] text-right">
+                        {node.sub}
+                      </span>
+                    </div>
+                    {index < 4 && (
+                      <div
+                        class="flex justify-center py-0.5 text-[var(--sec)] text-xs leading-none"
+                        aria-hidden="true"
+                      >
+                        ↓
+                      </div>
+                    )}
+                  </li>
+                ))
+              }
+            </ol>
+          </div>
+
+          <div class="pt-2 border-t border-[#ffffff10] flex flex-wrap gap-2">
+            <span class="text-xs text-[var(--white-icon)]">
+              Tested with xUnit · Azure DevOps CI
+            </span>
+          </div>
+        </div>
+
+        <!-- Right: Summary, Tech Stack, and Actions -->
+        <div class="lg:col-span-3 p-6 md:p-8 flex flex-col justify-between gap-6">
+          <div class="space-y-6">
+            <p class="text-base md:text-lg text-[var(--white-icon)] leading-relaxed">
+              {dvldProject.description}
+            </p>
+
+            <div class="space-y-3">
+              <div>
+                <h3 class="text-xs uppercase tracking-wider text-[var(--white-icon)] mb-2">
+                  Backend Stack
+                </h3>
+                <ul class="flex flex-wrap gap-2">
+                  {
+                    dvldProject.backendTechnologies.map((tech) => (
+                      <li class="px-3 py-1 rounded-lg bg-[#1a1a1a] border border-[#a476ff35] text-xs md:text-sm text-[var(--white)]">
+                        {tech}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+
+              <div>
+                <h3 class="text-xs uppercase tracking-wider text-[var(--white-icon)] mb-2">
+                  ClientApp Frontend
+                </h3>
+                <ul class="flex flex-wrap gap-2">
+                  {
+                    dvldProject.frontendTechnologies.map((tech) => (
+                      <li class="px-3 py-1 rounded-lg bg-[#1a1a1a] border border-[#ffffff12] text-xs md:text-sm text-[var(--white-icon)]">
+                        {tech}
+                      </li>
+                    ))
+                  }
+                </ul>
+              </div>
+            </div>
+
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-1">
+              <div class="p-4 rounded-xl bg-[#101010] border border-[#ffffff10]">
+                <h3 class="text-sm font-semibold text-[var(--white)] mb-1.5">
+                  Core Domain Workflows
+                </h3>
+                <p class="text-xs md:text-sm text-[var(--white-icon)] leading-relaxed">
+                  People, users, drivers, licensing applications, test
+                  appointments &amp; results, issuance, renewal, replacement,
+                  detention/release, and international licenses.
+                </p>
+              </div>
+              <div class="p-4 rounded-xl bg-[#101010] border border-[#ffffff10]">
+                <h3 class="text-sm font-semibold text-[var(--white)] mb-1.5">
+                  Security &amp; Concurrency
+                </h3>
+                <p class="text-xs md:text-sm text-[var(--white-icon)] leading-relaxed">
+                  JWT Bearer auth, RBAC, BCrypt hashing, refresh token rotation
+                  with reuse detection, rate limiting, and SQL Server
+                  application locks.
+                </p>
+              </div>
+            </div>
+          </div>
+
+          <div class="flex flex-wrap items-center gap-3 pt-2 border-t border-[#ffffff10]">
+            <a
+              href="/projects/dvld"
+              class="inline-flex items-center gap-2 px-5 py-2.5 rounded-xl bg-[var(--sec)] text-[#101010] font-semibold text-sm hover:opacity-90 transition duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+            >
+              <span>Architecture &amp; Details</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                class="size-4"
+                aria-hidden="true"
+              >
+                <path
+                  d="M16.0037 9.41421L7.39712 18.0208L5.98291 16.6066L14.5895 8H7.00373V6H18.0037V17H16.0037V9.41421Z"
+                ></path>
+              </svg>
+            </a>
+
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={dvldProject.repoUrl}
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[#1414149c] text-[var(--white)] hover:bg-[var(--white-icon-tr)] text-sm font-medium transition duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)]"
+            >
+              <span>View Source Code</span>
+            </a>
+
+            <a
+              target="_blank"
+              rel="noopener noreferrer"
+              href={dvldProject.commitUrl}
+              class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl border border-[var(--white-icon-tr)] bg-[#1414149c] text-[var(--white-icon)] hover:text-white hover:bg-[var(--white-icon-tr)] text-sm font-mono transition duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)]"
+            >
+              <span>View Commit ({dvldProject.commitShort})</span>
+            </a>
+          </div>
+        </div>
+      </div>
+    </article>
+
+    <a
+      target="_blank"
+      rel="noopener noreferrer"
+      href={personalInfo.github}
+      aria-label="More repositories on GitHub"
+      class="w-full flex items-center justify-center gap-2 mt-8 text-[var(--white-icon)] hover:text-white transition duration-300 ease-in-out border border-[var(--white-icon-tr)] p-3 rounded-full bg-[#1414149c] hover:bg-[var(--white-icon-tr)] hover:scale-[1.02] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)]"
+    >
+      <span class="md:text-lg text-md">Explore GitHub Profile</span>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        viewBox="0 0 24 24"
+        fill="currentColor"
+        class="size-6"
+        aria-hidden="true"
+      >
+        <path
+          d="M12.001 2C6.47598 2 2.00098 6.475 2.00098 12C2.00098 16.425 4.86348 20.1625 8.83848 21.4875C9.33848 21.575 9.52598 21.275 9.52598 21.0125C9.52598 20.775 9.51348 19.9875 9.51348 19.15C7.00098 19.6125 6.35098 18.5375 6.15098 17.975C6.03848 17.6875 5.55098 16.8 5.12598 16.5625C4.77598 16.375 4.27598 15.9125 5.11348 15.9C5.90098 15.8875 6.46348 16.625 6.65098 16.925C7.55098 18.4375 8.98848 18.0125 9.56348 17.75C9.65098 17.1 9.91348 16.6625 10.201 16.4125C7.97598 16.1625 5.65098 15.3 5.65098 11.475C5.65098 10.3875 6.03848 9.4875 6.67598 8.7875C6.57598 8.5375 6.22598 7.5125 6.77598 6.1375C6.77598 6.1375 7.61348 5.875 9.52598 7.1625C10.326 6.9375 11.176 6.825 12.026 6.825C12.876 6.825 13.726 6.9375 14.526 7.1625C16.4385 5.8625 17.276 6.1375 17.276 6.1375C17.826 7.5125 17.476 8.5375 17.376 8.7875C18.0135 9.4875 18.401 10.375 18.401 11.475C18.401 15.3125 16.0635 16.1625 13.8385 16.4125C14.201 16.725 14.5135 17.325 14.5135 18.2625C14.5135 19.6 14.501 20.675 14.501 21.0125C14.501 21.275 14.6885 21.5875 15.1885 21.4875C19.259 20.1133 21.9999 16.2963 22.001 12C22.001 6.475 17.526 2 12.001 2Z"
+        ></path>
+      </svg>
+    </a>
+  </div>
+</section>

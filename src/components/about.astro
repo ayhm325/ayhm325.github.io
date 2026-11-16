@@ -1,0 +1,62 @@
+---
+import { aboutContent, personalInfo } from "../data/portfolio";
+---
+
+<section
+  id="about"
+  class="py-12 md:py-16 border-t border-[#ffffff10] text-[var(--white)]"
+>
+  <div class="max-w-5xl mx-auto">
+    <p class="text-lg text-[var(--sec)] mb-2 shiny-sec">Profile</p>
+    <h2 class="text-3xl md:text-5xl font-medium mb-8">{aboutContent.title}</h2>
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 items-start">
+      <div class="lg:col-span-2 space-y-4 text-[var(--white-icon)] text-base md:text-lg leading-relaxed">
+        {
+          aboutContent.paragraphs.map((paragraph) => (
+            <p>{paragraph}</p>
+          ))
+        }
+      </div>
+
+      <aside
+        class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 space-y-4"
+        aria-label="Developer summary"
+      >
+        <div>
+          <span class="text-xs uppercase tracking-wider text-[var(--white-icon)]">
+            Role Focus
+          </span>
+          <p class="text-[var(--white)] font-medium mt-1">
+            Junior {personalInfo.title}
+          </p>
+        </div>
+
+        <div class="border-t border-[#ffffff10] pt-4">
+          <span class="text-xs uppercase tracking-wider text-[var(--white-icon)]">
+            Location
+          </span>
+          <p class="text-[var(--white)] font-medium mt-1">
+            {personalInfo.location}
+          </p>
+        </div>
+
+        <div class="border-t border-[#ffffff10] pt-4">
+          <span class="text-xs uppercase tracking-wider text-[var(--white-icon)]">
+            Languages
+          </span>
+          <ul class="mt-2 space-y-1.5 text-sm">
+            {
+              personalInfo.languages.map((lang) => (
+                <li class="flex items-center justify-between">
+                  <span class="text-[var(--white)]">{lang.name}</span>
+                  <span class="text-[var(--white-icon)]">{lang.level}</span>
+                </li>
+              ))
+            }
+          </ul>
+        </div>
+      </aside>
+    </div>
+  </div>
+</section>

@@ -1,0 +1,39 @@
+---
+import { educationInfo } from "../data/portfolio";
+---
+
+<section
+  id="education"
+  class="py-12 md:py-16 border-t border-[#ffffff10] text-[var(--white)]"
+>
+  <div class="max-w-5xl mx-auto">
+    <p class="text-lg text-[var(--sec)] mb-2 shiny-sec">Academic</p>
+    <h2 class="text-3xl md:text-5xl font-medium mb-8">Education</h2>
+
+    <div
+      class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 md:p-8 flex flex-col md:flex-row md:items-center md:justify-between gap-4 hover:border-[#a476ff45] transition-colors duration-300"
+    >
+      <div class="space-y-1.5">
+        <h3 class="text-xl md:text-2xl font-semibold text-[var(--white)]">
+          {educationInfo.institution}
+        </h3>
+        <p class="text-base md:text-lg text-[var(--white-icon)]">
+          {educationInfo.degree}
+        </p>
+      </div>
+
+      <div class="flex flex-wrap items-center gap-3 md:text-right">
+        <span
+          class="px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#ffffff10] text-sm text-[var(--white-icon)]"
+        >
+          {educationInfo.location}
+        </span>
+        <span
+          class="px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#a476ff45] text-sm font-medium text-[var(--sec)]"
+        >
+          {educationInfo.year}
+        </span>
+      </div>
+    </div>
+  </div>
+</section>

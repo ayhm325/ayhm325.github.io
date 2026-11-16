@@ -1,100 +1,163 @@
-# Portfolio Template
+# Ayhm Mohammed Obeidat — .NET Backend Developer Portfolio
 
-https://github.com/shaqdeff/Portfolio-Template/assets/92020713/eed76a82-e59d-440b-a04c-a2dc00a508b7
+Personal developer portfolio for **Ayhm Mohammed Obeidat**, a Computer Science graduate from Jordan University of Science and Technology (JUST) focused on C#, .NET 8, ASP.NET Core Web API, Entity Framework Core, SQL Server, and backend architecture.
 
-![portfolio-phone](https://github.com/shaqdeff/Portfolio-Template/assets/92020713/e41ed31c-50e5-40d3-a74f-9c0eb053fe7f)
-![portfolio-phone-3](https://github.com/shaqdeff/Portfolio-Template/assets/92020713/e8c23aa7-ac27-48fc-bf66-50ab00e3a64f)
+Built on top of the [dark-minimal](https://github.com/Gothsec/dark-minimal) Astro template while preserving its dark visual identity, animations, and interactive components.
 
-I created this portfolio to use as my own but ended up doing something else entirely. However, instead of keeping it buried, I decided to put it up here on GitHub as an open-source resource to help individuals to learn, adapt, and create their own portfolios. Feel free to customize and modify the theme and components to suit your personal style and branding preferences.
+---
 
-## License and Attribution
+## About
 
-The code in this repository is released under the [MIT](https://github.com/shaqdeff/Portfolio-Template/blob/90213d4887074d1d29434f706afad3d12fa33f5f/MIT.md) License, which grants you the freedom to use, modify, and distribute the template as your own. However, if you choose to use the site's design largely unmodified, kindly credit me as the original designer of the site.
+I am a **.NET Backend Developer** based in Amman, Jordan, focused on building structured RESTful APIs, maintainable layered architectures, and reliable data-driven backend workflows. This portfolio presents my technical skills, education, contact channels, and featured backend engineering work on the **DVLD** system.
 
-All projects and experiences included in this portfolio are the result of my own efforts and creativity. Please refrain from presenting them as your own.
+---
 
-## Built With
+## Technology Stack
 
-- React.js
-- Three.js
-- Framer Motion
-- TailwindCSS
+Technologies actually used in this portfolio repository:
 
-## Live Demo
+- **Astro** (`astro`, `@astrojs/check`) — static site generation and component architecture
+- **TypeScript** — strict type checking across `.astro`, `.ts`, and `.tsx` files
+- **React** (`react`, `react-dom`, `@astrojs/react`) — interactive client islands (`LetterGlitch`, `SkillsList`, `LikeButton`)
+- **Tailwind CSS** (`tailwindcss`, `@astrojs/tailwind`) — utility-first styling
+- **CSS & JavaScript** — custom keyframe animations, scroll-driven navbar transitions, and reduced-motion support
+- **Firebase Firestore** *(optional)* — realtime counter backing `LikeButton` when configured, with automatic local-only fallback when environment variables are absent
 
-- Click [here](https://shaq-portfolio.netlify.app/) to view the live demo.
+---
+
+## Project Structure
+
+```text
+public/
+├── files/
+│   └── AyhmObeidat_CV.pdf        # Downloadable CV PDF
+├── fonts/                        # Self-hosted Montserrat Variable woff2 fonts
+├── svg/                          # Technology SVG icons used in LogoWall & Footer
+├── favicon.png
+├── llms.txt
+├── og.image.png
+└── robots.txt
+src/
+├── React/
+│   ├── LetterGlitch.tsx          # Canvas-based character matrix animation
+│   ├── LikeButton.tsx            # Interactive like button (Firestore + local fallback)
+│   └── SkillsList.tsx            # Interactive accordion for core backend focus
+├── components/
+│   ├── about.astro               # About Me section
+│   ├── contact.astro             # Direct contact channels & CV download
+│   ├── education.astro           # Academic background (JUST, B.Sc. CS 2026)
+│   ├── footer.astro              # Footer links, stack badges, and LikeButton
+│   ├── home.astro                # Hero section, LogoWall, SkillsList & LetterGlitch
+│   ├── logoWall.astro            # Infinite horizontal technology marquee
+│   ├── nav.astro                 # Floating glassmorphic navigation bar
+│   ├── projects.astro            # Featured DVLD project showcase
+│   └── skills.astro              # Categorized technical skills
+├── data/
+│   └── portfolio.ts              # Centralized personal, skills, education & DVLD data
+├── layouts/
+│   └── Layout.astro              # Base HTML layout, SEO/OG/Twitter/JSON-LD & theme tokens
+├── pages/
+│   ├── index.astro               # Main portfolio page (/)
+│   └── projects/
+│       └── dvld.astro            # Dedicated DVLD architecture & case study (/projects/dvld)
+├── env.d.ts                      # Astro & React JSX directive type definitions
+└── firebase.ts                   # Optional Firebase initialization
+```
+
+---
 
 ## Getting Started
 
-To get started with this portfolio template, follow these simple steps:
-
 ### Prerequisites
 
-Make sure you have node `16.0.0` or higher and npm `9.0.0` or higher installed.
+- **Node.js** `>= 20.0.0`
+- **npm**
 
-### Setup
+### Installation
 
-- With git, clone the code to your machine, or download a ZIP of all the files directly.
-- [Download the ZIP file from this location](https://github.com/shaqdeff/Portfolio-Template/archive/refs/heads/main.zip) or run the following [git](https://git-scm.com/) command to clone the files to your machine:
-
-```
-git clone https://github.com/shaqdeff/Portfolio-Template.git
-```
-
-- Once the files are on your machine, open the **Portfolio-Template** folder in [Visual Studio Code](https://code.visualstudio.com/download).
-
-```
-cd Portfolio-Template && code .
-```
-
-## Install
-
-- After opening the files in Visual Studio Code, open the **VS Code** integrated terminal and run the following commands:
-
-```
+```bash
 npm install
 ```
 
-This will install all the packages and dependencies used in the project.
+---
 
-## Usage
+## Development
 
-- Run the following command to start a local server:
+Start the local development server:
 
-```
+```bash
 npm run dev
 ```
 
-This will open up the project on a browser on `http://localhost:5173/`
+---
 
-## Build
+## Production Build
 
-- To create a production build:
+Run TypeScript/Astro checks (`astro check`) and build the static site into `dist/`:
 
-```
+```bash
 npm run build
 ```
 
-- To preview the site as it will appear once deployed:
+---
 
-```
+## Preview
+
+Preview the production build locally:
+
+```bash
 npm run preview
 ```
 
-## Authors
+---
 
-👤 **Shaquille Ndunda**
+## Environment Variables
 
-- GitHub: [@shaqdeff](https://github.com/shaqdeff)
-- Twitter: [@shaquillendunda](https://twitter.com/shaquillendunda)
-- LinkedIn: [Shaquille Ndunda](https://www.linkedin.com/in/shaquille-ndunda-b13a95107/)
+All environment variables are **optional**. The portfolio builds and runs completely without them.
 
-## Feedback and Contributions
+If you want `LikeButton` in `src/React/LikeButton.tsx` to persist likes to Firebase Firestore instead of using local-only state, create a `.env` file based on `.env.example`:
 
-If you have any feedback, suggestions, or would like to contribute to this project, your involvement is highly valued. Feel free to open an [issue](../../issues/) or submit a pull request with your ideas and enhancements. Remember, this template is a starting point, and the true magic lies in making it your own. Enjoy the journey of creating a stunning portfolio that represents your unique talents and accomplishments!
+```env
+PUBLIC_FIREBASE_API_KEY=
+PUBLIC_FIREBASE_AUTH_DOMAIN=
+PUBLIC_FIREBASE_PROJECT_ID=
+PUBLIC_FIREBASE_STORAGE_BUCKET=
+PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
+PUBLIC_FIREBASE_APP_ID=
+```
 
-Happy coding and showcasing!
+---
 
-## Show your support
+## Portfolio Sections
 
-Give a ⭐️ if you like this project!
+- **Home** (`#home`) — Developer identity, hero statement, CV download, technology marquee, interactive core-focus accordion, and canvas glitch animation.
+- **About** (`#about`) — Computer Science background, backend focus, location, and languages.
+- **Skills** (`#skills`) — Technical skills grouped into Backend Development, Database, Programming Fundamentals, API & Security, and Tools.
+- **Projects** (`#projects`) — Featured DVLD showcase with architecture flow diagram and link to `/projects/dvld`.
+- **Education** (`#education`) — B.Sc. in Computer Science at Jordan University of Science and Technology (JUST), 2026.
+- **Contact** (`#contact`) — Direct email, phone, GitHub, and CV download actions.
+
+---
+
+## Featured Project
+
+**DVLD — Driving & Vehicle License Department System**  
+Repository: [https://github.com/ayhm325/DVLD-System](https://github.com/ayhm325/DVLD-System)  
+Reference Commit: [`b3ba343f4f47d886a57869a8ed0a45f0d535329b`](https://github.com/ayhm325/DVLD-System/tree/b3ba343f4f47d886a57869a8ed0a45f0d535329b)
+
+A multi-layered driving license management system built with .NET 8, ASP.NET Core Web API, Entity Framework Core, SQL Server, JWT authentication, and a React + TypeScript `ClientApp`, with unit/integration tests in xUnit and Azure DevOps CI.
+
+---
+
+## Contact
+
+- **Email:** [ayhmobeidat.cs@gmail.com](mailto:ayhmobeidat.cs@gmail.com)
+- **Phone:** [+962 788 234 055](tel:+962788234055)
+- **Location:** Amman, Jordan
+- **GitHub:** [https://github.com/ayhm325](https://github.com/ayhm325)
+
+---
+
+## License & Attribution
+
+This project is customized from the open-source [dark-minimal](https://github.com/Gothsec/dark-minimal) template under the [MIT License](LICENSE).

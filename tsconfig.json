@@ -1,0 +1,27 @@
+{
+  "extends": "astro/tsconfigs/strict",
+  "compilerOptions": {
+    "module": "ES2020",
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "types": [
+      "astro/client"
+    ],
+    "moduleResolution": "bundler",
+    "ignoreDeprecations": "6.0",
+    "esModuleInterop": true,
+    "paths": {
+      "@/*": [
+        "./src/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ]
+    },
+    "jsx": "react-jsx"
+  },
+  "include": [
+    "src/**/*",
+    "astro.config.ts"
+  ]
+}
