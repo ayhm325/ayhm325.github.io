@@ -4,6 +4,8 @@ import Nav from "@/components/nav.astro";
 import Footer from "@/components/footer.astro";
 import SpecularButton from "@/React/SpecularButton.tsx";
 import MaskedHeading from "@/React/MaskedHeading.tsx";
+import ShinyText from "@/React/ShinyText.tsx";
+import ElectricBorder from "@/React/ElectricBorder.tsx";
 import { dvldProject } from "@/data/portfolio";
 ---
 
@@ -13,19 +15,34 @@ import { dvldProject } from "@/data/portfolio";
 >
   <Nav />
 
-  <main class="text-[var(--white)] pt-12 md:pt-32 pb-16">
-    <div class="max-w-5xl mx-auto space-y-12">
+  <main class="text-[var(--white)] pt-24 md:pt-36 pb-16">
+    <div class="max-w-5xl mx-auto">
       <!-- Breadcrumb / Back -->
-      <div>
-        <a
+      <div class="mb-8">
+        <SpecularButton
+          client:load
           href="/#projects"
-          class="inline-flex items-center gap-2 text-sm text-[var(--white-icon)] hover:text-[var(--white)] transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)] rounded-md px-1"
+          size="sm"
+          radius={12}
+          tint="#ffffff"
+          tintOpacity={0.04}
+          textColor="#f5f5f5"
+          lineColor="#ffffff"
+          baseColor="#525252"
+          intensity={1}
+          idleIntensity={0.35}
+          shineSize={10}
+          shineFade={34}
+          thickness={1.2}
+          glow={0.8}
+          followMouse
+          proximity={250}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            class="size-4"
+            class="size-4 text-[var(--sec)]"
             aria-hidden="true"
           >
             <path
@@ -33,16 +50,28 @@ import { dvldProject } from "@/data/portfolio";
             ></path>
           </svg>
           <span>Back to Portfolio</span>
-        </a>
+        </SpecularButton>
       </div>
 
       <!-- Header -->
-      <header class="space-y-5">
-        <div class="flex flex-wrap items-center gap-3">
-          <span class="text-sm md:text-base text-[var(--sec)] shiny-sec">
-            Project Case Study
-          </span>
-        </div>
+      <header class="space-y-6 pb-12 md:pb-16">
+        <p class="text-lg">
+          <ShinyText
+            text="Project Case Study"
+            color="#a476ff"
+            shineColor="#f3ecff"
+            speed={4}
+            shineWidth={70}
+            softness={0.8}
+            trigger="loop"
+            delay={0.7}
+            angle={120}
+            bands={1}
+            glow={0}
+            direction="left"
+            easing="smooth"
+          />
+        </p>
 
         <MaskedHeading
           client:load
@@ -104,89 +133,309 @@ import { dvldProject } from "@/data/portfolio";
       </header>
 
       <!-- Technologies -->
-      <section class="pt-8 border-t border-[#ffffff10] space-y-6">
-        <h2 class="text-2xl md:text-3xl font-medium">Technologies Used</h2>
+      <section class="py-12 md:py-16 border-t border-[#ffffff10]">
+        <div class="mb-8">
+          <MaskedHeading
+            client:visible
+            tag="h2"
+            text="Technologies Used"
+            fillScale={1.25}
+            parallax={26}
+            reveal="scale"
+            trigger="view"
+            spotlight={false}
+            spotlightRadius={180}
+            outline={false}
+            duration={1.1}
+            stagger={0.09}
+            drift={18}
+            hoverZoom={0}
+            align="left"
+            brightness={1}
+            saturation={1}
+            grayscale={false}
+            outlineWidth={1}
+            weight={700}
+            tracking={-0.03}
+            lineHeight={1.06}
+            textScale={0.045}
+            tint="#f43f5e"
+          />
+        </div>
+
         <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <div class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6">
-            <h3 class="text-sm uppercase tracking-wider text-[var(--sec)] mb-3 font-semibold">
-              Backend &amp; Persistence
-            </h3>
-            <ul class="flex flex-wrap gap-2">
-              {
-                dvldProject.backendTechnologies.map((tech) => (
-                  <li class="px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#ffffff10] text-sm text-[var(--white)]">
-                    {tech}
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
-          <div class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6">
-            <h3 class="text-sm uppercase tracking-wider text-[var(--white-icon)] mb-3 font-semibold">
-              ClientApp Frontend
-            </h3>
-            <ul class="flex flex-wrap gap-2">
-              {
-                dvldProject.frontendTechnologies.map((tech) => (
-                  <li class="px-3 py-1.5 rounded-lg bg-[#1a1a1a] border border-[#ffffff10] text-sm text-[var(--white-icon)]">
-                    {tech}
-                  </li>
-                ))
-              }
-            </ul>
-          </div>
+          <ElectricBorder
+            client:visible
+            color="#7df9ff"
+            speed={1}
+            chaos={0.5}
+            spread={0.6}
+            strands={3}
+            thickness={1.5}
+            borderRadius={16}
+            className="h-full"
+          >
+            <div class="h-full bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 hover:border-[#a476ff45] transition-colors duration-300">
+              <h3 class="text-sm uppercase tracking-wider text-[var(--sec)] mb-4 font-semibold">
+                Backend &amp; Persistence
+              </h3>
+              <ul class="flex flex-wrap gap-2">
+                {
+                  dvldProject.backendTechnologies.map((tech) => (
+                    <li>
+                      <SpecularButton
+                        client:visible
+                        size="sm"
+                        radius={10}
+                        tint="#a476ff"
+                        tintOpacity={0.08}
+                        textColor="#f5f5f5"
+                        lineColor="#a476ff"
+                        baseColor="#525252"
+                        intensity={1}
+                        idleIntensity={0.35}
+                        shineSize={10}
+                        shineFade={34}
+                        thickness={1.2}
+                        glow={0.8}
+                        followMouse
+                        proximity={250}
+                        className="!px-3 !py-1.5 !text-sm !font-normal !cursor-default"
+                      >
+                        {tech}
+                      </SpecularButton>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </ElectricBorder>
+
+          <ElectricBorder
+            client:visible
+            color="#7df9ff"
+            speed={1}
+            chaos={0.5}
+            spread={0.6}
+            strands={3}
+            thickness={1.5}
+            borderRadius={16}
+            className="h-full"
+          >
+            <div class="h-full bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 hover:border-[#a476ff45] transition-colors duration-300">
+              <h3 class="text-sm uppercase tracking-wider text-[var(--white-icon)] mb-4 font-semibold">
+                ClientApp Frontend
+              </h3>
+              <ul class="flex flex-wrap gap-2">
+                {
+                  dvldProject.frontendTechnologies.map((tech) => (
+                    <li>
+                      <SpecularButton
+                        client:visible
+                        size="sm"
+                        radius={10}
+                        tint="#ffffff"
+                        tintOpacity={0.04}
+                        textColor="#d4d4d8"
+                        lineColor="#ffffff"
+                        baseColor="#525252"
+                        intensity={1}
+                        idleIntensity={0.3}
+                        shineSize={10}
+                        shineFade={34}
+                        thickness={1.2}
+                        glow={0.7}
+                        followMouse
+                        proximity={250}
+                        className="!px-3 !py-1.5 !text-sm !font-normal !cursor-default"
+                      >
+                        {tech}
+                      </SpecularButton>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </ElectricBorder>
         </div>
       </section>
 
       <!-- Architecture Highlights -->
-      <section class="pt-8 border-t border-[#ffffff10] space-y-6">
-        <h2 class="text-2xl md:text-3xl font-medium">Architecture Highlights</h2>
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <section class="py-12 md:py-16 border-t border-[#ffffff10]">
+        <div class="mb-8">
+          <MaskedHeading
+            client:visible
+            tag="h2"
+            text="Architecture Highlights"
+            fillScale={1.25}
+            parallax={26}
+            reveal="scale"
+            trigger="view"
+            spotlight={false}
+            spotlightRadius={180}
+            outline={false}
+            duration={1.1}
+            stagger={0.09}
+            drift={18}
+            hoverZoom={0}
+            align="left"
+            brightness={1}
+            saturation={1}
+            grayscale={false}
+            outlineWidth={1}
+            weight={700}
+            tracking={-0.03}
+            lineHeight={1.06}
+            textScale={0.045}
+            tint="#f43f5e"
+          />
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
           {
-            dvldProject.architectureLayers.map((layer) => (
-              <div class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 space-y-2">
-                <div class="flex items-center justify-between gap-2">
-                  <h3 class="text-lg font-semibold text-[var(--white)]">
-                    {layer.name}
-                  </h3>
-                  <span class="text-xs font-mono text-[var(--sec)] px-2 py-0.5 rounded bg-[#1a1a1a] border border-[#ffffff10]">
-                    {layer.project}
-                  </span>
+            dvldProject.architectureLayers.map((layer, index) => (
+              <ElectricBorder
+                client:visible
+                color="#7df9ff"
+                speed={1}
+                chaos={0.5}
+                spread={0.6}
+                strands={3}
+                thickness={1.5}
+                borderRadius={16}
+                className={`h-full ${
+                  index === dvldProject.architectureLayers.length - 1
+                    ? "md:col-span-2"
+                    : ""
+                }`}
+              >
+                <div class="h-full bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 space-y-2 hover:border-[#a476ff45] transition-colors duration-300">
+                  <div class="flex items-center justify-between gap-2">
+                    <h3 class="text-lg font-semibold text-[var(--white)]">
+                      {layer.name}
+                    </h3>
+                    <span class="text-xs font-mono text-[var(--sec)] px-2.5 py-0.5 rounded-md bg-[#1a1a1a] border border-[#a476ff35]">
+                      {layer.project}
+                    </span>
+                  </div>
+                  <p class="text-sm text-[var(--white-icon)] leading-relaxed">
+                    {layer.description}
+                  </p>
                 </div>
-                <p class="text-sm text-[var(--white-icon)] leading-relaxed">
-                  {layer.description}
-                </p>
-              </div>
+              </ElectricBorder>
             ))
           }
         </div>
 
-        <div class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6">
-          <h3 class="text-lg font-semibold text-[var(--white)] mb-4">
-            Key Design Patterns &amp; Practices
-          </h3>
-          <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
-            {
-              dvldProject.architecturePrinciples.map((item) => (
-                <li class="flex items-center gap-2 text-sm text-[var(--white-icon)]">
-                  <span class="text-[var(--sec)]" aria-hidden="true">•</span>
-                  <span>{item}</span>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+        <ElectricBorder
+          client:visible
+          color="#7df9ff"
+          speed={1}
+          chaos={0.5}
+          spread={0.6}
+          strands={3}
+          thickness={1.5}
+          borderRadius={16}
+        >
+          <div class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 hover:border-[#a476ff45] transition-colors duration-300">
+            <h3 class="text-lg font-semibold text-[var(--white)] mb-4">
+              Key Design Patterns &amp; Practices
+            </h3>
+            <ul class="flex flex-wrap gap-2">
+              {
+                dvldProject.architecturePrinciples.map((item) => (
+                  <li>
+                    <SpecularButton
+                      client:visible
+                      size="sm"
+                      radius={10}
+                      tint="#ffffff"
+                      tintOpacity={0.04}
+                      textColor="#d4d4d8"
+                      lineColor="#ffffff"
+                      baseColor="#525252"
+                      intensity={1}
+                      idleIntensity={0.3}
+                      shineSize={10}
+                      shineFade={34}
+                      thickness={1.2}
+                      glow={0.7}
+                      followMouse
+                      proximity={250}
+                      className="!px-3 !py-1.5 !text-sm !font-normal !cursor-default"
+                    >
+                      {item}
+                    </SpecularButton>
+                  </li>
+                ))
+              }
+            </ul>
+          </div>
+        </ElectricBorder>
       </section>
 
       <!-- Verified Capabilities -->
-      <section class="pt-8 border-t border-[#ffffff10] space-y-6">
-        <h2 class="text-2xl md:text-3xl font-medium">Verified Capabilities</h2>
+      <section class="py-12 md:py-16 border-t border-[#ffffff10]">
+        <div class="mb-8">
+          <MaskedHeading
+            client:visible
+            tag="h2"
+            text="Verified Capabilities"
+            fillScale={1.25}
+            parallax={26}
+            reveal="scale"
+            trigger="view"
+            spotlight={false}
+            spotlightRadius={180}
+            outline={false}
+            duration={1.1}
+            stagger={0.09}
+            drift={18}
+            hoverZoom={0}
+            align="left"
+            brightness={1}
+            saturation={1}
+            grayscale={false}
+            outlineWidth={1}
+            weight={700}
+            tracking={-0.03}
+            lineHeight={1.06}
+            textScale={0.045}
+            tint="#f43f5e"
+          />
+        </div>
+
         <ul class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3">
           {
             dvldProject.capabilities.map((cap) => (
-              <li class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-xl px-4 py-3 text-sm text-[var(--white)] flex items-center gap-2.5">
-                <span class="size-2 rounded-full bg-[var(--sec)] flex-shrink-0" aria-hidden="true" />
-                <span>{cap}</span>
+              <li>
+                <SpecularButton
+                  client:visible
+                  size="md"
+                  radius={12}
+                  tint="#ffffff"
+                  tintOpacity={0.04}
+                  textColor="#f5f5f5"
+                  lineColor="#a476ff"
+                  baseColor="#525252"
+                  intensity={1}
+                  idleIntensity={0.35}
+                  shineSize={10}
+                  shineFade={34}
+                  thickness={1.2}
+                  glow={0.7}
+                  followMouse
+                  proximity={250}
+                  className="w-full !px-4 !py-3 !text-sm !font-normal !cursor-default"
+                >
+                  <span class="flex w-full items-center gap-2.5 text-left">
+                    <span
+                      class="size-2 rounded-full bg-[var(--sec)] flex-shrink-0"
+                      aria-hidden="true"
+                    />
+                    <span>{cap}</span>
+                  </span>
+                </SpecularButton>
               </li>
             ))
           }
@@ -194,35 +443,67 @@ import { dvldProject } from "@/data/portfolio";
       </section>
 
       <!-- Security & Testing -->
-      <section class="pt-8 border-t border-[#ffffff10] grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 space-y-4">
-          <h2 class="text-xl md:text-2xl font-medium">
-            Security &amp; Session Management
-          </h2>
-          <ul class="space-y-2.5 text-sm text-[var(--white-icon)]">
-            {
-              dvldProject.securityFeatures.map((feat) => (
-                <li class="flex items-start gap-2.5">
-                  <span class="text-[var(--sec)] mt-0.5" aria-hidden="true">•</span>
-                  <span>{feat}</span>
-                </li>
-              ))
-            }
-          </ul>
-        </div>
+      <section class="py-12 md:py-16 border-t border-[#ffffff10]">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <ElectricBorder
+            client:visible
+            color="#7df9ff"
+            speed={1}
+            chaos={0.5}
+            spread={0.6}
+            strands={3}
+            thickness={1.5}
+            borderRadius={16}
+            className="h-full"
+          >
+            <div class="h-full bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 space-y-4 hover:border-[#a476ff45] transition-colors duration-300">
+              <h2 class="text-xl md:text-2xl font-medium text-[var(--white)]">
+                Security &amp; Session Management
+              </h2>
+              <ul class="space-y-2.5 text-sm text-[var(--white-icon)]">
+                {
+                  dvldProject.securityFeatures.map((feat) => (
+                    <li class="flex items-start gap-2.5">
+                      <span class="text-[var(--sec)] mt-0.5" aria-hidden="true">
+                        •
+                      </span>
+                      <span>{feat}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </ElectricBorder>
 
-        <div class="bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 space-y-4">
-          <h2 class="text-xl md:text-2xl font-medium">Testing &amp; CI</h2>
-          <ul class="space-y-2.5 text-sm text-[var(--white-icon)]">
-            {
-              dvldProject.testingAndCi.map((item) => (
-                <li class="flex items-start gap-2.5">
-                  <span class="text-[var(--sec)] mt-0.5" aria-hidden="true">•</span>
-                  <span>{item}</span>
-                </li>
-              ))
-            }
-          </ul>
+          <ElectricBorder
+            client:visible
+            color="#7df9ff"
+            speed={1}
+            chaos={0.5}
+            spread={0.6}
+            strands={3}
+            thickness={1.5}
+            borderRadius={16}
+            className="h-full"
+          >
+            <div class="h-full bg-[#1414149c] border border-[var(--white-icon-tr)] rounded-2xl p-6 space-y-4 hover:border-[#a476ff45] transition-colors duration-300">
+              <h2 class="text-xl md:text-2xl font-medium text-[var(--white)]">
+                Testing &amp; CI
+              </h2>
+              <ul class="space-y-2.5 text-sm text-[var(--white-icon)]">
+                {
+                  dvldProject.testingAndCi.map((item) => (
+                    <li class="flex items-start gap-2.5">
+                      <span class="text-[var(--sec)] mt-0.5" aria-hidden="true">
+                        •
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))
+                }
+              </ul>
+            </div>
+          </ElectricBorder>
         </div>
       </section>
     </div>

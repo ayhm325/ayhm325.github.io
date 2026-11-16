@@ -34,6 +34,38 @@ const SIZE_CLASSES: Record<NonNullable<SpecularButtonProps["size"]>, string> = {
   lg: "px-6 py-3.5 text-base",
 };
 
+type PointerListener = (clientX: number, clientY: number) => void;
+const pointerListeners = new Set<PointerListener>();
+let sharedRafId: number | null = null;
+let latestPointer = { x: 0, y: 0 };
+
+function onSharedPointerMove(e: PointerEvent) {
+  latestPointer.x = e.clientX;
+  latestPointer.y = e.clientY;
+  if (sharedRafId !== null) return;
+  sharedRafId = window.requestAnimationFrame(() => {
+    sharedRafId = null;
+    pointerListeners.forEach((cb) => cb(latestPointer.x, latestPointer.y));
+  });
+}
+
+function subscribePointer(cb: PointerListener): () => void {
+  if (pointerListeners.size === 0 && typeof window !== "undefined") {
+    window.addEventListener("pointermove", onSharedPointerMove, { passive: true });
+  }
+  pointerListeners.add(cb);
+  return () => {
+    pointerListeners.delete(cb);
+    if (pointerListeners.size === 0 && typeof window !== "undefined") {
+      window.removeEventListener("pointermove", onSharedPointerMove);
+      if (sharedRafId !== null) {
+        window.cancelAnimationFrame(sharedRafId);
+        sharedRafId = null;
+      }
+    }
+  };
+}
+
 function hexToRgba(hex: string, alpha: number): string {
   const clean = hex.replace("#", "").trim();
   if (clean.length === 3) {
@@ -100,48 +132,37 @@ export default function SpecularButton({
       return;
     }
 
-    let rafId: number | null = null;
+    const handlePointerMove: PointerListener = (clientX, clientY) => {
+      const el = ref.current;
+      if (!el) return;
 
-    const handlePointerMove = (e: PointerEvent) => {
-      if (rafId !== null) return;
-      rafId = window.requestAnimationFrame(() => {
-        rafId = null;
-        const el = ref.current;
-        if (!el) return;
+      const rect = el.getBoundingClientRect();
+      const cx = rect.left + rect.width / 2;
+      const cy = rect.top + rect.height / 2;
 
-        const rect = el.getBoundingClientRect();
-        const cx = rect.left + rect.width / 2;
-        const cy = rect.top + rect.height / 2;
+      const dx = Math.max(rect.left - clientX, 0, clientX - rect.right);
+      const dy = Math.max(rect.top - clientY, 0, clientY - rect.bottom);
+      const dist = Math.hypot(dx, dy);
 
-        // Distance from pointer to the button's bounding box
-        const dx = Math.max(rect.left - e.clientX, 0, e.clientX - rect.right);
-        const dy = Math.max(rect.top - e.clientY, 0, e.clientY - rect.bottom);
-        const dist = Math.hypot(dx, dy);
+      if (dist <= proximity) {
+        const factor = 1 - dist / Math.max(proximity, 1);
+        const nextStrength =
+          idleIntensity + (intensity - idleIntensity) * factor;
+        const deg =
+          (Math.atan2(clientY - cy, clientX - cx) * 180) / Math.PI + 90;
 
-        if (dist <= proximity) {
-          const factor = 1 - dist / Math.max(proximity, 1);
-          const nextStrength =
-            idleIntensity + (intensity - idleIntensity) * factor;
-          const deg =
-            (Math.atan2(e.clientY - cy, e.clientX - cx) * 180) / Math.PI + 90;
-
-          setAngle(deg);
-          setActiveStrength(nextStrength);
-          setPointerPos({
-            x: ((e.clientX - rect.left) / Math.max(rect.width, 1)) * 100,
-            y: ((e.clientY - rect.top) / Math.max(rect.height, 1)) * 100,
-          });
-        } else {
-          setActiveStrength(idleIntensity);
-        }
-      });
+        setAngle(deg);
+        setActiveStrength(nextStrength);
+        setPointerPos({
+          x: ((clientX - rect.left) / Math.max(rect.width, 1)) * 100,
+          y: ((clientY - rect.top) / Math.max(rect.height, 1)) * 100,
+        });
+      } else {
+        setActiveStrength(idleIntensity);
+      }
     };
 
-    window.addEventListener("pointermove", handlePointerMove, { passive: true });
-    return () => {
-      window.removeEventListener("pointermove", handlePointerMove);
-      if (rafId !== null) window.cancelAnimationFrame(rafId);
-    };
+    return subscribePointer(handlePointerMove);
   }, [followMouse, proximity, intensity, idleIntensity, disabled]);
 
   const shineHalf = Math.max(2, shineSize);

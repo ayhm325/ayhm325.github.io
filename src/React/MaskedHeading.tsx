@@ -214,7 +214,7 @@ const MaskedHeading: React.FC<MaskedHeadingProps> = ({
     if (!root || !measure) return;
     const s = settingsRef.current;
 
-    root.style.fontSize = `${clamp(root.clientWidth * s.textScale, 20, 200).toFixed(1)}px`;
+    root.style.fontSize = `${clamp(root.clientWidth * s.textScale, 28, 200).toFixed(1)}px`;
 
     const cs = window.getComputedStyle(measure);
     const fontPx = parseFloat(cs.fontSize) || 48;
@@ -488,13 +488,17 @@ const MaskedHeading: React.FC<MaskedHeadingProps> = ({
       ctx.putImageData(imgData, 0, 0);
     };
 
-    const loop = () => {
+    let lastCloudDraw = 0;
+    const loop = (now: number) => {
       if (!visible) {
         raf = 0;
         return;
       }
-      t += 0.028;
-      draw();
+      if (now - lastCloudDraw >= 33) {
+        lastCloudDraw = now;
+        t += 0.05;
+        draw();
+      }
       raf = requestAnimationFrame(loop);
     };
 
