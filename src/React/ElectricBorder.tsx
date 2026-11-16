@@ -244,10 +244,10 @@ export default function ElectricBorder({
       <canvas
         ref={canvasRef}
         aria-hidden="true"
-        className="pointer-events-none absolute -top-[12px] -left-[12px] z-20"
+        className="pointer-events-none absolute -top-[12px] -left-[12px] z-[5]"
       />
       <div
-        className="relative z-10 h-full w-full"
+        className="relative z-20 h-full w-full"
         style={{ borderRadius: `${borderRadius}px` }}
       >
         {children}
