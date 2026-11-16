@@ -1,5 +1,6 @@
 ---
 import { personalInfo } from "../data/portfolio";
+import MagicRings from "../React/MagicRings.tsx";
 
 interface Props {
   title?: string;
@@ -66,7 +67,73 @@ const jsonLd = {
     <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
   </head>
   <body class="bg-[--background] sm:px-28 lg:px-20 px-6 overflow-x-hidden">
-    <slot />
+    <div
+      class="hidden xl:block fixed inset-0 pointer-events-none z-0 overflow-hidden"
+      aria-hidden="true"
+    >
+      <div class="absolute top-1/2 -translate-y-1/2 -left-[230px] 2xl:-left-[180px] w-[500px] h-[560px]">
+        <MagicRings
+          client:media="(min-width: 1280px)"
+          color="#A855F7"
+          colorTwo="#6366F1"
+          motion="breathe"
+          ringCount={5}
+          speed={1}
+          lineThickness={1.5}
+          glow={0.6}
+          hoverScale={1.2}
+          clickBurst
+          baseRadius={0.35}
+          radiusStep={0.1}
+          expansion={0.1}
+          taper={1.25}
+          rotation={0}
+          spin={0}
+          tilt={0}
+          dispersion={0}
+          grain={0}
+          opacity={0.75}
+          followMouse={false}
+          mouseInfluence={0.2}
+          hoverIntensity={1}
+          parallax={0.05}
+          intro
+        />
+      </div>
+      <div class="absolute top-1/2 -translate-y-1/2 -right-[230px] 2xl:-right-[180px] w-[500px] h-[560px]">
+        <MagicRings
+          client:media="(min-width: 1280px)"
+          color="#A855F7"
+          colorTwo="#6366F1"
+          motion="breathe"
+          ringCount={5}
+          speed={1}
+          lineThickness={1.5}
+          glow={0.6}
+          hoverScale={1.2}
+          clickBurst
+          baseRadius={0.35}
+          radiusStep={0.1}
+          expansion={0.1}
+          taper={1.25}
+          rotation={180}
+          spin={0}
+          tilt={0}
+          dispersion={0}
+          grain={0}
+          opacity={0.75}
+          followMouse={false}
+          mouseInfluence={0.2}
+          hoverIntensity={1}
+          parallax={0.05}
+          intro
+        />
+      </div>
+    </div>
+
+    <div class="relative z-10">
+      <slot />
+    </div>
   </body>
 </html>
 
