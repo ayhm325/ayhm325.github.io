@@ -16,6 +16,8 @@ export interface FallingTextProps {
   cursorPush?: number;
   mouseConstraintStiffness?: number;
   accentColor?: string;
+  textColor?: string;
+  align?: "left" | "center";
   draggable?: boolean;
   wireframes?: boolean;
   className?: string;
@@ -55,6 +57,8 @@ export default function FallingText({
   cursorPush = 0.5,
   mouseConstraintStiffness = 0.2,
   accentColor = "#a476ff",
+  textColor = "var(--white)",
+  align = "center",
   draggable = true,
   wireframes = false,
   className = "",
@@ -76,7 +80,7 @@ export default function FallingText({
 
   const [phase, setPhase] = useState<"idle" | "falling" | "restoring">("idle");
   const phaseRef = useRef(phase);
-  phaseRef.current = phase;
+  const cooldownUntilRef = useRef<number>(0);
 
   const tokens = useMemo(() => {
     const raw = split === "chars" ? Array.from(text) : text.split(/\s+/).filter(Boolean);
@@ -112,16 +116,14 @@ export default function FallingText({
       if (!el) return;
       el.style.transform = "translate3d(0px, 0px, 0px) rotate(0deg)";
     });
+    cooldownUntilRef.current = performance.now() + 800;
+    phaseRef.current = "idle";
     setPhase("idle");
   }, [stopLoop, clearRestoreTimer]);
 
   const startSimulation = useCallback(() => {
-    if (phaseRef.current === "falling") return;
-
-    const prefersReducedMotion =
-      typeof window !== "undefined" &&
-      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
-    if (prefersReducedMotion) return;
+    if (phaseRef.current !== "idle") return;
+    if (performance.now() < cooldownUntilRef.current) return;
 
     const container = containerRef.current;
     if (!container) return;
@@ -168,6 +170,7 @@ export default function FallingText({
     });
 
     bodiesRef.current = bodies;
+    phaseRef.current = "falling";
     setPhase("falling");
 
     const startTime = performance.now();
@@ -179,6 +182,7 @@ export default function FallingText({
       const maxDelay = Math.max(...bodies.map((b) => b.delayMs), 0);
       restoreTimerRef.current = window.setTimeout(() => {
         if (dragIndexRef.current !== null) return;
+        phaseRef.current = "restoring";
         setPhase("restoring");
         window.setTimeout(() => {
           resetToIdle();
@@ -334,6 +338,9 @@ export default function FallingText({
     pointerRef.current.x = e.clientX - rect.left;
     pointerRef.current.y = e.clientY - rect.top;
     pointerRef.current.inside = true;
+    if (trigger === "hover" && phaseRef.current === "idle") {
+      startSimulation();
+    }
   };
 
   return (
@@ -345,12 +352,14 @@ export default function FallingText({
       onPointerLeave={() => {
         pointerRef.current.inside = false;
       }}
-      className={`relative w-full h-full overflow-hidden select-none flex items-start justify-center p-6 md:p-8 ${
-        trigger === "click" ? "cursor-pointer" : ""
-      } ${className}`}
+      className={`relative w-full h-full overflow-hidden select-none flex items-start ${
+        align === "left" ? "justify-start" : "justify-center p-6 md:p-8"
+      } ${trigger === "click" ? "cursor-pointer" : ""} ${className}`}
     >
       <p
-        className="text-center leading-relaxed font-medium flex flex-wrap items-center justify-center gap-x-2.5 gap-y-2 max-w-3xl"
+        className={`leading-relaxed flex flex-wrap items-center gap-x-2 gap-y-1 max-w-3xl ${
+          align === "left" ? "text-left justify-start font-normal" : "text-center justify-center font-medium"
+        }`}
         style={{ fontSize }}
       >
         {tokens.map((t, idx) => (
@@ -366,7 +375,7 @@ export default function FallingText({
               dragIndexRef.current = idx;
             }}
             style={{
-              color: t.isHighlighted ? accentColor : "var(--white)",
+              color: t.isHighlighted ? accentColor : textColor,
               border: wireframes
                 ? "1px dashed rgba(255,255,255,0.35)"
                 : variant === "pills"

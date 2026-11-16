@@ -3,6 +3,7 @@ import LetterGlitch from "../React/LetterGlitch.tsx";
 import LogoWall from "../components/logoWall.astro";
 import SkillsList from "../React/SkillsList.tsx";
 import SpecularButton from "../React/SpecularButton.tsx";
+import FallingText from "../React/FallingText.tsx";
 import { personalInfo, heroContent } from "../data/portfolio";
 ---
 
@@ -28,9 +29,30 @@ import { personalInfo, heroContent } from "../data/portfolio";
           Building Reliable Backend Systems with{" "}
           <span class="text-[var(--sec)] shiny-sec">.NET.</span>
         </h1>
-        <p class="text-base md:text-xl text-[var(--white-icon)] max-w-3xl leading-relaxed">
-          {heroContent.supportingText}
-        </p>
+        <div class="h-[170px] sm:h-[145px] md:h-[160px] max-w-3xl">
+          <FallingText
+            client:load
+            text={heroContent.supportingText}
+            highlightWords={[".NET", "REST", "APIs,", "reliable", "secure"]}
+            trigger="hover"
+            fontSize="clamp(1rem, 1.5vw, 1.25rem)"
+            gravity={1}
+            restoreDelay={2}
+            variant="text"
+            split="words"
+            order="random"
+            bounciness={0.2}
+            scatter={0.5}
+            stagger={0.03}
+            cursorPush={0.5}
+            mouseConstraintStiffness={0.2}
+            accentColor="#a476ff"
+            textColor="var(--white-icon)"
+            align="left"
+            draggable
+            wireframes={false}
+          />
+        </div>
       </div>
 
       <div class="flex flex-wrap items-center gap-3 pt-2 md:pt-4">
