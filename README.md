@@ -1,67 +1,175 @@
-# Ayhm Mohammed Obeidat — .NET Backend Developer Portfolio
+# Ayhm Mohammed Obeidat | .NET Backend Developer
 
-Personal developer portfolio for **Ayhm Mohammed Obeidat**, a Computer Science graduate from Jordan University of Science and Technology (JUST) focused on C#, .NET 8, ASP.NET Core Web API, Entity Framework Core, SQL Server, and backend architecture.
+Personal developer portfolio showcasing my technical background, backend development skills, education, and software engineering projects.
 
+**Live Portfolio:** [https://ayhm325.github.io/](https://ayhm325.github.io/)
 
 ---
 
-## About
+## About Me
 
-I am a **.NET Backend Developer** based in Amman, Jordan, focused on building structured RESTful APIs, maintainable layered architectures, and reliable data-driven backend workflows. This portfolio presents my technical skills, education, contact channels, and featured backend engineering work on the **DVLD** system.
+I am **Ayhm Mohammed Obeidat**, a Computer Science graduate from **Jordan University of Science and Technology (JUST)**, based in **Amman, Jordan**.
+
+My primary professional focus is **.NET Backend Development**, with an interest in building reliable RESTful APIs, maintainable software architectures, secure authentication systems, and data-driven applications.
+
+My main technical focus includes:
+
+- C# and .NET 8
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQL Server
+- LINQ
+- RESTful API Design
+- JWT Authentication
+- Layered Architecture
+
+This portfolio presents my technical skills, academic background, and featured software engineering work.
+
+---
+
+## Portfolio Overview
+
+The website includes:
+
+- **Home:** Professional introduction, hero section, interactive elements, and technology showcase.
+- **About:** Background, professional focus, location, and languages.
+- **Technical Skills:** Categorized technical skills and learning paths.
+- **Projects:** Featured DVLD project and its technical overview.
+- **Education:** Academic background at JUST.
+- **Contact:** Direct communication channels and downloadable CV.
 
 ---
 
 ## Technology Stack
 
-Technologies actually used in this portfolio repository:
+Technologies used to build this portfolio:
 
-- **Astro** (`astro`, `@astrojs/check`) — static site generation and component architecture
-- **TypeScript** — strict type checking across `.astro`, `.ts`, and `.tsx` files
-- **React** (`react`, `react-dom`, `@astrojs/react`) — interactive client islands (`LetterGlitch`, `SkillsList`, `LikeButton`)
-- **Tailwind CSS** (`tailwindcss`, `@astrojs/tailwind`) — utility-first styling
-- **CSS & JavaScript** — custom keyframe animations, scroll-driven navbar transitions, and reduced-motion support
-- **Firebase Firestore** *(optional)* — realtime counter backing `LikeButton` when configured, with automatic local-only fallback when environment variables are absent
+| Technology | Purpose |
+| --- | --- |
+| **Astro** | Static site generation and component architecture |
+| **TypeScript** | Type-safe development |
+| **React** | Interactive client-side components |
+| **Tailwind CSS** | Utility-first styling |
+| **GSAP** | Smooth glyph and text reveal animations |
+| **WebGL2 & Canvas** | Custom interactive backgrounds, borders, and physics effects |
+| **CSS & JavaScript** | Custom styling, animations, and browser functionality |
+| **Firebase Firestore (Optional)** | Persistent `LikeButton` functionality when configured |
 
 ---
 
-## Project Structure
+## Interactive Components
 
-```text
-public/
-├── files/
-│   └── AyhmObeidat_CV.pdf        # Downloadable CV PDF
-├── fonts/                        # Self-hosted Montserrat Variable woff2 fonts
-├── svg/                          # Technology SVG icons used in LogoWall & Footer
-├── favicon.png
-├── llms.txt
-├── og.image.png
-└── robots.txt
-src/
-├── React/
-│   ├── LetterGlitch.tsx          # Canvas-based character matrix animation
-│   ├── LikeButton.tsx            # Interactive like button (Firestore + local fallback)
-│   └── SkillsList.tsx            # Interactive accordion for core backend focus
-├── components/
-│   ├── about.astro               # About Me section
-│   ├── contact.astro             # Direct contact channels & CV download
-│   ├── education.astro           # Academic background (JUST, B.Sc. CS 2026)
-│   ├── footer.astro              # Footer links, stack badges, and LikeButton
-│   ├── home.astro                # Hero section, LogoWall, SkillsList & LetterGlitch
-│   ├── logoWall.astro            # Infinite horizontal technology marquee
-│   ├── nav.astro                 # Floating glassmorphic navigation bar
-│   ├── projects.astro            # Featured DVLD project showcase
-│   └── skills.astro              # Categorized technical skills
-├── data/
-│   └── portfolio.ts              # Centralized personal, skills, education & DVLD data
-├── layouts/
-│   └── Layout.astro              # Base HTML layout, SEO/OG/Twitter/JSON-LD & theme tokens
-├── pages/
-│   ├── index.astro               # Main portfolio page (/)
-│   └── projects/
-│       └── dvld.astro            # Dedicated DVLD architecture & case study (/projects/dvld)
-├── env.d.ts                      # Astro & React JSX directive type definitions
-└── firebase.ts                   # Optional Firebase initialization
-```
+The portfolio includes custom interactive components:
+
+- **MagicRings:** Full-viewport WebGL2 expanding background rings on desktop screens.
+- **MaskedHeading:** GSAP-powered masked typography with parallax, drift, and animated cloud texture.
+- **FallingText:** Interactive physics-based text with cursor push, drag, and auto-restore.
+- **ShinyText:** Animated metallic/gradient sweep text for section labels.
+- **Folder & SkillsList:** Interactive neon-bordered 3D folder for Core Focus cards.
+- **ElectricBorder & ElectricLine:** Animated neon canvas borders and section dividers.
+- **SpecularButton:** Pointer-tracking specular highlight buttons and badges.
+- **LetterGlitch:** Canvas-based animated character background.
+- **LikeButton:** Interactive red specular like button with optional Firebase Firestore integration.
+- **LogoWall:** Continuous horizontal technology marquee.
+- **PillNav:** Floating glassmorphism navigation with pill hover fill and scroll-based effects.
+
+---
+
+## Technical Skills
+
+My skills are organized around my primary professional direction.
+
+### Backend Development
+
+- C#
+- .NET 8
+- ASP.NET Core Web API
+- REST APIs
+- Entity Framework Core
+- LINQ
+
+### Database
+
+- SQL Server
+- SQL Queries
+- Database Relationships
+- JOINs
+- GROUP BY
+- Subqueries
+
+### Programming Fundamentals
+
+- Object-Oriented Programming
+- SOLID Principles
+- Dependency Injection
+- Collections
+- Async/Await
+
+### API & Security
+
+- HTTP Methods
+- HTTP Status Codes
+- JWT Authentication
+- Role-Based Authorization
+
+### Tools
+
+- Git
+- GitHub
+- Visual Studio
+- Visual Studio Code
+- SQL Server Management Studio
+- Swagger / OpenAPI
+
+### Frontend Development — Learning Path
+
+Frontend development is part of my planned learning journey and future skill development.
+
+Technologies planned for this learning path:
+
+- HTML5
+- CSS3
+- JavaScript
+- TypeScript
+- React
+- Tailwind CSS
+- Vite
+
+> This section represents future learning goals and does not indicate professional mastery of these technologies.
+
+---
+
+## Featured Project
+
+### DVLD — Driving & Vehicle License Department System
+
+A driving and vehicle license management system designed to manage licensing workflows and related administrative operations.
+
+- **Repository:** [DVLD-System](https://github.com/ayhm325/DVLD-System)
+- **Detailed Overview:** [DVLD Case Study](https://ayhm325.github.io/projects/dvld/)
+
+**Project Technologies:**
+
+- C# / .NET 8
+- ASP.NET Core Web API
+- Entity Framework Core
+- SQL Server
+- React
+- TypeScript
+- JWT Authentication
+- xUnit
+
+**Architecture and Engineering Focus:**
+
+- Layered architecture
+- Separation of concerns
+- Repository and Unit of Work patterns
+- Transaction management
+- Authentication and authorization
+- Data validation and business workflows
+- Unit and integration testing
+
+The project includes a dedicated frontend application (`ClientApp`) that communicates with the backend through HTTP APIs.
 
 ---
 
@@ -69,18 +177,30 @@ src/
 
 ### Prerequisites
 
-- **Node.js** `>= 20.0.0`
-- **npm**
+- Node.js 20 or later
+- npm
 
 ### Installation
+
+Clone the repository:
+
+```bash
+git clone https://github.com/ayhm325/ayhm325.github.io.git
+```
+
+Navigate to the project directory:
+
+```bash
+cd ayhm325.github.io
+```
+
+Install dependencies:
 
 ```bash
 npm install
 ```
 
----
-
-## Development
+### Development
 
 Start the local development server:
 
@@ -88,21 +208,29 @@ Start the local development server:
 npm run dev
 ```
 
----
+The development server runs at:
 
-## Production Build
+```text
+http://localhost:4321
+```
 
-Run TypeScript/Astro checks (`astro check`) and build the static site into `dist/`:
+### Production Build
+
+Run the project checks and generate the production build:
 
 ```bash
 npm run build
 ```
 
----
+The generated static website is placed in:
 
-## Preview
+```text
+dist/
+```
 
-Preview the production build locally:
+### Preview
+
+Preview the generated production build locally:
 
 ```bash
 npm run preview
@@ -112,9 +240,11 @@ npm run preview
 
 ## Environment Variables
 
-All environment variables are **optional**. The portfolio builds and runs completely without them.
+Firebase integration is optional.
 
-If you want `LikeButton` in `src/React/LikeButton.tsx` to persist likes to Firebase Firestore instead of using local-only state, create a `.env` file based on `.env.example`:
+The portfolio works without Firebase configuration. When Firebase environment variables are configured, the `LikeButton` can use Firestore for persistent functionality; otherwise, it falls back to local-only behavior.
+
+Create a `.env` file using the following variables:
 
 ```env
 PUBLIC_FIREBASE_API_KEY=
@@ -125,38 +255,43 @@ PUBLIC_FIREBASE_MESSAGING_SENDER_ID=
 PUBLIC_FIREBASE_APP_ID=
 ```
 
----
-
-## Portfolio Sections
-
-- **Home** (`#home`) — Developer identity, hero statement, CV download, technology marquee, interactive core-focus accordion, and canvas glitch animation.
-- **About** (`#about`) — Computer Science background, backend focus, location, and languages.
-- **Skills** (`#skills`) — Technical skills grouped into Backend Development, Database, Programming Fundamentals, API & Security, and Tools.
-- **Projects** (`#projects`) — Featured DVLD showcase with architecture flow diagram and link to `/projects/dvld`.
-- **Education** (`#education`) — B.Sc. in Computer Science at Jordan University of Science and Technology (JUST), 2026.
-- **Contact** (`#contact`) — Direct email, phone, GitHub, and CV download actions.
+Do not commit actual credentials or private configuration values.
 
 ---
 
-## Featured Project
+## Deployment
 
-**DVLD — Driving & Vehicle License Department System**  
-Repository: [https://github.com/ayhm325/DVLD-System](https://github.com/ayhm325/DVLD-System)  
-Reference Commit: [`b3ba343f4f47d886a57869a8ed0a45f0d535329b`](https://github.com/ayhm325/DVLD-System/tree/b3ba343f4f47d886a57869a8ed0a45f0d535329b)
+The portfolio is hosted using **GitHub Pages**.
 
-A multi-layered driving license management system built with .NET 8, ASP.NET Core Web API, Entity Framework Core, SQL Server, JWT authentication, and a React + TypeScript `ClientApp`, with unit/integration tests in xUnit and Azure DevOps CI.
+The deployment workflow uses **GitHub Actions** to:
+
+1. Install project dependencies.
+2. Run the Astro production build (`astro check && astro build`).
+3. Generate the static website in `dist/`.
+4. Upload the generated build artifact.
+5. Deploy the artifact to GitHub Pages.
+
+**Live website:** [https://ayhm325.github.io/](https://ayhm325.github.io/)
 
 ---
 
 ## Contact
 
+Feel free to reach out through the following channels:
+
 - **Email:** [ayhmobeidat.cs@gmail.com](mailto:ayhmobeidat.cs@gmail.com)
-- **Phone:** [+962 788 234 055](tel:+962788234055)
+- **Phone:** +962 788 234 055
 - **Location:** Amman, Jordan
-- **GitHub:** [https://github.com/ayhm325](https://github.com/ayhm325)
+- **GitHub:** [github.com/ayhm325](https://github.com/ayhm325)
+
+### Download CV
+
+- [Download My CV](https://ayhm325.github.io/files/AyhmObeidat_CV.pdf)
 
 ---
 
 ## License & Attribution
 
-This project is customized from the open-source [dark-minimal](https://github.com/Gothsec/dark-minimal) template under the [MIT License](LICENSE).
+This project is customized from the open-source [dark-minimal](https://github.com/Gothsec/dark-minimal) portfolio template.
+
+The original template is distributed under the MIT License. See the [LICENSE](LICENSE) file for licensing details.
