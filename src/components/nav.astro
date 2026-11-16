@@ -44,11 +44,23 @@ const navItems: NavItem[] = [
   <nav
     id="main-nav"
     aria-label="Primary navigation"
-    class="fixed left-1/2 -translate-x-1/2 z-[100] bg-[var(--background)] border border-1 border-transparent backdrop-blur-xl transition-all duration-500 ease-in-out md:top-6 md:bottom-auto bottom-0 w-[80%]"
+    class="pill-nav fixed left-1/2 -translate-x-1/2 z-[100] md:top-6 md:bottom-auto bottom-0 w-[80%]"
   >
-    <div class="container mx-auto flex justify-center items-center p-3">
+    <div class="pill-nav-inner flex w-full items-center justify-between md:px-3 md:py-2 px-3 py-2.5 gap-3">
+      <!-- Split Left: Brand Pill -->
+      <a
+        href="/#home"
+        data-section="home"
+        aria-label="Ayhm Obeidat Home"
+        class="pill-brand hidden md:inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full text-sm font-semibold text-[var(--white)] focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)]"
+      >
+        <span class="size-2 rounded-full bg-[var(--sec)] shadow-[0_0_10px_var(--sec)]"></span>
+        <span class="tracking-tight">Ayhm</span>
+      </a>
+
+      <!-- Split Right: Pill Navigation Items -->
       <ul
-        class="flex w-full justify-between md:space-x-6 md:justify-center md:gap-10 gap-2"
+        class="flex w-full md:w-auto justify-between md:justify-end md:gap-1.5 gap-1 items-center"
       >
         {
           navItems.map((item) => (
@@ -56,14 +68,18 @@ const navItems: NavItem[] = [
               <a
                 href={item.href}
                 data-section={item.sectionId}
-                class="flex flex-col items-center gap-1 text-[var(--white-icon)] hover:text-white transition-colors text-[11px] sm:text-xs md:text-base relative group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)] rounded-md px-1"
+                class="pill-link flex flex-col md:flex-row items-center justify-center gap-1 md:gap-2 text-[var(--white-icon)] hover:text-white text-[11px] sm:text-xs md:text-sm font-medium relative group focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)] rounded-full md:px-4 md:py-2 px-1 py-1.5 overflow-hidden"
               >
-                <div class="absolute -left-5 top-1/2 -translate-y-1/2 w-2 h-2 rounded-full transition-all duration-300 scale-0 opacity-0 bg-[#A9FF5B] nav-indicator hidden md:block" />
-                <span class="md:hidden flex items-center justify-center w-6 h-6">
+                <span class="pill-fill" aria-hidden="true" />
+                <span class="md:hidden relative z-10 flex items-center justify-center w-5 h-5">
                   <Fragment set:html={item.icon} />
                 </span>
-                <span class="hidden md:inline-block">{item.label}</span>
-                <span class="md:hidden">{item.label}</span>
+                <span class="relative z-10 hidden md:inline-block">{item.label}</span>
+                <span class="relative z-10 md:hidden">{item.label}</span>
+                <span
+                  class="nav-indicator hidden md:inline-block relative z-10 w-1.5 h-1.5 rounded-full bg-[var(--sec)]"
+                  aria-hidden="true"
+                />
               </a>
             </li>
           ))
@@ -74,44 +90,160 @@ const navItems: NavItem[] = [
 </div>
 
 <style>
-  nav {
+  /* Glass Pill Surface + Intro Animation */
+  .pill-nav {
     transform: translateX(-50%);
-    background-color: var(--background);
-    transition:
-      background-color 0.3s ease,
-      border-radius 0.3s ease,
-      border-color 0.3s ease;
-  }
-
-  nav.scrolling {
-    background-color: var(--component-bg);
-    border-color: #ffffff10;
+    background: rgba(18, 18, 20, 0.72);
+    border: 1px solid rgba(255, 255, 255, 0.12);
     border-radius: 9999px;
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
+    box-shadow:
+      0 10px 30px -10px rgba(0, 0, 0, 0.65),
+      inset 0 1px 0 rgba(255, 255, 255, 0.08);
+    transition:
+      background-color 0.35s ease,
+      border-color 0.35s ease,
+      box-shadow 0.35s ease,
+      width 0.35s cubic-bezier(0.22, 1, 0.36, 1);
+    animation: pillNavIntro 0.65s cubic-bezier(0.34, 1.56, 0.64, 1) both;
   }
 
-  nav a.active .nav-indicator {
-    transform: translateY(-50%) scale(1);
+  .pill-nav.scrolling {
+    background: rgba(14, 14, 16, 0.86);
+    border-color: rgba(164, 118, 255, 0.25);
+    box-shadow:
+      0 14px 36px -10px rgba(0, 0, 0, 0.75),
+      0 0 24px -12px rgba(164, 118, 255, 0.35),
+      inset 0 1px 0 rgba(255, 255, 255, 0.1);
+  }
+
+  .pill-brand {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    transition:
+      transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+      background-color 0.25s ease,
+      border-color 0.25s ease;
+  }
+
+  .pill-brand:hover {
+    background: rgba(164, 118, 255, 0.14);
+    border-color: rgba(164, 118, 255, 0.35);
+    transform: scale(1.04);
+  }
+
+  /* Pill Link: hoverEffect="fill", bounce & stretch */
+  .pill-link {
+    transition:
+      color 0.25s ease,
+      transform 0.45s cubic-bezier(0.34, 1.56, 0.64, 1);
+    transform-origin: center;
+  }
+
+  .pill-link .pill-fill {
+    position: absolute;
+    inset: 0;
+    border-radius: 9999px;
+    background: linear-gradient(
+      135deg,
+      rgba(164, 118, 255, 0.24),
+      rgba(255, 255, 255, 0.1)
+    );
+    border: 1px solid rgba(255, 255, 255, 0.14);
+    transform: translateY(105%) scaleX(0.72) scaleY(0.8);
+    opacity: 0;
+    transition:
+      transform 0.48s cubic-bezier(0.34, 1.56, 0.64, 1),
+      opacity 0.25s ease;
+    pointer-events: none;
+  }
+
+  .pill-link:hover {
+    transform: scaleX(1.04) scaleY(0.98);
+  }
+
+  .pill-link:active {
+    transform: scaleX(0.96) scaleY(1.03);
+  }
+
+  .pill-link:hover .pill-fill {
+    transform: translateY(0) scaleX(1) scaleY(1);
     opacity: 1;
   }
 
-  nav a.active {
-    color: white !important;
+  /* Active Pill + Dot Indicator */
+  .pill-link .nav-indicator {
+    transform: scale(0);
+    opacity: 0;
+    width: 0;
+    margin-left: -4px;
+    box-shadow: 0 0 8px var(--sec);
+    transition:
+      transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1),
+      opacity 0.25s ease,
+      width 0.3s ease,
+      margin 0.3s ease;
+  }
+
+  .pill-link.active {
+    color: #ffffff !important;
+  }
+
+  .pill-link.active .pill-fill {
+    transform: translateY(0) scaleX(1) scaleY(1);
+    opacity: 1;
+    background: linear-gradient(
+      135deg,
+      rgba(164, 118, 255, 0.28),
+      rgba(164, 118, 255, 0.1)
+    );
+    border-color: rgba(164, 118, 255, 0.45);
+  }
+
+  .pill-link.active .nav-indicator {
+    transform: scale(1);
+    opacity: 1;
+    width: 6px;
+    margin-left: 0;
+  }
+
+  @keyframes pillNavIntro {
+    from {
+      opacity: 0;
+      transform: translate(-50%, -18px) scale(0.94);
+    }
+    to {
+      opacity: 1;
+      transform: translate(-50%, 0) scale(1);
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .pill-nav,
+    .pill-link,
+    .pill-link .pill-fill,
+    .pill-link .nav-indicator,
+    .pill-brand {
+      animation: none !important;
+      transition: none !important;
+    }
   }
 
   @media (max-width: 767px) {
-    nav {
+    .pill-nav {
       width: 100% !important;
       transform: translateX(-50%);
       bottom: 0;
       left: 50%;
       position: fixed;
-      border-radius: 1rem 1rem 0 0;
-      border-color: #ffffff10;
+      border-radius: 1.25rem 1.25rem 0 0;
+      border-color: rgba(255, 255, 255, 0.12);
+      animation: none;
     }
 
-    nav.scrolling {
-      border-radius: 1rem 1rem 0 0;
-      background-color: var(--component-bg);
+    .pill-nav.scrolling {
+      border-radius: 1.25rem 1.25rem 0 0;
     }
 
     body {
@@ -132,8 +264,8 @@ const navItems: NavItem[] = [
       const scrollProgress = Math.min(window.scrollY / maxScroll, 1);
       const easeProgress = 1 - Math.pow(1 - scrollProgress, 4);
 
-      const minWidth = 560;
-      const maxWidth = window.innerWidth * 0.8;
+      const minWidth = 580;
+      const maxWidth = Math.min(window.innerWidth * 0.8, 920);
       const currentWidth = Math.max(
         minWidth,
         maxWidth - (maxWidth - minWidth) * easeProgress,
@@ -145,10 +277,14 @@ const navItems: NavItem[] = [
     } else {
       nav?.classList.remove("scrolling");
       if (window.innerWidth >= 768) {
-        nav?.style.setProperty("width", "80%");
+        nav?.style.setProperty("width", "min(80%, 920px)");
       }
     }
     rafId = null;
+  }
+
+  if (window.innerWidth >= 768) {
+    nav?.style.setProperty("width", "min(80%, 920px)");
   }
 
   window.addEventListener(
@@ -177,7 +313,7 @@ const navItems: NavItem[] = [
 
   document.addEventListener("DOMContentLoaded", () => {
     const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll("nav a[data-section]");
+    const navLinks = document.querySelectorAll("nav a.pill-link[data-section]");
     if (!sections.length) return;
 
     const observerOptions = {
@@ -191,7 +327,7 @@ const navItems: NavItem[] = [
           navLinks.forEach((link) => link.classList.remove("active"));
           const id = entry.target.getAttribute("id");
           const activeLink = document.querySelector(
-            `nav a[data-section="${id}"]`,
+            `nav a.pill-link[data-section="${id}"]`,
           );
           if (activeLink) {
             activeLink.classList.add("active");
@@ -200,10 +336,7 @@ const navItems: NavItem[] = [
       });
     };
 
-    const observer = new IntersectionObserver(
-      observerCallback,
-      observerOptions,
-    );
+    const observer = new IntersectionObserver(observerCallback, observerOptions);
     sections.forEach((section) => observer.observe(section));
   });
 </script>

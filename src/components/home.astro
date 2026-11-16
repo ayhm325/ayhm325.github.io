@@ -2,6 +2,7 @@
 import LetterGlitch from "../React/LetterGlitch.tsx";
 import LogoWall from "../components/logoWall.astro";
 import SkillsList from "../React/SkillsList.tsx";
+import SpecularButton from "../React/SpecularButton.tsx";
 import { personalInfo, heroContent } from "../data/portfolio";
 ---
 
@@ -33,28 +34,59 @@ import { personalInfo, heroContent } from "../data/portfolio";
       </div>
 
       <div class="flex flex-wrap items-center gap-3 pt-2 md:pt-4">
-        <a
+        <SpecularButton
+          client:load
           href="#projects"
-          class="inline-flex items-center gap-2 px-5 py-3 rounded-xl bg-[var(--sec)] text-[#101010] font-semibold text-sm md:text-base hover:opacity-90 transition duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-white"
+          size="lg"
+          radius={14}
+          tint="#a476ff"
+          tintOpacity={0.14}
+          textColor="#f5f5f5"
+          lineColor="#a476ff"
+          baseColor="#525252"
+          intensity={1}
+          idleIntensity={0.45}
+          shineSize={10}
+          shineFade={34}
+          thickness={1.2}
+          glow={1}
+          followMouse
+          proximity={250}
+          className="font-semibold"
         >
           <span>View My Projects</span>
           <svg
             xmlns="http://www.w3.org/2000/svg"
             viewBox="0 0 24 24"
             fill="currentColor"
-            class="size-4"
+            class="size-4 text-[var(--sec)]"
             aria-hidden="true"
           >
             <path
               d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"
             ></path>
           </svg>
-        </a>
+        </SpecularButton>
 
-        <a
+        <SpecularButton
+          client:load
           href={personalInfo.cvPath}
           download={personalInfo.cvFileName}
-          class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-[var(--white-icon-tr)] bg-[#1414149c] text-[var(--white)] hover:bg-[var(--white-icon-tr)] hover:border-[var(--sec)] font-medium text-sm md:text-base transition duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)]"
+          size="lg"
+          radius={14}
+          tint="#ffffff"
+          tintOpacity={0.04}
+          textColor="#f5f5f5"
+          lineColor="#ffffff"
+          baseColor="#525252"
+          intensity={1}
+          idleIntensity={0.35}
+          shineSize={10}
+          shineFade={34}
+          thickness={1.2}
+          glow={1}
+          followMouse
+          proximity={250}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -72,21 +104,50 @@ import { personalInfo, heroContent } from "../data/portfolio";
             <line x1="12" x2="12" y1="15" y2="3"></line>
           </svg>
           <span>Download CV</span>
-        </a>
+        </SpecularButton>
 
-        <a
+        <SpecularButton
+          client:load
           href="#contact"
-          class="inline-flex items-center gap-2 px-5 py-3 rounded-xl border border-[var(--white-icon-tr)] bg-[#1414149c] text-[var(--white-icon)] hover:text-[var(--white)] hover:bg-[var(--white-icon-tr)] font-medium text-sm md:text-base transition duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)]"
+          size="lg"
+          radius={14}
+          tint="#ffffff"
+          tintOpacity={0.04}
+          textColor="#f5f5f5"
+          lineColor="#ffffff"
+          baseColor="#525252"
+          intensity={1}
+          idleIntensity={0.35}
+          shineSize={10}
+          shineFade={34}
+          thickness={1.2}
+          glow={1}
+          followMouse
+          proximity={250}
         >
           <span>Contact Me</span>
-        </a>
+        </SpecularButton>
 
-        <a
+        <SpecularButton
+          client:load
           target="_blank"
           rel="noopener noreferrer"
           href={personalInfo.github}
-          aria-label="GitHub profile"
-          class="inline-flex items-center gap-2 px-4 py-3 rounded-xl border border-[var(--white-icon-tr)] bg-[#1414149c] text-[var(--white-icon)] hover:text-white hover:bg-[var(--white-icon-tr)] transition duration-300 ease-in-out focus:outline-none focus-visible:ring-2 focus-visible:ring-[var(--sec)]"
+          size="lg"
+          radius={14}
+          tint="#ffffff"
+          tintOpacity={0.04}
+          textColor="#f5f5f5"
+          lineColor="#ffffff"
+          baseColor="#525252"
+          intensity={1}
+          idleIntensity={0.35}
+          shineSize={10}
+          shineFade={34}
+          thickness={1.2}
+          glow={1}
+          followMouse
+          proximity={250}
         >
           <svg
             xmlns="http://www.w3.org/2000/svg"
@@ -100,7 +161,7 @@ import { personalInfo, heroContent } from "../data/portfolio";
             ></path>
           </svg>
           <span class="text-sm font-medium">GitHub</span>
-        </a>
+        </SpecularButton>
       </div>
     </div>
 
