@@ -1,20 +1,100 @@
-# Ayhm Mohammed Obeidat — Portfolio
+# Portfolio Template
 
-Personal portfolio for a Junior .NET Backend Developer based in Amman, Jordan.
+https://github.com/shaqdeff/Portfolio-Template/assets/92020713/eed76a82-e59d-440b-a04c-a2dc00a508b7
 
-**Live site:** [ayhm325.github.io](https://ayhm325.github.io/)  
-**GitHub:** [github.com/ayhm325](https://github.com/ayhm325)  
-**Featured project:** [DVLD-System](https://github.com/ayhm325/DVLD-System)
+![portfolio-phone](https://github.com/shaqdeff/Portfolio-Template/assets/92020713/e41ed31c-50e5-40d3-a74f-9c0eb053fe7f)
+![portfolio-phone-3](https://github.com/shaqdeff/Portfolio-Template/assets/92020713/e8c23aa7-ac27-48fc-bf66-50ab00e3a64f)
 
-## Site contents
+I created this portfolio to use as my own but ended up doing something else entirely. However, instead of keeping it buried, I decided to put it up here on GitHub as an open-source resource to help individuals to learn, adapt, and create their own portfolios. Feel free to customize and modify the theme and components to suit your personal style and branding preferences.
 
-- index.html — portfolio content, metadata, and structured data.
-- style.css — responsive visual system and layout.
-- script.js — accessible mobile navigation and current year.
-- assets/Ayhm_Obeidat_CV.pdf — downloadable CV.
+## License and Attribution
 
-The DVLD project content is based on commit [2420274d5a01a0e4fa2d6e416148daebf13523cf](https://github.com/ayhm325/DVLD-System/tree/2420274d5a01a0e4fa2d6e416148daebf13523cf). The client showcase uses a real login screenshot stored in that repository snapshot.
+The code in this repository is released under the [MIT](https://github.com/shaqdeff/Portfolio-Template/blob/90213d4887074d1d29434f706afad3d12fa33f5f/MIT.md) License, which grants you the freedom to use, modify, and distribute the template as your own. However, if you choose to use the site's design largely unmodified, kindly credit me as the original designer of the site.
 
-## Local preview
+All projects and experiences included in this portfolio are the result of my own efforts and creativity. Please refrain from presenting them as your own.
 
-This is a static site with no build step or package dependencies. Open index.html directly, or serve the folder with any static HTTP server.
+## Built With
+
+- React.js
+- Three.js
+- Framer Motion
+- TailwindCSS
+
+## Live Demo
+
+- Click [here](https://shaq-portfolio.netlify.app/) to view the live demo.
+
+## Getting Started
+
+To get started with this portfolio template, follow these simple steps:
+
+### Prerequisites
+
+Make sure you have node `16.0.0` or higher and npm `9.0.0` or higher installed.
+
+### Setup
+
+- With git, clone the code to your machine, or download a ZIP of all the files directly.
+- [Download the ZIP file from this location](https://github.com/shaqdeff/Portfolio-Template/archive/refs/heads/main.zip) or run the following [git](https://git-scm.com/) command to clone the files to your machine:
+
+```
+git clone https://github.com/shaqdeff/Portfolio-Template.git
+```
+
+- Once the files are on your machine, open the **Portfolio-Template** folder in [Visual Studio Code](https://code.visualstudio.com/download).
+
+```
+cd Portfolio-Template && code .
+```
+
+## Install
+
+- After opening the files in Visual Studio Code, open the **VS Code** integrated terminal and run the following commands:
+
+```
+npm install
+```
+
+This will install all the packages and dependencies used in the project.
+
+## Usage
+
+- Run the following command to start a local server:
+
+```
+npm run dev
+```
+
+This will open up the project on a browser on `http://localhost:5173/`
+
+## Build
+
+- To create a production build:
+
+```
+npm run build
+```
+
+- To preview the site as it will appear once deployed:
+
+```
+npm run preview
+```
+
+## Authors
+
+👤 **Shaquille Ndunda**
+
+- GitHub: [@shaqdeff](https://github.com/shaqdeff)
+- Twitter: [@shaquillendunda](https://twitter.com/shaquillendunda)
+- LinkedIn: [Shaquille Ndunda](https://www.linkedin.com/in/shaquille-ndunda-b13a95107/)
+
+## Feedback and Contributions
+
+If you have any feedback, suggestions, or would like to contribute to this project, your involvement is highly valued. Feel free to open an [issue](../../issues/) or submit a pull request with your ideas and enhancements. Remember, this template is a starting point, and the true magic lies in making it your own. Enjoy the journey of creating a stunning portfolio that represents your unique talents and accomplishments!
+
+Happy coding and showcasing!
+
+## Show your support
+
+Give a ⭐️ if you like this project!
