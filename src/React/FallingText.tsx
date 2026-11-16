@@ -357,8 +357,8 @@ export default function FallingText({
       } ${trigger === "click" ? "cursor-pointer" : ""} ${className}`}
     >
       <p
-        className={`leading-relaxed flex flex-wrap items-center gap-x-2 gap-y-1 max-w-3xl ${
-          align === "left" ? "text-left justify-start font-normal" : "text-center justify-center font-medium"
+        className={`leading-[1.7] tracking-[-0.01em] flex flex-wrap items-center gap-x-2 gap-y-1.5 max-w-3xl ${
+          align === "left" ? "text-left justify-start font-medium" : "text-center justify-center font-medium"
         }`}
         style={{ fontSize }}
       >
@@ -376,6 +376,10 @@ export default function FallingText({
             }}
             style={{
               color: t.isHighlighted ? accentColor : textColor,
+              fontWeight: t.isHighlighted ? 600 : undefined,
+              textShadow: t.isHighlighted
+                ? `0 0 16px ${accentColor}55`
+                : undefined,
               border: wireframes
                 ? "1px dashed rgba(255,255,255,0.35)"
                 : variant === "pills"
