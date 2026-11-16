@@ -287,11 +287,3 @@ Feel free to reach out through the following channels:
 ### Download CV
 
 - [Download My CV](https://ayhm325.github.io/files/AyhmObeidat_CV.pdf)
-
----
-
-## License & Attribution
-
-This project is customized from the open-source [dark-minimal](https://github.com/Gothsec/dark-minimal) portfolio template.
-
-The original template is distributed under the MIT License. See the [LICENSE](LICENSE) file for licensing details.
